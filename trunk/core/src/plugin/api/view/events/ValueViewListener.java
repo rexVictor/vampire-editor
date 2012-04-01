@@ -2,8 +2,8 @@ package plugin.api.view.events;
 
 public interface ValueViewListener {
 	
-	public void valueChanged(int value);
+	public void valueChanged(ValueViewEvent viewEvent);
 	
-	public void tempValueChanged(int value);
+	public void tempValueChanged(ValueViewEvent viewEvent);
 
 }
