@@ -3,7 +3,7 @@ package plugin.api.domain.sheet;
 import domain.sheet.Value;
 import plugin.api.domain.sheet.view.TraitViewAttributes;
 
-public interface TraitAPI {
+public interface TraitAPI extends Nameable{
 
 	public String getName();
 
