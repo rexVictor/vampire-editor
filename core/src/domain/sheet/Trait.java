@@ -3,10 +3,11 @@ package domain.sheet;
 import java.util.LinkedList;
 import java.util.List;
 
+import plugin.api.domain.sheet.Nameable;
 import plugin.api.domain.sheet.TraitAPI;
 import plugin.api.domain.sheet.view.TraitViewAttributes;
 
-public class Trait implements TraitAPI {
+public class Trait implements TraitAPI, Nameable{
 	
 	private String name;
 	
@@ -50,6 +51,10 @@ public class Trait implements TraitAPI {
 	
 	public void removeSpecialty(Specialty specialty){
 		specialties.remove(specialty);
+	}
+	
+	public Trait clone(){
+		return new Trait(name, value.clone(), traitViewAttributes);
 	}
 	
 	
