@@ -1,4 +1,4 @@
-package plugin.api.domain;
+package plugin.api.domain.sheet;
 
 import plugin.api.domain.sheet.view.ValueViewAttributes;
 

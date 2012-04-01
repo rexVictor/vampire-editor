@@ -2,7 +2,7 @@ package domain.sheet;
 
 import java.io.Serializable;
 
-import plugin.api.domain.ValueAPI;
+import plugin.api.domain.sheet.ValueAPI;
 import plugin.api.domain.sheet.view.ValueViewAttributes;
 
 public class Value implements ValueAPI, Serializable {
