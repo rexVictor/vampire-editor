@@ -5,14 +5,15 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import plugin.api.domain.sheet.DataAPI;
 import plugin.api.domain.sheet.Nameable;
 import plugin.api.domain.sheet.view.DataViewAttributes;
 
-public class Data<V extends Nameable> implements Nameable{
+public class Data<V extends Nameable, W extends V> implements Nameable, DataAPI<V>{
 	
-	private class DataIterator implements Iterator<V>{
+	private class DataIterator implements Iterator<W>{
 		
-		private Iterator<V> iterator = entries.iterator();
+		private Iterator<W> iterator = entries.iterator();
 		
 		@Override
 		public boolean hasNext() {
@@ -20,7 +21,7 @@ public class Data<V extends Nameable> implements Nameable{
 		}
 
 		@Override
-		public V next() {
+		public W next() {
 			return iterator.next();
 		}
 
@@ -34,7 +35,7 @@ public class Data<V extends Nameable> implements Nameable{
 	
 	private final DataViewAttributes attributes;
 	
-	private final List<V> entries = new ArrayList<>();
+	private final List<W> entries = new ArrayList<>();
 	
 	private String name;
 	
@@ -45,14 +46,16 @@ public class Data<V extends Nameable> implements Nameable{
 		this.attributes = attributes;
 	}
 
-	public void add(V v){
+	public void add(W v){
 		entries.add(v);
 	}
 
+	
+	
 	@Override
 	@SuppressWarnings("unchecked")
-	public Data<V> clone(){
-		Data<V> data = new Data<V>(attributes);
+	public Data<V,W> clone(){
+		Data<V, W> data = new Data<V, W>(attributes);
 		data.name = this.name;
 		for (V v : entries){
 			data.entries.add((V) v.clone());
@@ -60,20 +63,26 @@ public class Data<V extends Nameable> implements Nameable{
 		return data;
 	}
 	
+
+	@Override
 	public DataViewAttributes getAttributes() {
 		return attributes;
 	}
 	
+	
+	@Override
 	public Iterator<V> getIterator(){
 		return new DataIterator();
 	}
+	
+	
 	
 	@Override
 	public String getName() {
 		return name;
 	}
 	
-	public void insert(int i, V v){
+	public void insert(int i, W v){
 		entries.add(i, v);
 	}
 	
