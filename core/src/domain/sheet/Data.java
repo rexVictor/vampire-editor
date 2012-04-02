@@ -57,8 +57,8 @@ public class Data<V extends Nameable, W extends V> implements Nameable, DataAPI<
 	public Data<V,W> clone(){
 		Data<V, W> data = new Data<V, W>(attributes);
 		data.name = this.name;
-		for (V v : entries){
-			data.entries.add((V) v.clone());
+		for (W v : entries){
+			data.entries.add((W) v.clone());
 		}
 		return data;
 	}
@@ -71,7 +71,7 @@ public class Data<V extends Nameable, W extends V> implements Nameable, DataAPI<
 	
 	
 	@Override
-	public Iterator<V> getIterator(){
+	public Iterator<? extends V> getIterator(){
 		return new DataIterator();
 	}
 	

@@ -7,13 +7,14 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import application.sheet.events.TraitEvent;
 
+import plugin.api.application.sheet.controller.TraitControllerAPI;
 import plugin.api.application.sheet.events.TraitListener;
 import plugin.api.view.events.TraitViewEvent;
 import plugin.api.view.events.TraitViewListener;
 import plugin.api.view.sheet.TraitView;
 import domain.sheet.Trait;
 
-public class TraitController implements TraitViewListener{
+public class TraitController implements TraitViewListener, TraitControllerAPI{
 	
 	private final Trait trait;
 	
@@ -38,8 +39,9 @@ public class TraitController implements TraitViewListener{
 		setTraitName(viewEvent.getName());
 	}
 	
+	@Override
 	public void setTraitName(String name){
-		TraitEvent event = new TraitEvent(trait.getName(), name);
+		TraitEvent event = new TraitEvent(this, trait.getName(), name);
 		lock.lock();
 		try{
 			trait.setName(name);
@@ -54,6 +56,7 @@ public class TraitController implements TraitViewListener{
 		
 	}
 	
+	@Override
 	public void addListener(TraitListener listener){
 		lock.lock();
 		try{
@@ -64,6 +67,7 @@ public class TraitController implements TraitViewListener{
 		}
 	}
 	
+	@Override
 	public void removeListener(TraitListener listener){
 		lock.lock();
 		try{
@@ -76,12 +80,14 @@ public class TraitController implements TraitViewListener{
 
 
 
+	@Override
 	public Trait getTrait() {
 		return trait;
 	}
 
 
 
+	@Override
 	public TraitView getTraitView() {
 		return traitView;
 	}
