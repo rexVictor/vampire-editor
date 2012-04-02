@@ -1,10 +1,10 @@
 package plugin.api.application.sheet.events;
 
-import application.sheet.controller.ValueController;
+import plugin.api.application.sheet.controller.ValueControllerAPI;
 
 public interface ValueEventAPI {
 
-	public ValueController getSource();
+	public ValueControllerAPI getSource();
 
 	public int getFormelValue();
 

@@ -4,9 +4,8 @@ import java.util.Iterator;
 
 import plugin.api.domain.sheet.view.DataViewAttributes;
 
-public interface DataAPI<V extends Nameable> {
+public interface DataAPI<V extends Nameable> extends Nameable{
 
-	@SuppressWarnings("unchecked")
 	public DataAPI<V> clone();
 
 	public DataViewAttributes getAttributes();

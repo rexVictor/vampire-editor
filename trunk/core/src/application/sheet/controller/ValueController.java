@@ -7,13 +7,14 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import application.sheet.events.ValueEvent;
 
+import plugin.api.application.sheet.controller.ValueControllerAPI;
 import plugin.api.application.sheet.events.ValueListener;
 import plugin.api.view.events.ValueViewEvent;
 import plugin.api.view.events.ValueViewListener;
 import plugin.api.view.sheet.ValueView;
 import domain.sheet.Value;
 
-public class ValueController implements ValueViewListener{
+public class ValueController implements ValueViewListener, ValueControllerAPI{
 	
 	private final Value value;
 	
@@ -32,6 +33,7 @@ public class ValueController implements ValueViewListener{
 		valueView.addListener(this);
 	}
 	
+	@Override
 	public void setValue(int value){
 		ValueEvent event = new ValueEvent(this, this.value.getValue(), value, this.value.getTempValue(), this.value.getTempValue());
 		
@@ -50,6 +52,7 @@ public class ValueController implements ValueViewListener{
 		
 	}
 	
+	@Override
 	public void setTempValue(int value){
 		ValueEvent event = new ValueEvent(this, this.value.getValue(), this.value.getValue(), this.value.getTempValue(), value);
 		
@@ -70,10 +73,12 @@ public class ValueController implements ValueViewListener{
 	
 
 
+	@Override
 	public Value getValue(){
 		return value;
 	}
 	
+	@Override
 	public ValueView getView(){
 		return valueView;
 	}
@@ -90,12 +95,14 @@ public class ValueController implements ValueViewListener{
 		
 	}
 	
+	@Override
 	public void addListener(ValueListener listener){
 		lock.lock();
 		listeners.add(listener);
 		lock.unlock();
 	}
 	
+	@Override
 	public void removeListener(ValueListener listener){
 		lock.lock();
 		listeners.remove(listener);

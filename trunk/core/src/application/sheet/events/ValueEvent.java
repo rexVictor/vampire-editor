@@ -1,7 +1,7 @@
 package application.sheet.events;
 
+import application.sheet.controller.ValueController;
 import plugin.api.application.sheet.events.ValueEventAPI;
-import application.sheet.controller.ValueController;;
 
 public class ValueEvent implements ValueEventAPI {
 	
