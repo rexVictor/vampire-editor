@@ -1,4 +1,4 @@
-package domain.sheet;
+package vampire.editor.domain.sheet;
 
 import static org.junit.Assert.*;
 
