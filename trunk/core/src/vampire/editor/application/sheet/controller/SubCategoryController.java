@@ -1,9 +1,14 @@
 package vampire.editor.application.sheet.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
+import vampire.editor.application.sheet.events.SubCategoryEvent;
 import vampire.editor.domain.sheet.SubCategory;
+import vampire.editor.plugin.api.application.sheet.events.SubCategoryListener;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 
 public class SubCategoryController {
@@ -13,6 +18,10 @@ public class SubCategoryController {
 	private final SubCategoryView view;
 	
 	private List<TraitController> traitControllers = new ArrayList<>();
+	
+	private final List<SubCategoryListener> listeners = new LinkedList<>();
+	
+	private final Lock lock = new ReentrantLock(true);
 
 	public SubCategoryController(SubCategory subCategory, SubCategoryView view) {
 		super();
@@ -21,15 +30,82 @@ public class SubCategoryController {
 	}
 	
 	public void addTrait(TraitController traitController){
-		subCategory.add(traitController.getTrait());
-		view.addTraitView(traitController.getTraitView());
-		traitControllers.add(traitController);
+		SubCategoryEvent event = 
+				new SubCategoryEvent(this, 
+					traitController, traitControllers.size());
+		lock.lock();
+		try{
+			subCategory.add(traitController.getTrait());
+			view.add(traitController.getTraitView());
+			traitControllers.add(traitController);
+			for(SubCategoryListener l : listeners){
+				l.traitAdded(event);
+			}
+		}
+		finally{
+			lock.unlock();
+		}
+		
+		
 	}
 	
 	public void removeTrait(TraitController traitController){
-		subCategory.remove(traitController.getTrait());
-	    //TODO view.remove(traitController.getTraitView());
-		traitControllers.remove(traitController);
+		SubCategoryEvent event = 
+				new SubCategoryEvent(this, 
+					traitController, traitControllers.indexOf(traitController));
+		lock.lock();
+		try{
+			subCategory.remove(traitController.getTrait());
+		    view.remove(traitController.getTraitView());
+			traitControllers.remove(traitController);
+			for (SubCategoryListener l : listeners){
+				l.traitRemoved(event);
+			}
+		}
+		finally{
+			lock.unlock();
+		}
+		
+		
+	}
+	
+	public void insertTrait(int index, TraitController controller){
+		SubCategoryEvent event = 
+				new SubCategoryEvent(this, 
+					controller, index);
+		lock.lock();
+		try{
+			subCategory.insert(index, controller.getTrait());
+			view.insert(index, controller.getTraitView());
+			traitControllers.add(index, controller);
+			for (SubCategoryListener l : listeners){
+				l.traitAdded(event);
+			}
+		}
+		finally{
+			lock.unlock();
+		}
+			
+	}
+	
+	public void addListener(SubCategoryListener listener){
+		lock.lock();
+		try{
+			listeners.add(listener);
+		}
+		finally{
+			lock.unlock();
+		}
+	}
+	
+	public void removeListener(SubCategoryListener listener){
+		lock.lock();
+		try{
+			listeners.remove(listener);
+		}
+		finally{
+			lock.unlock();
+		}
 	}
 	
 	
