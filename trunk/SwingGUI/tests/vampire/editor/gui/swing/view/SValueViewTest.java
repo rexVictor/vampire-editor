@@ -33,7 +33,8 @@ public class SValueViewTest {
 	
 	
 	@BeforeClass
-	public static void initialize(){
+	public static void initialize() throws Exception{
+		Thread.sleep(100);
 		frame = new JFrame();
 		view = new SValueView();
 		JPanel panel = view.getPanel();
@@ -54,7 +55,7 @@ public class SValueViewTest {
 	
 	
 
-	@Test(timeout = 1000)
+	@Test(timeout = 3000)
 	public void testMouseListener() throws AWTException, InterruptedException {
 		testLeftClick(2);
 		testLeftClick(4);
