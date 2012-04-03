@@ -17,9 +17,9 @@ import vampire.editor.plugin.api.view.sheet.ValueView;
 
 public class SValueView implements ValueView{
 	
-	private static final String CIRCLE_WHITE = "\u25CB";
+	static final String CIRCLE_WHITE = "\u25CB";
 	
-	private static final String CIRCLE_BLACK = "\u25CF";
+	static final String CIRCLE_BLACK = "\u25CF";
 	
 	private class Clicker extends MouseAdapter{
 		
@@ -119,6 +119,14 @@ public class SValueView implements ValueView{
 	
 	public JPanel getPanel(){
 		return panel;
+	}
+	
+	public int getCircleCount(){
+		return circles.size();
+	}
+	
+	List<JLabel> getCircles(){
+		return circles;
 	}
 
 }
