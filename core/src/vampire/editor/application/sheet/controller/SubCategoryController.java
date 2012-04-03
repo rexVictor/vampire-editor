@@ -17,7 +17,7 @@ public class SubCategoryController {
 	
 	private final SubCategoryView view;
 	
-	private List<TraitController> traitControllers = new ArrayList<>();
+	private final List<TraitController> traitControllers = new ArrayList<>();
 	
 	private final List<SubCategoryListener> listeners = new LinkedList<>();
 	
@@ -30,23 +30,7 @@ public class SubCategoryController {
 	}
 	
 	public void addTrait(TraitController traitController){
-		SubCategoryEvent event = 
-				new SubCategoryEvent(this, 
-					traitController, traitControllers.size());
-		lock.lock();
-		try{
-			subCategory.add(traitController.getTrait());
-			view.add(traitController.getTraitView());
-			traitControllers.add(traitController);
-			for(SubCategoryListener l : listeners){
-				l.traitAdded(event);
-			}
-		}
-		finally{
-			lock.unlock();
-		}
-		
-		
+		insertTrait(traitControllers.size(), traitController);		
 	}
 	
 	public void removeTrait(TraitController traitController){
@@ -107,6 +91,16 @@ public class SubCategoryController {
 			lock.unlock();
 		}
 	}
+
+	public SubCategory getSubCategory() {
+		return subCategory;
+	}
+
+	public SubCategoryView getView() {
+		return view;
+	}
+	
+	
 	
 	
 	
