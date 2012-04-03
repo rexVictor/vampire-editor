@@ -71,7 +71,7 @@ public class Data<V extends Nameable, W extends V> implements Nameable, DataAPI<
 	
 	
 	@Override
-	public Iterator<? extends V> getIterator(){
+	public Iterator<W> getIterator(){
 		return new DataIterator();
 	}
 	
