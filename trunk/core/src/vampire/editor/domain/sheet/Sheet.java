@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 
 import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
+import vampire.editor.plugin.api.domain.sheet.Nameable;
 
 public class Sheet {
 	
@@ -17,7 +18,7 @@ public class Sheet {
 	
 		for (Field f : fields){
 			try {
-				f.set(clone, f.get(this));
+				f.set(clone, ((Nameable) f.get(this)).clone());
 			} catch (IllegalArgumentException | IllegalAccessException e) {
 				e.printStackTrace();
 				return null;
@@ -25,6 +26,16 @@ public class Sheet {
 		}
 		return clone;
 	}
+
+	public Data<MetaEntryAPI, MetaEntry> getMeta() {
+		return meta;
+	}
+
+	public Data<CategoryAPI, Category> getCategories() {
+		return categories;
+	}
+	
+	
 	
 	
 	
