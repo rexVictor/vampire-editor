@@ -5,5 +5,7 @@ public interface ValueViewAttributes {
 	public boolean isDynamic();
 	
 	public boolean showSpace();
+	
+	public int circleCount();
 
 }
