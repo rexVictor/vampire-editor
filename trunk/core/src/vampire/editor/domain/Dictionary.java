@@ -11,28 +11,42 @@ public class Dictionary implements DictionaryAPI {
 	
 	private final Map<String, String> valueToKey = new HashMap<>();
 	
-	private final ResourceBundle bundle;
+	private final Map<String, String> keyToValue = new HashMap<>();
 	
+	private final String name;
 	
-	
-	public Dictionary(ResourceBundle bundle) {
+	public Dictionary(ResourceBundle bundle, String name) {
 		super();
-		this.bundle = bundle;
+		this.name = name;
 	}
+	
+	private void initialize(ResourceBundle bundle){
+		Set<String> keys = bundle.keySet();
+		for (String key : keys){
+			String value = bundle.getString(key);
+			keyToValue.put(key, value);
+			valueToKey.put(value, key);
+		}
+	}	
+	
 
 	@Override
 	public String getKey(String value){
-		return null;
+		return valueToKey.get(value);
 	}
 	
 	@Override
 	public String getValue(String key){
-		return null;
+		return keyToValue.get(key);
+	}
+
+	public String getName() {
+		return name;
 	}
 	
-	Set<String> getKeys(){
-		return bundle.keySet();
-	}
+	
+	
+	
 	
 	
 	

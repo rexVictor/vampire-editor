@@ -6,14 +6,28 @@ import org.junit.Test;
 
 import vampire.editor.domain.sheet.IllegalValueException;
 import vampire.editor.domain.sheet.Value;
+import vampire.editor.plugin.fullapi.sheet.IValue;
 
 public class ValueTest {
 
-	@Test(expected = IllegalValueException.class)
+	@Test
 	public void testSetValueExceptionThrown() {
-		setValueWith(12, 0, 4);
-		setValueWith(6,0,5);
-		setValueWith(-5,5,10);
+		testSetValueExceptionExpected(12, 0, 4);
+		testSetValueExceptionExpected(6,0,5);
+		testSetValueExceptionExpected(-5,5,10);
+	}
+	
+	private void testSetValueExceptionExpected(int value, int minValue, int maxValue){
+		boolean correct = false;
+		try{
+			setValueWith(value, minValue, maxValue);
+		}
+		catch (IllegalValueException e){
+			correct = true; 
+		}
+		finally {
+			assertTrue(correct);
+		}
 	}
 	
 	@Test
@@ -25,7 +39,7 @@ public class ValueTest {
 	
 	private void setValueWith(int value, int minValue, int maxValue){
 		assertTrue(minValue<=maxValue);
-		Value toTest = new Value(minValue, minValue, maxValue, null);
+		IValue toTest = new Value(minValue, minValue, maxValue, null);
 		toTest.setValue(value);
 	}
 

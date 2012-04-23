@@ -4,11 +4,13 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import vampire.editor.plugin.fullapi.sheet.ISheet;
+
 public class SheetTest {
 
 	@Test
 	public void test() {
-		Sheet sheet = new Sheet();
+		ISheet sheet = new Sheet();
 		sheet.clone();
 		fail("Not yet implemented");
 	}

@@ -1,15 +1,23 @@
 {
 	"valueViews"	:	[
 	    {
-	        "id"		:	0,
+	        "id"		:	23,
 	        "showSpace"	:	true,
 	        "dynamic"	:	true,
-	        "circles"	:	5,
+	        "circles"	:	5
 		},
 		{
-		    "id"		:	1,
+		    "id"		:	20,
 		    "showSpace" :	false,
+		    "dynamic"	:	false,
+		    "circles"	:	5
 		    
+		},
+		{
+		    "id"		:	400,
+		    "showSpace"	:	false,
+		    "dynamic"	:	false,
+		    "circles"	:	10
 		}
 	]
 }

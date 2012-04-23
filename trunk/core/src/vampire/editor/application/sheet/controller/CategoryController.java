@@ -10,6 +10,7 @@ import vampire.editor.application.sheet.events.CategoryEvent;
 import vampire.editor.domain.sheet.Category;
 import vampire.editor.plugin.api.application.sheet.events.CategoryListener;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
+import vampire.editor.plugin.fullapi.sheet.ICategory;
 
 public class CategoryController {
 	
@@ -86,7 +87,7 @@ public class CategoryController {
 		}
 	}
 
-	public Category getCategory() {
+	public ICategory getCategory() {
 		return category;
 	}
 
