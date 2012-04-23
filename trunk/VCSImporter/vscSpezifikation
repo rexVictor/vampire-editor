@@ -1,0 +1,51 @@
+Spezifikation vsc Dateien:
+
+Byte 0:	Angabe des Typs:
+		00: Maskerade
+		01: Alte Welt
+		02: Live
+
+Byte 1: Generation
+Byte 2-a: Attribute
+		Reihenfolge: Spalte 1, Zeile 1, Zeile 2
+					 Spalte 2, Zeile 1, Zeile 2
+					 Spalte 3; Zeile 1, Zeile 2
+					 Zeile 3 von links nach rechts
+Byte b-d: Tugenden
+
+byte e: Menschlichkeit
+Byte f: Willenskraft
+Byte 10: 0 Byte ?
+Byte 11: EP
+Byte 12: Anzahl der Kreise
+Byte 13-30: Fähigkeiten (kanonische Reihenfolge)
+Byte 31-3a: andere Fähigkeiten
+Byte 3b-3f: Hintergründe
+Byte 40-45: Disziplinen
+Ab jetzt folgen nur noch Strings, die in Pascal wie folgt kodiert sind:
+Byte 0: Länge des Strings
+Byte i: i. Zeichen;
+String 0: Name
+String 1: Spieler
+String 2: Erzeuger
+String 3: Chronik
+String 4: Zuflucht
+String 5: 0 String?
+String 6: Clan
+String 7: Sekte
+String 8: Wesen ?
+String 9: Mut?
+String a: Konzept
+String b: Verhalten?
+String c: Gewissen?
+String d: Pfad?
+String e: Selbstbeherrschung?
+String f-14: Rituale
+String 15-1a: Vorzüge
+String 1b-1f: Nachteile
+String 20-2a: Andere Eigenschaften
+String 2b-2f: Hintergründe
+String 30-35: Disziplinen
+
+to be continued;
+
