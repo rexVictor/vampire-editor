@@ -10,6 +10,7 @@ import vampire.editor.application.sheet.events.SubCategoryEvent;
 import vampire.editor.domain.sheet.SubCategory;
 import vampire.editor.plugin.api.application.sheet.events.SubCategoryListener;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
+import vampire.editor.plugin.fullapi.sheet.ISubCategory;
 
 public class SubCategoryController {
 	
@@ -92,7 +93,7 @@ public class SubCategoryController {
 		}
 	}
 
-	public SubCategory getSubCategory() {
+	public ISubCategory getSubCategory() {
 		return subCategory;
 	}
 

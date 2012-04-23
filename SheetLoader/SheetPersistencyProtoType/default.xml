@@ -1,1 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<root xmlns="huhu" xmlns:vcf="test">
+	<vcf:traits>
+		<vcf:category name="attributes">
+			<vcf:subcategory name="physical">
+				<vcf:trait name="strength" valueID="23010011000" />
+				<vcf:trait name="stamina" valueID="23010011000" />
+				<vcf:trait name="dexterity" valueID="23010011000" />
+			</vcf:subcategory>
+			<vcf:subcategory name="social">
+				<vcf:trait name="charism" valueID="23010011000" />
+				<vcf:trait name="manipulation" valueID="23010011000" />
+				<vcf:trait name="appearance" valueID="23010011000" />
+			</vcf:subcategory>
+			<vcf:subcategory name="mental">
+				<vcf:trait name="perception" valueID="23010011000" />
+				<vcf:trait name="intelligence" valueID="23010011000" />
+				<vcf:trait name="wits" valueID="23010011000" />
+			</vcf:subcategory>
+		</vcf:category>
+		<vcf:category name="abilities">
+			<vcf:subcategory name="talents">
+				<vcf:trait name="alertness" valueID="23000001000"/>				
+			</vcf:subcategory>
+		</vcf:category>
+	</vcf:traits>
+</root>
