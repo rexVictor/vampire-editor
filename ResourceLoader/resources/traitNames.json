@@ -1,0 +1,58 @@
+{
+	"clans"			:	[
+	    "assamite",
+	    "brujah",
+	    "gangrel",
+	    "malkavian",
+	    "nosferatu",
+	    "toreador",
+	    "tremere",
+	    "ventrue",
+	    "lasombra",
+	    "tzimisce",
+	    "ravnos",
+	    "giovanni",
+	    "trujah",
+	    "gargoyle",
+	    "setites",
+	    ""	  
+	],
+	"disciplines"	:	[
+	    "auspex",
+	    "dominate",
+	    "celerity",
+	    "presence",
+	    "animalism",
+	    "celerity",
+	    "chimestry",
+	    "dementation",
+	    "fortitude",
+	    "necromancy",
+	    "obfuscate",
+	    "obtenebration",
+	    "potence",
+	    "presence",
+	    "protean",
+	    "quietus",
+	    "serpentis",
+	    "thaumaturgy",
+	    "vicissitude",
+	    ""
+	],
+	"merits"	: 	{
+	    "1" : [
+	        "acute_sense",
+	        "eat_food",
+	        ""	        
+	    ],
+	    "2" : [
+	        "blush_of_health",
+	        "enchanting_voice",
+	        ""
+	    ]
+	}
+	    
+	
+	    
+	
+}
