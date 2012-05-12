@@ -1,0 +1,14 @@
+{
+	"testCases" : [
+		{
+			"showSpace":true,
+			"dynamic":true,
+			"circles":5
+		},
+		{
+			"showSpace":false,
+			"dynamic":true,
+			"circles":7
+		}
+	]
+}

@@ -20,18 +20,22 @@ public class SubCategoryViewAttributes implements ISubCategoryViewAttributes{
 
 
 
+	@Override
 	public boolean isExpandable() {
 		return expandable;
 	}
 
+	@Override
 	public void setExpandable(boolean expandable) {
 		this.expandable = expandable;
 	}
 
+	@Override
 	public boolean isShowTitle() {
 		return showTitle;
 	}
 
+	@Override
 	public void setShowTitle(boolean showTitle) {
 		this.showTitle = showTitle;
 	}

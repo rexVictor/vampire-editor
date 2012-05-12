@@ -40,6 +40,19 @@ public class ValueViewAttributes implements IValueViewAttributes{
 		this.circles = circles;
 	}
 	
+	@Override
+	public String toString(){
+		StringBuilder builder = new StringBuilder();
+		builder.append("dynamic: ");
+		builder.append(dynamic);
+		builder.append(", showspace: ");
+		builder.append(showSpace);
+		builder.append(", circles: ");
+		builder.append(circles);
+		builder.append("\n");
+		return builder.toString();
+	}
+	
 	
 
 }

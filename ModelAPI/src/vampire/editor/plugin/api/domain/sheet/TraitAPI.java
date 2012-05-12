@@ -10,6 +10,6 @@ public interface TraitAPI extends Nameable{
 
 	public ValueAPI getValue();
 
-	public TraitViewAttributesAPI getTraitViewAttributes();
+	public TraitViewAttributesAPI getViewAtts();
 
 }

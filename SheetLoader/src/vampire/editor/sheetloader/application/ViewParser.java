@@ -24,6 +24,7 @@ public class ViewParser {
 		module.addAbstractTypeMapping(ITraitViewAttributes.class, constructors.getImplementingClassOf(ITraitViewAttributes.class));
 		module.addAbstractTypeMapping(ISubCategoryViewAttributes.class, constructors.getImplementingClassOf(ISubCategoryViewAttributes.class));
 		module.addAbstractTypeMapping(ICategoryViewAttributes.class, constructors.getImplementingClassOf(ICategoryViewAttributes.class));
+		mapper.registerModule(module);
 	}
 	
 	public IValueViewAttributes parseValueViewAttributes(Object object){

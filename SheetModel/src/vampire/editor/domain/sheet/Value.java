@@ -2,10 +2,8 @@ package vampire.editor.domain.sheet;
 
 import java.io.Serializable;
 
-import vampire.editor.domain.sheet.view.ValueViewAttributes;
-import vampire.editor.plugin.api.domain.sheet.ValueAPI;
-import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 import vampire.editor.plugin.fullapi.sheet.IValue;
+import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
 
 
 /**
@@ -15,7 +13,7 @@ import vampire.editor.plugin.fullapi.sheet.IValue;
  * @author rex
  *
  */
-public class Value implements ValueAPI, Serializable, IValue {
+public class Value implements Serializable, IValue {
 	
 	/**
 	 * 
@@ -48,7 +46,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * {@link ValueView} 
 	 */
 	
-	private ValueViewAttributes viewAtts;
+	private IValueViewAttributes viewAtts;
 	
 	public Value(){
 		this(null);
@@ -59,7 +57,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * 0 as value, MAX_VALUE as maximum and MIN_VALUE as minimum.
 	 * @param viewAttributes
 	 */
-	public Value(ValueViewAttributes viewAttributes){
+	public Value(IValueViewAttributes viewAttributes){
 		this(0,viewAttributes);
 	}
 	
@@ -69,7 +67,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * @param value
 	 * @param viewAttributes
 	 */
-	public Value(int value, ValueViewAttributes viewAttributes){
+	public Value(int value, IValueViewAttributes viewAttributes){
 		this(value,MAX_VALUE, viewAttributes);
 	}
 	
@@ -80,7 +78,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * @param maxValue
 	 * @param viewAttributes
 	 */
-	public Value(int value, int maxValue, ValueViewAttributes viewAttributes){
+	public Value(int value, int maxValue, IValueViewAttributes viewAttributes){
 		this(value, MIN_VALUE, maxValue, viewAttributes);
 	}
 	
@@ -92,7 +90,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * @param maxValue
 	 * @param viewAttributes
 	 */
-	public Value(int value, int minValue, int maxValue, ValueViewAttributes viewAttributes){
+	public Value(int value, int minValue, int maxValue, IValueViewAttributes viewAttributes){
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 		setValue(value);
@@ -126,7 +124,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	
 	
 	@Override
-	public ValueViewAttributesAPI getViewAtts() {
+	public IValueViewAttributes getViewAtts() {
 		return viewAtts;
 	}
 	
@@ -168,7 +166,8 @@ public class Value implements ValueAPI, Serializable, IValue {
 		return this == obj;
 	}
 	
-	public void setViewAtts(ValueViewAttributes atts){
-		this.viewAtts = atts;
+	public void setViewAtts(IValueViewAttributes atts){
+		if (this.viewAtts==null)
+			this.viewAtts = atts;
 	}
 }

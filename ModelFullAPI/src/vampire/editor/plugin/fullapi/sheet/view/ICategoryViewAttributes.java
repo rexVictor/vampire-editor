@@ -2,7 +2,7 @@ package vampire.editor.plugin.fullapi.sheet.view;
 
 import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributesAPI;
 
-public interface ICategoryViewAttributes extends CategoryViewAttributesAPI{
+public interface ICategoryViewAttributes extends CategoryViewAttributesAPI, IDataViewAttributes{
 	
 	public void setShowLine(boolean showLine);
 	
