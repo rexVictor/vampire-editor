@@ -1,7 +1,7 @@
 package vampire.editor.plugin.fullapi.sheet;
 
 import vampire.editor.plugin.api.domain.sheet.ValueAPI;
-import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 
 
 
@@ -38,7 +38,7 @@ public interface IValue extends ValueAPI{
 	/**
 	 * Returns the viewAttributes
 	 */
-	public  ValueViewAttributes getViewAtts();
+	public  ValueViewAttributesAPI getViewAtts();
 
 	/**
 	 * Returns a copy of this Value. <br>

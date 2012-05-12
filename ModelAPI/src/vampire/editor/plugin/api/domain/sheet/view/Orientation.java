@@ -1,5 +1,5 @@
 package vampire.editor.plugin.api.domain.sheet.view;
 
-public interface ValueViewAttributes {
-
+public enum Orientation{
+	HORIZONTAL, VERTICAL
 }

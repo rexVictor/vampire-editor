@@ -1,11 +1,11 @@
 package vampire.editor.plugin.api.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributesAPI;
 
-public interface SubCategoryAPI extends DataAPI<TraitAPI>{
+public interface SubCategoryAPI extends PseudoDataAPI<TraitAPI>{
 
 	public SubCategoryAPI clone();
 
-	public SubCategoryViewAttributes getAttributes();
+	public SubCategoryViewAttributesAPI getAttributes();
 
 }

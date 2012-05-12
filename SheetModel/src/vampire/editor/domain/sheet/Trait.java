@@ -3,7 +3,7 @@ package vampire.editor.domain.sheet;
 import java.util.LinkedList;
 import java.util.List;
 
-import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
 import vampire.editor.plugin.fullapi.sheet.ISpecialty;
 import vampire.editor.plugin.fullapi.sheet.ITrait;
 
@@ -15,14 +15,14 @@ public class Trait implements ITrait{
 	
 	private final List<ISpecialty> specialties = new LinkedList<>();
 	
-	private final TraitViewAttributes traitViewAttributes;
+	private final TraitViewAttributesAPI traitViewAttributes;
 
 	public Trait(String name, Value value,
-			TraitViewAttributes traitViewAttributes) {
+			TraitViewAttributesAPI viewAtts) {
 		super();
 		this.name = name;
 		this.value = value;
-		this.traitViewAttributes = traitViewAttributes;	
+		this.traitViewAttributes = viewAtts;	
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class Trait implements ITrait{
 	}
 	
 	@Override
-	public TraitViewAttributes getTraitViewAttributes() {
+	public TraitViewAttributesAPI getTraitViewAttributes() {
 		return traitViewAttributes;
 	}
 	

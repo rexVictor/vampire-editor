@@ -67,7 +67,7 @@ public class Parser {
 		}				
 	}
 	
-	private List<String> getOrder(IData<? extends Nameable, ?> data){
+	private List<String> getOrder(IData<? extends Nameable> data){
 		Iterator<? extends Nameable> iterator = data.getIterator();
 		List<String> order = new ArrayList<>();
 		while (iterator.hasNext()){
@@ -77,7 +77,7 @@ public class Parser {
 	}
 	
 	private void parseMeta(List<Byte> list){
-		IData<MetaEntryAPI, IMetaEntry> meta = sheet.getMeta();
+		IData<IMetaEntry> meta = sheet.getMeta();
 		List<String> order = getOrder(meta);
 		meta.sort(new MetaSorter());
 		Iterator<IMetaEntry> iterator = meta.getIterator();

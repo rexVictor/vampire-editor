@@ -12,7 +12,6 @@ import org.junit.Test;
 import vampire.editor.domain.sheet.MetaEntry;
 import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.importer.vcs.persistency.Loader;
-import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
 import vampire.editor.plugin.fullapi.sheet.IData;
 import vampire.editor.plugin.fullapi.sheet.IMetaEntry;
 
@@ -24,7 +23,7 @@ public class ParserTest {
 		Loader loader = new Loader();
 		List<Byte> list = loader.load(path);
 		Sheet sheet = new Sheet();
-		IData<MetaEntryAPI, IMetaEntry> meta = sheet.getMeta();
+		IData<IMetaEntry> meta = sheet.getMeta();
 		IMetaEntry metaEntry = null;
 		
 		(metaEntry = new MetaEntry()).setName("name");

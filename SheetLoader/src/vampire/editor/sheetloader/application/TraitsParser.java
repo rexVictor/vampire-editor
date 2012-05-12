@@ -9,20 +9,45 @@ import vampire.editor.domain.sheet.Data;
 import vampire.editor.domain.sheet.SubCategory;
 import vampire.editor.domain.sheet.Trait;
 import vampire.editor.domain.sheet.Value;
-import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
+import vampire.editor.domain.sheet.view.TraitViewAttributes;
+import vampire.editor.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 import vampire.editor.plugin.fullapi.sheet.ITrait;
+import vampire.editor.plugin.fullapi.sheet.IValue;
+import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
+import vampire.editor.sheetloader.domain.TraitAnnotated;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.jsontype.NamedType;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
 public class TraitsParser {
 	
 	private final ObjectMapper mapper = new ObjectMapper();
 	
-	public Value getValue(Object object){
+	private final SheetConstructors constructors;	
+	
+	public TraitsParser(SheetConstructors constructors) {
+		super();
+		this.constructors = constructors;
+		SimpleModule module = new SimpleModule();
+		module.setMixInAnnotation(Trait.class, TraitAnnotated.class);
+		module.addAbstractTypeMapping(ITrait.class, constructors.getImplementingClassOf(ITrait.class));
+		module.addAbstractTypeMapping(IValue.class, constructors.getImplementingClassOf(IValue.class));
+		module.addAbstractTypeMapping(ValueViewAttributesAPI.class, ValueViewAttributes.class);
+		module.addAbstractTypeMapping(TraitViewAttributesAPI.class, TraitViewAttributes.class);
+		
+		mapper.registerModule(module);
+	}
+
+	public IValue getValue(Object object){
 		try{
 			String string = mapper.writeValueAsString(object);
 			
-			Value value = mapper.readValue(string, Value.class);
+			IValue value = mapper.readValue(string, IValue.class);
+			System.out.println(value.getMinValue());
+			System.out.println(value.getMaxValue());
 			return value;
 		}
 		catch (IOException e){
@@ -33,7 +58,7 @@ public class TraitsParser {
 	
 	public ITrait getTrait(Object object){
 		Map<?, ?> map = (Map<?, ?>) object;
-		Trait trait = new Trait((String) map.get("name"), getValue(map.get("value")), null);
+		ITrait trait = mapper.convertValue(object, Trait.class);
 		return trait;		
 	}
 	
@@ -59,9 +84,9 @@ public class TraitsParser {
 		return cat;
 	}
 	
-	public Data<CategoryAPI, Category> getCategories(Object object){
+	public Data<Category> getCategories(Object object){
 		List<?> categories = (List<?>) object;
-		Data<CategoryAPI, Category> data = new Data<>(null);
+		Data<Category> data = new Data<>(null);
 		for (Object o : categories){
 			data.add(getCategory(o));
 		}

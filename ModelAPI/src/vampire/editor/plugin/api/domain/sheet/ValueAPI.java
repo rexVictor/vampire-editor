@@ -1,6 +1,6 @@
 package vampire.editor.plugin.api.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 
 public interface ValueAPI {
 
@@ -12,6 +12,6 @@ public interface ValueAPI {
 	
 	public int getTempValue();
 	
-	public ValueViewAttributes getViewAtts();	
+	public ValueViewAttributesAPI getViewAtts();	
 
 }

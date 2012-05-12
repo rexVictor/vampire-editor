@@ -386,7 +386,7 @@
 	                        },
 	                        "viewAtts":{
 	                            "editable":true,
-	                            "posisitioning":"vertical",
+	                            "orientation":"vertical",
 	                            "squares":false
 	                        }	                        
 	                    }
@@ -410,7 +410,7 @@
 	                        },
 	                        "viewAtts":{
 	                            "editable":false,
-	                            "posisitioning":"vertical",
+	                            "orientation":"vertical",
 	                            "squares":true
 	                        }	                        
 	                    }       

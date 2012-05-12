@@ -1,11 +1,11 @@
 package vampire.editor.plugin.api.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributesAPI;
 
-public interface CategoryAPI extends Nameable{
+public interface CategoryAPI extends PseudoDataAPI<SubCategoryAPI>, Nameable{
 
 	public CategoryAPI clone();
 
-	public CategoryViewAttributes getAttributes();
+	public CategoryViewAttributesAPI getAttributes();
 
 }
