@@ -1,13 +1,16 @@
 package vampire.editor.domain.sheet;
 
-
-import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributesAPI;
 import vampire.editor.plugin.fullapi.sheet.ISubCategory;
 import vampire.editor.plugin.fullapi.sheet.ITrait;
+import vampire.editor.plugin.fullapi.sheet.view.ISubCategoryViewAttributes;
 
 public class SubCategory extends Data<ITrait> implements ISubCategory{
 	
-	public SubCategory(SubCategoryViewAttributesAPI attributes) {
+	public SubCategory(){
+		
+	}
+	
+	public SubCategory(ISubCategoryViewAttributes attributes) {
 		super(attributes);		
 	}
 
@@ -18,8 +21,8 @@ public class SubCategory extends Data<ITrait> implements ISubCategory{
 	
 	
 	@Override
-	public SubCategoryViewAttributesAPI getAttributes(){
-		return (SubCategoryViewAttributesAPI) super.getAttributes();
+	public ISubCategoryViewAttributes getViewAtts(){
+		return (ISubCategoryViewAttributes) super.getViewAtts();
 	}
 
 }

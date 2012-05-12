@@ -1,7 +1,7 @@
 package vampire.editor.plugin.fullapi.sheet;
 
 import vampire.editor.plugin.api.domain.sheet.ValueAPI;
-import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
+import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
 
 
 
@@ -14,6 +14,7 @@ public interface IValue extends ValueAPI{
 	 * Returns the Value
 	 * @return value
 	 */
+	@Override
 	public  int getValue();
 
 	/**
@@ -28,17 +29,20 @@ public interface IValue extends ValueAPI{
 	/**
 	 * Returns the maximum the value can be set to.
 	 */
+	@Override
 	public  int getMaxValue();
 
 	/**
 	 * Returns the minimum the value can be set to.
 	 */
+	@Override
 	public  int getMinValue();
 
 	/**
 	 * Returns the viewAttributes
 	 */
-	public  ValueViewAttributesAPI getViewAtts();
+	@Override
+	public  IValueViewAttributes getViewAtts();
 
 	/**
 	 * Returns a copy of this Value. <br>
@@ -49,6 +53,7 @@ public interface IValue extends ValueAPI{
 	/**
 	 * Returns the temporary value.
 	 */
+	@Override
 	public  int getTempValue();
 
 	/**
@@ -62,6 +67,7 @@ public interface IValue extends ValueAPI{
 	 * via reference.
 	 * Implementation Note: This method is overridden as final!
 	 */
+	@Override
 	public boolean equals(Object obj);
 
 }

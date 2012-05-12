@@ -4,8 +4,10 @@ import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributesAPI;
 
 public interface CategoryAPI extends PseudoDataAPI<SubCategoryAPI>, Nameable{
 
+	@Override
 	public CategoryAPI clone();
 
-	public CategoryViewAttributesAPI getAttributes();
+	@Override
+	public CategoryViewAttributesAPI getViewAtts();
 
 }

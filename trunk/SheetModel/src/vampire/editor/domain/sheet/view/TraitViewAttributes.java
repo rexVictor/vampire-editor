@@ -45,6 +45,19 @@ public class TraitViewAttributes implements ITraitViewAttributes{
 		this.squares = squares;
 	}
 	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("editable: ");
+		sb.append(editable);
+		sb.append(", squares: ");
+		sb.append(squares);
+		sb.append(", orientation: ");
+		sb.append(orientation);
+		sb.append("\n");
+		return sb.toString();
+	}
+	
 	
 
 }

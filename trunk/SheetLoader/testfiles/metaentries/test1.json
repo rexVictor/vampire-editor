@@ -1,0 +1,47 @@
+{
+
+	"testCases"		:	[
+	    {
+	    	"name"	:	"name",
+	    	"value"	:	""
+	    },
+	    {	"name"	:	"player",
+	    	"value"	:	""
+	    },
+	    {	
+	    	"name"	:	"creator",
+	    	"value"	:	""
+	    },
+	    {
+	    	"name"	:	"chronicle",
+	    	"value"	:	""
+	    },
+	    {
+	    	"name"	:	"nature",
+	    	"value"	:	""
+	    },
+	    {	
+	    	"name"	:	"demeanor",
+	    	"value"	:	""
+	    },
+	    {
+	    	"name"	:	"clan",
+	    	"value"	:	""
+	    },
+	    {	"name"	:	"generation",
+	    	"value"	:	""
+	    },
+	    {	
+	    	"name"	:	"haven",
+	    	"value"	:	""
+	    },
+	    {
+	    	"name"	:	"concept",
+	    	"value"	:	""
+	    },
+	    {
+	    	"name"	:	"sect",
+	    	"value"	:	""
+	    }	    
+	]
+}

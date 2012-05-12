@@ -103,7 +103,7 @@
 	     	    }
 	     	    
 	     	],
-	     	"viewAtts":{"showLine":true,"lineName":"attributes","lineImage":"vtmdefault"}   
+	     	"viewAtts":{"showLine":true,"title":"attributes","image":"vtmdefault"}   
 	    },
 	    {
 	     	"name"	:"abilities",
@@ -361,11 +361,12 @@
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            }
-	     	        ]
+	     	        ],
+	     	        "viewAtts":{"expandable":true,"showTitle":true}
 	     	    }
 	     	    
 	     	],
-	     	"viewAtts":{"expandable":true,"showTitle":true}   
+	     	"viewAtts":{"showLine":true,"title":"attributes","image":"vtmdefault"}   
 	    },
 	    {
 	        "name":"virtues",
@@ -386,7 +387,7 @@
 	                        },
 	                        "viewAtts":{
 	                            "editable":true,
-	                            "orientation":"vertical",
+	                            "orientation":"VERTICAL",
 	                            "squares":false
 	                        }	                        
 	                    }
@@ -410,7 +411,7 @@
 	                        },
 	                        "viewAtts":{
 	                            "editable":false,
-	                            "orientation":"vertical",
+	                            "orientation":"VERTICAL",
 	                            "squares":true
 	                        }	                        
 	                    }       
@@ -466,7 +467,7 @@
 	                "viewAtts":{"expandable":false,"showTitle":false}
 	            }
 	       ],
-	       "viewAtts":{"showLine":true,"title":"virtues"}
+	       "viewAtts":{"showLine":true,"title":"virtues", "image":"vtmdefault"}
 	    },
 	    {
 	        "name":"advantages",
@@ -525,7 +526,8 @@
 	                ],
 	                "viewAtts":{"showTitle":true,"expandable":true}	                
 	            }
-	        ]
+	        ],
+	        "viewAtts":{"showLine":true,"title":"virtues", "image":"vtmdefault"}
 	    }	        
 	],
 	"merits":[

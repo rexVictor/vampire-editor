@@ -14,6 +14,7 @@ public class Sheet implements ISheet {
 	
 	private IData<ICategory> categories;
 	
+	@Override
 	public ISheet clone(){
 		ISheet clone = new Sheet();
 		Field[] fields = this.getClass().getDeclaredFields();
@@ -29,10 +30,12 @@ public class Sheet implements ISheet {
 		return clone;
 	}
 
+	@Override
 	public IData<IMetaEntry> getMeta() {
 		return meta;
 	}
 
+	@Override
 	public IData<ICategory> getCategories() {
 		return categories;
 	}
