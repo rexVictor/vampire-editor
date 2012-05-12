@@ -1,6 +1,6 @@
 package vampire.editor.plugin.api.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
 
 public interface TraitAPI extends Nameable{
 
@@ -10,6 +10,6 @@ public interface TraitAPI extends Nameable{
 
 	public ValueAPI getValue();
 
-	public TraitViewAttributes getTraitViewAttributes();
+	public TraitViewAttributesAPI getTraitViewAttributes();
 
 }

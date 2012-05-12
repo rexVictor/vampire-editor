@@ -6,10 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import vampire.editor.plugin.api.domain.sheet.Nameable;
-import vampire.editor.plugin.api.domain.sheet.view.DataViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.DataViewAttributesAPI;
 import vampire.editor.plugin.fullapi.sheet.IData;
 
-public class Data<V extends Nameable, W extends V> implements IData<V, W>{
+public class Data<W extends Nameable> implements IData<W>{
 	
 	private class DataIterator implements Iterator<W>{
 		
@@ -33,7 +33,7 @@ public class Data<V extends Nameable, W extends V> implements IData<V, W>{
 		
 	}
 	
-	private final DataViewAttributes attributes;
+	private final DataViewAttributesAPI attributes;
 	
 	private final List<W> entries = new ArrayList<>();
 	
@@ -41,7 +41,7 @@ public class Data<V extends Nameable, W extends V> implements IData<V, W>{
 	
 	
 	
-	public Data(DataViewAttributes attributes) {
+	public Data(DataViewAttributesAPI attributes) {
 		super();
 		this.attributes = attributes;
 	}
@@ -55,8 +55,8 @@ public class Data<V extends Nameable, W extends V> implements IData<V, W>{
 	
 	@Override
 	@SuppressWarnings("unchecked")
-	public Data<V,W> clone(){
-		Data<V, W> data = new Data<V, W>(attributes);
+	public Data<W> clone(){
+		Data<W> data = new Data<W>(attributes);
 		data.name = this.name;
 		for (W v : entries){
 			data.entries.add((W) v.clone());
@@ -66,7 +66,7 @@ public class Data<V extends Nameable, W extends V> implements IData<V, W>{
 	
 
 	@Override
-	public DataViewAttributes getAttributes() {
+	public DataViewAttributesAPI getAttributes() {
 		return attributes;
 	}
 	
@@ -89,7 +89,7 @@ public class Data<V extends Nameable, W extends V> implements IData<V, W>{
 	}
 	
 	@Override
-	public void remove(V v){
+	public void remove(W v){
 		entries.remove(v);
 	}
 	
@@ -100,7 +100,7 @@ public class Data<V extends Nameable, W extends V> implements IData<V, W>{
 	
 	@Override
 	public void sort(Comparator<String> comparator){
-		Sorter<V> sorter = new Sorter<>(comparator);
+		Sorter<W> sorter = new Sorter<>(comparator);
 		sorter.sort(entries);
 	}
 	

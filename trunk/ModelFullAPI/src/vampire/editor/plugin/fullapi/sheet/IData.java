@@ -5,21 +5,21 @@ import java.util.Iterator;
 
 import vampire.editor.plugin.api.domain.sheet.DataAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
-import vampire.editor.plugin.api.domain.sheet.view.DataViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.DataViewAttributesAPI;
 
-public interface IData<V extends Nameable, W extends V> extends DataAPI<V>{
+public interface IData<V extends Nameable> extends DataAPI<V>{
 
-	public void add(W v);
+	public void add(V v);
 
-	public IData<V, W> clone();
+	public IData<V> clone();
 
-	public DataViewAttributes getAttributes();
+	public DataViewAttributesAPI getAttributes();
 
-	public Iterator<W> getIterator();
+	public Iterator<V> getIterator();
 
 	public String getName();
 
-	public void insert(int i, W v);
+	public void insert(int i, V v);
 
 	public void remove(V v);
 

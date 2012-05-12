@@ -4,9 +4,7 @@ import java.util.Iterator;
 
 import vampire.editor.plugin.api.domain.sheet.view.DataViewAttributesAPI;
 
-public interface DataAPI<V extends Nameable> extends Nameable{
-
-	public DataAPI<? extends V> clone();
+public interface PseudoDataAPI<V extends Nameable> extends Nameable{
 
 	public DataViewAttributesAPI getAttributes();
 

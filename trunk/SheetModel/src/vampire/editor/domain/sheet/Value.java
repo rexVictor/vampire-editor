@@ -2,9 +2,9 @@ package vampire.editor.domain.sheet;
 
 import java.io.Serializable;
 
-import vampire.editor.domain.sheet.view.ValueViewAttribute;
+import vampire.editor.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.ValueAPI;
-import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 import vampire.editor.plugin.fullapi.sheet.IValue;
 
 
@@ -48,7 +48,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * {@link ValueView} 
 	 */
 	
-	private ValueViewAttribute viewAtts;
+	private ValueViewAttributes viewAtts;
 	
 	public Value(){
 		this(null);
@@ -59,7 +59,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * 0 as value, MAX_VALUE as maximum and MIN_VALUE as minimum.
 	 * @param viewAttributes
 	 */
-	public Value(ValueViewAttribute viewAttributes){
+	public Value(ValueViewAttributes viewAttributes){
 		this(0,viewAttributes);
 	}
 	
@@ -69,7 +69,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * @param value
 	 * @param viewAttributes
 	 */
-	public Value(int value, ValueViewAttribute viewAttributes){
+	public Value(int value, ValueViewAttributes viewAttributes){
 		this(value,MAX_VALUE, viewAttributes);
 	}
 	
@@ -80,7 +80,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * @param maxValue
 	 * @param viewAttributes
 	 */
-	public Value(int value, int maxValue, ValueViewAttribute viewAttributes){
+	public Value(int value, int maxValue, ValueViewAttributes viewAttributes){
 		this(value, MIN_VALUE, maxValue, viewAttributes);
 	}
 	
@@ -92,7 +92,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	 * @param maxValue
 	 * @param viewAttributes
 	 */
-	public Value(int value, int minValue, int maxValue, ValueViewAttribute viewAttributes){
+	public Value(int value, int minValue, int maxValue, ValueViewAttributes viewAttributes){
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 		setValue(value);
@@ -126,7 +126,7 @@ public class Value implements ValueAPI, Serializable, IValue {
 	
 	
 	@Override
-	public ValueViewAttributes getViewAtts() {
+	public ValueViewAttributesAPI getViewAtts() {
 		return viewAtts;
 	}
 	
@@ -157,13 +157,18 @@ public class Value implements ValueAPI, Serializable, IValue {
 		this.tempValue = tempValue;
 	}
 	
+	@Override
+	public final int hashCode(){
+		return super.hashCode();
+	}
+	
 	
 	@Override
 	public final boolean equals(Object obj){
 		return this == obj;
 	}
 	
-	public void setViewAtts(ValueViewAttribute atts){
+	public void setViewAtts(ValueViewAttributes atts){
 		this.viewAtts = atts;
 	}
 }
