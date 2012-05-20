@@ -3,16 +3,24 @@ package vampire.editor.domain.sheet;
 import java.lang.reflect.Field;
 
 import vampire.editor.plugin.api.domain.sheet.Nameable;
+import vampire.editor.plugin.fullapi.sheet.IHealthEntry;
 import vampire.editor.plugin.fullapi.sheet.ICategory;
 import vampire.editor.plugin.fullapi.sheet.IData;
+import vampire.editor.plugin.fullapi.sheet.IMerit;
 import vampire.editor.plugin.fullapi.sheet.IMetaEntry;
 import vampire.editor.plugin.fullapi.sheet.ISheet;
 
 public class Sheet implements ISheet {
 	
-	private IData<IMetaEntry> meta = new Data<>(null);
+	private final IData<IMetaEntry> meta = new Data<>();
 	
-	private IData<ICategory> categories;
+	private final IData<ICategory> categories = new Data<>();
+	
+	private final IData<IMerit> merits = new Data<>();
+	
+	private final IData<IHealthEntry> bloodpool = new Data<>();
+	
+	
 	
 	@Override
 	public ISheet clone(){
@@ -39,8 +47,17 @@ public class Sheet implements ISheet {
 	public IData<ICategory> getCategories() {
 		return categories;
 	}
+
+	public IData<IMerit> getMerits() {
+		return merits;
+	}
+
+	public IData<IHealthEntry> getBloodpool() {
+		return bloodpool;
+	}
 	
 	
+
 	
 	
 	

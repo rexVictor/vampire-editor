@@ -14,119 +14,166 @@ import javax.swing.JPanel;
 
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
+import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
 
 public class SValueView implements ValueView{
 	
-	static final String CIRCLE_WHITE = "\u25CB";
+	public static final String CIRCLE_WHITE = "\u25CB";
 	
-	static final String CIRCLE_BLACK = "\u25CF";
+	public static final String CIRCLE_BLACK = "\u25CF";
 	
 	private class Clicker extends MouseAdapter{
 		
 		@Override
 		public void mouseClicked(MouseEvent event){
-			int index = circles.indexOf(event.getSource());
-			if (event.isControlDown()){
-				switch (event.getButton()){
-				case MouseEvent.BUTTON1 : setTempValue(index+1); break;
-				case MouseEvent.BUTTON3 : setTempValue(index); break;
-				}
+			int clicked = circles.indexOf(event.getSource());
+			switch (event.getButton()) {
+			case MouseEvent.BUTTON1: break;
+			case MouseEvent.BUTTON3: clicked--; break;
 			}
-			else{
-				switch (event.getButton()){
-				case MouseEvent.BUTTON1 : setValue(index+1); break;
-				case MouseEvent.BUTTON3 : setValue(index); break;
-			}
-			}
-			
-			
+			if (event.isControlDown())
+				setValue(clicked);
+			else
+				setTempValue(clicked);
 		}
+		
 	}
 	
 	private final MouseListener circleListener = new Clicker();
 	
 	private final JPanel panel = new JPanel();
 	
-	private final List<ValueViewListener> listeners 
-						= new LinkedList<>();
-						
-	private final List<JLabel> circles = new ArrayList<>();
+	private final List<ValueViewListener> listeners = new LinkedList<>();
 	
-	private int value;
+	private final List<JLabel> circles = new ArrayList<>(10);
 	
-	private int tempValue;
+	private final JLabel space = new JLabel(" ");
 	
-	private void initialize(){
-		GridLayout layout = new GridLayout(1, 0);
-		panel.setLayout(layout);
-		for (int i = 0; i<10; i++){
-			JLabel circle = new JLabel();
-			circle.setText(CIRCLE_WHITE);
-			circle.addMouseListener(circleListener);
-			circles.add(circle);
-			panel.add(circle);
-		}
-	}
+	private int value = -19834;
 	
-	public SValueView(){
+	private int tempValue = -53573;
+	
+	private final IValueViewAttributes atts;
+	
+	public SValueView(IValueViewAttributes atts){
+		this.atts = atts;
 		initialize();
 	}
-
+	
+	
+	private void initialize(){
+		panel.setLayout(new GridLayout(1, 0));
+		for (int i = 0; i < atts.getCircles(); i++){
+			addCircle0();
+		}
+		redraw();
+	}
+	
+	private void redraw(){
+		if (tempValue<=value){
+			for (int i = 0; i < tempValue; i++){
+				JLabel circle = circles.get(i);
+				circle.setText(CIRCLE_BLACK);
+				circle.setForeground(Color.GRAY);
+			}
+			for (int i = tempValue; i < value; i++){
+				JLabel circle = circles.get(i);
+				circle.setText(CIRCLE_BLACK);
+				circle.setForeground(Color.BLACK);
+			}
+			for (int i = value; i < circles.size(); i++){
+				JLabel circle = circles.get(i);
+				circle.setText(CIRCLE_WHITE);
+				circle.setForeground(Color.BLACK);
+			}
+		}
+		else {
+			for (int i = 0; i < value; i++){
+				JLabel circle = circles.get(i);
+				circle.setText(CIRCLE_BLACK);
+				circle.setForeground(Color.BLACK);
+			}
+			for (int i = value; i < tempValue; i++) {
+				JLabel circle = circles.get(i);
+				circle.setText(CIRCLE_BLACK);
+				circle.setForeground(Color.BLUE);
+			}
+			for (int i = tempValue; i < circles.size(); i++){
+				JLabel circle = circles.get(i);
+				circle.setText(CIRCLE_WHITE);
+				circle.setForeground(Color.BLACK);
+			}
+		}
+	}
+	
 	@Override
 	public void setValue(int value) {
-		for (int i = 0; i<value; i++){
-			circles.get(i).setText(CIRCLE_BLACK);
-			circles.get(i).setForeground(Color.BLACK);
-		}
-		for (int i = value; i<10; i++){
-			circles.get(i).setText(CIRCLE_WHITE);
-			circles.get(i).setForeground(Color.BLACK);
-		}
+		if (this.value == value) value--;
 		this.value = value;
-		
+		redraw();
+		SValueViewEvent event = new SValueViewEvent(value, tempValue);
 		for (ValueViewListener l : listeners){
-			SValueViewEvent event = new SValueViewEvent(value, tempValue);
 			l.valueChanged(event);
 		}
-		
 	}
 
 	@Override
-	public void setTempValue(int tempValue) {
-		this.tempValue = tempValue;
-		if (tempValue>value){
-			setValue(value);
-			for (int i = value; i<tempValue; i++){
-				circles.get(i).setText(CIRCLE_BLACK);
-				circles.get(i).setForeground(Color.BLUE);
-			}
+	public void setTempValue(int value) {
+		if (this.tempValue == value) value --;
+		this.tempValue = value;
+		redraw();
+		SValueViewEvent event = new SValueViewEvent(value, tempValue);
+		for (ValueViewListener l : listeners){
+			l.tempValueChanged(event);
 		}
-		if (tempValue<value){
-			setValue(value);
-			for (int i = tempValue; i < value; i++){
-				circles.get(i).setText(CIRCLE_BLACK);
-				circles.get(i).setForeground(Color.GRAY);
-			}
-		}
-		
 	}
 
 	@Override
 	public void addListener(ValueViewListener listener) {
 		listeners.add(listener);
-		
 	}
 	
-	public JPanel getPanel(){
+	public void addCircle(){
+		if (atts.isDynamic() && circles.size()<10){
+			addCircle0();
+			redraw();
+		}
+	}
+	
+	public void removeCircle(){
+		if (atts.isDynamic() && circles.size()>5){
+			removeCircle0();
+			redraw();
+			atts.setCircles(atts.getCircles()-1);
+		}
+	}
+	
+	private void removeCircle0(){
+		JLabel toRemove = circles.get(circles.size()-1);
+		circles.remove(toRemove);
+		panel.remove(toRemove);		
+		if (circles.size()==6 && atts.isShowSpace()){
+			panel.remove(space);			
+		}
+	}
+	
+	private void addCircle0(){
+		if (circles.size()==5 && atts.isShowSpace()){
+			panel.add(space);			
+		}
+		JLabel newCircle = new JLabel();
+		newCircle.addMouseListener(circleListener);
+		circles.add(newCircle);
+		panel.add(newCircle);
+		atts.setCircles(atts.getCircles()+1);
+	}
+	
+	public JPanel getView(){
 		return panel;
 	}
 	
-	public int getCircleCount(){
-		return circles.size();
-	}
 	
-	List<JLabel> getCircles(){
-		return circles;
-	}
+	
+
 
 }

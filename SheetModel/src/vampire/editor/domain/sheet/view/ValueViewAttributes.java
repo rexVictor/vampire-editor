@@ -9,6 +9,8 @@ public class ValueViewAttributes implements IValueViewAttributes{
 	private boolean dynamic;
 	
 	private int circles;
+	
+	private boolean tempSquared = false;
 
 	@Override
 	public boolean isShowSpace() {
@@ -40,6 +42,16 @@ public class ValueViewAttributes implements IValueViewAttributes{
 		this.circles = circles;
 	}
 	
+	
+	@Override
+	public boolean isTempSquared() {
+		return tempSquared;
+	}
+
+	public void setTempSquared(boolean tempSquared) {
+		this.tempSquared = tempSquared;
+	}
+
 	@Override
 	public String toString(){
 		StringBuilder builder = new StringBuilder();

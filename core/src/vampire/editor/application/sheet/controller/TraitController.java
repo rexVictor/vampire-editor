@@ -7,16 +7,16 @@ import java.util.concurrent.locks.ReentrantLock;
 
 
 import vampire.editor.application.sheet.events.TraitEvent;
-import vampire.editor.domain.sheet.Trait;
 import vampire.editor.plugin.api.application.sheet.controller.TraitControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.TraitListener;
 import vampire.editor.plugin.api.view.events.TraitViewEvent;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
+import vampire.editor.plugin.fullapi.sheet.ITrait;
 
 public class TraitController implements TraitViewListener, TraitControllerAPI{
 	
-	private final Trait trait;
+	private final ITrait trait;
 	
 	private final TraitView traitView;
 	
@@ -24,12 +24,15 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 	
 	private final Lock lock = new ReentrantLock(true);
 	
+	private final ValueController valueController;
+	
 	
 
-	public TraitController(Trait trait, TraitView traitView) {
+	public TraitController(ValueController valueController, ITrait trait, TraitView traitView) {
 		super();
 		this.trait = trait;
 		this.traitView = traitView;
+		this.valueController = valueController;
 	}
 
 
@@ -81,7 +84,7 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 
 
 	@Override
-	public Trait getTrait() {
+	public ITrait getTrait() {
 		return trait;
 	}
 
@@ -90,6 +93,10 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 	@Override
 	public TraitView getTraitView() {
 		return traitView;
+	}
+	
+	public ValueController getValueController(){
+		return valueController;
 	}
 	
 	
