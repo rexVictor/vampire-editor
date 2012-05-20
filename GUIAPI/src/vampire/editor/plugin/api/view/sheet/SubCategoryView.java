@@ -1,11 +1,9 @@
 package vampire.editor.plugin.api.view.sheet;
 
-public interface SubCategoryView {
-	
-	public void add(TraitView traitView);
-	
-	public void insert(int index, TraitView traitView);
-	
-	public void remove(TraitView traitView);
+import vampire.editor.plugin.api.domain.sheet.TraitAPI;
 
+
+public interface SubCategoryView extends DataView<TraitView, TraitAPI>{
+	
+	
 }

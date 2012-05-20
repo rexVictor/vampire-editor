@@ -1,11 +1,9 @@
 package vampire.editor.plugin.api.view.sheet;
 
-public interface CategoryView {
+import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
+
+
+public interface CategoryView extends DataView<SubCategoryView, SubCategoryAPI>{
 	
-	public void add(SubCategoryView view);
-	
-	public void remove(SubCategoryView view);
-	
-	public void insert(SubCategoryView view);
 
 }
