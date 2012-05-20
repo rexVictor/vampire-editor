@@ -4,6 +4,7 @@ import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
 
 public interface TraitAPI extends Nameable{
 
+	@Override
 	public String getName();
 
 	public void setName(String name);
