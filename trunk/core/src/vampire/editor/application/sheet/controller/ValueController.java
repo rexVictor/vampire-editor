@@ -7,16 +7,16 @@ import java.util.concurrent.locks.ReentrantLock;
 
 
 import vampire.editor.application.sheet.events.ValueEvent;
-import vampire.editor.domain.sheet.Value;
 import vampire.editor.plugin.api.application.sheet.controller.ValueControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.ValueListener;
 import vampire.editor.plugin.api.view.events.ValueViewEvent;
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
+import vampire.editor.plugin.fullapi.sheet.IValue;
 
 public class ValueController implements ValueViewListener, ValueControllerAPI{
 	
-	private final Value value;
+	private final IValue value;
 	
 	private final ValueView valueView;
 	
@@ -26,7 +26,7 @@ public class ValueController implements ValueViewListener, ValueControllerAPI{
 	
 	
 	
-	public ValueController(Value value, ValueView valueView) {
+	public ValueController(IValue value, ValueView valueView) {
 		super();
 		this.value = value;
 		this.valueView = valueView;
@@ -74,7 +74,7 @@ public class ValueController implements ValueViewListener, ValueControllerAPI{
 
 
 	@Override
-	public Value getValue(){
+	public IValue getValue(){
 		return value;
 	}
 	

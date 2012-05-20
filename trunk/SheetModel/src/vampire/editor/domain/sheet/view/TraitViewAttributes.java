@@ -58,6 +58,15 @@ public class TraitViewAttributes implements ITraitViewAttributes{
 		return sb.toString();
 	}
 	
+	@Override
+	public TraitViewAttributes clone(){
+		TraitViewAttributes clone = new TraitViewAttributes();
+		clone.editable = editable;
+		clone.orientation = orientation;
+		clone.squares = squares;
+		return clone;
+	}
+	
 	
 
 }

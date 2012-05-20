@@ -12,6 +12,7 @@ import vampire.editor.plugin.api.plugin.ManagerAPI;
 import vampire.editor.plugin.api.view.GUIPlugin;
 import vampire.editor.plugin.api.view.events.SheetEventAPI;
 import vampire.editor.plugin.api.view.events.SheetListener;
+import vampire.editor.plugin.api.view.sheet.ViewConstructors;
 import vampire.editor.plugin.fullapi.sheet.ISheet;
 import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
 
@@ -79,6 +80,10 @@ public class Manager implements SheetListener, ManagerAPI{
 	@Override
 	public ISheet getDefaultSheet() {
 		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public ViewConstructors getViewConstructors(){
 		return null;
 	}
 	

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<corejars>
+	<jar name="model" path="resources/sheetmodel.jar" class="vampire.editor.domain.sheet.Classes"/>
+	
+</corejars>
