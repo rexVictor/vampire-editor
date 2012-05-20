@@ -7,5 +7,7 @@ public interface TraitView {
 	public void setName(String name);
 	
 	public void addListener(TraitViewListener listener);
+	
+	public ValueView getValueView();
 
 }
