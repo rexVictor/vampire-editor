@@ -28,10 +28,10 @@ public class SValueView implements ValueView{
 		public void mouseClicked(MouseEvent event){
 			int clicked = circles.indexOf(event.getSource());
 			switch (event.getButton()) {
-			case MouseEvent.BUTTON1: break;
-			case MouseEvent.BUTTON3: clicked--; break;
+			case MouseEvent.BUTTON1: clicked++; break;
+			case MouseEvent.BUTTON3:  break;
 			}
-			if (event.isControlDown())
+			if (!event.isControlDown())
 				setValue(clicked);
 			else
 				setTempValue(clicked);
@@ -70,13 +70,16 @@ public class SValueView implements ValueView{
 	}
 	
 	private void redraw(){
+		int tempValue = this.tempValue;
+		int value = this.value;
+		if (value < 0) value = 0;
 		if (tempValue<=value){
 			for (int i = 0; i < tempValue; i++){
 				JLabel circle = circles.get(i);
 				circle.setText(CIRCLE_BLACK);
 				circle.setForeground(Color.GRAY);
 			}
-			for (int i = tempValue; i < value; i++){
+			for (int i = Math.max(0, tempValue); i < value; i++){
 				JLabel circle = circles.get(i);
 				circle.setText(CIRCLE_BLACK);
 				circle.setForeground(Color.BLACK);
@@ -130,13 +133,14 @@ public class SValueView implements ValueView{
 
 	@Override
 	public void addListener(ValueViewListener listener) {
-		listeners.add(listener);
+		listeners.add(listener);		
 	}
 	
 	public void addCircle(){
 		if (atts.isDynamic() && circles.size()<10){
 			addCircle0();
 			redraw();
+			atts.setCircles(atts.getCircles()+1);
 		}
 	}
 	
@@ -165,7 +169,7 @@ public class SValueView implements ValueView{
 		newCircle.addMouseListener(circleListener);
 		circles.add(newCircle);
 		panel.add(newCircle);
-		atts.setCircles(atts.getCircles()+1);
+		
 	}
 	
 	public JPanel getView(){

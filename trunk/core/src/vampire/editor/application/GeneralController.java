@@ -1,7 +1,7 @@
 package vampire.editor.application;
 
 import vampire.editor.plugin.Manager;
-import vampire.editor.plugin.fullapi.sheet.ISheet;
+import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 
 public class GeneralController {
 	
@@ -15,7 +15,7 @@ public class GeneralController {
 
 
 
-	public void open(ISheet sheet){
+	public void open(SheetAPI sheet){
 		
 	}
 

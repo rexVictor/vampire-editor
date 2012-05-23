@@ -19,5 +19,8 @@ public interface ITraitViewAttributes extends TraitViewAttributesAPI{
 	public boolean isSquares();
 
 	public void setSquares(boolean squares);
+	
+	@Override
+	public ITraitViewAttributes clone();
 
 }

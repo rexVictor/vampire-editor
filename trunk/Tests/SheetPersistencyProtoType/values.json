@@ -1,0 +1,28 @@
+{
+	"values" : [
+		{
+	    	"id"		:	23010011000,
+	    	"minValue"	:	0,
+	    	"maxValue"	:	10,
+	    	"value"		:	1,
+	    	"tempValue"	:	1,
+	    	"viewID"	:	23
+		},
+		{
+		    "id"		:	23000001000,
+		    "minValue"	:	0,
+		    "maxValue"	:	10,
+		    "value"		:	0,
+		    "tempValue"	:	0,
+		    "viewID"	:	23
+		},
+		{
+		    "id"		:	20010010500,
+		    "minValue"	:	0,
+		    "maxValue"	:	5,
+		    "value"		:	1,
+		    "tempValue"	:	1,
+		    "viewID"	:	20
+		}
+	]
+}

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import vampire.editor.application.GeneralController;
 import vampire.editor.domain.Dictionary;
+import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 import vampire.editor.plugin.api.plugin.Activator;
 import vampire.editor.plugin.api.plugin.Facade;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
@@ -13,7 +14,6 @@ import vampire.editor.plugin.api.view.GUIPlugin;
 import vampire.editor.plugin.api.view.events.SheetEventAPI;
 import vampire.editor.plugin.api.view.events.SheetListener;
 import vampire.editor.plugin.api.view.sheet.ViewConstructors;
-import vampire.editor.plugin.fullapi.sheet.ISheet;
 import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
 
 public class Manager implements SheetListener, ManagerAPI{
@@ -78,7 +78,7 @@ public class Manager implements SheetListener, ManagerAPI{
 	}
 
 	@Override
-	public ISheet getDefaultSheet() {
+	public SheetAPI getDefaultSheet() {
 		// TODO Auto-generated method stub
 		return null;
 	}

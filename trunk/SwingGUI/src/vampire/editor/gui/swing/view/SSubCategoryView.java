@@ -1,6 +1,7 @@
 package vampire.editor.gui.swing.view;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -11,14 +12,12 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
-import vampire.editor.plugin.api.domain.sheet.TraitAPI;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.fullapi.sheet.view.ISubCategoryViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
 
 public class SSubCategoryView implements SubCategoryView{
 	
@@ -32,6 +31,8 @@ public class SSubCategoryView implements SubCategoryView{
 	
 	private final FormLayout layout = new FormLayout();
 	
+	private final List<DataViewListener<TraitView>> listeners = new LinkedList<>();
+	
 	public SSubCategoryView(ISubCategoryViewAttributes atts, DictionaryAPI dictionary, String title) {
 		super();
 		this.atts = atts;
@@ -40,8 +41,10 @@ public class SSubCategoryView implements SubCategoryView{
 	}
 
 	private void initialize(String title){
+		panel.setLayout(layout);
 		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
 		if (atts.isShowTitle()){
+		
 			layout.appendRow(RowSpec.decode("pref"));
 			JTextField textField = new JTextField();
 			textField.setEditable(false);
@@ -73,7 +76,7 @@ public class SSubCategoryView implements SubCategoryView{
 		constraints.gridWidth	=	1;
 		constraints.gridX		=	1;
 		constraints.gridY		=	layout.getRowCount();
-		constraints.hAlign		=	CellConstraints.LEFT;
+		constraints.hAlign		=	CellConstraints.FILL;
 		
 		panel.add(view.getPanel(), constraints);
 		traitViews.add(view);
@@ -92,29 +95,24 @@ public class SSubCategoryView implements SubCategoryView{
 
 	@Override
 	public void insert(int pos, TraitView entry) {
-		// TODO Auto-generated method stub
+		//TODO implement!
+		throw new NotImplementedException();
+	}
+
+	
+	@Override
+	public void addListener(DataViewListener<TraitView> listener) {
+		this.listeners.add(listener);
 		
 	}
 
 	@Override
-	public void addListener(DataViewListener<?> listener) {
-		// TODO Auto-generated method stub
-		
+	public void removeListener(DataViewListener<TraitView> listener) {
+		listeners.remove(listener);
 	}
-
-	@Override
-	public void removeListener(DataViewListener<?> listener) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public TraitView add(TraitAPI entry) {
-		SValueView valueView = new SValueView((IValueViewAttributes) entry.getValue().getViewAtts());
-		STraitView traitView = new STraitView(valueView, dictionary, (ITraitViewAttributes) entry.getViewAtts());
-		traitView.setName(entry.getName());
-		add(traitView);
-		return traitView;
+	
+	public JPanel getPanel(){
+		return panel;
 	}
 
 }

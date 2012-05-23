@@ -14,7 +14,7 @@ public class Sheet implements ISheet {
 	
 	private final IData<IMetaEntry> meta = new Data<>();
 	
-	private final IData<ICategory> categories = new Data<>();
+	private IData<ICategory> categories;
 	
 	private final IData<IMerit> merits = new Data<>();
 	
@@ -23,8 +23,8 @@ public class Sheet implements ISheet {
 	
 	
 	@Override
-	public ISheet clone(){
-		ISheet clone = new Sheet();
+	public Sheet clone(){
+		Sheet clone = new Sheet();
 		Field[] fields = this.getClass().getDeclaredFields();
 	
 		for (Field f : fields){
@@ -36,6 +36,12 @@ public class Sheet implements ISheet {
 			}
 		}
 		return clone;
+	}
+	
+	public void setCategories(IData<ICategory> categories){
+		if (this.categories == null){
+			this.categories = categories;
+		}
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package vampire.editor.plugin.api.plugin;
 
+import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 import vampire.editor.plugin.api.view.GUIPlugin;
-import vampire.editor.plugin.fullapi.sheet.ISheet;
 import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
 
 public interface ManagerAPI {
@@ -10,6 +10,6 @@ public interface ManagerAPI {
 	
 	public GUIPlugin getGUI();
 	
-	public ISheet getDefaultSheet();
+	public SheetAPI getDefaultSheet();
 
 }
