@@ -3,7 +3,9 @@ package vampire.editor.domain;
 import java.util.LinkedList;
 import java.util.List;
 
-public class PopupEntries {
+import vampire.editor.plugin.api.domain.PopupEntriesAPI;
+
+public class PopupEntries implements PopupEntriesAPI {
 	
 	private final List<PopupEntries> subMenus = new LinkedList<>();
 	
@@ -11,11 +13,14 @@ public class PopupEntries {
 	
 	private final PopupEntries parent;
 	
+	private final String name;
 	
 	
-	public PopupEntries(PopupEntries parent) {
+	
+	public PopupEntries(PopupEntries parent, String name) {
 		super();
 		this.parent = parent;
+		this.name = name;
 	}
 
 	public void addSubMenu(PopupEntries entries){
@@ -29,22 +34,28 @@ public class PopupEntries {
 		items.add(item);
 	}
 
+	@Override
 	public List<PopupEntries> getSubMenus() {
 		return subMenus;
 	}
 
+	@Override
 	public List<String> getItems() {
 		return items;
 	}
 	
-	private boolean alreadyInserted(PopupEntries entries){
+	private boolean alreadyInserted(PopupEntriesAPI entries){
 		if (parent==null) {
 			return subMenus.contains(entries);
 		}
-		else {
-			return subMenus.contains(entries)||parent.alreadyInserted(entries);
-		}
+		return subMenus.contains(entries)||parent.alreadyInserted(entries);
+		
 			
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 	
 

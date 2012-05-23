@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.jgoodies.forms.debug.FormDebugPanel;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -21,7 +22,7 @@ import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
 
 public class STraitView implements TraitView, ActionListener{
 	
-	private final JPanel panel = new JPanel();
+	private final JPanel panel = new FormDebugPanel();
 	
 	private final JTextField textField = new JTextField();
 	
@@ -59,7 +60,7 @@ public class STraitView implements TraitView, ActionListener{
 				constraints.gridWidth	= 	1;
 				constraints.gridX		=	1;
 				constraints.gridY		=	1;
-				constraints.hAlign		=	CellConstraints.LEFT;
+				constraints.hAlign		=	CellConstraints.FILL;
 				
 				panel.add(textField, constraints);
 				
@@ -104,7 +105,7 @@ public class STraitView implements TraitView, ActionListener{
 	@Override
 	public void setName(String name) {
 		String newName = dictionary.getValue(name);
-		textField.setText(newName);		
+		textField.setText(newName);
 	}
 
 	@Override
@@ -119,6 +120,10 @@ public class STraitView implements TraitView, ActionListener{
 	
 	public JPanel getPanel(){
 		return panel;
+	}
+	
+	JTextField getField(){
+		return textField;
 	}
 
 	

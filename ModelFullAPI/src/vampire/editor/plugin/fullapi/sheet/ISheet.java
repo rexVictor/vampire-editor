@@ -1,11 +1,12 @@
 package vampire.editor.plugin.fullapi.sheet;
 
-public interface ISheet{
+import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 
+public interface ISheet extends SheetAPI{
+	
+	@Override
 	public ISheet clone();
-
-	public IData<IMetaEntry> getMeta();
-
-	public IData<ICategory> getCategories();
+	
+	
 
 }

@@ -72,6 +72,9 @@ public class TraitsParser {
 			subCat.add(getTrait(o));
 		}
 		ISubCategoryViewAttributes viewAtts = viewParser.parseSubCategoryViewAttributes(subCatMap.get("viewAtts"));
+		if (viewAtts == null) {
+			System.out.println("NULL");
+		}
 		subCat.setViewAtts(viewAtts);
 		return subCat;
 	}

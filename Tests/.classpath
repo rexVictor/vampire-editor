@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="swingguitests"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/EventAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/i18nParser"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ModelFullAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ResourceLoader"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetLoader"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SwingGUI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/vampireeditor"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VCSImporter"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="/SheetLoader/ext-libraries/jackson-core-2.0.0.jar"/>
+	<classpathentry kind="lib" path="/ResourceLoader/external/jackson-databind-2.0.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-databind/javadoc/2.0.0/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

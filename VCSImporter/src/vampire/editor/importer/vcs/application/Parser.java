@@ -9,9 +9,9 @@ import java.util.List;
 import vampire.editor.importer.vcs.domain.Strings;
 import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
+import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 import vampire.editor.plugin.fullapi.sheet.IData;
 import vampire.editor.plugin.fullapi.sheet.IMetaEntry;
-import vampire.editor.plugin.fullapi.sheet.ISheet;
 import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
 
 public class Parser {
@@ -24,11 +24,11 @@ public class Parser {
 	
 	private final Charset charset = Charset.forName("ISO-8859-1");
 	
-	private final ISheet sheet;	
+	private final SheetAPI sheet;	
 	
 	private final SheetConstructors constructors;
 	
-	public Parser(List<Byte> source, ISheet sheet, SheetConstructors constructors) {
+	public Parser(List<Byte> source, SheetAPI sheet, SheetConstructors constructors) {
 		super();
 		this.source = source;
 		this.sheet = sheet;
@@ -77,7 +77,7 @@ public class Parser {
 	}
 	
 	private void parseMeta(List<Byte> list){
-		IData<IMetaEntry> meta = sheet.getMeta();
+		IData<IMetaEntry> meta = (IData<IMetaEntry>) sheet.getMeta();
 		List<String> order = getOrder(meta);
 		meta.sort(new MetaSorter());
 		Iterator<IMetaEntry> iterator = meta.getIterator();
