@@ -1,5 +1,7 @@
 package vampire.editor.domain.sheet.view;
 
+import java.awt.Font;
+
 import vampire.editor.plugin.api.domain.sheet.view.Orientation;
 import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
 
@@ -10,6 +12,8 @@ public class TraitViewAttributes implements ITraitViewAttributes{
 	private Orientation orientation = Orientation.HORIZONTAL;
 	
 	private boolean squares = false;
+	
+	private Font font;
 
 	public TraitViewAttributes() {
 		super();
@@ -54,6 +58,8 @@ public class TraitViewAttributes implements ITraitViewAttributes{
 		sb.append(squares);
 		sb.append(", orientation: ");
 		sb.append(orientation);
+		sb.append(", font: ");
+		sb.append(font.toString());
 		sb.append("\n");
 		return sb.toString();
 	}
@@ -64,8 +70,21 @@ public class TraitViewAttributes implements ITraitViewAttributes{
 		clone.editable = editable;
 		clone.orientation = orientation;
 		clone.squares = squares;
+		clone.font	=	font;
 		return clone;
 	}
+
+	@Override
+	public Font getFont() {
+		return font;
+	}
+
+	@Override
+	public void setFont(Font font) {
+		this.font = font;
+	}
+	
+	
 	
 	
 

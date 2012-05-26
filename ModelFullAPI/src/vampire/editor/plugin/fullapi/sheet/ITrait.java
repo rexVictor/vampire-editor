@@ -25,5 +25,7 @@ public interface ITrait extends TraitAPI{
 
 	@Override
 	public ITrait clone();
+	
+	public void setValue(IValue value);
 
 }

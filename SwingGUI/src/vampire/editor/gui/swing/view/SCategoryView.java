@@ -1,9 +1,9 @@
 package vampire.editor.gui.swing.view;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.jgoodies.forms.layout.CellConstraints;
@@ -11,7 +11,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import vampire.editor.gui.swing.domain.Line;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
@@ -30,6 +30,8 @@ public class SCategoryView implements CategoryView{
 	
 	private final List<SSubCategoryView> subCategoryViews = new ArrayList<>();
 	
+	private LineImage title;
+	
 	
 
 	public SCategoryView(ICategoryViewAttributes viewAtts,
@@ -42,11 +44,13 @@ public class SCategoryView implements CategoryView{
 	
 	private void initialize(){
 		panel.setLayout(layout);
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-		if (viewAtts.isShowLine()){
-			JLabel title = new JLabel();
-			title.setText(dictionary.getValue(viewAtts.getTitle()));
-			layout.appendRow(RowSpec.decode("pref"));
+		panel.setBackground(Color.WHITE);
+		layout.appendColumn(ColumnSpec.decode("10px"));
+		if (true){
+			Line line = Line.getDefault();
+			title = new LineImage(line.getImage());
+			title.setTitle(dictionary.getValue(viewAtts.getTitle()));
+			layout.appendRow(RowSpec.decode("50px"));
 			
 			
 			CellConstraints constraints = new CellConstraints();
@@ -54,13 +58,27 @@ public class SCategoryView implements CategoryView{
 			constraints.gridY		=	1;
 			constraints.gridHeight	=	1;
 			constraints.gridWidth	=	1;
-			constraints.hAlign		=	CellConstraints.FILL;
 			
-			panel.add(title, constraints);
+			panel.add(title.getPanel(), constraints);			
 			
 		}
-		
-		
+		layout.appendRow(RowSpec.decode("pref"));
+	}
+	
+	private void refreshTitle(){
+		if (true) {
+			JPanel panel = title.getPanel();
+			CellConstraints constraints = layout.getConstraints(panel);
+			this.panel.remove(panel);
+			constraints.gridWidth = layout.getColumnCount();
+			layout.removeRow(constraints.gridY);
+			layout.insertRow(constraints.gridY, RowSpec.decode(panel.getHeight()+"px"));
+			this.panel.add(panel, constraints);
+			this.panel.invalidate();
+			this.panel.revalidate();
+			title.getPanel().repaint();
+			
+		}
 	}
 
 	@Override
@@ -73,8 +91,9 @@ public class SCategoryView implements CategoryView{
 		SSubCategoryView view = (SSubCategoryView) entry;
 		subCategoryViews.add(view);
 		
-		layout.appendColumn(ColumnSpec.decode("10px"));
 		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
+		
+		layout.addGroupedColumn(layout.getColumnCount());
 		
 		CellConstraints constraints = new CellConstraints();
 		constraints.gridHeight	=	1;
@@ -84,34 +103,32 @@ public class SCategoryView implements CategoryView{
 		constraints.hAlign		=	CellConstraints.FILL;
 		
 		panel.add(view.getPanel(), constraints);
+		layout.appendColumn(ColumnSpec.decode("10px"));
+		
+		refreshTitle();
 		
 	}
 
 	@Override
 	public void remove(SubCategoryView entry) {
-		// TODO Auto-generated method stub
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 		
 	}
 
 	@Override
 	public void insert(int pos, SubCategoryView entry) {
-		// TODO Auto-generated method stub
-		throw new NotImplementedException();
-		
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void addListener(DataViewListener<SubCategoryView> listener) {
-		// TODO Auto-generated method stub
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 		
 	}
 
 	@Override
 	public void removeListener(DataViewListener<SubCategoryView> listener) {
-		// TODO Auto-generated method stub
-		throw new NotImplementedException();
+		throw new UnsupportedOperationException();
 		
 	}
 

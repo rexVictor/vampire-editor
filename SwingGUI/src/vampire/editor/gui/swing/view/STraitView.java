@@ -1,5 +1,6 @@
 package vampire.editor.gui.swing.view;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -48,11 +49,16 @@ public class STraitView implements TraitView, ActionListener{
 	private void initialize() {
 		panel.setLayout(layout);
 		textField.setEditable(attributes.isEditable());
+		textField.setFocusable(attributes.isEditable());
+		textField.setBorder(null);
+		textField.setBackground(Color.WHITE);
+		panel.setBackground(Color.WHITE);
+		textField.addActionListener(this);
 		switch (attributes.getOrientation()){
 			case HORIZONTAL: {
 				layout.appendColumn(ColumnSpec.decode("pref:GROW"));
 				layout.appendColumn(ColumnSpec.decode("1px"));
-				layout.appendColumn(ColumnSpec.decode("pref:GROW"));
+				layout.appendColumn(ColumnSpec.decode("min"));
 				layout.appendRow(RowSpec.decode("pref"));
 				
 				CellConstraints constraints = new CellConstraints();
@@ -122,14 +128,9 @@ public class STraitView implements TraitView, ActionListener{
 		return panel;
 	}
 	
-	JTextField getField(){
+	public JTextField getField(){
 		return textField;
 	}
-
-	
-	
-		
-	
 	
 
 }

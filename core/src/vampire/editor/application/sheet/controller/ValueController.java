@@ -98,15 +98,25 @@ public class ValueController implements ValueViewListener, ValueControllerAPI{
 	@Override
 	public void addListener(ValueListener listener){
 		lock.lock();
-		listeners.add(listener);
-		lock.unlock();
+		try {
+			listeners.add(listener);
+			
+		}
+		finally{
+			lock.unlock();
+			
+		}
 	}
 	
 	@Override
 	public void removeListener(ValueListener listener){
 		lock.lock();
-		listeners.remove(listener);
-		lock.unlock();
+		try {
+			listeners.remove(listener);
+		}
+		finally {
+			lock.unlock();
+		}
 	}
 
 }

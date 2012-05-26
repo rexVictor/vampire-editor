@@ -18,5 +18,10 @@ public interface IValueViewAttributes extends ValueViewAttributesAPI{
 	public int getCircles();
 
 	public void setCircles(int circles);
+	
+	public void setSize(int size);
+	
+
+	public IValueViewAttributes clone();
 
 }

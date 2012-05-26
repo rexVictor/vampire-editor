@@ -1,7 +1,7 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -12,6 +12,12 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.RowSpec;
+
+import vampire.editor.gui.swing.application.Initializer;
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
@@ -55,6 +61,8 @@ public class SValueView implements ValueView{
 	
 	private final IValueViewAttributes atts;
 	
+	private final FormLayout layout = new FormLayout();
+	
 	public SValueView(IValueViewAttributes atts){
 		this.atts = atts;
 		initialize();
@@ -62,7 +70,9 @@ public class SValueView implements ValueView{
 	
 	
 	private void initialize(){
-		panel.setLayout(new GridLayout(1, 0));
+		panel.setLayout(layout);
+		layout.appendRow(RowSpec.decode("pref"));
+		Initializer.initialize(panel);
 		for (int i = 0; i < atts.getCircles(); i++){
 			addCircle0();
 		}
@@ -73,7 +83,7 @@ public class SValueView implements ValueView{
 		int tempValue = this.tempValue;
 		int value = this.value;
 		if (value < 0) value = 0;
-		if (tempValue<=value){
+		if (tempValue<value){
 			for (int i = 0; i < tempValue; i++){
 				JLabel circle = circles.get(i);
 				circle.setText(CIRCLE_BLACK);
@@ -163,12 +173,28 @@ public class SValueView implements ValueView{
 	
 	private void addCircle0(){
 		if (circles.size()==5 && atts.isShowSpace()){
-			panel.add(space);			
+			layout.appendColumn(ColumnSpec.decode("pref:GROW"));
+			CellConstraints constraints = new CellConstraints();
+			constraints.gridHeight	=	1;
+			constraints.gridWidth	=	1;
+			constraints.gridX		=	layout.getColumnCount();
+			constraints.gridY		=	1;
+			constraints.hAlign		=	CellConstraints.FILL;
+			
+			panel.add(space, constraints);			
 		}
 		JLabel newCircle = new JLabel();
+		newCircle.setFont(new Font(Font.SERIF, 0, 14));
+		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
+		CellConstraints constraints = new CellConstraints();
+		constraints.gridHeight	=	1;
+		constraints.gridWidth	=	1;
+		constraints.gridX		=	layout.getColumnCount();
+		constraints.gridY		=	1;
+		constraints.hAlign		=	CellConstraints.FILL;
 		newCircle.addMouseListener(circleListener);
 		circles.add(newCircle);
-		panel.add(newCircle);
+		panel.add(newCircle, constraints);
 		
 	}
 	

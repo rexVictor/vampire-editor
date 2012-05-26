@@ -1,5 +1,7 @@
 package vampire.editor.plugin.fullapi.sheet.view;
 
+import java.awt.Font;
+
 import vampire.editor.plugin.api.domain.sheet.view.Orientation;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
 
@@ -22,5 +24,7 @@ public interface ITraitViewAttributes extends TraitViewAttributesAPI{
 	
 	@Override
 	public ITraitViewAttributes clone();
+	
+	public void setFont(Font font);
 
 }

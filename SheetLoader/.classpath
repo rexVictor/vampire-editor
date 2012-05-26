@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="tests"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/ResourceLoader/external/jackson-annotations-2.0.0.jar"/>
 	<classpathentry kind="lib" path="/ResourceLoader/external/jackson-core-2.0.0.jar">
@@ -14,11 +13,9 @@
 			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-databind/javadoc/2.0.0/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="ext-libraries/csv/javacsv.jar" sourcepath="ext-libraries/csv/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelFullAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry kind="output" path="bin"/>

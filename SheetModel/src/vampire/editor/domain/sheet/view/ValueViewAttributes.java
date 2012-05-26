@@ -11,6 +11,8 @@ public class ValueViewAttributes implements IValueViewAttributes{
 	private int circles;
 	
 	private boolean tempSquared = false;
+	
+	private int size;
 
 	@Override
 	public boolean isShowSpace() {
@@ -61,9 +63,34 @@ public class ValueViewAttributes implements IValueViewAttributes{
 		builder.append(showSpace);
 		builder.append(", circles: ");
 		builder.append(circles);
+		builder.append(", size: ");
+		builder.append(size);
 		builder.append("\n");
 		return builder.toString();
 	}
+
+	@Override
+	public int getSize() {
+		return size;
+	}
+
+	@Override
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
+	@Override
+	public ValueViewAttributes clone(){
+		ValueViewAttributes clone = new ValueViewAttributes();
+		clone.circles = circles;
+		clone.dynamic = dynamic;
+		clone.showSpace = showSpace;
+		clone.size = size;
+		clone.tempSquared = tempSquared;
+		return clone;
+	}
+	
+	
 	
 	
 

@@ -1,5 +1,7 @@
 package vampire.editor.plugin.api.domain.sheet.view;
 
+import java.awt.Font;
+
 public interface TraitViewAttributesAPI {
 	
 	public Orientation getOrientation();
@@ -9,5 +11,7 @@ public interface TraitViewAttributesAPI {
 	public boolean isEditable();
 	
 	public TraitViewAttributesAPI clone();
+	
+	public Font getFont();
 
 }

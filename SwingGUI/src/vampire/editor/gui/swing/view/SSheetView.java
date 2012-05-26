@@ -11,6 +11,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.plugin.api.view.sheet.CategoryView;
+import vampire.editor.plugin.api.view.sheet.MetaView;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
 public class SSheetView implements SheetView{
@@ -55,6 +56,20 @@ public class SSheetView implements SheetView{
 
 	public List<SCategoryView> getCategoryViews() {
 		return new ArrayList<>(categoryViews);
+	}
+	
+	public void addMetaView(MetaView metaView){
+		SMetaView view = (SMetaView) metaView;
+		layout.appendRow(RowSpec.decode("pref"));
+		
+		CellConstraints constraints = new CellConstraints();
+		constraints.gridHeight	=	1;
+		constraints.gridWidth	=	1;
+		constraints.gridX		=	1;
+		constraints.gridY		=	1;
+		constraints.hAlign		=	CellConstraints.FILL;
+		
+		panel.add(view.getPanel(), constraints);
 	}
 	
 	

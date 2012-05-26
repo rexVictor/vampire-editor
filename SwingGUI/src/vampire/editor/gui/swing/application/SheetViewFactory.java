@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vampire.editor.gui.swing.view.SCategoryView;
+import vampire.editor.gui.swing.view.SMetaEntryView;
+import vampire.editor.gui.swing.view.SMetaView;
 import vampire.editor.gui.swing.view.SSheetView;
 import vampire.editor.gui.swing.view.SSubCategoryView;
 import vampire.editor.gui.swing.view.STraitView;
@@ -11,6 +13,7 @@ import vampire.editor.gui.swing.view.SValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.DataAPI;
+import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
 import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.TraitAPI;
@@ -30,11 +33,28 @@ public class SheetViewFactory {
 	
 	public SSheetView buildSheetView(SheetAPI sheet){
 		SSheetView sheetView = new SSheetView();
+		SMetaView metaView = buildMetaView(sheet.getMeta());
+		sheetView.addMetaView(metaView);
 		List<SCategoryView> categoryViews = buildCategoryViews(sheet.getCategories());
 		for (SCategoryView categoryView : categoryViews){
 			sheetView.add(categoryView);
 		}
 		return sheetView;
+	}
+	
+	private SMetaView buildMetaView(DataAPI<? extends MetaEntryAPI> metas){
+		SMetaView view = new SMetaView();
+		for (MetaEntryAPI m : metas){
+			view.add(buildMetaEntryView(m));
+		}
+		return view;
+	}
+	
+	private SMetaEntryView buildMetaEntryView(MetaEntryAPI meta){
+		SMetaEntryView view = new SMetaEntryView(dictionary, meta.getViewAtts());
+		view.setTitle(meta.getName());
+		view.setContent(meta.getValue());
+		return view;
 	}
 	
 	private List<SCategoryView> buildCategoryViews(DataAPI<? extends CategoryAPI> categories){
