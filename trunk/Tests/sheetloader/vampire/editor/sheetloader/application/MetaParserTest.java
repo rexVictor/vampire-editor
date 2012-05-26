@@ -14,6 +14,7 @@ import org.junit.Test;
 import vampire.editor.plugin.fullapi.sheet.IData;
 import vampire.editor.plugin.fullapi.sheet.IMetaEntry;
 import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
+import vampire.editor.sheetloader.application.MetaParser;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;

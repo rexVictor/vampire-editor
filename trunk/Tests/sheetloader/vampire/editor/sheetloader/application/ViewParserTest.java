@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
 import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
+import vampire.editor.sheetloader.application.ViewParser;
 
 public class ViewParserTest {
 

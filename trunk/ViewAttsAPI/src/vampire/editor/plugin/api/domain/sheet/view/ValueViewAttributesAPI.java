@@ -9,5 +9,7 @@ public interface ValueViewAttributesAPI {
 	public int getCircles();
 	
 	public boolean isTempSquared();
+	
+	public int getSize();
 
 }

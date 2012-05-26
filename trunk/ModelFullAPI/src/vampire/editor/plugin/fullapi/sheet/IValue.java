@@ -69,5 +69,7 @@ public interface IValue extends ValueAPI{
 	 */
 	@Override
 	public boolean equals(Object obj);
+	
+	public void setViewAtts(IValueViewAttributes atts);
 
 }

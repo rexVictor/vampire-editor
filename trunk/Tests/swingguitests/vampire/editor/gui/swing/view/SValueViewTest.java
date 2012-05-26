@@ -28,7 +28,7 @@ public class SValueViewTest {
 	
 	private static final Color FILLED_TEMP_CIRCLE_COLOR_GREATER_VALUE = Color.BLUE;
 	
-	private static final Color FILLED_TEMP_CIRCLE_COLOR_SMALLER_VALUE = Color.GRAY;
+//	private static final Color FILLED_TEMP_CIRCLE_COLOR_SMALLER_VALUE = Color.GRAY;
 	
 	private static final Color FILLED_CIRCLE = Color.BLACK;
 	
@@ -74,7 +74,7 @@ public class SValueViewTest {
 	
 	
 	public void testSetValueWith(int value, int tempValue) throws InterruptedException{
-		setupValueView(new ValueViewAttributesTestImplementation());
+		setupValueView(null);
 		JLabel clickValue = circles.get(value-1);
 		JLabel clickTempValue = circles.get(tempValue-1);
 		Point point = clickValue.getLocationOnScreen();

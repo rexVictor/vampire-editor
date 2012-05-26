@@ -5,13 +5,14 @@ import java.util.List;
 
 import vampire.editor.plugin.fullapi.sheet.ISpecialty;
 import vampire.editor.plugin.fullapi.sheet.ITrait;
+import vampire.editor.plugin.fullapi.sheet.IValue;
 import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
 
 public class Trait implements ITrait{
 	
 	private String name;
 	
-	private Value value;
+	private IValue value;
 	
 	private final List<ISpecialty> specialties = new LinkedList<>();
 	
@@ -21,7 +22,7 @@ public class Trait implements ITrait{
 		
 	}
 
-	public Trait(String name, Value value,
+	public Trait(String name, IValue value,
 			ITraitViewAttributes viewAtts) {
 		super();
 		this.name = name;
@@ -40,7 +41,7 @@ public class Trait implements ITrait{
 	}
 
 	@Override
-	public Value getValue() {
+	public IValue getValue() {
 		return value;
 	}
 	
@@ -75,6 +76,11 @@ public class Trait implements ITrait{
 		String toReturn = "";
 		toReturn = toReturn+name+" : "+value.toString();
 		return toReturn;
+	}
+
+	@Override
+	public void setValue(IValue value) {
+		this.value = value;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package vampire.editor.gui.swing.view;
 
+import java.awt.Font;
+
 import vampire.editor.plugin.api.domain.sheet.view.Orientation;
 import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
 
@@ -44,6 +46,18 @@ public class TraitViewAttributesTestImplementation implements ITraitViewAttribut
 	@Override
 	public TraitViewAttributesTestImplementation clone(){
 		return null;
+	}
+
+	@Override
+	public Font getFont() {
+		// TODO Auto-generated method stub
+		return new Font(Font.SERIF, 0, 14);
+	}
+
+	@Override
+	public void setFont(Font font) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

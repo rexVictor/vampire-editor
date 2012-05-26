@@ -19,6 +19,7 @@ import vampire.editor.plugin.fullapi.sheet.IData;
 import vampire.editor.plugin.fullapi.sheet.ITrait;
 import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
 import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
+import vampire.editor.sheetloader.application.TraitsParser;
 
 public class TraitsParserTest {
 	

@@ -1,0 +1,16 @@
+{
+	"fonts" : [
+		{
+			"id"	:	0,
+			"key"	:	"Serif",
+			"style"	:	0,
+			"size"	:	14
+		},
+		{
+			"id"	:	1,
+			"key"	:	"Serif",
+			"style"	:	0,
+			"size"	:	16
+		}
+	]
+}

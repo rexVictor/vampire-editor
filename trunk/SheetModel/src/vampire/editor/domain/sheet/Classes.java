@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import vampire.editor.domain.sheet.view.CategoryViewAttributes;
+import vampire.editor.domain.sheet.view.MetaEntryViewAttributes;
 import vampire.editor.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.domain.sheet.view.TraitViewAttributes;
 import vampire.editor.domain.sheet.view.ValueViewAttributes;
@@ -16,6 +17,7 @@ import vampire.editor.plugin.fullapi.sheet.ITrait;
 import vampire.editor.plugin.fullapi.sheet.IValue;
 import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
 import vampire.editor.plugin.fullapi.sheet.view.ICategoryViewAttributes;
+import vampire.editor.plugin.fullapi.sheet.view.IMetaEntryViewAttributes;
 import vampire.editor.plugin.fullapi.sheet.view.ISubCategoryViewAttributes;
 import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
 import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
@@ -40,6 +42,7 @@ public class Classes implements SheetConstructors{
 		clazzMap.put(ITraitViewAttributes.class, TraitViewAttributes.class);
 		clazzMap.put(ISubCategoryViewAttributes.class, SubCategoryViewAttributes.class);
 		clazzMap.put(ICategoryViewAttributes.class, CategoryViewAttributes.class);
+		clazzMap.put(IMetaEntryViewAttributes.class, MetaEntryViewAttributes.class);
 	}
 
 	@SuppressWarnings("unchecked")

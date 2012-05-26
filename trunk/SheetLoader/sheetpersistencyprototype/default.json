@@ -17,7 +17,7 @@
 	     	                "name":"strength",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":1,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	                },
 	     	                "viewAtts":{"editable":false}	     	                
 	     	            },
@@ -25,7 +25,7 @@
 	     	                "name":"stamina",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":1,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	                },
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -33,12 +33,12 @@
 	     	                "name":"dexterity",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":1,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	                },
 	     	                "viewAtts":{"editable":false}
 	     	            }
 	     	        ],
-	     	        "viewAtts":{"expandable":false,"showTitle":true}
+	     	        "viewAtts":0
 	     	        
 	     	    },
 	     	    {
@@ -48,7 +48,7 @@
 	     	                "name":"charisma",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":1,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	                },
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -56,7 +56,7 @@
 	     	                "name":"manipulation",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":1,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	                },
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -64,12 +64,12 @@
 	     	                "name":"appearance",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":1,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	                },
 	     	                "viewAtts":{"editable":false}
 	     	            }
 	     	        ],
-	     	        "viewAtts":{"expandable":false,"showTitle":true}
+	     	        "viewAtts":0
 	     	    },
 	     	    {
 	     	        "name" 		: 	"mental",
@@ -78,7 +78,7 @@
 	     	                "name":"perception",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":1,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	                },
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -86,7 +86,7 @@
 	     	                "name":"intelligence",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":1,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	                },
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -94,16 +94,16 @@
 	     	                "name":"wits",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":1,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	                },
 	     	                "viewAtts":{"editable":false}
 	     	            }
 	     	        ],
-	     	        "viewAtts":{"expandable":false,"showTitle":true}
+	     	        "viewAtts":0
 	     	    }
 	     	    
 	     	],
-	     	"viewAtts":{"showLine":true,"title":"attributes","image":"vtmdefault"}   
+	     	"viewAtts":0   
 	    },
 	    {
 	     	"name"	:"abilities",
@@ -115,7 +115,7 @@
 	     	                "name":"alertness",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -123,7 +123,7 @@
 	     	                "name":"athletics",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -131,7 +131,7 @@
 	     	                "name":"brawl",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -139,7 +139,7 @@
 	     	                "name":"dodge",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -147,7 +147,7 @@
 	     	                "name":"empathy",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -155,7 +155,7 @@
 	     	                "name":"expression",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -163,7 +163,7 @@
 	     	                "name":"intimidation",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -171,7 +171,7 @@
 	     	                "name":"leadership",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -179,7 +179,7 @@
 	     	                "name":"subterfuge",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -187,12 +187,12 @@
 	     	                "name":"streetwise",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            }
 	     	        ],
-	     	        "viewAtts":{"expandable":false,"showTitle":true}
+	     	        "viewAtts":0
 	     	    },
 	     	    {
 	     	        "name":"skills",
@@ -201,7 +201,7 @@
 	     	                "name":"animalken",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -209,7 +209,7 @@
 	     	                "name":"crafts",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -217,7 +217,7 @@
 	     	                "name":"drive",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -225,7 +225,7 @@
 	     	                "name":"etiquette",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -233,7 +233,7 @@
 	     	                "name":"firearms",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -241,7 +241,7 @@
 	     	                "name":"melee",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -249,7 +249,7 @@
 	     	                "name":"performance",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -257,7 +257,7 @@
 	     	                "name":"security",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -265,7 +265,7 @@
 	     	                "name":"stealth",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -273,12 +273,12 @@
 	     	                "name":"survival",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            }
 	     	        ],
-	     	        "viewAtts":{"expandable":false,"showTitle":true}
+	     	        "viewAtts":0
 	     	    },
 	     	    {
 	     	        "name":"knowledges",
@@ -287,7 +287,7 @@
 	     	                "name":"academics",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -295,7 +295,7 @@
 	     	                "name":"computer",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -303,7 +303,7 @@
 	     	                "name":"finance",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -311,7 +311,7 @@
 	     	                "name":"investigation",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -319,7 +319,7 @@
 	     	                "name":"law",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -327,7 +327,7 @@
 	     	                "name":"linguistics",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -335,7 +335,7 @@
 	     	                "name":"medicine",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -343,7 +343,7 @@
 	     	                "name":"occult",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -351,7 +351,7 @@
 	     	                "name":"politics",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            },
@@ -359,7 +359,7 @@
 	     	                "name":"science",
 	     	                "value":{
 	     	             		"minValue":0,"maxValue":10,"value":0,"tempValue":-1,
-	     	             		"viewAtts":{"showSpace":true,"dynamic":true,"circles":5}
+	     	             		"viewAtts":0
 	     	             	},
 	     	                "viewAtts":{"editable":false}
 	     	            }
@@ -368,7 +368,7 @@
 	     	    }
 	     	    
 	     	],
-	     	"viewAtts":{"showLine":true,"title":"attributes","image":"vtmdefault"}   
+	     	"viewAtts":0   
 	    },
 	    {
 	        "name":"virtues",
@@ -394,7 +394,7 @@
 	                        }	                        
 	                    }
 	                 ],
-	                 "viewAtts":{"expandable":false,"showTitle":false}
+	                 "viewAtts":2
 	            },
 	            {
 	                "name":"willpower",
@@ -418,7 +418,7 @@
 	                        }	                        
 	                    }       
 	                ],
-	                "viewAtts":{"expandable":false,"showTitle":false}
+	                "viewAtts":2
 	            },
 	            {
 	                "name":"virtues",
@@ -466,7 +466,7 @@
 	                        }	                        
 	                    }
 	                ],
-	                "viewAtts":{"expandable":false,"showTitle":false}
+	                "viewAtts":2
 	            }
 	       ],
 	       "viewAtts":{"showLine":true,"title":"virtues", "image":"vtmdefault"}
@@ -490,7 +490,7 @@
 	                        "viewAtts":{"editable":true}
 	                    }
 	                ],
-	                "viewAtts":{"showTitle":true,"expandable":true}	                
+	                "viewAtts":1	                
 	            },
 	            {
 	                "name":"backgrounds",
@@ -508,7 +508,7 @@
 	                        "viewAtts":{"editable":true}
 	                    }
 	                ],
-	                "viewAtts":{"showTitle":true,"expandable":true}	                
+	                "viewAtts":1	                
 	            },
 	            {
 	                "name":"other",
@@ -526,7 +526,7 @@
 	                        "viewAtts":{"editable":true}
 	                    }
 	                ],
-	                "viewAtts":{"showTitle":true,"expandable":true}	                
+	                "viewAtts":1	                
 	            }
 	        ],
 	        "viewAtts":{"showLine":true,"title":"virtues", "image":"vtmdefault"}

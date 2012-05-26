@@ -12,7 +12,7 @@ import vampire.editor.plugin.fullapi.sheet.ISheet;
 
 public class Sheet implements ISheet {
 	
-	private final IData<IMetaEntry> meta = new Data<>();
+	private IData<IMetaEntry> meta = null;
 	
 	private IData<ICategory> categories;
 	
@@ -38,9 +38,17 @@ public class Sheet implements ISheet {
 		return clone;
 	}
 	
+	@Override
 	public void setCategories(IData<ICategory> categories){
 		if (this.categories == null){
 			this.categories = categories;
+		}
+	}
+	
+	@Override
+	public void setMeta(IData<IMetaEntry> meta){
+		if (this.meta == null){
+			this.meta = meta;
 		}
 	}
 

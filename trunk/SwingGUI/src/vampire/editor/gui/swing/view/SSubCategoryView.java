@@ -1,5 +1,6 @@
 package vampire.editor.gui.swing.view;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -41,13 +42,17 @@ public class SSubCategoryView implements SubCategoryView{
 	}
 
 	private void initialize(String title){
+		panel.setBackground(Color.WHITE);
 		panel.setLayout(layout);
 		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
 		if (atts.isShowTitle()){
 		
 			layout.appendRow(RowSpec.decode("pref"));
 			JTextField textField = new JTextField();
+			textField.setBackground(Color.WHITE);
 			textField.setEditable(false);
+			textField.setFocusable(false);
+			textField.setBorder(null);
 			textField.setText(dictionary.getValue(title));
 			
 			CellConstraints constraints = new CellConstraints();

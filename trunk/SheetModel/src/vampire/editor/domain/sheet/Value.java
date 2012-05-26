@@ -129,12 +129,11 @@ public class Value implements Serializable, IValue {
 	}
 	
 	
-	/**
-	 * Returns the value as a String.
-	 */
+	
 	@Override
 	public String toString(){
-		return value+"";
+		return "{"+minValue+"<="+value+"~"+tempValue+"<="+maxValue+"}";
+		
 	}
 	
 	
@@ -157,17 +156,22 @@ public class Value implements Serializable, IValue {
 	
 	@Override
 	public final int hashCode(){
-		return super.hashCode();
+		return minValue+2*maxValue+4*value+8*tempValue;		
 	}
 	
 	
 	@Override
 	public final boolean equals(Object obj){
-		return this == obj;
+		if (obj instanceof Value){
+			Value comp = (Value) obj;
+			return comp.value == value && comp.tempValue == tempValue && comp.maxValue == maxValue && comp.minValue == minValue;
+		}
+		return false;
 	}
 	
+	@Override
 	public void setViewAtts(IValueViewAttributes atts){
-		if (this.viewAtts==null)
+		if (viewAtts == null)
 			this.viewAtts = atts;
 	}
 }
