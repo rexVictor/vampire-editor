@@ -12,11 +12,14 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import org.junit.Test;
 
 
+import vampire.editor.application.SheetControllerFactory;
+import vampire.editor.application.sheet.controller.SheetController;
 import vampire.editor.domain.sheet.Classes;
 import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.gui.swing.application.SheetViewFactory;
 import vampire.editor.gui.swing.view.DictionaryTestImplementation;
 import vampire.editor.gui.swing.view.SSheetView;
+import vampire.editor.plugin.Manager;
 import vampire.editor.sheetloader.application.SheetParser;
 
 public class ViewTest {
@@ -24,13 +27,16 @@ public class ViewTest {
 	@Test
 	public void test() throws  Throwable {
 	
-		UIManager.setLookAndFeel(NimbusLookAndFeel.class.getName());
-		
+		UIManager.setLookAndFeel(NimbusLookAndFeel.class.getName());	
 	
-		SheetParser parser = new SheetParser(Paths.get("sheetpersistencyprototype"), new Classes());
+		SheetParser parser = new SheetParser(Paths.get("sheetpersistencyprototype"), new Classes(), new Manager());
 		Sheet sheet = (Sheet) parser.getSheet();
 		SheetViewFactory factory = new SheetViewFactory(new DictionaryTestImplementation());
 		SSheetView view = factory.buildSheetView(sheet);
+		
+		SheetControllerFactory controllerFactory = new SheetControllerFactory();
+		
+		SheetController controller = controllerFactory.buildSheetController(sheet, view);
 		JPanel panel = view.getPanel();
 		JFrame frame = new JFrame();
 		frame.setContentPane(panel);
@@ -39,9 +45,11 @@ public class ViewTest {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
 		
-		while (frame.isVisible())
+		while (frame.isVisible()){ 
 			Thread.sleep(10);
-		
+			
+			
+		}
 		assertTrue(true);
 		
 	}

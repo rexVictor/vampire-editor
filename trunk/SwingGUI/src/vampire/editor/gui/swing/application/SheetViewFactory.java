@@ -66,7 +66,7 @@ public class SheetViewFactory {
 	}
 	
 	private SCategoryView buildCategoryView(CategoryAPI category){
-		SCategoryView categoryView = new SCategoryView((ICategoryViewAttributes) category.getViewAtts(), dictionary);
+		SCategoryView categoryView = new SCategoryView((ICategoryViewAttributes) category.getViewAtts(), dictionary, category.getName());
 		@SuppressWarnings("unchecked")
 		List<SSubCategoryView> subCategoryViews = buildSubCategoryViews((DataAPI<? extends SubCategoryAPI>) category);
 		for (SSubCategoryView subCategoryView : subCategoryViews){

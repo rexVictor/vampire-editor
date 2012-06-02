@@ -37,6 +37,7 @@ public class MetaEntry implements IMetaEntry {
 		MetaEntry clone = new MetaEntry();
 		clone.name = name;
 		clone.value = value;
+		clone.viewAtts = viewAtts;
 		return clone;
 	}
 	

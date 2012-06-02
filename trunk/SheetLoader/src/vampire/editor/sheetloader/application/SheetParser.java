@@ -9,6 +9,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import vampire.editor.plugin.api.plugin.ManagerAPI;
 import vampire.editor.plugin.fullapi.sheet.ICategory;
 import vampire.editor.plugin.fullapi.sheet.IData;
 import vampire.editor.plugin.fullapi.sheet.IMetaEntry;
@@ -43,11 +44,11 @@ public class SheetParser {
 	
 	private final MetaViewEntryAttributesHolder metaViewEntryAttributesHolder;
 	
-	public SheetParser(Path path, SheetConstructors constructors) throws JsonParseException, JsonMappingException, IOException, InstantiationException, IllegalAccessException {
+	public SheetParser(Path path, SheetConstructors constructors, ManagerAPI manager) throws JsonParseException, JsonMappingException, IOException, InstantiationException, IllegalAccessException {
 		super();
 		this.constructors = constructors;
 		valueViewAttsHolder = new ValueViewAttributesHolder(path.resolve("valueviewatts.json"), constructors.getImplementingClassOf(IValueViewAttributes.class));
-		fontHolder = new FontHolder(path.resolve("fonts.json"));
+		fontHolder = new FontHolder(path.resolve("fonts.json"), manager);
 		traitViewAttsHolder = new TraitViewAttributesHolder(path.resolve("traitviewatts.json"), constructors.getImplementingClassOf(ITraitViewAttributes.class), fontHolder);
 		subCategoryViewAttsHolder = new SubCategoryViewAttributesHolder(path.resolve("subcategoryviewatts.json"), 
 				constructors.getImplementingClassOf(ISubCategoryViewAttributes.class), fontHolder);

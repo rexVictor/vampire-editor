@@ -33,12 +33,14 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 		this.trait = trait;
 		this.traitView = traitView;
 		this.valueController = valueController;
+		traitView.addListener(this);
 	}
 
 
 
 	@Override
 	public void traitNameChanged(TraitViewEvent viewEvent) {
+		System.out.println("traitNameChanged to: "+viewEvent.getName());
 		setTraitName(viewEvent.getName());
 	}
 	

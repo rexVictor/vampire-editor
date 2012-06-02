@@ -7,14 +7,13 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import vampire.editor.application.sheet.events.SubCategoryEvent;
-import vampire.editor.domain.sheet.SubCategory;
 import vampire.editor.plugin.api.application.sheet.events.SubCategoryListener;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.fullapi.sheet.ISubCategory;
 
 public class SubCategoryController {
 	
-	private final SubCategory subCategory;
+	private final ISubCategory subCategory;
 	
 	private final SubCategoryView view;
 	
@@ -24,14 +23,31 @@ public class SubCategoryController {
 	
 	private final Lock lock = new ReentrantLock(true);
 
-	public SubCategoryController(SubCategory subCategory, SubCategoryView view) {
+	public SubCategoryController(ISubCategory subCategory, SubCategoryView view) {
 		super();
 		this.subCategory = subCategory;
 		this.view = view;
 	}
 	
 	public void addTrait(TraitController traitController){
-		insertTrait(traitControllers.size(), traitController);		
+		//insertTrait(traitControllers.size(), traitController);
+		TraitController controller = traitController;
+		int index = traitControllers.size();
+		SubCategoryEvent event = 
+				new SubCategoryEvent(this, 
+					controller, index);
+		lock.lock();
+		try{
+		//	subCategory.add(controller.getTrait());
+	//		view.add(controller.getTraitView());
+			traitControllers.add(index, controller);
+			for (SubCategoryListener l : listeners){
+				l.traitAdded(event);
+			}
+		}
+		finally{
+			lock.unlock();
+		}
 	}
 	
 	public void removeTrait(TraitController traitController){

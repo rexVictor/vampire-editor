@@ -52,6 +52,8 @@ public class STraitView implements TraitView, ActionListener{
 		textField.setFocusable(attributes.isEditable());
 		textField.setBorder(null);
 		textField.setBackground(Color.WHITE);
+		textField.setFont(attributes.getFont());
+		
 		panel.setBackground(Color.WHITE);
 		textField.addActionListener(this);
 		switch (attributes.getOrientation()){
