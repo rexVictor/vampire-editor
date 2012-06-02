@@ -36,7 +36,7 @@ public class SSheetView implements SheetView{
 	public void add(CategoryView categoryView) {
 		SCategoryView view = (SCategoryView) categoryView;
 		categoryViews.add(view);
-		layout.appendRow(RowSpec.decode("pref"));
+		layout.appendRow(RowSpec.decode("pref:GROW"));
 		
 		CellConstraints constraints = new CellConstraints();
 		constraints.gridHeight	=	1;
@@ -54,6 +54,7 @@ public class SSheetView implements SheetView{
 		return panel;
 	}
 
+	@Override
 	public List<SCategoryView> getCategoryViews() {
 		return new ArrayList<>(categoryViews);
 	}

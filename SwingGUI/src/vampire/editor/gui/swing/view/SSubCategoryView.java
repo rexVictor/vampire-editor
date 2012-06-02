@@ -49,6 +49,7 @@ public class SSubCategoryView implements SubCategoryView{
 		
 			layout.appendRow(RowSpec.decode("pref"));
 			JTextField textField = new JTextField();
+			textField.setFont(atts.getFont());
 			textField.setBackground(Color.WHITE);
 			textField.setEditable(false);
 			textField.setFocusable(false);

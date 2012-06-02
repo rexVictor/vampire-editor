@@ -2,15 +2,15 @@
 	"fonts" : [
 		{
 			"id"	:	0,
-			"key"	:	"Serif",
+			"key"	:	"cas_antn",
 			"style"	:	0,
-			"size"	:	14
+			"size"	:	20
 		},
 		{
 			"id"	:	1,
-			"key"	:	"Serif",
+			"key"	:	"cas_antn",
 			"style"	:	0,
-			"size"	:	16
+			"size"	:	24
 		}
 	]
 }

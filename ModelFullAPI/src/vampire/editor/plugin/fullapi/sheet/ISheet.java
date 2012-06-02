@@ -11,6 +11,9 @@ public interface ISheet extends SheetAPI{
 	
 	public void setMeta(IData<IMetaEntry> metaEntries);
 	
+	@Override
+	public IData<? extends ICategory> getCategories();
+	
 	
 
 }

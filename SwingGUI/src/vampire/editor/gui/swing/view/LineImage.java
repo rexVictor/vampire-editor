@@ -1,7 +1,11 @@
 package vampire.editor.gui.swing.view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.JPanel;
 import javax.swing.event.AncestorEvent;
@@ -20,7 +24,9 @@ public class LineImage {
 		private Image image;
 		
 		private String title;
-
+		
+		private Font font;
+		
 		private LinePanel(Image image) {
 			super();
 			this.image = image;	
@@ -46,11 +52,25 @@ public class LineImage {
 			this.image = image;
 			invalidate();
 		}
+		
+		public void setTitleFont(Font font){
+			this.font = font;
+		}
 
 		@Override
 		public void paint(Graphics g){
 			super.paint(g);			
-			g.drawImage(image, 0, 0, this);			
+			g.drawImage(image, 0, 0, this);
+			g.setFont(font);
+			FontRenderContext frc = g.getFontMetrics().getFontRenderContext();
+			Rectangle2D rectangle = g.getFont().getStringBounds(title, frc);
+			int x = (int) ((image.getWidth(this)-rectangle.getWidth())/2);			
+			int y = image.getHeight(this);
+			g.setColor(Color.WHITE);			
+			g.fillRect(x, 0, (int) rectangle.getWidth(), image.getHeight(this));
+			g.setColor(Color.BLACK);
+			g.drawString(title, x, y);
+			
 			
 		}
 
@@ -110,6 +130,10 @@ public class LineImage {
 	
 	public Image getImage(){
 		return line.getImage();
+	}
+	
+	public void setTitleFont(Font font){
+		line.setTitleFont(font);
 	}
 	
 	

@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import vampire.editor.plugin.api.plugin.ManagerAPI;
+
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,10 +18,13 @@ public class FontHolder {
 	private final Map<Integer, Font> fontMap = new HashMap<>();
 	
 	private final Path path;
+	
+	private final ManagerAPI manager;
 
-	public FontHolder(Path path) throws JsonParseException, JsonMappingException, IOException {
+	public FontHolder(Path path, ManagerAPI manager) throws JsonParseException, JsonMappingException, IOException {
 		super();
 		this.path = path;
+		this.manager = manager;
 		load();
 	}
 	
@@ -35,7 +40,9 @@ public class FontHolder {
 			String key = (String) fontMap.remove("key");
 			int style = (Integer) fontMap.remove("style");
 			int size = (Integer) fontMap.remove("size");
-			this.fontMap.put(id, new Font(key, style, size));
+			Font font = manager.getFont(key);
+			Font acutalFont = font.deriveFont((float) size).deriveFont(style);
+			this.fontMap.put(id, acutalFont);
 		}
 		
 	}

@@ -18,5 +18,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

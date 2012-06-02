@@ -35,21 +35,22 @@ public class SCategoryView implements CategoryView{
 	
 
 	public SCategoryView(ICategoryViewAttributes viewAtts,
-			DictionaryAPI dictionary) {
+			DictionaryAPI dictionary, String title) {
 		super();
 		this.viewAtts = viewAtts;
 		this.dictionary = dictionary;
-		initialize();
+		initialize(title);
 	}
 	
-	private void initialize(){
+	private void initialize(String titleName){
 		panel.setLayout(layout);
 		panel.setBackground(Color.WHITE);
 		layout.appendColumn(ColumnSpec.decode("10px"));
-		if (true){
+		if (viewAtts.isShowLine()){
 			Line line = Line.getDefault();
 			title = new LineImage(line.getImage());
-			title.setTitle(dictionary.getValue(viewAtts.getTitle()));
+			title.setTitle(dictionary.getValue(titleName));
+			title.setTitleFont(viewAtts.getFont());
 			layout.appendRow(RowSpec.decode("50px"));
 			
 			

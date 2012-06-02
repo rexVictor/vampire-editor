@@ -21,6 +21,8 @@ public class MetaEntryViewAttributes implements IMetaEntryViewAttributes{
 	public MetaEntryViewAttributes clone(){
 		MetaEntryViewAttributes clone = new MetaEntryViewAttributes();
 		clone.lineCount = lineCount;
+		clone.titleFont = titleFont;
+		clone.contentFont = contentFont;
 		return clone;
 	}
 

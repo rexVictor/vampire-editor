@@ -35,6 +35,7 @@ public class ValueController implements ValueViewListener, ValueControllerAPI{
 	
 	@Override
 	public void setValue(int value){
+		System.out.println("setValue Controller : "+value);
 		ValueEvent event = new ValueEvent(this, this.value.getValue(), value, this.value.getTempValue(), this.value.getTempValue());
 		
 		lock.lock();
@@ -54,6 +55,7 @@ public class ValueController implements ValueViewListener, ValueControllerAPI{
 	
 	@Override
 	public void setTempValue(int value){
+		
 		ValueEvent event = new ValueEvent(this, this.value.getValue(), this.value.getValue(), this.value.getTempValue(), value);
 		
 		lock.lock();
@@ -85,6 +87,7 @@ public class ValueController implements ValueViewListener, ValueControllerAPI{
 
 	@Override
 	public void valueChanged(ValueViewEvent viewEvent) {
+		System.out.println("valueChanged: "+viewEvent.getValue());
 		setValue(viewEvent.getValue());
 		
 	}

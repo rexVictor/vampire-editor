@@ -34,13 +34,14 @@ public class SValueView implements ValueView{
 		public void mouseClicked(MouseEvent event){
 			int clicked = circles.indexOf(event.getSource());
 			switch (event.getButton()) {
-			case MouseEvent.BUTTON1: clicked++; break;
+			case MouseEvent.BUTTON1:  if (clicked+1 != value) clicked++; break;
 			case MouseEvent.BUTTON3:  break;
 			}
+			System.out.println("mouseClicked: "+ clicked);
 			if (!event.isControlDown())
-				setValue(clicked);
+				setValue0(clicked);
 			else
-				setTempValue(clicked);
+				setTempValue0(clicked);
 		}
 		
 	}
@@ -119,26 +120,37 @@ public class SValueView implements ValueView{
 		}
 	}
 	
-	@Override
-	public void setValue(int value) {
-		if (this.value == value) value--;
+	
+	public void setValue0(int value) {
 		this.value = value;
+		System.out.println("setValue0: "+value);
 		redraw();
 		SValueViewEvent event = new SValueViewEvent(value, tempValue);
 		for (ValueViewListener l : listeners){
 			l.valueChanged(event);
 		}
 	}
-
+	
 	@Override
-	public void setTempValue(int value) {
-		if (this.tempValue == value) value --;
+	public void setValue(int value) {
+		System.out.println("setValue: "+value);
+		this.value = value;
+		redraw();
+	}
+
+	public void setTempValue0(int value) {
 		this.tempValue = value;
 		redraw();
 		SValueViewEvent event = new SValueViewEvent(value, tempValue);
 		for (ValueViewListener l : listeners){
 			l.tempValueChanged(event);
 		}
+	}
+	
+	@Override
+	public void setTempValue(int value){
+		this.tempValue = value;
+		redraw();
 	}
 
 	@Override
