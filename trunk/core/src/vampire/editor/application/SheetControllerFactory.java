@@ -7,27 +7,29 @@ import vampire.editor.application.sheet.controller.SheetController;
 import vampire.editor.application.sheet.controller.SubCategoryController;
 import vampire.editor.application.sheet.controller.TraitController;
 import vampire.editor.application.sheet.controller.ValueController;
+import vampire.editor.domain.sheet.Category;
+import vampire.editor.domain.sheet.Data;
+import vampire.editor.domain.sheet.Sheet;
+import vampire.editor.domain.sheet.SubCategory;
+import vampire.editor.domain.sheet.Trait;
+import vampire.editor.domain.sheet.Value;
+import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
-import vampire.editor.plugin.fullapi.sheet.ICategory;
-import vampire.editor.plugin.fullapi.sheet.IData;
-import vampire.editor.plugin.fullapi.sheet.ISheet;
-import vampire.editor.plugin.fullapi.sheet.ISubCategory;
-import vampire.editor.plugin.fullapi.sheet.ITrait;
-import vampire.editor.plugin.fullapi.sheet.IValue;
+
 
 public class SheetControllerFactory {
 	
-	public SheetController buildSheetController(ISheet sheet, SheetView view){
+	public SheetControllerAPI buildSheetController(Sheet sheet, SheetView view){
 		
-		SheetController controller = new SheetController(sheet, view);
-		IData<? extends ICategory> cats = sheet.getCategories();
+		SheetControllerAPI controller = new SheetController(sheet, view);
+		Data<? extends Category> cats = sheet.getCategories();
 		List<? extends CategoryView> catViews = view.getCategoryViews();
 		int i = 0;
-		for (ICategory cat : cats){
+		for (Category cat : cats){
 			controller.addCategoryController(buildCategoryController(cat, catViews.get(i)));
 			i++;
 		}
@@ -37,11 +39,11 @@ public class SheetControllerFactory {
 	}
 	
 	
-	public CategoryController buildCategoryController(ICategory category, CategoryView view){
+	public CategoryController buildCategoryController(Category category, CategoryView view){
 		CategoryController controller = new CategoryController(category, view);
 		List<? extends SubCategoryView> subCategoryViews = view.getEntries();
 		int i = 0;
-		for (ISubCategory subCat : category){
+		for (SubCategory subCat : category){
 			controller.addSubCategory(buildSubCategoryController(subCat, subCategoryViews.get(i)));
 			i++;
 		}
@@ -50,24 +52,24 @@ public class SheetControllerFactory {
 	
 
 	
-	public SubCategoryController buildSubCategoryController(ISubCategory subCategory, SubCategoryView view){
+	public SubCategoryController buildSubCategoryController(SubCategory subCategory, SubCategoryView view){
 		SubCategoryController controller = new SubCategoryController(subCategory, view);
 		List<? extends TraitView> traitViews = view.getEntries();
 		int i = 0;
-		for (ITrait trait : subCategory){
+		for (Trait trait : subCategory){
 			controller.addTrait(buildTraitController(trait, traitViews.get(i)));
 			i++;
 		}
 		return controller;
 	}
 	
-	private TraitController buildTraitController(ITrait trait, TraitView view){
+	private TraitController buildTraitController(Trait trait, TraitView view){
 		ValueController valueController = buildValueController(trait.getValue(), view.getValueView());
 		TraitController controller = new TraitController(valueController, trait, view);
 		return controller;
 	}
 	
-	private ValueController buildValueController(IValue value, ValueView view){
+	private ValueController buildValueController(Value value, ValueView view){
 		ValueController controller = new ValueController(value, view);
 		return controller;
 	}

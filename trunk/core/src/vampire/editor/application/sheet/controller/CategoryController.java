@@ -7,31 +7,35 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import vampire.editor.application.sheet.events.CategoryEvent;
+import vampire.editor.domain.sheet.Category;
+import vampire.editor.domain.sheet.SubCategory;
+import vampire.editor.plugin.api.application.sheet.controller.CategoryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.SubCategoryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.CategoryListener;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
-import vampire.editor.plugin.fullapi.sheet.ICategory;
 
-public class CategoryController {
+public class CategoryController implements CategoryControllerAPI {
 	
-	private final ICategory subCategory;
+	private final Category subCategory;
 	
 	private final CategoryView view;
 	
-	private final List<SubCategoryController> traitControllers = new ArrayList<>();
+	private final List<SubCategoryControllerAPI> traitControllers = new ArrayList<>();
 	
 	private final List<CategoryListener> listeners = new LinkedList<>();
 	
 	private final Lock lock = new ReentrantLock(true);
 
-	public CategoryController(ICategory subCategory, CategoryView view) {
+	public CategoryController(Category subCategory, CategoryView view) {
 		super();
 		this.subCategory = subCategory;
 		this.view = view;
 	}
 	
-	public void addSubCategory(SubCategoryController traitController){
+	@Override
+	public void addSubCategory(SubCategoryControllerAPI traitController){
 		//insertTrait(traitControllers.size(), traitController);
-		SubCategoryController controller = traitController;
+		SubCategoryControllerAPI controller = traitController;
 		int index = traitControllers.size();
 		CategoryEvent event =
 				new CategoryEvent(this, 
@@ -50,13 +54,14 @@ public class CategoryController {
 		}
 	}
 	
-	public void removeTrait(SubCategoryController traitController){
+	@Override
+	public void removeTrait(SubCategoryControllerAPI traitController){
 		CategoryEvent event = 
 				new CategoryEvent(this, 
 					traitController, traitControllers.indexOf(traitController));
 		lock.lock();
 		try{
-			subCategory.remove(traitController.getSubCategory());
+			subCategory.remove((SubCategory) traitController.getSubCategory());
 		    view.remove(traitController.getView());
 			traitControllers.remove(traitController);
 			for (CategoryListener l : listeners){
@@ -70,13 +75,14 @@ public class CategoryController {
 		
 	}
 	
-	public void insertTrait(int index, SubCategoryController controller){
+	@Override
+	public void insertTrait(int index, SubCategoryControllerAPI controller){
 		CategoryEvent event = 
 				new CategoryEvent(this, 
 					controller, index);
 		lock.lock();
 		try{
-			subCategory.insert(index, controller.getSubCategory());
+			subCategory.insert(index, (SubCategory) controller.getSubCategory());
 			view.insert(index, controller.getView());
 			traitControllers.add(index, controller);
 			for (CategoryListener l : listeners){
@@ -89,6 +95,7 @@ public class CategoryController {
 			
 	}
 	
+	@Override
 	public void addListener(CategoryListener listener){
 		lock.lock();
 		try{
@@ -99,6 +106,7 @@ public class CategoryController {
 		}
 	}
 	
+	@Override
 	public void removeListener(CategoryListener listener){
 		lock.lock();
 		try{
@@ -109,10 +117,12 @@ public class CategoryController {
 		}
 	}
 
-	public ICategory getSubCategory() {
+	@Override
+	public Category getSubCategory() {
 		return subCategory;
 	}
 
+	@Override
 	public CategoryView getView() {
 		return view;
 	}

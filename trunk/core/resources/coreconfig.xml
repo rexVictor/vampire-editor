@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<corejars>
-	<jar name="model" path="resources/sheetmodel.jar" class="vampire.editor.domain.sheet.Classes"/>
+<coreconfig>
+		
+	<jar name="model" 		path="resources/sheetmodel.jar" 				class="vampire.editor.domain.sheet.Classes"/>
+	<jar name="gui" 		path="resources/gui/swingmainframe.jar" 		class="vampie.editor.gui.swing.mainframe.application..."/>
+	<jar name="sheetloader" path="resources/persistency/sheetloader.jar" 	class="vampire.editor.sheetloader.application..."/>
 	
-</corejars>
+	<font name="cas_antn" path="resources/CAS_ANTN.TTF"/>
+	
+	<image type="border" name="vtmdefault" path="resources/images/borders/vtmdefault.gif"/>
+	<image type="line"	 name="vtmdefault" path="resources/images/lines/vtmdefault.gif"/>
+	
+	
+
+	<!-- So sollte es später sein	
+	<path name="userconfig">
+		<segment key="user.home"/>
+		<segment append=".vampire"/>
+		<segment append="config"/>
+		<segment append="userconfig.xml"/>
+	</path>
+	-->
+	
+	<!-- Zum Testen ist das jetzt erstmal hier -->
+	<path name="userconfig">
+		<segment append="resources"/>
+		<segment append="userconfig.xml"/> 
+	</path>
+	
+	<path name="plugins">
+		<segment append="plugins"/>
+		<segment append="plugins.xml"/>		
+	</path>
+	
+</coreconfig>

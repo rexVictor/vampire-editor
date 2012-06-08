@@ -4,40 +4,25 @@ import java.util.List;
 import java.util.Map;
 
 
-import vampire.editor.plugin.fullapi.sheet.ICategory;
-import vampire.editor.plugin.fullapi.sheet.IData;
-import vampire.editor.plugin.fullapi.sheet.ISubCategory;
-import vampire.editor.plugin.fullapi.sheet.ITrait;
-import vampire.editor.plugin.fullapi.sheet.IValue;
-import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
-import vampire.editor.plugin.fullapi.sheet.view.ICategoryViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.ISubCategoryViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
+import vampire.editor.domain.sheet.Category;
+import vampire.editor.domain.sheet.Data;
+import vampire.editor.domain.sheet.SubCategory;
+import vampire.editor.domain.sheet.Trait;
+import vampire.editor.domain.sheet.Value;
+import vampire.editor.domain.sheet.view.CategoryViewAttributes;
+import vampire.editor.domain.sheet.view.SubCategoryViewAttributes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 
 public class TraitsParser {
 	
 	private final ObjectMapper mapper = new ObjectMapper();
 	
-	private final SheetConstructors constructors;
-	
 	private final ViewParser viewParser;
 	
-	public TraitsParser(SheetConstructors constructors) {
+	public TraitsParser() {
 		super();
-		this.constructors = constructors;
-		viewParser = new ViewParser(constructors);
-		SimpleModule module = new SimpleModule();
-		module.addAbstractTypeMapping(ITrait.class, constructors.getImplementingClassOf(ITrait.class));
-		module.addAbstractTypeMapping(IValue.class, constructors.getImplementingClassOf(IValue.class));
-		module.addAbstractTypeMapping(IValueViewAttributes.class, constructors.getImplementingClassOf(IValueViewAttributes.class));
-		module.addAbstractTypeMapping(ITraitViewAttributes.class, constructors.getImplementingClassOf(ITraitViewAttributes.class));
-		module.addAbstractTypeMapping(ISubCategory.class, constructors.getImplementingClassOf(ISubCategory.class));
-		module.addAbstractTypeMapping(ICategory.class, constructors.getImplementingClassOf(ICategory.class));
-		mapper.registerModule(module);
+		viewParser = new ViewParser();		
 	}
 	
 	/**
@@ -47,9 +32,9 @@ public class TraitsParser {
 	 * @return
 	 */
 	@SuppressWarnings("unused")
-	private IValue getValue(Object object){
+	private Value getValue(Object object){
 		try{
-			IValue value = mapper.convertValue(object, IValue.class);
+			Value value = mapper.convertValue(object, Value.class);
 			return value;
 		}
 		catch (Exception e){
@@ -58,20 +43,20 @@ public class TraitsParser {
 		return null;
 	}
 	
-	public ITrait getTrait(Object object){
-		ITrait trait = mapper.convertValue(object, ITrait.class);
+	public Trait getTrait(Object object){
+		Trait trait = mapper.convertValue(object, Trait.class);
 		return trait;		
 	}
 	
-	public ISubCategory getSubCategory(Object object) throws InstantiationException, IllegalAccessException{
+	public SubCategory getSubCategory(Object object) throws InstantiationException, IllegalAccessException{
 		Map<?,?> subCatMap = (Map<?, ?>) object;
 		List<?> traits = (List<?>) subCatMap.get("traits");
-		ISubCategory subCat = constructors.getImplementingClassOf(ISubCategory.class).newInstance();
+		SubCategory subCat = SubCategory.class.newInstance();
 		subCat.setName((String) subCatMap.get("name")); 
 		for (Object o : traits){
 			subCat.add(getTrait(o));
 		}
-		ISubCategoryViewAttributes viewAtts = viewParser.parseSubCategoryViewAttributes(subCatMap.get("viewAtts"));
+		SubCategoryViewAttributes viewAtts = viewParser.parseSubCategoryViewAttributes(subCatMap.get("viewAtts"));
 		if (viewAtts == null) {
 			System.out.println("NULL");
 		}
@@ -79,15 +64,15 @@ public class TraitsParser {
 		return subCat;
 	}
 	
-	public ICategory getCategory(Object object) throws InstantiationException, IllegalAccessException{
+	public Category getCategory(Object object) throws InstantiationException, IllegalAccessException{
 		Map<?, ?> catMap = (Map<?, ?>) object;
-		ICategory cat = constructors.getImplementingClassOf(ICategory.class).newInstance();
+		Category cat = Category.class.newInstance();
 		cat.setName((String) catMap.get("name"));
 		List<?> list= (List<?>) catMap.get("subCats");
 		for (Object o : list){
 			cat.add(getSubCategory(o));
 		}
-		ICategoryViewAttributes viewAtts = viewParser.parseCategoryViewAttributes(catMap.get("viewAtts"));
+		CategoryViewAttributes viewAtts = viewParser.parseCategoryViewAttributes(catMap.get("viewAtts"));
 		cat.setViewAtts(viewAtts);
 		if (viewAtts == null){
 			System.out.println("NULL!!!!");
@@ -95,10 +80,10 @@ public class TraitsParser {
 		return cat;
 	}
 	
-	public IData<ICategory> getCategories(Object object) throws InstantiationException, IllegalAccessException{
+	public Data<Category> getCategories(Object object) throws InstantiationException, IllegalAccessException{
 		List<?> categories = (List<?>) object;
 		@SuppressWarnings("unchecked")
-		IData<ICategory> data = constructors.getImplementingClassOf(IData.class).newInstance();
+		Data<Category> data = Data.class.newInstance();
 		for (Object o : categories){
 			data.add(getCategory(o));
 		}

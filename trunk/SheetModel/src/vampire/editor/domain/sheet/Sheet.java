@@ -3,22 +3,18 @@ package vampire.editor.domain.sheet;
 import java.lang.reflect.Field;
 
 import vampire.editor.plugin.api.domain.sheet.Nameable;
-import vampire.editor.plugin.fullapi.sheet.IHealthEntry;
-import vampire.editor.plugin.fullapi.sheet.ICategory;
-import vampire.editor.plugin.fullapi.sheet.IData;
-import vampire.editor.plugin.fullapi.sheet.IMerit;
-import vampire.editor.plugin.fullapi.sheet.IMetaEntry;
-import vampire.editor.plugin.fullapi.sheet.ISheet;
+import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 
-public class Sheet implements ISheet {
+
+public class Sheet implements SheetAPI {
 	
-	private IData<IMetaEntry> meta = null;
+	private Data<MetaEntry> meta = null;
 	
-	private IData<ICategory> categories;
+	private Data<Category> categories;
 	
-	private final IData<IMerit> merits = new Data<>();
+	private final Data<Merit> merits = new Data<>();
 	
-	private final IData<IHealthEntry> bloodpool = new Data<>();
+	private final Data<HealthEntry> bloodpool = new Data<>();
 	
 	
 	
@@ -38,35 +34,34 @@ public class Sheet implements ISheet {
 		return clone;
 	}
 	
-	@Override
-	public void setCategories(IData<ICategory> categories){
+
+	public void setCategories(Data<Category> categories){
 		if (this.categories == null){
 			this.categories = categories;
 		}
 	}
 	
-	@Override
-	public void setMeta(IData<IMetaEntry> meta){
+	public void setMeta(Data<MetaEntry> meta){
 		if (this.meta == null){
 			this.meta = meta;
 		}
 	}
 
 	@Override
-	public IData<IMetaEntry> getMeta() {
+	public Data<MetaEntry> getMeta() {
 		return meta;
 	}
 
 	@Override
-	public IData<ICategory> getCategories() {
+	public Data<Category> getCategories() {
 		return categories;
 	}
 
-	public IData<IMerit> getMerits() {
+	public Data<Merit> getMerits() {
 		return merits;
 	}
 
-	public IData<IHealthEntry> getBloodpool() {
+	public Data<HealthEntry> getBloodpool() {
 		return bloodpool;
 	}
 	

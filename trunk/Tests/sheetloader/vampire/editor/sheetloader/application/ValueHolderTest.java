@@ -11,16 +11,13 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import vampire.editor.domain.sheet.Classes;
-import vampire.editor.plugin.fullapi.sheet.IValue;
 
 public class ValueHolderTest {
 
 	@Test
 	public void test() throws JsonParseException, JsonMappingException, IOException {
 		Path path = Paths.get("sheetpersistencyprototype", "values.json");
-		Class<? extends IValue> clazz = new Classes().getImplementingClassOf(IValue.class);
-		ValueHolder holder = new ValueHolder(path, clazz);
+		ValueHolder holder = new ValueHolder(path);
 		System.out.println(holder);
 		fail("Not implemented");
 	}

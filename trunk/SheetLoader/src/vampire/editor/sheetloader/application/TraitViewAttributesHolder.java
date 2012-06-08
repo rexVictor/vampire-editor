@@ -11,24 +11,20 @@ import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
+import vampire.editor.domain.sheet.view.TraitViewAttributes;
 
 public class TraitViewAttributesHolder {
 	
-	private final Map<Integer, ITraitViewAttributes> traitViewAtts = new HashMap<>();
+	private final Map<Integer, TraitViewAttributes> traitViewAtts = new HashMap<>();
 	
 	private final Path path;
-	
-	private final Class<? extends ITraitViewAttributes> clazz;
 	
 	private final FontHolder holder;
 
 	public TraitViewAttributesHolder(Path path,
-			Class<? extends ITraitViewAttributes> clazz,
 			FontHolder holder) throws JsonParseException, JsonMappingException, IOException {
 		super();
 		this.path = path;
-		this.clazz = clazz;
 		this.holder = holder;
 		load();
 	}
@@ -42,7 +38,7 @@ public class TraitViewAttributesHolder {
 		for (Map<String, ?> viewAttMap : viewAtts){
 			int id = (Integer) viewAttMap.remove("id");
 			int fontID = (Integer) viewAttMap.remove("font");
-			ITraitViewAttributes viewAtt = mapper.convertValue(viewAttMap, clazz);
+			TraitViewAttributes viewAtt = mapper.convertValue(viewAttMap, TraitViewAttributes.class);
 			viewAtt.setFont(holder.getFontById(fontID));
 			traitViewAtts.put(id, viewAtt);
 		}
@@ -53,7 +49,7 @@ public class TraitViewAttributesHolder {
 		return traitViewAtts.toString();
 	}
 	
-	public ITraitViewAttributes getTraitViewAttributesByID(int id){
+	public TraitViewAttributes getTraitViewAttributesByID(int id){
 		return traitViewAtts.get(id).clone();
 	}
 	

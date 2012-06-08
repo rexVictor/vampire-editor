@@ -11,24 +11,20 @@ import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import vampire.editor.plugin.fullapi.sheet.view.ISubCategoryViewAttributes;
+import vampire.editor.domain.sheet.view.SubCategoryViewAttributes;
 
 public class SubCategoryViewAttributesHolder {
 	
-	private final Map<Integer, ISubCategoryViewAttributes> viewAtts = new HashMap<>();
+	private final Map<Integer, SubCategoryViewAttributes> viewAtts = new HashMap<>();
 	
 	private final Path path;
-	
-	private final Class<? extends ISubCategoryViewAttributes> clazz;
 	
 	private final FontHolder fontHolder;
 
 	public SubCategoryViewAttributesHolder(Path path,
-			Class<? extends ISubCategoryViewAttributes> clazz,
 			FontHolder fontHolder) throws JsonParseException, JsonMappingException, IOException {
 		super();
 		this.path = path;
-		this.clazz = clazz;
 		this.fontHolder = fontHolder;
 		load();
 	}
@@ -42,7 +38,7 @@ public class SubCategoryViewAttributesHolder {
 		for (Map<String, ?> viewAttMap : viewAtts){
 			int id = (Integer) viewAttMap.remove("id");
 			int fontID = (Integer) viewAttMap.remove("font");
-			ISubCategoryViewAttributes viewAtt = mapper.convertValue(viewAttMap, clazz);
+			SubCategoryViewAttributes viewAtt = mapper.convertValue(viewAttMap, SubCategoryViewAttributes.class);
 			viewAtt.setFont(fontHolder.getFontById(fontID));
 			this.viewAtts.put(id, viewAtt);
 		}
@@ -53,7 +49,7 @@ public class SubCategoryViewAttributesHolder {
 		return viewAtts.toString();
 	}
 	
-	public ISubCategoryViewAttributes getSubCategoryViewAttributesByID(int id){
+	public SubCategoryViewAttributes getSubCategoryViewAttributesByID(int id){
 		return viewAtts.get(id).clone();
 	}
 	

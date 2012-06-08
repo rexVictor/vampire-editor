@@ -10,20 +10,17 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
+import vampire.editor.domain.sheet.view.ValueViewAttributes;
 
 public class ValueViewAttributesHolder {
 	
 	private final Path path;
 	
-	private final Class<? extends IValueViewAttributes> clazz;
-	
-	private final Map<Integer, IValueViewAttributes> valueViewAttributeMap = new HashMap<>();
+	private final Map<Integer, ValueViewAttributes> valueViewAttributeMap = new HashMap<>();
 
-	public ValueViewAttributesHolder(Path path, Class<? extends IValueViewAttributes> clazz) throws JsonParseException, JsonMappingException, IOException {
+	public ValueViewAttributesHolder(Path path) throws JsonParseException, JsonMappingException, IOException {
 		super();
 		this.path = path;
-		this.clazz = clazz;
 		load();
 	}
 	
@@ -34,7 +31,7 @@ public class ValueViewAttributesHolder {
 		List<Map<String, ?>> viewAtts = (List<Map<String, ?>>) map.get("valueViews");
 		for (Map<String, ?> viewAttMap : viewAtts){
 			int id = (Integer) viewAttMap.remove("id");
-			IValueViewAttributes viewAtt = mapper.convertValue(viewAttMap, clazz);
+			ValueViewAttributes viewAtt = mapper.convertValue(viewAttMap, ValueViewAttributes.class);
 			valueViewAttributeMap.put(id, viewAtt);
 		}
 	}
@@ -44,7 +41,7 @@ public class ValueViewAttributesHolder {
 		return valueViewAttributeMap.toString();
 	}
 	
-	public IValueViewAttributes getValueViewAttributesById(int id){
+	public ValueViewAttributes getValueViewAttributesById(int id){
 		return valueViewAttributeMap.get(id).clone();
 	}
 	

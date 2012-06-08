@@ -15,9 +15,9 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ModelFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

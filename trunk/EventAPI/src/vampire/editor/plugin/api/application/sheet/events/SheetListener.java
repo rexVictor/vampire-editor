@@ -1,4 +1,5 @@
-package vampire.editor.plugin.api.view.events;
+package vampire.editor.plugin.api.application.sheet.events;
+
 
 public interface SheetListener {
 	

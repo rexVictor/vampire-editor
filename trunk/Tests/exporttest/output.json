@@ -1,0 +1,1553 @@
+{
+  "meta" : {
+    "viewAtts" : null,
+    "name" : null,
+    "iterator" : [ {
+      "name" : "name",
+      "value" : "test",
+      "viewAtts" : {
+        "lineCount" : 2,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "player",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "creator",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "chronicle",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "nature",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "demeanor",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "clan",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "generation",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "haven",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "concept",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    }, {
+      "name" : "sect",
+      "value" : "",
+      "viewAtts" : {
+        "lineCount" : 1,
+        "titleFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        },
+        "contentFont" : {
+          "style" : 0,
+          "name" : "CasablancaAntique",
+          "size" : 20
+        }
+      }
+    } ]
+  },
+  "categories" : {
+    "viewAtts" : null,
+    "name" : null,
+    "iterator" : [ {
+      "viewAtts" : {
+        "showLine" : true,
+        "image" : "vtmdefault",
+        "title" : null,
+        "font" : null
+      },
+      "name" : "attributes",
+      "iterator" : [ {
+        "viewAtts" : {
+          "expandable" : false,
+          "showTitle" : true,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "physical",
+        "iterator" : [ {
+          "name" : "strength",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "stamina",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "dexterity",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      }, {
+        "viewAtts" : {
+          "expandable" : false,
+          "showTitle" : true,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "social",
+        "iterator" : [ {
+          "name" : "charisma",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "manipulation",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "appearance",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      }, {
+        "viewAtts" : {
+          "expandable" : false,
+          "showTitle" : true,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "mental",
+        "iterator" : [ {
+          "name" : "perception",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "intelligence",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "wits",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      } ]
+    }, {
+      "viewAtts" : {
+        "showLine" : true,
+        "image" : "vtmdefault",
+        "title" : null,
+        "font" : null
+      },
+      "name" : "abilities",
+      "iterator" : [ {
+        "viewAtts" : {
+          "expandable" : false,
+          "showTitle" : true,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "talents",
+        "iterator" : [ {
+          "name" : "alertness",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "athletics",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "brawl",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "dodge",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "empathy",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "expression",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "intimidation",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "leadership",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "subterfuge",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "streetwise",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      }, {
+        "viewAtts" : {
+          "expandable" : false,
+          "showTitle" : true,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "skills",
+        "iterator" : [ {
+          "name" : "animalken",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "crafts",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "drive",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "etiquette",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "firearms",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "melee",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "performance",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "security",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "stealth",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "survival",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      }, {
+        "viewAtts" : {
+          "expandable" : true,
+          "showTitle" : true,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "knowledges",
+        "iterator" : [ {
+          "name" : "academics",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "computer",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "finance",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "investigation",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "law",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "linguistics",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "medicine",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "occult",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "politics",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "science",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      } ]
+    }, {
+      "viewAtts" : {
+        "showLine" : true,
+        "image" : "vtmdefault",
+        "title" : null,
+        "font" : null
+      },
+      "name" : "virtues",
+      "iterator" : [ {
+        "viewAtts" : {
+          "expandable" : false,
+          "showTitle" : false,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "way",
+        "iterator" : [ {
+          "name" : "humanity",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : false,
+              "dynamic" : false,
+              "circles" : 10,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : true,
+            "orientation" : "VERTICAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      }, {
+        "viewAtts" : {
+          "expandable" : false,
+          "showTitle" : false,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "willpower",
+        "iterator" : [ {
+          "name" : "willpower",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : false,
+              "dynamic" : false,
+              "circles" : 10,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : false,
+            "orientation" : "VERTICAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      }, {
+        "viewAtts" : {
+          "expandable" : false,
+          "showTitle" : false,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "virtues",
+        "iterator" : [ {
+          "name" : "conscience",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 5,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : false,
+              "dynamic" : false,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : true,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "selfcontrol",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 5,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : false,
+              "dynamic" : false,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : true,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        }, {
+          "name" : "courage",
+          "value" : {
+            "value" : 1,
+            "tempValue" : 0,
+            "maxValue" : 5,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : false,
+              "dynamic" : false,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : true,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      } ]
+    }, {
+      "viewAtts" : {
+        "showLine" : true,
+        "image" : "vtmdefault",
+        "title" : null,
+        "font" : null
+      },
+      "name" : "advantages",
+      "iterator" : [ {
+        "viewAtts" : {
+          "expandable" : true,
+          "showTitle" : true,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "disciplines",
+        "iterator" : [ {
+          "name" : "",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : true,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      }, {
+        "viewAtts" : {
+          "expandable" : true,
+          "showTitle" : true,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "backgrounds",
+        "iterator" : [ {
+          "name" : "",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 5,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : false,
+              "dynamic" : false,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : true,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      }, {
+        "viewAtts" : {
+          "expandable" : true,
+          "showTitle" : true,
+          "font" : {
+            "style" : 0,
+            "name" : "CasablancaAntique",
+            "size" : 24
+          }
+        },
+        "name" : "other",
+        "iterator" : [ {
+          "name" : "",
+          "value" : {
+            "value" : 0,
+            "tempValue" : 0,
+            "maxValue" : 10,
+            "minValue" : 0,
+            "viewAtts" : {
+              "showSpace" : true,
+              "dynamic" : true,
+              "circles" : 5,
+              "tempSquared" : false,
+              "size" : 14
+            }
+          },
+          "viewAtts" : {
+            "editable" : true,
+            "orientation" : "HORIZONTAL",
+            "squares" : false,
+            "font" : {
+              "style" : 0,
+              "name" : "CasablancaAntique",
+              "size" : 20
+            }
+          }
+        } ]
+      } ]
+    } ]
+  },
+  "merits" : {
+    "viewAtts" : null,
+    "name" : null,
+    "iterator" : [ ]
+  },
+  "bloodpool" : {
+    "viewAtts" : null,
+    "name" : null,
+    "iterator" : [ ]
+  }
+}

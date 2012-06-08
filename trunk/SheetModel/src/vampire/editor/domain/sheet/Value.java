@@ -2,7 +2,7 @@ package vampire.editor.domain.sheet;
 
 import java.io.Serializable;
 
-import vampire.editor.plugin.fullapi.sheet.IValue;
+import vampire.editor.plugin.api.domain.sheet.ValueAPI;
 import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
 
 
@@ -13,12 +13,16 @@ import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
  * @author rex
  *
  */
-public class Value implements Serializable, IValue {
+public class Value implements Serializable, ValueAPI {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2516048495698715631L;
+	
+	public static final int MAX_VALUE = 10;
+	
+	public static final int MIN_VALUE = 0;
 	
 	/**
 	 * The value this object wraps.
@@ -102,7 +106,6 @@ public class Value implements Serializable, IValue {
 		return value;
 	}
 	
-	@Override
 	public void setValue(int value) {
 		if (minValue<=value&&value<=maxValue)
 			this.value = value;
@@ -149,7 +152,6 @@ public class Value implements Serializable, IValue {
 	}
 	
 	
-	@Override
 	public void setTempValue(int tempValue) {
 		this.tempValue = tempValue;
 	}
@@ -169,7 +171,6 @@ public class Value implements Serializable, IValue {
 		return false;
 	}
 	
-	@Override
 	public void setViewAtts(IValueViewAttributes atts){
 		if (viewAtts == null)
 			this.viewAtts = atts;

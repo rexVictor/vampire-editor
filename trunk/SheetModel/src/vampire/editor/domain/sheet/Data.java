@@ -5,11 +5,11 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
+import vampire.editor.plugin.api.domain.sheet.DataAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
-import vampire.editor.plugin.fullapi.sheet.IData;
 import vampire.editor.plugin.fullapi.sheet.view.IDataViewAttributes;
 
-public class Data<W extends Nameable> implements IData<W>, Iterable<W>{
+public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 	
 	private class DataIterator implements Iterator<W>{
 		
@@ -48,7 +48,6 @@ public class Data<W extends Nameable> implements IData<W>, Iterable<W>{
 		this.viewAtts = attributes;
 	}
 	
-	@Override
 	public void add(W v){
 		entries.add(v);
 	}
@@ -85,22 +84,18 @@ public class Data<W extends Nameable> implements IData<W>, Iterable<W>{
 		return name;
 	}
 	
-	@Override	
 	public void insert(int i, W v){
 		entries.add(i, v);
 	}
 	
-	@Override
 	public void remove(W v){
 		entries.remove(v);
 	}
 	
-	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
 	
-	@Override
 	public void sort(Comparator<String> comparator){
 		Sorter<W> sorter = new Sorter<>(comparator);
 		sorter.sort(entries);
@@ -116,7 +111,6 @@ public class Data<W extends Nameable> implements IData<W>, Iterable<W>{
 		return new DataIterator();
 	}
 
-	@Override
 	public void setViewAtts(IDataViewAttributes viewAtts) {
 		if (this.viewAtts==null) 
 			this.viewAtts = viewAtts;

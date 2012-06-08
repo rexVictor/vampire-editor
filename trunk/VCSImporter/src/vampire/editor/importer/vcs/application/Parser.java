@@ -6,13 +6,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import vampire.editor.domain.sheet.Data;
+import vampire.editor.domain.sheet.MetaEntry;
 import vampire.editor.importer.vcs.domain.Strings;
-import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
 import vampire.editor.plugin.api.domain.sheet.SheetAPI;
-import vampire.editor.plugin.fullapi.sheet.IData;
-import vampire.editor.plugin.fullapi.sheet.IMetaEntry;
-import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
 
 public class Parser {
 	
@@ -26,13 +24,11 @@ public class Parser {
 	
 	private final SheetAPI sheet;	
 	
-	private final SheetConstructors constructors;
-	
-	public Parser(List<Byte> source, SheetAPI sheet, SheetConstructors constructors) {
+		
+	public Parser(List<Byte> source, SheetAPI sheet) {
 		super();
 		this.source = source;
 		this.sheet = sheet;
-		this.constructors = constructors;
 	}
 	
 	public void parse(){
@@ -67,7 +63,7 @@ public class Parser {
 		}				
 	}
 	
-	private List<String> getOrder(IData<? extends Nameable> data){
+	private List<String> getOrder(Data<? extends Nameable> data){
 		Iterator<? extends Nameable> iterator = data.getIterator();
 		List<String> order = new ArrayList<>();
 		while (iterator.hasNext()){
@@ -77,14 +73,14 @@ public class Parser {
 	}
 	
 	private void parseMeta(List<Byte> list){
-		IData<IMetaEntry> meta = (IData<IMetaEntry>) sheet.getMeta();
+		Data<MetaEntry> meta = (Data<MetaEntry>) sheet.getMeta();
 		List<String> order = getOrder(meta);
 		meta.sort(new MetaSorter());
-		Iterator<IMetaEntry> iterator = meta.getIterator();
+		Iterator<MetaEntry> iterator = meta.getIterator();
 		
 		int i = 0;
 		while (iterator.hasNext()) {
-			IMetaEntry entry = iterator.next();
+			MetaEntry entry = iterator.next();
 			
 			if (entry.getName().equals("generation")) {
 				entry.setValue(list.get(0x1)+"");

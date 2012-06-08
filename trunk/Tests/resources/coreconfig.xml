@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coreconfig>
+		
+	<jar name="model" 	path="resources/sheetmodel.jar" 		class="vampire.editor.domain.sheet.Classes"/>
+	<jar name="gui" 	path="resources/gui/swingmainframe.jar" class="vampie.editor.gui.swing.mainframe.application"/>
+	
+
+	<!-- So sollte es später sein	
+	<path name="userconfig">
+		<segment key="user.home"/>
+		<segment append=".vampire"/>
+		<segment append="config"/>
+		<segment append="userconfig.xml"/>
+	</path>
+	-->
+	
+	<!-- Zum Testen ist das jetzt erstmal hier -->
+	<path name="userconfig">
+		<segment append="resources"/>
+		<segment append="userconfig.xml"/> 
+	</path>
+	
+</coreconfig>

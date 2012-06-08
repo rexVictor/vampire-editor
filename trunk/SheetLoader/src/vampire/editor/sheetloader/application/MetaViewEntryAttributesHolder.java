@@ -11,25 +11,20 @@ import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
-import vampire.editor.plugin.fullapi.sheet.view.IMetaEntryViewAttributes;
+import vampire.editor.domain.sheet.view.MetaEntryViewAttributes;
 
 public class MetaViewEntryAttributesHolder {
 	
-	private final Map<Integer, IMetaEntryViewAttributes> viewAtts = new HashMap<>();
+	private final Map<Integer, MetaEntryViewAttributes> viewAtts = new HashMap<>();
 	
 	private final Path path;
-	
-	private final Class<? extends IMetaEntryViewAttributes> clazz;
 	
 	private final FontHolder fontHolder;
 
 	public MetaViewEntryAttributesHolder(Path path,
-			Class<? extends IMetaEntryViewAttributes> clazz,
 			FontHolder fontHolder) throws JsonParseException, JsonMappingException, IOException {
 		super();
 		this.path = path;
-		this.clazz = clazz;
 		this.fontHolder = fontHolder;
 		load();
 	}
@@ -45,7 +40,7 @@ public class MetaViewEntryAttributesHolder {
 			int titleFontID = (Integer) viewAttMap.remove("titleFont");
 			int contentFontID = (Integer) viewAttMap.remove("contentFont");
 			System.out.println(viewAttMap);
-			IMetaEntryViewAttributes viewAtt = mapper.convertValue(viewAttMap, clazz);
+			MetaEntryViewAttributes viewAtt = mapper.convertValue(viewAttMap, MetaEntryViewAttributes.class);
 			viewAtt.setTitleFont(fontHolder.getFontById(titleFontID));
 			viewAtt.setContentFont(fontHolder.getFontById(contentFontID));
 			this.viewAtts.put(id, viewAtt);
@@ -58,7 +53,7 @@ public class MetaViewEntryAttributesHolder {
 		return viewAtts.toString();
 	}
 	
-	public MetaEntryViewAttributesAPI getMetaEntryViewAttributesByID(int id){
+	public MetaEntryViewAttributes getMetaEntryViewAttributesByID(int id){
 		return viewAtts.get(id).clone();
 	}
 	

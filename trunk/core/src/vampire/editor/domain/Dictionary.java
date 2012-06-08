@@ -18,6 +18,7 @@ public class Dictionary implements DictionaryAPI {
 	public Dictionary(ResourceBundle bundle, String name) {
 		super();
 		this.name = name;
+		initialize(bundle);
 	}
 	
 	private void initialize(ResourceBundle bundle){
@@ -27,6 +28,7 @@ public class Dictionary implements DictionaryAPI {
 			keyToValue.put(key, value);
 			valueToKey.put(value, key);
 		}
+		
 	}	
 	
 

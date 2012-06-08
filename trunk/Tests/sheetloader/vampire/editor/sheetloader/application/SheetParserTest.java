@@ -11,17 +11,18 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import vampire.editor.domain.sheet.Classes;
+
+import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.plugin.Manager;
-import vampire.editor.plugin.fullapi.sheet.ISheet;
+
 
 public class SheetParserTest {
 
 	@Test
 	public void test() throws JsonParseException, JsonMappingException, InstantiationException, IllegalAccessException, IOException {
 		Path path = Paths.get("sheetpersistencyprototype");
-		SheetParser parser = new SheetParser(path, new Classes(), new Manager());
-		ISheet sheet = parser.getSheet();
+		SheetParser parser = new SheetParser(path, new Manager());
+		Sheet sheet = parser.getSheet();
 		System.out.println(sheet.getCategories());
 		fail("Not yet implemented");
 	}

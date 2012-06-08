@@ -1,10 +1,10 @@
 package vampire.editor.domain.sheet;
 
-import vampire.editor.plugin.fullapi.sheet.ISubCategory;
-import vampire.editor.plugin.fullapi.sheet.ITrait;
+import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
+
 import vampire.editor.plugin.fullapi.sheet.view.ISubCategoryViewAttributes;
 
-public class SubCategory extends Data<ITrait> implements ISubCategory{
+public class SubCategory extends Data<Trait> implements SubCategoryAPI{
 	
 	public SubCategory(){
 		

@@ -11,7 +11,6 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import vampire.editor.domain.sheet.Classes;
 import vampire.editor.plugin.Manager;
 import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
 
@@ -21,8 +20,7 @@ public class TraitViewAttributesHolderTest {
 	public void test() throws JsonParseException, JsonMappingException, IOException {
 		Path path = Paths.get("sheetpersistencyprototype", "traitviewatts.json");
 		Path fontPath = Paths.get("sheetpersistencyprototype", "fonts.json");
-		Class<? extends ITraitViewAttributes> clazz = new Classes().getImplementingClassOf(ITraitViewAttributes.class);
-		TraitViewAttributesHolder holder = new TraitViewAttributesHolder(path, clazz, new FontHolder(fontPath, new Manager()));
+		TraitViewAttributesHolder holder = new TraitViewAttributesHolder(path, new FontHolder(fontPath, new Manager().getResourcesHolder()));
 		System.out.println(holder);
 		fail("Not yet implemented");
 	}

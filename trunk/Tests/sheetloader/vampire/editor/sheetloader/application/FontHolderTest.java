@@ -18,7 +18,7 @@ public class FontHolderTest {
 	@Test
 	public void test() throws JsonParseException, JsonMappingException, IOException {
 		Path path = Paths.get("sheetpersistencyprototype", "fonts.json");
-		FontHolder fontHolder = new FontHolder(path, new Manager());
+		FontHolder fontHolder = new FontHolder(path, new Manager().getResourcesHolder());
 		System.out.println(fontHolder);
 		fail("Not implemented");
 	}

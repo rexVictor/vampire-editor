@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import vampire.editor.domain.sheet.IllegalValueException;
 import vampire.editor.domain.sheet.Value;
-import vampire.editor.plugin.fullapi.sheet.IValue;
 
 public class ValueTest {
 
@@ -39,7 +38,7 @@ public class ValueTest {
 	
 	private void setValueWith(int value, int minValue, int maxValue){
 		assertTrue(minValue<=maxValue);
-		IValue toTest = new Value(minValue, minValue, maxValue, null);
+		Value toTest = new Value(minValue, minValue, maxValue, null);
 		toTest.setValue(value);
 	}
 
