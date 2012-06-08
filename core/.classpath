@@ -9,7 +9,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/EventAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ModelFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
 	<classpathentry kind="output" path="bin"/>

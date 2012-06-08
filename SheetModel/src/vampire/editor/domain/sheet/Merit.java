@@ -1,8 +1,8 @@
 package vampire.editor.domain.sheet;
 
-import vampire.editor.plugin.fullapi.sheet.IMerit;
+import vampire.editor.plugin.api.domain.sheet.MeritAPI;
 
-public class Merit implements IMerit {
+public class Merit implements MeritAPI {
 	
 	private int cost;
 	
@@ -17,7 +17,6 @@ public class Merit implements IMerit {
 		return cost;
 	}
 
-	@Override
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
@@ -27,7 +26,6 @@ public class Merit implements IMerit {
 		return name;
 	}
 
-	@Override
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -1,10 +1,9 @@
 package vampire.editor.domain.sheet;
 
-import vampire.editor.plugin.fullapi.sheet.ICategory;
-import vampire.editor.plugin.fullapi.sheet.ISubCategory;
+import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
 import vampire.editor.plugin.fullapi.sheet.view.ICategoryViewAttributes;
 
-public class Category extends Data<ISubCategory> implements  ICategory{
+public class Category extends Data<SubCategory> implements  CategoryAPI{
 	
 	public Category(){
 		
@@ -24,7 +23,6 @@ public class Category extends Data<ISubCategory> implements  ICategory{
 		return (ICategoryViewAttributes) super.getViewAtts();
 	}
 
-	@Override
 	public void setViewAtts(ICategoryViewAttributes viewAtts) {
 		super.setViewAtts(viewAtts);		
 	}

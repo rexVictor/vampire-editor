@@ -16,13 +16,11 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
 import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
 import vampire.editor.sheetloader.application.ViewParser;
 
 public class ViewParserTest {
 
-	private static SheetConstructors constructors;
 	
 	private Path testFolder = Paths.get("testfiles", "valueviews");
 	
@@ -32,8 +30,7 @@ public class ViewParserTest {
 	
 	@BeforeClass
 	public static void prepare() throws InstantiationException, IllegalAccessException, ClassNotFoundException{
-		constructors = (SheetConstructors) Class.forName("vampire.editor.domain.sheet.Classes").newInstance();
-		parser = new ViewParser(constructors);
+		parser = new ViewParser();
 	}
 	
 	@Test

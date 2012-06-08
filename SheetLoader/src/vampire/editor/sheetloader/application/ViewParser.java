@@ -3,50 +3,44 @@ package vampire.editor.sheetloader.application;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 
+import vampire.editor.domain.sheet.view.CategoryViewAttributes;
+import vampire.editor.domain.sheet.view.SubCategoryViewAttributes;
+import vampire.editor.domain.sheet.view.TraitViewAttributes;
+import vampire.editor.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.Orientation;
-import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
-import vampire.editor.plugin.fullapi.sheet.view.ICategoryViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.ISubCategoryViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
+
 
 public class ViewParser {
 	
 	
 	private final ObjectMapper mapper = new ObjectMapper();
 
-	public ViewParser(SheetConstructors constructors) {
+	public ViewParser() {
 		super();
-		SimpleModule module = new SimpleModule();
-		module.addAbstractTypeMapping(IValueViewAttributes.class, constructors.getImplementingClassOf(IValueViewAttributes.class));
-		module.addAbstractTypeMapping(ITraitViewAttributes.class, constructors.getImplementingClassOf(ITraitViewAttributes.class));
-		module.addAbstractTypeMapping(ISubCategoryViewAttributes.class, constructors.getImplementingClassOf(ISubCategoryViewAttributes.class));
-		module.addAbstractTypeMapping(ICategoryViewAttributes.class, constructors.getImplementingClassOf(ICategoryViewAttributes.class));
-		mapper.registerModule(module);
+		
 	}
 	
-	public IValueViewAttributes parseValueViewAttributes(Object object){
-		return mapper.convertValue(object, IValueViewAttributes.class);
+	public ValueViewAttributes parseValueViewAttributes(Object object){
+		return mapper.convertValue(object, ValueViewAttributes.class);
 	}
 	
-	public ITraitViewAttributes parseTraitViewAttributes(Object object){
+	public TraitViewAttributes parseTraitViewAttributes(Object object){
 		@SuppressWarnings("unchecked")
 		Map<String, ?> map = (Map<String, ?>) object;
 		String orientationString = (String) map.remove("orientation");
 		Orientation orientation = Orientation.valueOf(orientationString);
-		ITraitViewAttributes atts = mapper.convertValue(map, ITraitViewAttributes.class);
+		TraitViewAttributes atts = mapper.convertValue(map, TraitViewAttributes.class);
 		atts.setOrientation(orientation);
 		return atts;
 	}
 	
-	public ISubCategoryViewAttributes parseSubCategoryViewAttributes(Object object){
-		return mapper.convertValue(object, ISubCategoryViewAttributes.class);
+	public SubCategoryViewAttributes parseSubCategoryViewAttributes(Object object){
+		return mapper.convertValue(object, SubCategoryViewAttributes.class);
 	}
 	
-	public ICategoryViewAttributes parseCategoryViewAttributes(Object object){
-		return mapper.convertValue(object, ICategoryViewAttributes.class);
+	public CategoryViewAttributes parseCategoryViewAttributes(Object object){
+		return mapper.convertValue(object, CategoryViewAttributes.class);
 	}
 	
 	

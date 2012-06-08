@@ -3,27 +3,26 @@ package vampire.editor.domain.sheet;
 import java.util.LinkedList;
 import java.util.List;
 
-import vampire.editor.plugin.fullapi.sheet.ISpecialty;
-import vampire.editor.plugin.fullapi.sheet.ITrait;
-import vampire.editor.plugin.fullapi.sheet.IValue;
+import vampire.editor.domain.sheet.view.TraitViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.TraitAPI;
 import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
 
-public class Trait implements ITrait{
+public class Trait implements TraitAPI{
 	
 	private String name;
 	
-	private IValue value;
+	private Value value;
 	
-	private final List<ISpecialty> specialties = new LinkedList<>();
+	private final List<Specialty> specialties = new LinkedList<>();
 	
-	private ITraitViewAttributes traitViewAttributes;
+	private TraitViewAttributes traitViewAttributes;
 	
 	public Trait(){
 		
 	}
 
-	public Trait(String name, IValue value,
-			ITraitViewAttributes viewAtts) {
+	public Trait(String name, Value value,
+			TraitViewAttributes viewAtts) {
 		super();
 		this.name = name;
 		this.value = value;
@@ -41,7 +40,7 @@ public class Trait implements ITrait{
 	}
 
 	@Override
-	public IValue getValue() {
+	public Value getValue() {
 		return value;
 	}
 	
@@ -50,19 +49,16 @@ public class Trait implements ITrait{
 		return traitViewAttributes;
 	}
 	
-	@Override
-	public void setViewAtts(ITraitViewAttributes attributes) {
+	public void setViewAtts(TraitViewAttributes attributes) {
 		if (this.traitViewAttributes == null)
 			this.traitViewAttributes = attributes;
 	}
 	
-	@Override
-	public void addSpecialty(ISpecialty specialty){
+	public void addSpecialty(Specialty specialty){
 		specialties.add(specialty);
 	}
 	
-	@Override
-	public void removeSpecialty(ISpecialty specialty){
+	public void removeSpecialty(Specialty specialty){
 		specialties.remove(specialty);
 	}
 	
@@ -78,8 +74,7 @@ public class Trait implements ITrait{
 		return toReturn;
 	}
 
-	@Override
-	public void setValue(IValue value) {
+	public void setValue(Value value) {
 		this.value = value;
 	}
 	

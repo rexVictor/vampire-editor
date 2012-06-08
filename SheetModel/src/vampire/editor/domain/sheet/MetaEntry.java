@@ -2,9 +2,8 @@ package vampire.editor.domain.sheet;
 
 import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
-import vampire.editor.plugin.fullapi.sheet.IMetaEntry;
 
-public class MetaEntry implements IMetaEntry {
+public class MetaEntry implements MetaEntryAPI {
 	
 	private String name;
 	
@@ -17,7 +16,6 @@ public class MetaEntry implements IMetaEntry {
 		return name;
 	}
 
-	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -27,7 +25,6 @@ public class MetaEntry implements IMetaEntry {
 		return value;
 	}
 
-	@Override
 	public void setValue(String value) {
 		this.value = value;
 	}
@@ -51,7 +48,6 @@ public class MetaEntry implements IMetaEntry {
 		return viewAtts;
 	}
 
-	@Override
 	public void setViewAtts(MetaEntryViewAttributesAPI viewAtts) {
 		this.viewAtts = viewAtts;
 	}

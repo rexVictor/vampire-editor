@@ -13,7 +13,7 @@ public class Main {
 		Loader loader = new Loader();
 		Path path = Paths.get("test.vcs");
 		List<Byte> chars = loader.load(path);
-		Parser parser = new Parser(chars, null, null);
+		Parser parser = new Parser(chars, null);
 		parser.parse();
 	}
 

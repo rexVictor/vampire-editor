@@ -10,32 +10,29 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import vampire.editor.plugin.fullapi.sheet.IValue;
+import vampire.editor.domain.sheet.Value;
 
 public class ValueHolder {
 	
-	private final Map<Integer, IValue> valueMap = new HashMap<>();
+	private final Map<Integer, Value> valueMap = new HashMap<>();
 	
 	private final Path path;
 	
-	private final Class<? extends IValue> implementingClass;
-	
-	public ValueHolder(Path path, Class<? extends IValue> implementingClass) throws JsonParseException, JsonMappingException, IOException {
+	public ValueHolder(Path path) throws JsonParseException, JsonMappingException, IOException {
 		super();		
 		this.path = path;
-		this.implementingClass = implementingClass;
+		
 		load();
 	}
 	
 	private void load() throws JsonParseException, JsonMappingException, IOException{
 		ObjectMapper mapper = new ObjectMapper();
+	
 		@SuppressWarnings("unchecked")
-		Map<String, ?> json = mapper.readValue(path.toFile(), Map.class);
-		@SuppressWarnings("unchecked")
-		List<Map<String, ?>> values = (List<Map<String, ?>>) json.get("values");
+		List<Map<String, ?>> values = mapper.readValue(path.toFile(), List.class);
 		for (Map<String, ?> valueMap : values){
 			int id = (Integer) valueMap.remove("id");
-			IValue value = mapper.convertValue(valueMap, implementingClass);
+			Value value = mapper.convertValue(valueMap, Value.class);
 			this.valueMap.put(id, value);
 		}
 	}
@@ -45,7 +42,7 @@ public class ValueHolder {
 		return valueMap.toString();
 	}
 	
-	public IValue getValueByID(int id){
+	public Value getValueByID(int id){
 		return valueMap.get(id).clone();
 	}
 	

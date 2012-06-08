@@ -14,10 +14,9 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import vampire.editor.plugin.fullapi.sheet.ICategory;
-import vampire.editor.plugin.fullapi.sheet.IData;
-import vampire.editor.plugin.fullapi.sheet.ITrait;
-import vampire.editor.plugin.fullapi.sheet.SheetConstructors;
+import vampire.editor.domain.sheet.Category;
+import vampire.editor.domain.sheet.Data;
+import vampire.editor.domain.sheet.Trait;
 import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
 import vampire.editor.sheetloader.application.TraitsParser;
 
@@ -29,8 +28,7 @@ public class TraitsParserTest {
 	
 	@BeforeClass
 	public static void prepare() throws InstantiationException, IllegalAccessException, ClassNotFoundException{
-		SheetConstructors constructors = (SheetConstructors) Class.forName("vampire.editor.domain.sheet.Classes").newInstance();
-		parser = new TraitsParser(constructors);
+		parser = new TraitsParser();
 	}
 
 	@Test
@@ -39,7 +37,7 @@ public class TraitsParserTest {
 		Path path = Paths.get("testfiles", "traits", "test1.json");
 		Object object = mapper.readValue(path.toFile(), Object.class);
 		System.out.println(object);
-		ITrait trait = parser.getTrait(object);
+		Trait trait = parser.getTrait(object);
 		IValueViewAttributes atts = trait.getValue().getViewAtts();
 		System.out.println(atts);
 		System.out.println(atts.getCircles());
@@ -54,9 +52,9 @@ public class TraitsParserTest {
 		System.out.println("treNNUNG");
 		Path path = Paths.get("SheetPersistencyProtoType", "default.json");
 		Map<?, ?> map = mapper.readValue(path.toFile(), Map.class);
-		IData<ICategory> data = parser.getCategories(map.get("traits"));
+		Data<Category> data = parser.getCategories(map.get("traits"));
 		System.out.println(data);
-		for (ICategory cat : data){
+		for (Category cat : data){
 			System.out.println(cat);
 			System.out.println(cat.getViewAtts().isShowLine());
 		}

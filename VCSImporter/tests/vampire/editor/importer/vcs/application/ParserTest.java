@@ -9,11 +9,10 @@ import java.util.List;
 
 import org.junit.Test;
 
+import vampire.editor.domain.sheet.Data;
 import vampire.editor.domain.sheet.MetaEntry;
 import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.importer.vcs.persistency.Loader;
-import vampire.editor.plugin.fullapi.sheet.IData;
-import vampire.editor.plugin.fullapi.sheet.IMetaEntry;
 
 public class ParserTest {
 
@@ -23,8 +22,8 @@ public class ParserTest {
 		Loader loader = new Loader();
 		List<Byte> list = loader.load(path);
 		Sheet sheet = new Sheet();
-		IData<IMetaEntry> meta = sheet.getMeta();
-		IMetaEntry metaEntry = null;
+		Data<MetaEntry> meta = sheet.getMeta();
+		MetaEntry metaEntry = null;
 		
 		(metaEntry = new MetaEntry()).setName("name");
 		
@@ -55,7 +54,7 @@ public class ParserTest {
 		
 		System.out.println(meta);
 		
-		Parser parser = new Parser(list, sheet, null);
+		Parser parser = new Parser(list, sheet);
 		parser.parse();
 		
 		System.out.println(meta);

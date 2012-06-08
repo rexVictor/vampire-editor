@@ -1,21 +1,21 @@
 package vampire.editor.application.sheet.events;
 
-import vampire.editor.application.sheet.controller.SubCategoryController;
-import vampire.editor.application.sheet.controller.TraitController;
+import vampire.editor.plugin.api.application.sheet.controller.SubCategoryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.TraitControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.SubCategoryEventAPI;
 
 public class SubCategoryEvent implements SubCategoryEventAPI{
 	
-	private final SubCategoryController source;
+	private final SubCategoryControllerAPI source;
 	
-	private final TraitController reason;
+	private final TraitControllerAPI reason;
 	
 	private final int position;
 	
 	
 
-	public SubCategoryEvent(SubCategoryController source,
-			TraitController reason, int position) {
+	public SubCategoryEvent(SubCategoryControllerAPI source,
+			TraitControllerAPI reason, int position) {
 		super();
 		this.source = source;
 		this.reason = reason;
@@ -26,7 +26,7 @@ public class SubCategoryEvent implements SubCategoryEventAPI{
 
 
 
-	public TraitController getReason() {
+	public TraitControllerAPI getReason() {
 		return reason;
 	}
 
@@ -42,7 +42,7 @@ public class SubCategoryEvent implements SubCategoryEventAPI{
 
 
 
-	public SubCategoryController getSource() {
+	public SubCategoryControllerAPI getSource() {
 		return source;
 	}
 

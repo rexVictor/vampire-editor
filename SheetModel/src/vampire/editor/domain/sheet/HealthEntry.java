@@ -1,9 +1,9 @@
 package vampire.editor.domain.sheet;
 
 import vampire.editor.plugin.api.domain.sheet.DamageType;
-import vampire.editor.plugin.fullapi.sheet.IHealthEntry;
+import vampire.editor.plugin.api.domain.sheet.HealthEntryAPI;
 
-public class HealthEntry implements IHealthEntry {
+public class HealthEntry implements HealthEntryAPI {
 	
 	private int penalty;
 	
@@ -29,7 +29,7 @@ public class HealthEntry implements IHealthEntry {
 		return penalty;
 	}
 
-	@Override
+	
 	public void setPenalty(int penalty) {
 		this.penalty = penalty;
 	}
@@ -39,7 +39,7 @@ public class HealthEntry implements IHealthEntry {
 		return name;
 	}
 
-	@Override
+	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -49,7 +49,7 @@ public class HealthEntry implements IHealthEntry {
 		return damageType;
 	}
 
-	@Override
+	
 	public void setDamageType(DamageType damageType) {
 		this.damageType = damageType;
 	}

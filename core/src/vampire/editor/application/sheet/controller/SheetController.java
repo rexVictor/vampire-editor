@@ -3,26 +3,34 @@ package vampire.editor.application.sheet.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import vampire.editor.domain.sheet.Sheet;
+import vampire.editor.plugin.api.application.sheet.controller.CategoryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.view.sheet.SheetView;
-import vampire.editor.plugin.fullapi.sheet.ISheet;
 
 
-public class SheetController {
+public class SheetController implements SheetControllerAPI {
 	
-	private final ISheet sheet;
+	private final Sheet sheet;
 	
 	private final SheetView view;
 	
-	private final List<CategoryController> categoryControllers = new ArrayList<>();
+	private final List<CategoryControllerAPI> categoryControllers = new ArrayList<>();
 
-	public SheetController(ISheet sheet, SheetView view) {
+	public SheetController(Sheet sheet, SheetView view) {
 		super();
 		this.sheet = sheet;
 		this.view = view;
 	}
 	
-	public void addCategoryController(CategoryController controller){
+	@Override
+	public void addCategoryController(CategoryControllerAPI controller){
 		categoryControllers.add(controller);
+	}
+	
+	@Override
+	public SheetView getView(){
+		return view;
 	}
 	
 	

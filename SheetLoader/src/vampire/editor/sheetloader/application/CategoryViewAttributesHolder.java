@@ -11,20 +11,18 @@ import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import vampire.editor.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.plugin.fullapi.sheet.view.ICategoryViewAttributes;
 
 public class CategoryViewAttributesHolder {
 	
-	private final Map<Integer, ICategoryViewAttributes> viewAtts = new HashMap<>();
-	
-	private final Class<? extends ICategoryViewAttributes> clazz;
+	private final Map<Integer, CategoryViewAttributes> viewAtts = new HashMap<>();
 	
 	private final Path path;
 
 	public CategoryViewAttributesHolder(
-			Class<? extends ICategoryViewAttributes> clazz, Path path) throws JsonParseException, JsonMappingException, IOException {
+			Path path) throws JsonParseException, JsonMappingException, IOException {
 		super();
-		this.clazz = clazz;
 		this.path = path;
 		load();
 	}
@@ -38,7 +36,7 @@ public class CategoryViewAttributesHolder {
 		for (Map<String, ?> viewAttMap : viewAtts){
 			int id = (Integer) viewAttMap.remove("id");
 //			int fontID = (Integer) viewAttMap.remove("font");
-			ICategoryViewAttributes viewAtt = mapper.convertValue(viewAttMap, clazz);
+			CategoryViewAttributes viewAtt = mapper.convertValue(viewAttMap, CategoryViewAttributes.class);
 			//viewAtt.setFont(fontHolder.getFontById(fontID));
 			this.viewAtts.put(id, viewAtt);
 		}

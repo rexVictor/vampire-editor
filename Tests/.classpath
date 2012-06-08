@@ -8,7 +8,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/i18nParser"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ModelFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ResourceLoader"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetLoader"/>
