@@ -59,7 +59,7 @@ public class TraitViewAttributes implements ITraitViewAttributes{
 		sb.append(", orientation: ");
 		sb.append(orientation);
 		sb.append(", font: ");
-		sb.append(font.toString());
+		sb.append(font);
 		sb.append("\n");
 		return sb.toString();
 	}

@@ -1,5 +1,4 @@
-{
-	"subcategoryviewatts"	:	[
+[
 		{
 			"id"			:	0,
 			"expandable"	:	false,
@@ -19,4 +18,3 @@
 			"font"			:	1
 		}
 	]
-}

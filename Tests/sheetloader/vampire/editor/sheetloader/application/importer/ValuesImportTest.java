@@ -87,7 +87,7 @@ public class ValuesImportTest {
 	 * @throws Throwable
 	 */
 	private static Path createTestCase(Path valueFile, int i) throws Throwable{
-		Objects<? extends Value> objects = new Objects<>(valueFile, Value.class, new Manager().getResourcesHolder());
+		Objects<? extends Value> objects = new Objects<>(Value.class, valueFile, new Manager().getResourcesHolder());
 		BufferedReader reader = Files.newBufferedReader(valueFile, Charset.defaultCharset());
 		System.out.println("original file: ");
 		int read = 0;
@@ -148,7 +148,7 @@ public class ValuesImportTest {
 	
 	private void testValueImport(Path valuesJson, Path expected) throws Throwable {
 	
-		Objects<? extends Value> values = new Objects<>(valuesJson, Value.class, new Manager().getResourcesHolder());
+		Objects<? extends Value> values = new Objects<>(Value.class, valuesJson, new Manager().getResourcesHolder());
 		List<Value> valueList = new LinkedList<>();
 		{
 			int i = 0;

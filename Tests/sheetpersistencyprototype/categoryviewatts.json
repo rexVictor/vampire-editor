@@ -1,9 +1,7 @@
-{
-	"categoryviewatts"	:	[
+[
 		{
 			"id"	:	0,
 			"showLine"	:	true,
 			"image"	:	"vtmdefault"
 		}
 	]
-}
