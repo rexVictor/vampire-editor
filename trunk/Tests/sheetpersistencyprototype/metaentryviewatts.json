@@ -1,17 +1,15 @@
-{
-	"metaentryviewatts"	:	[
+[
 		{
 			"id"			:	0,
 			"lineCount"		:	2,
-			"titleFont"		:	0,
-			"contentFont"	:	0
+			"font"		:	0
+			
 		},
 		{
 			"id"			:	1,
 			"lineCount"		:	1,
-			"titleFont"		:	0,
-			"contentFont"	:	0
+			"font"		:	0
+			
 		}
 		
 	]
-}

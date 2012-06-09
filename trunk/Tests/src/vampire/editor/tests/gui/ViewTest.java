@@ -19,7 +19,7 @@ import vampire.editor.gui.swing.view.DictionaryTestImplementation;
 import vampire.editor.gui.swing.view.SSheetView;
 import vampire.editor.plugin.Manager;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
-import vampire.editor.sheetloader.application.SheetParser;
+import vampire.editor.sheetloader.application.importer.VMPCSImporter;
 
 public class ViewTest {
 
@@ -28,8 +28,11 @@ public class ViewTest {
 	
 		UIManager.setLookAndFeel(NimbusLookAndFeel.class.getName());	
 	
-		SheetParser parser = new SheetParser(Paths.get("sheetpersistencyprototype"),  new Manager());
-		Sheet sheet = (Sheet) parser.getSheet();
+		//SheetParser parser = new SheetParser(Paths.get("sheetpersistencyprototype"),  new Manager());
+		VMPCSImporter importer = new VMPCSImporter(new Manager().getResourcesHolder());
+		Sheet sheet = importer.load(Paths.get("sheetpersistencyprototype"));
+		importer = null;
+		
 		SheetViewFactory factory = new SheetViewFactory(new DictionaryTestImplementation());
 		SSheetView view = factory.buildSheetView(sheet);
 		

@@ -51,6 +51,11 @@ public class MetaEntryViewAttributes implements IMetaEntryViewAttributes{
 		this.contentFont = contentFont;
 	}
 	
+	public void setFont(Font font){
+		this.contentFont = font;
+		this.titleFont = font;
+	}
+	
 	
 
 }

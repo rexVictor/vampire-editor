@@ -12,7 +12,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
 import vampire.editor.plugin.Manager;
-import vampire.editor.sheetloader.application.SheetParser;
 
 public class SheetExporterTest {
 
@@ -21,8 +20,7 @@ public class SheetExporterTest {
 		SheetExporter exporter = new SheetExporter();
 		Path path = Paths.get("exporttest", "output.json");
 		Path importpath = Paths.get("sheetpersistencyprototype");
-		SheetParser parser = new SheetParser(importpath, new Manager());
-		exporter.export(parser.getSheet(), path);
+	
 	}
 
 }

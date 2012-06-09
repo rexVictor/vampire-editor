@@ -1,5 +1,4 @@
-{
-	"traitviewatts"	:	[
+[
 		{
 			"id"			:	0,
 			"editable"		:	false,
@@ -24,6 +23,6 @@
 			"orientation"	:	"HORIZONTAL",
 			"font"			:	0
 		}
-	]
-}
+]
+
 		
