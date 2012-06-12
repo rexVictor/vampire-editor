@@ -14,11 +14,11 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import vampire.editor.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;
-import vampire.editor.plugin.fullapi.sheet.view.ISubCategoryViewAttributes;
 
 public class SSubCategoryView implements SubCategoryView{
 	
@@ -26,7 +26,7 @@ public class SSubCategoryView implements SubCategoryView{
 	
 	private final List<TraitView> traitViews = new ArrayList<>();
 	
-	private final ISubCategoryViewAttributes atts;
+	private final SubCategoryViewAttributes atts;
 	
 	private final DictionaryAPI dictionary;
 	
@@ -34,7 +34,7 @@ public class SSubCategoryView implements SubCategoryView{
 	
 	private final List<DataViewListener<TraitView>> listeners = new LinkedList<>();
 	
-	public SSubCategoryView(ISubCategoryViewAttributes atts, DictionaryAPI dictionary, String title) {
+	public SSubCategoryView(SubCategoryViewAttributes atts, DictionaryAPI dictionary, String title) {
 		super();
 		this.atts = atts;
 		this.dictionary = dictionary;

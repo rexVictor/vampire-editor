@@ -19,20 +19,19 @@ import vampire.editor.domain.sheet.Data;
 import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.domain.sheet.SubCategory;
 import vampire.editor.domain.sheet.Trait;
-import vampire.editor.plugin.fullapi.sheet.view.ICategoryViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.IDataViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.ISubCategoryViewAttributes;
-import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
+import vampire.editor.domain.sheet.view.CategoryViewAttributes;
+import vampire.editor.domain.sheet.view.SubCategoryViewAttributes;
+import vampire.editor.domain.sheet.view.ValueViewAttributes;
 
 public class SheetExporter {
 	
 	private IdCalculator<Font> fonts = new IdCalculator<>();
 	
-	private IdCalculator<IValueViewAttributes> valueViewAttributes = new IdCalculator<>();
+	private IdCalculator<ValueViewAttributes> valueViewAttributes = new IdCalculator<>();
 	
-	private IdCalculator<ICategoryViewAttributes> categoryViewAttributes = new IdCalculator<>();
+	private IdCalculator<CategoryViewAttributes> categoryViewAttributes = new IdCalculator<>();
 	
-	private IdCalculator<ISubCategoryViewAttributes> subCategoryViewAttributes = new IdCalculator<>();
+	private IdCalculator<SubCategoryViewAttributes> subCategoryViewAttributes = new IdCalculator<>();
 	
 	public SheetExporter(){
 		
@@ -62,7 +61,7 @@ public class SheetExporter {
 		
 		toReturn.put("name", category.getName());
 		
-		ICategoryViewAttributes viewAtts = category.getViewAtts();
+		CategoryViewAttributes viewAtts = category.getViewAtts();
 		int viewAttId = categoryViewAttributes.getId(viewAtts);
 		toReturn.put("viewAtts", viewAttId);
 		
@@ -78,7 +77,7 @@ public class SheetExporter {
 		
 		toReturn.put("name", subCategory.getName());
 		
-		ISubCategoryViewAttributes viewAtts = subCategory.getViewAtts();
+		SubCategoryViewAttributes viewAtts = subCategory.getViewAtts();
 		int viewAttId = subCategoryViewAttributes.getId(viewAtts);
 		toReturn.put("viewAtts", viewAttId);
 		
@@ -89,9 +88,9 @@ public class SheetExporter {
 		return null;
 	}
 	
-	private int getDataViewAttId(IDataViewAttributes atts){
-		return 0;
-	}
+	
+	
+	
 	
 
 	

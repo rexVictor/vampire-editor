@@ -22,6 +22,8 @@ import java.util.Map;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+
+
 import vampire.editor.domain.sheet.Value;
 import vampire.editor.plugin.Manager;
 
@@ -30,6 +32,8 @@ import vampire.editor.plugin.Manager;
  * @author rex
  *
  */
+
+
 public class ValuesImportTest {
 	/**
 	 * The paths of the json files mapped by their ending number.

@@ -1,6 +1,6 @@
 package vampire.editor.plugin.api.domain.sheet;
 
-public interface Nameable {
+public interface Nameable{
 	
 	public String getName();
 	

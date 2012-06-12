@@ -1,35 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <coreconfig>
+	
+	<paths>
+		<path name="resources">
+			<segment append="resources/userconfig.xml"/>
+		</path>
+		<path name="swingMainFrame">
+			<segment append="resources/gui/swingmainframe.jar"/>
+		</path>
+		<path name="sheetloader">
+			<segment append="resources/persistency/sheetloader.jar"/>
+		</path>
+		<!-- Uncomment for final deployment 
+		<path name="userconfig">
+			<segment key="user.home"/>
+			<segment append=".vampire/config/userconfiig.xml"/>
+		</path>
+		-->
+		<!-- remove this when testing finished -->
+		<path name="userconfig">
+			<segment append="resources/userconfig.xml"/>
+		</path>
+		<path name="plugins">
+			<segment append="resources/plugins.xml"/>
+		</path>
+	</paths>
+	
+	<config name="resources" 	path="resources"/>
+	<config name="userconfig" 	path="userconfig"/>
+	<config name="plugins" 		path="plugins"/>
+	
 		
-	<jar name="model" 		path="resources/sheetmodel.jar" 				class="vampire.editor.domain.sheet.Classes"/>
-	<jar name="gui" 		path="resources/gui/swingmainframe.jar" 		class="vampie.editor.gui.swing.mainframe.application..."/>
-	<jar name="sheetloader" path="resources/persistency/sheetloader.jar" 	class="vampire.editor.sheetloader.application..."/>
+	<jar name="gui" 		path="swingMainFrame" 		class="vampie.editor.gui.swing.mainframe.application..."/>
+	<jar name="sheetloader" path="sheetloader" 	class="vampire.editor.sheetloader.application..."/>
 	
-	<font name="cas_antn" path="resources/CAS_ANTN.TTF"/>
-	
-	<image type="border" name="vtmdefault" path="resources/images/borders/vtmdefault.gif"/>
-	<image type="line"	 name="vtmdefault" path="resources/images/lines/vtmdefault.gif"/>
-	
-	
-
-	<!-- So sollte es später sein	
-	<path name="userconfig">
-		<segment key="user.home"/>
-		<segment append=".vampire"/>
-		<segment append="config"/>
-		<segment append="userconfig.xml"/>
-	</path>
-	-->
-	
-	<!-- Zum Testen ist das jetzt erstmal hier -->
-	<path name="userconfig">
-		<segment append="resources"/>
-		<segment append="userconfig.xml"/> 
-	</path>
-	
-	<path name="plugins">
-		<segment append="plugins"/>
-		<segment append="plugins.xml"/>		
-	</path>
 	
 </coreconfig>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<fonts>
+		<path>
+			<resolve name="resources"/>
+			<resolve name="fonts"/>
+		</path>
+		<font path="CAS_ANTN.TTF" key="cas_antn"/>
+	</fonts>
+	<borders>
+		<path>
+			<resolve name="resources"/>
+			<resolve name="borders"/>
+		</path>
+		<image path="vtmdefault.gif" key="vtmdefault"/>
+	</borders>
+	<lines>
+		<path>
+			<resolve name="resources"/>
+			<resolve name="lines"/>
+		</path>
+		<image path="vtmdefault.gif" key="vtmdefault"/>
+	</lines>
+	
+	
+</resources>

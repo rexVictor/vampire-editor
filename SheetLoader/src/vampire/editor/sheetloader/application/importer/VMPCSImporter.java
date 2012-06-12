@@ -103,7 +103,7 @@ public class VMPCSImporter {
 		this.root = path;
 		catViewAtts = new Objects<>(root, CategoryViewAttributes.class, resources);
 		metaEntryViewAttributes = new Objects<>(root, MetaEntryViewAttributes.class, resources);
-		subCatViewAtts = new Objects<>(path, SubCategoryViewAttributes.class, resources);
+		subCatViewAtts = new Objects<>(root, SubCategoryViewAttributes.class, resources);
 		traitViewAtts = new Objects<>(root, TraitViewAttributes.class, resources);
 		values = new Objects<>(root, Value.class, resources);
 		valueViewAtts = new Objects<>(root, ValueViewAttributes.class, resources);
