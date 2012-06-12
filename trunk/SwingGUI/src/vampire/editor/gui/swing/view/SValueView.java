@@ -17,10 +17,11 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import vampire.editor.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.gui.swing.application.Initializer;
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
-import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
+
 
 public class SValueView implements ValueView{
 	
@@ -60,11 +61,11 @@ public class SValueView implements ValueView{
 	
 	private int tempValue = -53573;
 	
-	private final IValueViewAttributes atts;
+	private final ValueViewAttributes atts;
 	
 	private final FormLayout layout = new FormLayout();
 	
-	public SValueView(IValueViewAttributes atts){
+	public SValueView(ValueViewAttributes atts){
 		this.atts = atts;
 		initialize();
 	}

@@ -2,8 +2,8 @@ package vampire.editor.domain.sheet;
 
 import java.io.Serializable;
 
+import vampire.editor.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.ValueAPI;
-import vampire.editor.plugin.fullapi.sheet.view.IValueViewAttributes;
 
 
 /**
@@ -50,7 +50,7 @@ public class Value implements Serializable, ValueAPI {
 	 * {@link ValueView} 
 	 */
 	
-	private IValueViewAttributes viewAtts;
+	private ValueViewAttributes viewAtts;
 	
 	public Value(){
 		this(null);
@@ -61,7 +61,7 @@ public class Value implements Serializable, ValueAPI {
 	 * 0 as value, MAX_VALUE as maximum and MIN_VALUE as minimum.
 	 * @param viewAttributes
 	 */
-	public Value(IValueViewAttributes viewAttributes){
+	public Value(ValueViewAttributes viewAttributes){
 		this(0,viewAttributes);
 	}
 	
@@ -71,7 +71,7 @@ public class Value implements Serializable, ValueAPI {
 	 * @param value
 	 * @param viewAttributes
 	 */
-	public Value(int value, IValueViewAttributes viewAttributes){
+	public Value(int value, ValueViewAttributes viewAttributes){
 		this(value,MAX_VALUE, viewAttributes);
 	}
 	
@@ -82,7 +82,7 @@ public class Value implements Serializable, ValueAPI {
 	 * @param maxValue
 	 * @param viewAttributes
 	 */
-	public Value(int value, int maxValue, IValueViewAttributes viewAttributes){
+	public Value(int value, int maxValue, ValueViewAttributes viewAttributes){
 		this(value, MIN_VALUE, maxValue, viewAttributes);
 	}
 	
@@ -94,7 +94,7 @@ public class Value implements Serializable, ValueAPI {
 	 * @param maxValue
 	 * @param viewAttributes
 	 */
-	public Value(int value, int minValue, int maxValue, IValueViewAttributes viewAttributes){
+	public Value(int value, int minValue, int maxValue, ValueViewAttributes viewAttributes){
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 		setValue(value);
@@ -127,7 +127,7 @@ public class Value implements Serializable, ValueAPI {
 	
 	
 	@Override
-	public IValueViewAttributes getViewAtts() {
+	public ValueViewAttributes getViewAtts() {
 		return viewAtts;
 	}
 	
@@ -142,7 +142,12 @@ public class Value implements Serializable, ValueAPI {
 	
 	@Override
 	public Value clone(){
-		return new Value(value, minValue, maxValue, viewAtts);
+		ValueViewAttributes viewAtts = null;
+		if (this.viewAtts != null)
+			viewAtts = this.viewAtts.clone();
+		Value clone = new  Value(value, minValue, maxValue, viewAtts);
+		clone.setTempValue(tempValue);
+		return clone;
 	}
 	
 	
@@ -161,7 +166,10 @@ public class Value implements Serializable, ValueAPI {
 		return minValue+2*maxValue+4*value+8*tempValue;		
 	}
 	
-	
+	/**
+	 * Returns true if and only if value, temporary value, minimum value and maximal value are pairwise equal.<br>
+	 * Be aware that equality of the value view attributes is not checked.
+	 */
 	@Override
 	public final boolean equals(Object obj){
 		if (obj instanceof Value){
@@ -171,7 +179,7 @@ public class Value implements Serializable, ValueAPI {
 		return false;
 	}
 	
-	public void setViewAtts(IValueViewAttributes atts){
+	public void setViewAtts(ValueViewAttributes atts){
 		if (viewAtts == null)
 			this.viewAtts = atts;
 	}

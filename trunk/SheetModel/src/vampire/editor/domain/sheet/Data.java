@@ -7,7 +7,7 @@ import java.util.List;
 
 import vampire.editor.plugin.api.domain.sheet.DataAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
-import vampire.editor.plugin.fullapi.sheet.view.IDataViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.DataViewAttributesAPI;
 
 public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 	
@@ -33,7 +33,7 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 		
 	}
 	
-	private IDataViewAttributes viewAtts;
+	private DataViewAttributesAPI viewAtts;
 	
 	private final List<W> entries = new ArrayList<>();
 	
@@ -43,7 +43,7 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 		
 	}
 	
-	public Data(IDataViewAttributes attributes) {
+	public Data(DataViewAttributesAPI attributes) {
 		super();
 		this.viewAtts = attributes;
 	}
@@ -67,7 +67,7 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 	
 
 	@Override
-	public IDataViewAttributes getViewAtts() {
+	public DataViewAttributesAPI getViewAtts() {
 		return viewAtts;
 	}
 	
@@ -111,7 +111,7 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 		return new DataIterator();
 	}
 
-	public void setViewAtts(IDataViewAttributes viewAtts) {
+	public void setViewAtts(DataViewAttributesAPI viewAtts) {
 		if (this.viewAtts==null) 
 			this.viewAtts = viewAtts;
 		

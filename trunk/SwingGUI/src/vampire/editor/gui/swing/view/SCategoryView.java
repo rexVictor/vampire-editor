@@ -11,18 +11,18 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import vampire.editor.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.gui.swing.domain.Line;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
-import vampire.editor.plugin.fullapi.sheet.view.ICategoryViewAttributes;
 
 public class SCategoryView implements CategoryView{
 	
 	private final JPanel panel = new JPanel();
 	
-	private final ICategoryViewAttributes viewAtts;
+	private final CategoryViewAttributes viewAtts;
 	
 	private final DictionaryAPI dictionary;
 	
@@ -34,7 +34,7 @@ public class SCategoryView implements CategoryView{
 	
 	
 
-	public SCategoryView(ICategoryViewAttributes viewAtts,
+	public SCategoryView(CategoryViewAttributes viewAtts,
 			DictionaryAPI dictionary, String title) {
 		super();
 		this.viewAtts = viewAtts;

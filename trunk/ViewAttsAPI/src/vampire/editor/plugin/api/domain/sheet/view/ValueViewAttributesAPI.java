@@ -1,6 +1,6 @@
 package vampire.editor.plugin.api.domain.sheet.view;
 
-public interface ValueViewAttributesAPI {
+public interface ValueViewAttributesAPI extends PublicCloneable{
 	
 	public boolean isShowSpace();
 	
@@ -11,5 +11,8 @@ public interface ValueViewAttributesAPI {
 	public boolean isTempSquared();
 	
 	public int getSize();
+	
+	@Override
+	public ValueViewAttributesAPI clone();
 
 }

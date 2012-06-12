@@ -15,11 +15,11 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import vampire.editor.domain.sheet.view.TraitViewAttributes;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
-import vampire.editor.plugin.fullapi.sheet.view.ITraitViewAttributes;
 
 public class STraitView implements TraitView, ActionListener{
 	
@@ -31,14 +31,14 @@ public class STraitView implements TraitView, ActionListener{
 	
 	private final DictionaryAPI dictionary;
 	
-	private final ITraitViewAttributes attributes;
+	private final TraitViewAttributes attributes;
 	
 	private final FormLayout layout = new FormLayout();
 	
 	private final List<TraitViewListener> listeners = new LinkedList<>();
 	
 	public STraitView(SValueView valueView, DictionaryAPI dictionary,
-			ITraitViewAttributes attributes) {
+			TraitViewAttributes attributes) {
 		super();
 		this.valueView = valueView;
 		this.dictionary = dictionary;

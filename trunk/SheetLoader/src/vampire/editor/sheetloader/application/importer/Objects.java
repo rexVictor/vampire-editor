@@ -2,13 +2,14 @@ package vampire.editor.sheetloader.application.importer;
 
 import java.awt.Font;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import vampire.editor.domain.sheet.view.FontSettable;
+import vampire.editor.plugin.api.domain.sheet.Nameable;
+import vampire.editor.plugin.api.domain.sheet.view.PublicCloneable;
 import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -51,36 +52,28 @@ public class Objects<V> {
 			Integer fontId = (Integer) o.remove("font");
 			V value = mapper.convertValue(o, clazz);
 			if (fontId != null)
-				addFont(value, id);
+				addFont(value, fontId);
 			this.values.put(id, value);
-		}	
+		}
 	
 	}
 	
 	private void addFont(V v, int id) throws JsonParseException, JsonMappingException, IOException{
 		Objects<Font> fonts = new Objects<>(root, Font.class, resources);
-		Class<?> clazz = v.getClass();
-		try{
-			Method setFont = clazz.getMethod("setFont", Font.class);
-			setFont.invoke(v, fonts.getObjectByID(id));
-		}
-		catch (Exception e){
-			//throw new IOException(e);
-		}
-		
+		if (v instanceof FontSettable)
+			((FontSettable) v).setFont(fonts.getObjectByID(id));		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public V getObjectByID(int id){
 		V v = values.get(id);
-		try {
-			Method method = v.getClass().getMethod("clone");
-			@SuppressWarnings("unchecked")
-			V clone = (V) method.invoke(v);
-			return clone;
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			return v;
-			
-		}
+		if (v == null)
+			return null;
+		if (v instanceof Nameable)
+			return (V) ((Nameable) v).clone();
+		if (v instanceof PublicCloneable)
+			return (V) ((PublicCloneable) v).clone();
+		return v;
 		
 	}
 

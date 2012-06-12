@@ -18,7 +18,7 @@ public class FontImportTest {
 
 	@Test
 	public void test() throws JsonParseException, JsonMappingException, IOException {
-		Path fontPath = Paths.get("sheetpersistencyprototype", "fonts.json");
+		Path fontPath = Paths.get("sheetpersistencyprototype");
 		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new Manager().getResourcesHolder());
 		int id = 0;
 		Font font = null;

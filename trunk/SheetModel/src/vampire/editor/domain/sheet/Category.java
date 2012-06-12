@@ -1,7 +1,7 @@
 package vampire.editor.domain.sheet;
 
+import vampire.editor.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
-import vampire.editor.plugin.fullapi.sheet.view.ICategoryViewAttributes;
 
 public class Category extends Data<SubCategory> implements  CategoryAPI{
 	
@@ -9,7 +9,7 @@ public class Category extends Data<SubCategory> implements  CategoryAPI{
 		
 	}
 	
-	public Category(ICategoryViewAttributes attributes) {
+	public Category(CategoryViewAttributes attributes) {
 		super(attributes);		
 	}
 
@@ -19,11 +19,11 @@ public class Category extends Data<SubCategory> implements  CategoryAPI{
 	}
 	
 	@Override
-	public ICategoryViewAttributes getViewAtts(){
-		return (ICategoryViewAttributes) super.getViewAtts();
+	public CategoryViewAttributes getViewAtts(){
+		return (CategoryViewAttributes) super.getViewAtts();
 	}
 
-	public void setViewAtts(ICategoryViewAttributes viewAtts) {
+	public void setViewAtts(CategoryViewAttributes viewAtts) {
 		super.setViewAtts(viewAtts);		
 	}
 
