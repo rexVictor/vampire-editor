@@ -76,7 +76,8 @@ public class LineImage {
 
 		@Override
 		public void ancestorAdded(AncestorEvent event) {
-			image = image.getScaledInstance(getWidth(), -1, Image.SCALE_SMOOTH);
+			if (getWidth()!=0)
+				image = image.getScaledInstance(getWidth(), -1, Image.SCALE_SMOOTH);
 		}
 
 		@Override

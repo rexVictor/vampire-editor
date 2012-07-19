@@ -9,5 +9,8 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry kind="lib" path="libs/jdom/jdom-2.0.1.jar" sourcepath="libs/jdom/jdom-2.0.1-sources.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetLoader"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SwingGUI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SwingMainFrame"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

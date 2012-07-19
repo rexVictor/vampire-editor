@@ -1,8 +1,9 @@
 package vampire.editor.plugin.api.domain.sheet;
 
+import vampire.editor.plugin.api.domain.sheet.view.PublicCloneable;
 import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 
-public interface ValueAPI {
+public interface ValueAPI extends PublicCloneable{
 
 	public int getValue();
 
@@ -12,6 +13,9 @@ public interface ValueAPI {
 	
 	public int getTempValue();
 	
-	public ValueViewAttributesAPI getViewAtts();	
+	public ValueViewAttributesAPI getViewAtts();
+	
+	@Override
+	public ValueAPI clone();
 
 }

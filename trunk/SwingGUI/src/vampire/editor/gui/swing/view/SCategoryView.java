@@ -12,8 +12,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.domain.sheet.view.CategoryViewAttributes;
-import vampire.editor.gui.swing.domain.Line;
-import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.plugin.DictionaryAPI;
+import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
@@ -30,15 +30,18 @@ public class SCategoryView implements CategoryView{
 	
 	private final List<SSubCategoryView> subCategoryViews = new ArrayList<>();
 	
+	private final ResourcesHolderAPI resources;
+	
 	private LineImage title;
 	
 	
 
 	public SCategoryView(CategoryViewAttributes viewAtts,
-			DictionaryAPI dictionary, String title) {
+			ResourcesHolderAPI resources, String title) {
 		super();
 		this.viewAtts = viewAtts;
-		this.dictionary = dictionary;
+		this.dictionary = resources.getDictionary("sheet");
+		this.resources = resources;
 		initialize(title);
 	}
 	
@@ -47,8 +50,7 @@ public class SCategoryView implements CategoryView{
 		panel.setBackground(Color.WHITE);
 		layout.appendColumn(ColumnSpec.decode("10px"));
 		if (viewAtts.isShowLine()){
-			Line line = Line.getDefault();
-			title = new LineImage(line.getImage());
+			title = new LineImage(resources.getLine(viewAtts.getImage()));
 			title.setTitle(dictionary.getValue(titleName));
 			title.setTitleFont(viewAtts.getFont());
 			layout.appendRow(RowSpec.decode("50px"));

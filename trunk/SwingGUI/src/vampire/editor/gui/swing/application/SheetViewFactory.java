@@ -14,7 +14,6 @@ import vampire.editor.gui.swing.view.SSheetView;
 import vampire.editor.gui.swing.view.SSubCategoryView;
 import vampire.editor.gui.swing.view.STraitView;
 import vampire.editor.gui.swing.view.SValueView;
-import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.DataAPI;
 import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
@@ -22,16 +21,22 @@ import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.TraitAPI;
 import vampire.editor.plugin.api.domain.sheet.ValueAPI;
+import vampire.editor.plugin.api.plugin.DictionaryAPI;
+import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
 
 
-public class SheetViewFactory {
+public class SheetViewFactory implements vampire.editor.plugin.api.view.application.SheetViewFactory{
 	
 	private final DictionaryAPI dictionary;
 	
-	public SheetViewFactory(DictionaryAPI dictionary){
-		this.dictionary = dictionary;
+	private final ResourcesHolderAPI resources;
+	
+	public SheetViewFactory(ResourcesHolderAPI resources){
+		this.dictionary = resources.getDictionary("sheet");
+		this.resources = resources;
 	}
 	
+	@Override
 	public SSheetView buildSheetView(SheetAPI sheet){
 		SSheetView sheetView = new SSheetView();
 		SMetaView metaView = buildMetaView(sheet.getMeta());
@@ -67,7 +72,7 @@ public class SheetViewFactory {
 	}
 	
 	private SCategoryView buildCategoryView(CategoryAPI category){
-		SCategoryView categoryView = new SCategoryView((CategoryViewAttributes) category.getViewAtts(), dictionary, category.getName());
+		SCategoryView categoryView = new SCategoryView((CategoryViewAttributes) category.getViewAtts(), resources, category.getName());
 		@SuppressWarnings("unchecked")
 		List<SSubCategoryView> subCategoryViews = buildSubCategoryViews((DataAPI<? extends SubCategoryAPI>) category);
 		for (SSubCategoryView subCategoryView : subCategoryViews){

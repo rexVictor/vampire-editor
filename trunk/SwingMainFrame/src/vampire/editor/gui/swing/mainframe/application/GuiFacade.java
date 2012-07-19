@@ -6,23 +6,47 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 
+import vampire.editor.gui.swing.application.SheetViewFactory;
+import vampire.editor.gui.swing.mainframe.view.MainFrame;
+import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
+import vampire.editor.plugin.api.plugin.DictionaryAPI;
+import vampire.editor.plugin.api.plugin.ManagerAPI;
 import vampire.editor.plugin.api.view.GUIPlugin;
 import vampire.editor.plugin.api.view.Trigger;
 
 public class GuiFacade implements GUIPlugin{
+	
+//private final ManagerAPI manager;
+	
+	private final MainFrame mainFrame;
+	
+	private final MenuBarController menuBarController;
+	
+	private final SheetViewFactory factory;
+	
+	public GuiFacade(ManagerAPI manager){
+//		this.manager = manager;
+		DictionaryAPI dictionary = manager.getResourcesHolder().getDictionary("general");
+		menuBarController = new MenuBarController(dictionary);
+		mainFrame = new MainFrame(menuBarController.getMenuBar());
+		factory = new SheetViewFactory(manager.getResourcesHolder());
+	}
 
 	@Override
 	public void addItemToMenuBar(Trigger trigger, String... menus) {
-		// TODO Auto-generated method stub
+		menuBarController.addMenuItem(trigger, menus);
 		
 	}
 
 	@Override
 	public String openFileView() {
 		JFileChooser chooser = new JFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		chooser.showOpenDialog(null);
+		if (chooser.getSelectedFile() == null)
+			return null;
+		return chooser.getSelectedFile().getAbsolutePath();
 		
-		return null;
 	}
 
 	@Override
@@ -38,5 +62,24 @@ public class GuiFacade implements GUIPlugin{
 		dialog.setVisible(true);
 		
 	}
+	
+	@Override
+	public void setVisible(){
+		mainFrame.setVisible();
+	}
+
+	@Override
+	public SheetViewFactory getFactory() {
+		return factory;
+	}
+
+	@Override
+	public void sheetLoaded(SheetControllerAPI controller) {
+		mainFrame.addSheetView(controller.getView());
+		
+		
+	}
+	
+	
 
 }

@@ -1,33 +1,29 @@
 package vampire.editor.plugin;
 
 import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
+import java.awt.Image;
 import java.util.Map;
 
-import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.domain.Dictionary;
+import vampire.editor.plugin.api.plugin.DictionaryAPI;
 import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
 
 public class ResourcesHolder implements ResourcesHolderAPI{
 	
-	private final Map<String, Font> fonts = new HashMap<>();
+	private final Map<String, Font> fonts;
 	
-	public ResourcesHolder(){
-		//TODO das ist nur ein TestFall!
-				Path path = Paths.get("resources", "CAS_ANTN.TTF");
-				try {
-					Font font = Font.createFont(Font.TRUETYPE_FONT, path.toFile());
-					fonts.put("cas_antn", font);
-				} catch (FontFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+	private final Map<String, Image> borders;
+	
+	private final Map<String, Image> lines;
+	
+	
+
+	public ResourcesHolder(Map<String, Font> fonts, Map<String, Image> borders,
+			Map<String, Image> lines) {
+		super();
+		this.fonts = fonts;
+		this.borders = borders;
+		this.lines = lines;
 	}
 
 	@Override
@@ -40,8 +36,16 @@ public class ResourcesHolder implements ResourcesHolderAPI{
 
 	@Override
 	public DictionaryAPI getDictionary(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		return new Dictionary(null, "general");
+	}
+	
+	public Image getBorder(String key){
+		return borders.get(key);
+	}
+	
+	@Override
+	public Image getLine(String key){
+		return lines.get(key);
 	}
 	
 

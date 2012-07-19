@@ -12,20 +12,19 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 
-import vampire.editor.plugin.Manager;
-
 public class FontImportTest {
 
 	@Test
 	public void test() throws JsonParseException, JsonMappingException, IOException {
 		Path fontPath = Paths.get("sheetpersistencyprototype");
-		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new Manager().getResourcesHolder());
+		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderTestImplementation());
 		int id = 0;
 		Font font = null;
 		while ((font = fonts.getObjectByID(id)) != null){
 			System.out.println(font);
 			id++;
 		}
+		fail("Not yet implemented");
 	}
 
 }

@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <coreconfig>
-	
-	<paths>
-		<path name="resources">
-			<segment append="resources/userconfig.xml"/>
-		</path>
-		<path name="swingMainFrame">
-			<segment append="resources/gui/swingmainframe.jar"/>
-		</path>
-		<path name="sheetloader">
-			<segment append="resources/persistency/sheetloader.jar"/>
-		</path>
-		<!-- Uncomment for final deployment 
-		<path name="userconfig">
-			<segment key="user.home"/>
-			<segment append=".vampire/config/userconfiig.xml"/>
-		</path>
-		-->
-		<!-- remove this when testing finished -->
-		<path name="userconfig">
-			<segment append="resources/userconfig.xml"/>
-		</path>
-		<path name="plugins">
-			<segment append="resources/plugins.xml"/>
-		</path>
-	</paths>
-	
-	<config name="resources" 	path="resources"/>
-	<config name="userconfig" 	path="userconfig"/>
-	<config name="plugins" 		path="plugins"/>
-	
-		
-	<jar name="gui" 		path="swingMainFrame" 		class="vampie.editor.gui.swing.mainframe.application..."/>
-	<jar name="sheetloader" path="sheetloader" 	class="vampire.editor.sheetloader.application..."/>
-	
-	
+
+	<path name="resources">
+		<segment append="resources" />
+	</path>
+	<path name="swingMainFrame">
+		<segment append="core/gui" />
+	</path>
+	<path name="sheetloader">
+		<segment append="core/sheetloader" />
+	</path>
+	<!-- Uncomment for final deployment 
+		<path name="userconfig"> <segment key="user.home"/> 
+		<segment append=".vampire/config/userconfiig.xml"/> </path> 
+	-->
+	<!-- remove this when testing finished -->
+	<path name="userconfig">
+		<segment append="resources" />
+	</path>
+	<!-- till here -->
+	<path name="plugins">
+		<segment append="resources" />
+	</path>
+
+
+	<!-- The name of the configs is not processed yet, since there was no need. -->
+	<config name="resources" 	path="resources" 	file="resources.xml" />
+	<config name="userconfig" 	path="userconfig" 	file="userconfig.xml" />
+	<config name="plugins" 		path="plugins" 		file="plugins.xml" />
+
+
+	<jar name="gui"
+		class="vampire.editor.gui.swing.mainframe.application.GuiActivator" />
+	<jar name="sheetloader"
+		class="vampire.editor.sheetloader.application.LoaderActivator" />
+
+
 </coreconfig>

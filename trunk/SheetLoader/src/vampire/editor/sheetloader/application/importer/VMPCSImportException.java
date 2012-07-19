@@ -1,8 +1,6 @@
 package vampire.editor.sheetloader.application.importer;
 
-import java.io.IOException;
-
-public class VMPCSImportException extends IOException{
+public class VMPCSImportException extends RuntimeException{
 
 	/**
 	 * 

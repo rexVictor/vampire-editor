@@ -5,6 +5,7 @@
 	<classpathentry kind="src" path="sheetloader"/>
 	<classpathentry kind="src" path="sheetmodel"/>
 	<classpathentry kind="src" path="swingmainframe"/>
+	<classpathentry kind="src" path="configcreator"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EventAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/i18nParser"/>
@@ -31,5 +32,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/SwingMainFrame"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/TestUtils"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
+	<classpathentry kind="lib" path="/vampireeditor/libs/jdom/jdom-2.0.1.jar" sourcepath="/vampireeditor/libs/jdom/jdom-2.0.1-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

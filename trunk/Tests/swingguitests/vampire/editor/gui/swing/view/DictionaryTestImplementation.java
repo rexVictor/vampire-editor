@@ -1,6 +1,8 @@
 package vampire.editor.gui.swing.view;
 
-import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.plugin.DictionaryAPI;
+
+
 
 public class DictionaryTestImplementation implements DictionaryAPI{
 

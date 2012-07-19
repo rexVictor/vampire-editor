@@ -38,7 +38,7 @@ public class Opener implements Trigger{
 				plugin.createErrorMessage("Error during parsing!");
 				return;
 			}
-			Parser parser = new Parser(vcsDoc, manager.getDefaultSheet());
+			Parser parser = new Parser(vcsDoc, null);
 			parser.parse();
 		}
 		
