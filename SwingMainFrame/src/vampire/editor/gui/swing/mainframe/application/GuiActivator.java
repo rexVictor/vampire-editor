@@ -7,7 +7,10 @@ public class GuiActivator implements Activator{
 
 	@Override
 	public void setManager(ManagerAPI manager) {
-	
+		GuiFacade facade = new GuiFacade(manager);
+		manager.setGUIPlugin(facade);
+		
+		
 		
 	}
 

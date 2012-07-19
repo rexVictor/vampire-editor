@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<path name="path1">
+		<segment append="first"/>
+		<segment append="second"/>
+		<segment append="third"/>		
+	</path>
+	
+	<path name="path2">
+		<segment key="user.home"/>
+		<segment append="folder"/>
+		<segment append="innerfolder"/>
+	</path>
+	
+	<path name = "path3">
+		<segment root="path2"/>
+		<segment append="innerinnerfolder"/>
+	</path>
+</root>

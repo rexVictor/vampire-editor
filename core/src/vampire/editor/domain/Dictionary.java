@@ -5,7 +5,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.plugin.DictionaryAPI;
+
+
 
 public class Dictionary implements DictionaryAPI {
 	
@@ -22,6 +24,7 @@ public class Dictionary implements DictionaryAPI {
 	}
 	
 	private void initialize(ResourceBundle bundle){
+		if (bundle == null) return;
 		Set<String> keys = bundle.keySet();
 		for (String key : keys){
 			String value = bundle.getString(key);
@@ -34,12 +37,18 @@ public class Dictionary implements DictionaryAPI {
 
 	@Override
 	public String getKey(String value){
-		return valueToKey.get(value);
+		String toReturn = valueToKey.get(value);
+		if (toReturn == null)
+			return value;
+		return toReturn;
 	}
 	
 	@Override
 	public String getValue(String key){
-		return keyToValue.get(key);
+		String toReturn = keyToValue.get(key);
+		if (toReturn == null)
+			return key;
+		return toReturn;
 	}
 
 	public String getName() {

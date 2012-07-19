@@ -33,6 +33,10 @@ public class SheetController implements SheetControllerAPI {
 		return view;
 	}
 	
+	public Sheet getSheet(){
+		return sheet;
+	}
+	
 	
 	
 	

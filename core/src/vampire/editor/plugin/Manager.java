@@ -1,36 +1,70 @@
 package vampire.editor.plugin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import vampire.editor.application.GeneralController;
-import vampire.editor.domain.Dictionary;
-import vampire.editor.plugin.api.application.sheet.events.SheetEventAPI;
-import vampire.editor.plugin.api.application.sheet.events.SheetListener;
-import vampire.editor.plugin.api.domain.sheet.SheetAPI;
+
+import vampire.editor.domain.Config;
+
 import vampire.editor.plugin.api.plugin.Activator;
 import vampire.editor.plugin.api.plugin.Facade;
+import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
 import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
 import vampire.editor.plugin.api.view.GUIPlugin;
 
-public class Manager implements SheetListener, ManagerAPI{
+public class Manager implements ManagerAPI{
+	
+	private final Config config;
 	
 	private final Map<String, Facade> facades = new HashMap<>();
 	
-	private final Map<String, Dictionary> dictionaries = new HashMap<>();
+	private final GeneralController controller;
 	
-	private final ResourcesHolder resourcesHolder = new ResourcesHolder();
+	private final List<Plugin> plugins = new LinkedList<>();
 	
-
+	private /*final*/ GUIPlugin gui;
 	
-	private final GUIPlugin guiplugin = null;
+	public Manager(Config config, GeneralController controller){
+		this.config = config;
+		this.controller = controller;
+		initialize();
+		gui.setVisible();
+	}
 	
-	private final SheetLoaders sheetLoaders = new SheetLoaders();
-	
-	private GeneralController controller;
-	
-	public Manager(){
+	private void initialize(){
+		try {
+			Activator gui = config.getGUI().newInstance();
+			gui.setManager(this);			
+			Activator loader = config.getLoader().newInstance();
+			loader.setManager(this);
+		} catch (InstantiationException | IllegalAccessException e) {
+			throw new RuntimeException(e);			
+		}
+		Map<String, Plugin> plugins = config.getPlugins();
+		List<String> keys = new ArrayList<>(plugins.keySet());
+		while (!keys.isEmpty()) {
+			for (int i = 0; i < keys.size(); i++){
+				String key = keys.get(i);
+				Plugin plugin = plugins.get(key);
+				List<Plugin> dependencies = plugin.getDependencies();
+				if (dependencies.isEmpty() || this.plugins.containsAll(dependencies)) {
+					try {
+						Activator activator = plugin.getActivator().newInstance();
+						activator.setManager(this);
+						plugins.put(key, plugin);
+						keys.remove(i);
+						i--;
+					} catch (InstantiationException | IllegalAccessException e) {
+						throw new RuntimeException(e);
+					}
+				}
+			}
+		}
 		
 	}
 	
@@ -42,45 +76,22 @@ public class Manager implements SheetListener, ManagerAPI{
 		return facades.get(name);
 	}
 	
-	
-	
 	public void registerPlugin(Activator activator){
 		activator.setManager(this);
 	}
 	
-	public void registerSheetLoader(SheetLoader loader){
-		
-	}
 	
-	public void addDictionary(Dictionary dictionary){
-		
-	}
-	
-	public void setGeneralController(GeneralController controller){
-		this.controller = controller;
-	}
 	
 	public GeneralController getController(){
 		return controller;
 	}
 
 	@Override
-	public void sheetConstructed(SheetEventAPI event) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
 	public GUIPlugin getGUI() {
-		// TODO Auto-generated method stub
-		return null;
+		return gui;
 	}
 
-	@Override
-	public SheetAPI getDefaultSheet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	
 	
 	
@@ -88,8 +99,19 @@ public class Manager implements SheetListener, ManagerAPI{
 
 	@Override
 	public ResourcesHolderAPI getResourcesHolder() {
-		// TODO Auto-generated method stub
-		return resourcesHolder;
+		return config.getResourcesHolder();
+	}
+
+	@Override
+	public void setGUIPlugin(GUIPlugin gui) {
+		if (this.gui == null)
+			this.gui = gui;
+		
+	}
+
+	@Override
+	public GeneralControllerAPI getGeneralController() {
+		return controller;		
 	}
 	
 	

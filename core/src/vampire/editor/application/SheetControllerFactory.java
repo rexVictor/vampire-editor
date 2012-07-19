@@ -13,7 +13,7 @@ import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.domain.sheet.SubCategory;
 import vampire.editor.domain.sheet.Trait;
 import vampire.editor.domain.sheet.Value;
-import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
+
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
@@ -23,9 +23,9 @@ import vampire.editor.plugin.api.view.sheet.ValueView;
 
 public class SheetControllerFactory {
 	
-	public SheetControllerAPI buildSheetController(Sheet sheet, SheetView view){
+	public SheetController buildSheetController(Sheet sheet, SheetView view){
 		
-		SheetControllerAPI controller = new SheetController(sheet, view);
+		SheetController controller = new SheetController(sheet, view);
 		Data<? extends Category> cats = sheet.getCategories();
 		List<? extends CategoryView> catViews = view.getCategoryViews();
 		int i = 0;

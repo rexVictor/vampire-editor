@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lines>
+	<path name="lines">
+		<segment root="graphics"/>
+		<segment append="lines"/>
+	</path>
+	
+	<line key="vtmdefault" path = "lines" file="default.gif"/>
+</lines>

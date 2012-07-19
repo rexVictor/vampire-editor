@@ -25,7 +25,6 @@ import org.junit.Test;
 
 
 import vampire.editor.domain.sheet.Value;
-import vampire.editor.plugin.Manager;
 
 /**
  * The Test Case for the Values class, which is responsible for the import of the values.json files.
@@ -91,7 +90,7 @@ public class ValuesImportTest {
 	 * @throws Throwable
 	 */
 	private static Path createTestCase(Path valueFile, int i) throws Throwable{
-		Objects<? extends Value> objects = new Objects<>(Value.class, valueFile, new Manager().getResourcesHolder());
+		Objects<? extends Value> objects = new Objects<>(Value.class, valueFile, new ResourcesHolderTestImplementation());
 		BufferedReader reader = Files.newBufferedReader(valueFile, Charset.defaultCharset());
 		System.out.println("original file: ");
 		int read = 0;
@@ -152,7 +151,7 @@ public class ValuesImportTest {
 	
 	private void testValueImport(Path valuesJson, Path expected) throws Throwable {
 	
-		Objects<? extends Value> values = new Objects<>(Value.class, valuesJson, new Manager().getResourcesHolder());
+		Objects<? extends Value> values = new Objects<>(Value.class, valuesJson, new ResourcesHolderTestImplementation());
 		List<Value> valueList = new LinkedList<>();
 		{
 			int i = 0;

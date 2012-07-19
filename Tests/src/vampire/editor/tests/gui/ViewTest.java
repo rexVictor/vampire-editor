@@ -15,10 +15,9 @@ import org.junit.Test;
 import vampire.editor.application.SheetControllerFactory;
 import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.gui.swing.application.SheetViewFactory;
-import vampire.editor.gui.swing.view.DictionaryTestImplementation;
 import vampire.editor.gui.swing.view.SSheetView;
-import vampire.editor.plugin.Manager;
-import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
+
+import vampire.editor.sheetloader.application.importer.ResourcesHolderTestImplementation;
 import vampire.editor.sheetloader.application.importer.VMPCSImporter;
 
 public class ViewTest {
@@ -29,16 +28,16 @@ public class ViewTest {
 		UIManager.setLookAndFeel(NimbusLookAndFeel.class.getName());	
 	
 		//SheetParser parser = new SheetParser(Paths.get("sheetpersistencyprototype"),  new Manager());
-		VMPCSImporter importer = new VMPCSImporter(new Manager().getResourcesHolder());
+		VMPCSImporter importer = new VMPCSImporter(new ResourcesHolderTestImplementation());
 		Sheet sheet = importer.load(Paths.get("sheetpersistencyprototype"));
 		importer = null;
 		
-		SheetViewFactory factory = new SheetViewFactory(new DictionaryTestImplementation());
+		SheetViewFactory factory = new SheetViewFactory(new ResourcesHolderTestImplementation());
 		SSheetView view = factory.buildSheetView(sheet);
 		
 		SheetControllerFactory controllerFactory = new SheetControllerFactory();
 		
-		SheetControllerAPI controller = controllerFactory.buildSheetController(sheet, view);
+		controllerFactory.buildSheetController(sheet, view);
 		JPanel panel = view.getPanel();
 		JFrame frame = new JFrame();
 		frame.setContentPane(panel);

@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-	<fonts>
-		<path>
-			<resolve name="resources"/>
-			<resolve name="fonts"/>
-		</path>
-		<font path="CAS_ANTN.TTF" key="cas_antn"/>
-	</fonts>
-	<borders>
-		<path>
-			<resolve name="resources"/>
-			<resolve name="borders"/>
-		</path>
-		<image path="vtmdefault.gif" key="vtmdefault"/>
-	</borders>
-	<lines>
-		<path>
-			<resolve name="resources"/>
-			<resolve name="lines"/>
-		</path>
-		<image path="vtmdefault.gif" key="vtmdefault"/>
-	</lines>
-	
-	
+	<path name="fonts">
+		<segment root="resources" />
+		<segment append="fonts" />
+	</path>
+	<path name="graphics">
+		<segment root="resources" />
+		<segment append="graphics" />
+	</path>
+	<path name="borders">
+		<segment root="graphics" />
+		<segment append="borders" />
+	</path>
+	<path name="lines">
+		<segment root="graphics" />
+		<segment append="lines" />
+	</path>
+	<path name="i18n">
+		<segment root="resources" />
+		<segment append="i18n" />
+	</path>
+
+
+	<config name="fonts" path="fonts" file="fonts.xml" />
+	<config name="borders" path="borders" file="borders.xml" />
+	<config name="lines" path="lines" file="lines.xml" />
+	<config name="i18n" path="i18n" file="i18n.xml" />
+
+
 </resources>
