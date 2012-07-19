@@ -139,13 +139,12 @@ public class Value implements Serializable, ValueAPI {
 		
 	}
 	
-	
+	/**
+	 * Returns a copy of Value with viewAtts set to null.
+	 */
 	@Override
 	public Value clone(){
-		ValueViewAttributes viewAtts = null;
-		if (this.viewAtts != null)
-			viewAtts = this.viewAtts.clone();
-		Value clone = new  Value(value, minValue, maxValue, viewAtts);
+		Value clone = new  Value(value, minValue, maxValue, null);
 		clone.setTempValue(tempValue);
 		return clone;
 	}
@@ -171,7 +170,11 @@ public class Value implements Serializable, ValueAPI {
 	 * Be aware that equality of the value view attributes is not checked.
 	 */
 	@Override
-	public final boolean equals(Object obj){
+	public boolean equals(Object obj){
+		if (obj == null)
+			return false;
+		if (obj == this)
+			return true;
 		if (obj instanceof Value){
 			Value comp = (Value) obj;
 			return comp.value == value && comp.tempValue == tempValue && comp.maxValue == maxValue && comp.minValue == minValue;
