@@ -16,7 +16,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.domain.sheet.view.TraitViewAttributes;
-import vampire.editor.plugin.api.plugin.DictionaryAPI;
+import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;

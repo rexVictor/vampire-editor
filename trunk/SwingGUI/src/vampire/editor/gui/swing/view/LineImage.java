@@ -3,14 +3,17 @@ package vampire.editor.gui.swing.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.font.FontRenderContext;
+import java.awt.font.GlyphVector;
+import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
-
 
 public class LineImage {
 	
@@ -27,14 +30,32 @@ public class LineImage {
 		
 		private Font font;
 		
+		private JLabel label = new JLabel();
+		
+		private int yImage;
+		
+		private int xText;
+		
+		private TextLayout layout;
+		
+		private Rectangle2D rectangle;
+		
+		private int counter = 0;
+		
 		private LinePanel(Image image) {
 			super();
 			this.image = image;	
 			addAncestorListener(this);
+			label.setOpaque(true);
+			label.setBackground(Color.WHITE);
+			//this.add(label);
+			this.setBackground(Color.WHITE);			
 		}
 		
 		public void setTitle(String title){
 			this.title = title;
+			label.setText(title);
+			refreshTextLayout();
 			invalidate();
 		}
 		
@@ -55,46 +76,54 @@ public class LineImage {
 		
 		public void setTitleFont(Font font){
 			this.font = font;
+			label.setFont(font);
+			refreshTextLayout();
+			invalidate();
 		}
-
+		
+		private void refreshTextLayout(){
+			System.out.println("counter: "+counter);
+			counter++;
+			if (getGraphics() != null) {
+				FontRenderContext context = getGraphics().getFontMetrics().getFontRenderContext();
+				layout = new TextLayout(title, font, context);
+				rectangle = layout.getBounds();
+				GlyphVector xGlyph = font.createGlyphVector(context, "x");
+				double xHeight = xGlyph.getGlyphMetrics(0).getBounds2D().getMaxX();
+				yImage = (int) (rectangle.getHeight()-(xHeight+image.getHeight(null))/2);
+				xText = (int) ((getWidth()-rectangle.getWidth())/2);
+			}
+		}
+		
 		@Override
 		public void paint(Graphics g){
-			super.paint(g);			
-			g.drawImage(image, 0, 0, this);
+			super.paint(g);
 			g.setFont(font);
-			FontRenderContext frc = g.getFontMetrics().getFontRenderContext();
-			Rectangle2D rectangle = g.getFont().getStringBounds(title, frc);
-			int x = (int) ((image.getWidth(this)-rectangle.getWidth())/2);			
-			int y = image.getHeight(this);
-			g.setColor(Color.WHITE);			
-			g.fillRect(x, 0, (int) rectangle.getWidth(), image.getHeight(this));
+			g.drawImage(image, 0, yImage, this);
+			g.setColor(Color.WHITE);
+			g.fillRect(xText-5, 0, (int) rectangle.getWidth()+10, (int) rectangle.getHeight());
 			g.setColor(Color.BLACK);
-			g.drawString(title, x, y);
-			
-			
+			layout.draw((Graphics2D) g, xText, (float) rectangle.getHeight());
 		}
 
 		@Override
 		public void ancestorAdded(AncestorEvent event) {
 			if (getWidth()!=0)
 				image = image.getScaledInstance(getWidth(), -1, Image.SCALE_SMOOTH);
+			refreshTextLayout();
 		}
 
 		@Override
 		public void ancestorRemoved(AncestorEvent event) {
-			// TODO Auto-generated method stub
-			
 		}
 
 		@Override
 		public void ancestorMoved(AncestorEvent event) {
-			// TODO Auto-generated method stub
-			
 		}
 		
 		@Override
 		public int getHeight(){
-			return Math.max(super.getHeight(), image.getHeight(this));
+			return (int) (font.getSize()*1.4);
 		}
 		
 		

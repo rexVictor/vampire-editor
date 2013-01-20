@@ -18,9 +18,9 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.gui.swing.application.Initializer;
+import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.PopupEntriesAPI;
 import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
-import vampire.editor.plugin.api.plugin.DictionaryAPI;
 import vampire.editor.plugin.api.view.events.MetaEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.MetaEntryView;
 
