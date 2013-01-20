@@ -13,6 +13,5 @@
 			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-databind/javadoc/2.0.0/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/vampireeditor"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
