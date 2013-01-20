@@ -3,7 +3,6 @@ package vampire.editor.domain.sheet;
 import java.util.LinkedList;
 import java.util.List;
 
-import vampire.editor.domain.sheet.view.TraitViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.TraitAPI;
 
 public class Trait implements TraitAPI{
@@ -14,28 +13,23 @@ public class Trait implements TraitAPI{
 	
 	private final List<Specialty> specialties;
 	
-	private TraitViewAttributes traitViewAttributes;
-	
 	public Trait(){
 		specialties = new LinkedList<>();
 	}
 
-	public Trait(String name, Value value,
-			TraitViewAttributes viewAtts) {
-		this(name,value, new LinkedList<Specialty>(), viewAtts);			
+	public Trait(String name, Value value) {
+		this(name,value, new LinkedList<Specialty>());			
 	}
 	
 	
 	
 	
 
-	private Trait(String name, Value value, List<Specialty> specialties,
-			TraitViewAttributes traitViewAttributes) {
+	private Trait(String name, Value value, List<Specialty> specialties) {
 		super();
 		this.name = name;
 		this.value = value;
 		this.specialties = specialties;
-		this.traitViewAttributes = traitViewAttributes;
 	}
 
 	@Override
@@ -53,16 +47,6 @@ public class Trait implements TraitAPI{
 		return value;
 	}
 	
-	@Override
-	public TraitViewAttributes getViewAtts() {
-		return traitViewAttributes;
-	}
-	
-	public void setViewAtts(TraitViewAttributes attributes) {
-		if (this.traitViewAttributes == null)
-			this.traitViewAttributes = attributes;
-	}
-	
 	public void addSpecialty(Specialty specialty){
 		specialties.add(specialty);
 	}
@@ -73,7 +57,7 @@ public class Trait implements TraitAPI{
 	
 	@Override
 	public Trait clone(){
-		return new Trait(name, value.clone(), new LinkedList<>(specialties), traitViewAttributes.clone());
+		return new Trait(name, value.clone(), new LinkedList<>(specialties));
 	}
 	
 	@Override

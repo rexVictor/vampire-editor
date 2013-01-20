@@ -65,7 +65,10 @@ public class Sheet implements SheetAPI {
 		return bloodpool;
 	}
 	
-	
+	@Override
+	public String toString(){
+		return categories.toString();
+	}
 
 	
 	
