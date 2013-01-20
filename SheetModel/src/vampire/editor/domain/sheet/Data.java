@@ -7,7 +7,6 @@ import java.util.List;
 
 import vampire.editor.plugin.api.domain.sheet.DataAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
-import vampire.editor.plugin.api.domain.sheet.view.DataViewAttributesAPI;
 
 public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 	
@@ -33,19 +32,13 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 		
 	}
 	
-	private DataViewAttributesAPI viewAtts;
 	
 	private final List<W> entries = new ArrayList<>();
 	
 	private String name;
 	
-	public Data(){
-		
-	}
-	
-	public Data(DataViewAttributesAPI attributes) {
+	public Data() {
 		super();
-		this.viewAtts = attributes;
 	}
 	
 	public void add(W v){
@@ -57,7 +50,7 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 	@Override
 	@SuppressWarnings("unchecked")
 	public Data<W> clone(){
-		Data<W> data = new Data<>(viewAtts);
+		Data<W> data = new Data<>();
 		data.name = this.name;
 		for (W v : entries){
 			data.entries.add((W) v.clone());
@@ -65,19 +58,10 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 		return data;
 	}
 	
-
-	@Override
-	public DataViewAttributesAPI getViewAtts() {
-		return viewAtts;
-	}
-	
-	
 	@Override
 	public Iterator<W> getIterator(){
 		return new DataIterator();
 	}
-	
-	
 	
 	@Override
 	public String getName() {
@@ -110,13 +94,5 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 	public Iterator<W> iterator() {
 		return new DataIterator();
 	}
-
-	public void setViewAtts(DataViewAttributesAPI viewAtts) {
-		if (this.viewAtts==null) 
-			this.viewAtts = viewAtts;
-		
-	}
-	
-	
 
 }
