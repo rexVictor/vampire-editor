@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 
 import vampire.editor.domain.sheet.view.FontSettable;
+import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
 import vampire.editor.plugin.api.domain.sheet.view.PublicCloneable;
-import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;

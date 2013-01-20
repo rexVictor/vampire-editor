@@ -1,8 +1,8 @@
 package vampire.editor.sheetloader.application;
 
 import vampire.editor.plugin.api.plugin.Activator;
+import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
-import vampire.editor.plugin.api.view.GUIPlugin;
 
 public class LoaderActivator implements Activator{
 
