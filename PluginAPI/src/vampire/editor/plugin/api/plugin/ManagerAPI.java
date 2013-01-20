@@ -1,6 +1,6 @@
 package vampire.editor.plugin.api.plugin;
 
-import vampire.editor.plugin.api.view.GUIPlugin;
+import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 
 public interface ManagerAPI {
 	
