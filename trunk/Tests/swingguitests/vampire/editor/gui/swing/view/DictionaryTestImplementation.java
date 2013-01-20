@@ -1,6 +1,7 @@
 package vampire.editor.gui.swing.view;
 
-import vampire.editor.plugin.api.plugin.DictionaryAPI;
+import vampire.editor.plugin.api.domain.DictionaryAPI;
+
 
 
 

@@ -11,8 +11,8 @@ import javax.imageio.ImageIO;
 
 
 import vampire.editor.gui.swing.view.DictionaryTestImplementation;
-import vampire.editor.plugin.api.plugin.DictionaryAPI;
-import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
+import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 
 public class ResourcesHolderTestImplementation implements ResourcesHolderAPI{
 	
