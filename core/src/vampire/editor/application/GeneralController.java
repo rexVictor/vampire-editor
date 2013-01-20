@@ -4,13 +4,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 import vampire.editor.application.sheet.controller.SheetController;
-import vampire.editor.domain.Config;
-import vampire.editor.domain.sheet.Sheet;
+import vampire.editor.domain.config.Config;
+import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.plugin.Manager;
-import vampire.editor.plugin.api.domain.sheet.SheetAPI;
+import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
-import vampire.editor.plugin.api.view.application.SheetViewFactory;
+import vampire.editor.plugin.api.plugin.SheetViewFactory;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
 public class GeneralController implements GeneralControllerAPI{
@@ -32,12 +32,12 @@ public class GeneralController implements GeneralControllerAPI{
 
 
 	@Override
-	public void open(SheetAPI sheet){
-		if (sheet instanceof Sheet){
+	public void open(VampireDocumentAPI document){
+		if (document instanceof VampireDocument){
 			SheetViewFactory factory = manager.getGUI().getFactory();
-			SheetView sheetView = factory.buildSheetView(sheet);
+			SheetView sheetView = factory.buildSheetView(document);
 			SheetControllerFactory controllerFactory = new SheetControllerFactory();
-			SheetController controller = controllerFactory.buildSheetController((Sheet) sheet, sheetView);
+			SheetController controller = controllerFactory.buildSheetController(document, sheetView);
 			controllers.add(controller);
 			setCurrentController(controller);
 			manager.getGUI().sheetLoaded(controller);

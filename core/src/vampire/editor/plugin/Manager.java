@@ -8,14 +8,15 @@ import java.util.Map;
 
 import vampire.editor.application.GeneralController;
 
-import vampire.editor.domain.Config;
+import vampire.editor.domain.config.Config;
+import vampire.editor.domain.config.Plugin;
 
+import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.plugin.Activator;
 import vampire.editor.plugin.api.plugin.Facade;
+import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
-import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
-import vampire.editor.plugin.api.view.GUIPlugin;
 
 public class Manager implements ManagerAPI{
 	

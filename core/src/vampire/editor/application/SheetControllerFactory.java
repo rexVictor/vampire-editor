@@ -14,6 +14,7 @@ import vampire.editor.domain.sheet.SubCategory;
 import vampire.editor.domain.sheet.Trait;
 import vampire.editor.domain.sheet.Value;
 
+import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
@@ -23,8 +24,8 @@ import vampire.editor.plugin.api.view.sheet.ValueView;
 
 public class SheetControllerFactory {
 	
-	public SheetController buildSheetController(Sheet sheet, SheetView view){
-		
+	public SheetController buildSheetController(VampireDocumentAPI document, SheetView view){
+		Sheet sheet = (Sheet) document.getSheet();
 		SheetController controller = new SheetController(sheet, view);
 		Data<? extends Category> cats = sheet.getCategories();
 		List<? extends CategoryView> catViews = view.getCategoryViews();
