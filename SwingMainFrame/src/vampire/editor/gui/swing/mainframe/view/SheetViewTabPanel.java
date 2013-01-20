@@ -16,16 +16,14 @@ public class SheetViewTabPanel implements ChangeListener{
 	
 	private class CloseListener implements ActionListener{
 		
-		private final SheetView view;
+		//private final SheetView view;
 		
-		private final ManagerAPI manager;
-		
-		
+		//private final ManagerAPI manager;
 		
 		public CloseListener(SheetView view, ManagerAPI manager) {
 			super();
-			this.view = view;
-			this.manager = manager;
+			//this.view = view;
+			//this.manager = manager;
 		}
 
 
@@ -33,7 +31,6 @@ public class SheetViewTabPanel implements ChangeListener{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//manager.closed(view);
-			
 		}
 		
 	}
