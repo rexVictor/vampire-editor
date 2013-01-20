@@ -12,8 +12,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.domain.sheet.view.CategoryViewAttributes;
-import vampire.editor.plugin.api.plugin.DictionaryAPI;
-import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
+import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
@@ -53,7 +53,7 @@ public class SCategoryView implements CategoryView{
 			title = new LineImage(resources.getLine(viewAtts.getImage()));
 			title.setTitle(dictionary.getValue(titleName));
 			title.setTitleFont(viewAtts.getFont());
-			layout.appendRow(RowSpec.decode("50px"));
+			layout.appendRow(RowSpec.decode("pref"));
 			
 			
 			CellConstraints constraints = new CellConstraints();
@@ -75,7 +75,7 @@ public class SCategoryView implements CategoryView{
 			this.panel.remove(panel);
 			constraints.gridWidth = layout.getColumnCount();
 			layout.removeRow(constraints.gridY);
-			layout.insertRow(constraints.gridY, RowSpec.decode(panel.getHeight()+"px"));
+			layout.insertRow(constraints.gridY, RowSpec.decode(panel.getHeight()+10+"px"));
 			this.panel.add(panel, constraints);
 			this.panel.invalidate();
 			this.panel.revalidate();

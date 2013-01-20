@@ -7,8 +7,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 
+import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.PopupEntriesAPI;
-import vampire.editor.plugin.api.plugin.DictionaryAPI;
 
 
 public class PopupMenuBuilder {
