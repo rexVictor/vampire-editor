@@ -9,10 +9,10 @@ import javax.swing.JTextArea;
 import vampire.editor.gui.swing.application.SheetViewFactory;
 import vampire.editor.gui.swing.mainframe.view.MainFrame;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
-import vampire.editor.plugin.api.plugin.DictionaryAPI;
+import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
-import vampire.editor.plugin.api.view.GUIPlugin;
-import vampire.editor.plugin.api.view.Trigger;
+import vampire.editor.plugin.api.plugin.Trigger;
 
 public class GuiFacade implements GUIPlugin{
 	
@@ -49,7 +49,6 @@ public class GuiFacade implements GUIPlugin{
 		
 	}
 
-	@Override
 	public void createErrorMessage(String message) {
 		JDialog dialog = new JDialog();
 		dialog.setModalityType(ModalityType.APPLICATION_MODAL);
@@ -63,17 +62,14 @@ public class GuiFacade implements GUIPlugin{
 		
 	}
 	
-	@Override
 	public void setVisible(){
 		mainFrame.setVisible();
 	}
 
-	@Override
 	public SheetViewFactory getFactory() {
 		return factory;
 	}
 
-	@Override
 	public void sheetLoaded(SheetControllerAPI controller) {
 		mainFrame.addSheetView(controller.getView());
 		

@@ -12,8 +12,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import vampire.editor.plugin.api.plugin.DictionaryAPI;
-import vampire.editor.plugin.api.view.Trigger;
+import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.plugin.Trigger;
 
 public class MenuBarController {
 	
