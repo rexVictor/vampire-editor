@@ -5,6 +5,11 @@ import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 
 public class ValueViewAttributes implements ValueViewAttributesAPI{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1886427499077840867L;
+
 	private Boolean showSpace;
 	
 	private Boolean dynamic;
@@ -91,8 +96,8 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	public boolean equals(Object object){
 		if (object instanceof ValueViewAttributes){
 			ValueViewAttributes toCompare = (ValueViewAttributes) object;
-			return toCompare.dynamic == dynamic && toCompare.showSpace == showSpace && toCompare.circles == circles
-					&& toCompare.size == size;
+			return toCompare.dynamic.equals(dynamic) && toCompare.showSpace.equals(showSpace) 
+					&& toCompare.circles == circles	&& toCompare.size == size;
 		}
 		return false;
 	}
