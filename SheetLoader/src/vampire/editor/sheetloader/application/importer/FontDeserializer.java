@@ -4,7 +4,7 @@ import java.awt.Font;
 import java.io.IOException;
 import java.util.Map;
 
-import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
+import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

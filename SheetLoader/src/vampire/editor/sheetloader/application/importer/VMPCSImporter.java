@@ -16,16 +16,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import vampire.editor.domain.sheet.Category;
 import vampire.editor.domain.sheet.Data;
 import vampire.editor.domain.sheet.MetaEntry;
+import vampire.editor.domain.sheet.ModelToViewModelMapper;
 import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.domain.sheet.SubCategory;
 import vampire.editor.domain.sheet.Trait;
 import vampire.editor.domain.sheet.Value;
+import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.domain.sheet.view.MetaEntryViewAttributes;
 import vampire.editor.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.domain.sheet.view.TraitViewAttributes;
 import vampire.editor.domain.sheet.view.ValueViewAttributes;
-import vampire.editor.plugin.api.plugin.ResourcesHolderAPI;
+import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 
 public class VMPCSImporter {
 	
@@ -59,15 +61,15 @@ public class VMPCSImporter {
 	
 	private Objects<Value> values;
 	
-	private Objects<ValueViewAttributes> valueViewAtts;
-	
-	private Objects<TraitViewAttributes> traitViewAtts;
-	
 	private Objects<SubCategoryViewAttributes> subCatViewAtts;
 	
 	private Objects<CategoryViewAttributes> catViewAtts;
 	
 	private Objects<MetaEntryViewAttributes> metaEntryViewAttributes;
+	
+	private Objects<TraitViewAttributes> traitViewAtts;
+	
+	private Objects<ValueViewAttributes> valueViewAtts;
 	
 	public VMPCSImporter(ResourcesHolderAPI resources) {
 		super();
@@ -77,18 +79,20 @@ public class VMPCSImporter {
 
 
 	@SuppressWarnings("unchecked")
-	public Sheet load(Path root) throws VMPCSImportException{
+	public VampireDocument load(Path root) throws VMPCSImportException{
 		try{
 			initializeLoading(root);
 			Path sheetFile = root.resolve(paths.get(Sheet.class));
 			Sheet sheet = new Sheet();
+			ModelToViewModelMapper viewModelMapper = new ModelToViewModelMapper();
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> protoSheet = mapper.readValue(sheetFile.toFile(), Map.class);
-			Data<MetaEntry> meta = loadMeta((List<Map<String, Object>>) protoSheet.get("meta"));
+			Data<MetaEntry> meta = loadMeta((List<Map<String, Object>>) protoSheet.get("meta"), viewModelMapper);
 			sheet.setMeta(meta);
-			Data<Category> categories = loadCategories((List<Map<String, Object>>) protoSheet.get("traits"));
+			Data<Category> categories = loadCategories((List<Map<String, Object>>) protoSheet.get("traits"), viewModelMapper);
 			sheet.setCategories(categories);
-			return sheet;
+			
+			return new VampireDocument(sheet, viewModelMapper);
 		} catch (ClassCastException | NullPointerException | IOException e) {
 			throw new VMPCSImportException(e);
 		}
@@ -104,8 +108,8 @@ public class VMPCSImporter {
 		catViewAtts = new Objects<>(root, CategoryViewAttributes.class, resources);
 		metaEntryViewAttributes = new Objects<>(root, MetaEntryViewAttributes.class, resources);
 		subCatViewAtts = new Objects<>(root, SubCategoryViewAttributes.class, resources);
-		traitViewAtts = new Objects<>(root, TraitViewAttributes.class, resources);
 		values = new Objects<>(root, Value.class, resources);
+		traitViewAtts = new Objects<>(root, TraitViewAttributes.class, resources);
 		valueViewAtts = new Objects<>(root, ValueViewAttributes.class, resources);
 	}
 	
@@ -113,89 +117,89 @@ public class VMPCSImporter {
 		this.catViewAtts = null;
 		this.metaEntryViewAttributes = null;
 		this.root = null;
-		this.subCatViewAtts = null;
-		this.traitViewAtts = null;
 		this.values = null;
-		this.valueViewAtts = null;	
 	}
 	
-	private Data<MetaEntry> loadMeta(List<Map<String, Object>> protoMeta){
+	private Data<MetaEntry> loadMeta(List<Map<String, Object>> protoMeta, ModelToViewModelMapper mapper){
 		Data<MetaEntry> meta = new Data<>();
 		for (Map<String, Object> protoMetaEntry : protoMeta){
-			meta.add(loadMetaEntry(protoMetaEntry));
+			meta.add(loadMetaEntry(protoMetaEntry, mapper));
 		}
 		return meta;
 	}
 	
-	private MetaEntry loadMetaEntry(Map<String, Object> protoMetaEntry){
+	private MetaEntry loadMetaEntry(Map<String, Object> protoMetaEntry, ModelToViewModelMapper viewmapper){
 		int viewAttId = (int) protoMetaEntry.remove("viewAtts");
 		ObjectMapper mapper = new ObjectMapper();
 		MetaEntry entry = mapper.convertValue(protoMetaEntry, MetaEntry.class);
 		MetaEntryViewAttributes viewAtts = metaEntryViewAttributes.getObjectByID(viewAttId);
-		entry.setViewAtts(viewAtts);
+		viewmapper.putView(entry, viewAtts);
 		return entry;
-		
-		
 	}
 	
-	private Data<Category> loadCategories(List<Map<String, Object>> protoCategories) throws ClassCastException, NullPointerException{
+	private Data<Category> loadCategories(List<Map<String, Object>> protoCategories, ModelToViewModelMapper viewMapper) 
+				throws ClassCastException, NullPointerException{
 		Data<Category> categories = new Data<>();
 		for (Map<String, Object> protoCategory : protoCategories){
-			categories.add(loadCategory(protoCategory));
+			categories.add(loadCategory(protoCategory, viewMapper));
 		}
-		
 		return categories;
-		
 	}
 	
-	private Category loadCategory(Map<String, Object> protoCategory) throws ClassCastException, NullPointerException{
+	private Category loadCategory(Map<String, Object> protoCategory, ModelToViewModelMapper viewMapper)
+				throws ClassCastException, NullPointerException{
 		String name = (String) protoCategory.get("name");
 		int viewAttId = (int) protoCategory.get("viewAtts");
 		CategoryViewAttributes viewAtts = catViewAtts.getObjectByID(viewAttId);
 		Category category = new Category();
 		category.setName(name);
-		category.setViewAtts(viewAtts);
+		viewMapper.putView(category, viewAtts);
 		@SuppressWarnings("unchecked")
 		List<Map<String, Object>> subCats = (List<Map<String, Object>>) protoCategory.get("subCats");
 		for (Map<String, Object> protoSubCat : subCats){
-			category.add(loadSubCategory(protoSubCat));
+			category.add(loadSubCategory(protoSubCat, viewMapper));
 		}		
 		
 		return category;
 	}
 	
-	private SubCategory loadSubCategory(Map<String, Object> protoSubCategory) throws ClassCastException, NullPointerException{
+	private SubCategory loadSubCategory(Map<String, Object> protoSubCategory, ModelToViewModelMapper viewMapper)
+				throws ClassCastException, NullPointerException{
 		String name = (String) protoSubCategory.get("name");
 		int viewAttId = (int) protoSubCategory.get("viewAtts");
 		SubCategoryViewAttributes viewAtts = subCatViewAtts.getObjectByID(viewAttId);
 		SubCategory subCategory = new SubCategory();
 		subCategory.setName(name);
-		subCategory.setViewAtts(viewAtts);
+		viewMapper.putView(subCategory, viewAtts);
 		@SuppressWarnings("unchecked")
 		List<Map<String, Object>> traits = (List<Map<String, Object>>) protoSubCategory.get("traits");
 		for (Map<String, Object> protoTrait : traits){
-			subCategory.add(loadTrait(protoTrait));
+			subCategory.add(loadTrait(protoTrait, viewMapper));
 		}		
 		return subCategory;
 	}
 	
-	private Trait loadTrait(Map<String, Object> protoTrait) throws ClassCastException, NullPointerException{
+	private Trait loadTrait(Map<String, Object> protoTrait, ModelToViewModelMapper viewMapper)
+				throws ClassCastException, NullPointerException{
 		@SuppressWarnings("unchecked")
 		Map<String, Object> protoValue = (Map<String, Object>) protoTrait.get("value");
-		Value value = loadValue(protoValue);
 		int viewAttId = (int) protoTrait.get("viewAtts");
-		String name = (String) protoTrait.get("name");
 		TraitViewAttributes viewAtts = traitViewAtts.getObjectByID(viewAttId);
-		Trait trait = new Trait(name, value, viewAtts);
+		Value value = loadValue(protoValue, viewMapper);
+		String name = (String) protoTrait.get("name");
+		Trait trait = new Trait(name, value);
+		viewMapper.putView(trait, viewAtts);
 		return trait;
 	}
 	
-	private Value loadValue(Map<String, Object> protoValue) throws ClassCastException, NullPointerException{
+	private Value loadValue(Map<String, Object> protoValue, ModelToViewModelMapper viewMapper)
+				throws ClassCastException, NullPointerException{
 		int id = (int) protoValue.get("id");
-		int viewAttId = (int) protoValue.get("viewAtts");
+		int viewId = (int) protoValue.get("viewAtts");
+		ValueViewAttributes viewAtts = valueViewAtts.getObjectByID(viewId);
 		Value value = values.getObjectByID(id);
-		ValueViewAttributes viewAtts = valueViewAtts.getObjectByID(viewAttId);
-		value.setViewAtts(viewAtts);
+		viewMapper.putView(value, viewAtts);
+		
 		return value;
 		
 	}
