@@ -1,7 +1,5 @@
 package vampire.editor.plugin.api.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
-
 public interface MetaEntryAPI extends Nameable{
 
 	@Override
@@ -10,8 +8,6 @@ public interface MetaEntryAPI extends Nameable{
 	public String getValue();
 
 	@Override
-	public MetaEntryAPI clone();
-	
-	public MetaEntryViewAttributesAPI getViewAtts();
+	public MetaEntryAPI clone();	
 
 }
