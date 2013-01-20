@@ -1,6 +1,8 @@
 package vampire.editor.plugin.api.domain.sheet.view;
 
-public interface ValueViewAttributesAPI extends PublicCloneable{
+import java.io.Serializable;
+
+public interface ValueViewAttributesAPI extends PublicCloneable, Serializable{
 	
 	public boolean isShowSpace();
 	
