@@ -4,5 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EventAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
