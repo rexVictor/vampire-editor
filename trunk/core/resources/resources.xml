@@ -23,9 +23,9 @@
 
 
 	<config name="fonts" path="fonts" file="fonts.xml" />
-	<config name="borders" path="borders" file="borders.xml" />
+	<!-- config name="borders" path="borders" file="borders.xml" / -->
 	<config name="lines" path="lines" file="lines.xml" />
-	<config name="i18n" path="i18n" file="i18n.xml" />
+	<!-- config name="i18n" path="i18n" file="i18n.xml" / -->
 
 
 </resources>

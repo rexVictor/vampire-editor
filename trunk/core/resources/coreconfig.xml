@@ -26,8 +26,8 @@
 
 	<!-- The name of the configs is not processed yet, since there was no need. -->
 	<config name="resources" 	path="resources" 	file="resources.xml" />
-	<config name="userconfig" 	path="userconfig" 	file="userconfig.xml" />
-	<config name="plugins" 		path="plugins" 		file="plugins.xml" />
+	<!-- config name="userconfig" 	path="userconfig" 	file="userconfig.xml" / -->
+	<!-- config name="plugins" 		path="plugins" 		file="plugins.xml" / -->
 
 
 	<jar name="gui"
