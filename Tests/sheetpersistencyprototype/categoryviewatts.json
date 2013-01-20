@@ -2,6 +2,7 @@
 		{
 			"id"	:	0,
 			"showLine"	:	true,
-			"image"	:	"vtmdefault"
+			"image"	:	"vtmdefault",
+			"font"	: 1
 		}
 	]

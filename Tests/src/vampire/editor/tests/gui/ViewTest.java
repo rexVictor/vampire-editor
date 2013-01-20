@@ -13,7 +13,7 @@ import org.junit.Test;
 
 
 import vampire.editor.application.SheetControllerFactory;
-import vampire.editor.domain.sheet.Sheet;
+import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.gui.swing.application.SheetViewFactory;
 import vampire.editor.gui.swing.view.SSheetView;
 
@@ -27,9 +27,8 @@ public class ViewTest {
 	
 		UIManager.setLookAndFeel(NimbusLookAndFeel.class.getName());	
 	
-		//SheetParser parser = new SheetParser(Paths.get("sheetpersistencyprototype"),  new Manager());
 		VMPCSImporter importer = new VMPCSImporter(new ResourcesHolderTestImplementation());
-		Sheet sheet = importer.load(Paths.get("sheetpersistencyprototype"));
+		VampireDocument sheet = importer.load(Paths.get("sheetpersistencyprototype"));
 		importer = null;
 		
 		SheetViewFactory factory = new SheetViewFactory(new ResourcesHolderTestImplementation());
@@ -41,15 +40,13 @@ public class ViewTest {
 		JPanel panel = view.getPanel();
 		JFrame frame = new JFrame();
 		frame.setContentPane(panel);
-		frame.setAlwaysOnTop(true);
+		frame.setAlwaysOnTop(false);
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setVisible(true);
 		
 		while (frame.isVisible()){ 
 			Thread.sleep(10);
-			
-			
 		}
 		assertTrue(true);
 		
