@@ -19,5 +19,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSFormatCommon"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
