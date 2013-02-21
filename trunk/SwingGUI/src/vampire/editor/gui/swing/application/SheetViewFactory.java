@@ -5,6 +5,7 @@ import java.util.List;
 
 import vampire.editor.domain.sheet.view.*;
 import vampire.editor.gui.swing.view.*;
+import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.*;
@@ -26,7 +27,7 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		ModelToViewModelMapperAPI mapper = document.getModelToViewModelMapper();
 		SSheetView sheetView = new SSheetView();
 		SMetaView metaView = buildMetaView(sheet.getMeta(), mapper);
-		sheetView.addMetaView(metaView);
+		sheetView.setMetaView(metaView);
 		List<SCategoryView> categoryViews = buildCategoryViews(sheet.getCategories(), mapper);
 		for (SCategoryView categoryView : categoryViews){
 			sheetView.add(categoryView);
@@ -97,14 +98,16 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	}
 	
 	private STraitView buildTraitView(TraitAPI trait, ModelToViewModelMapperAPI mapper){
-		SValueView valueView = buildValueView(trait.getValue(), mapper);
+		AbstractValueView valueView = buildValueView(trait.getValue(), mapper);
 		STraitView traitView = new STraitView(valueView, dictionary, (TraitViewAttributes) mapper.getViewAttributes(trait));
 		traitView.setName(trait.getName());
 		return traitView;
 	}
 	
-	private SValueView buildValueView(ValueAPI value, ModelToViewModelMapperAPI mapper){
-		SValueView view = new SValueView((ValueViewAttributes) mapper.getViewAttributes(value));
+	private AbstractValueView buildValueView(ValueAPI value, ModelToViewModelMapperAPI mapper){
+		AbstractValueView view = 
+				AbstractValueView.getValueView((
+						(ValueViewAttributes) mapper.getViewAttributes(value)));
 		view.setValue(value.getValue());
 		view.setTempValue(value.getTempValue());
 		return view;

@@ -22,7 +22,6 @@ public class Line {
 			
 		}
 		image = temp;
-		System.out.println(image.getHeight(null));
 	}
 	
 	public Image getImage(){

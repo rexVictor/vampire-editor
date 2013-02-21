@@ -22,12 +22,13 @@ import vampire.editor.gui.swing.application.Initializer;
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
+import static vampire.editor.gui.swing.view.valueviews.AbstractValueView.CIRCLE_BLACK;
+import static vampire.editor.gui.swing.view.valueviews.AbstractValueView.CIRCLE_WHITE;
+
 
 public class SValueView implements ValueView{
 	
-	public static final String CIRCLE_WHITE = "\u25CB";
-	
-	public static final String CIRCLE_BLACK = "\u25CF";
+
 	
 	private class Clicker extends MouseAdapter{
 		
@@ -38,7 +39,6 @@ public class SValueView implements ValueView{
 			case MouseEvent.BUTTON1:  if (clicked+1 != value) clicked++; break;
 			case MouseEvent.BUTTON3:  break;
 			}
-			System.out.println("mouseClicked: "+ clicked);
 			if (!event.isControlDown())
 				setValue0(clicked);
 			else
@@ -124,7 +124,6 @@ public class SValueView implements ValueView{
 	
 	public void setValue0(int value) {
 		this.value = value;
-		System.out.println("setValue0: "+value);
 		redraw();
 		SValueViewEvent event = new SValueViewEvent(value, tempValue);
 		for (ValueViewListener l : listeners){
@@ -134,7 +133,6 @@ public class SValueView implements ValueView{
 	
 	@Override
 	public void setValue(int value) {
-		System.out.println("setValue: "+value);
 		this.value = value;
 		redraw();
 	}

@@ -40,7 +40,7 @@ public class LineImage {
 		
 		private Rectangle2D rectangle;
 		
-		private int counter = 0;
+		private boolean paintable = false;
 		
 		private LinePanel(Image image) {
 			super();
@@ -82,8 +82,6 @@ public class LineImage {
 		}
 		
 		private void refreshTextLayout(){
-			System.out.println("counter: "+counter);
-			counter++;
 			if (getGraphics() != null) {
 				FontRenderContext context = getGraphics().getFontMetrics().getFontRenderContext();
 				layout = new TextLayout(title, font, context);
@@ -92,18 +90,24 @@ public class LineImage {
 				double xHeight = xGlyph.getGlyphMetrics(0).getBounds2D().getMaxX();
 				yImage = (int) (rectangle.getHeight()-(xHeight+image.getHeight(null))/2);
 				xText = (int) ((getWidth()-rectangle.getWidth())/2);
+				paintable = true;
 			}
 		}
 		
 		@Override
 		public void paint(Graphics g){
 			super.paint(g);
+			if (!paintable)
+				refreshTextLayout();
 			g.setFont(font);
 			g.drawImage(image, 0, yImage, this);
 			g.setColor(Color.WHITE);
-			g.fillRect(xText-5, 0, (int) rectangle.getWidth()+10, (int) rectangle.getHeight());
-			g.setColor(Color.BLACK);
-			layout.draw((Graphics2D) g, xText, (float) rectangle.getHeight());
+			if(rectangle != null){
+				g.fillRect(xText-5, 0, (int) rectangle.getWidth()+10, (int) rectangle.getHeight());
+				g.setColor(Color.BLACK);
+				layout.draw((Graphics2D) g, xText, (float) rectangle.getHeight());
+			}
+			
 		}
 
 		@Override
