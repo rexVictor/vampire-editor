@@ -1,5 +1,6 @@
 package vampire.editor.gui.swing.view;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JPanel;
@@ -18,6 +19,8 @@ public class SMetaView implements MetaView{
 	private final JPanel panel = new JPanel();
 	
 	private final FormLayout layout = new FormLayout();
+	
+	private final List<MetaEntryView> metaEntries = new LinkedList<>();
 	
 	private int added = 0;
 	
@@ -40,13 +43,13 @@ public class SMetaView implements MetaView{
 
 	@Override
 	public List<? extends MetaEntryView> getEntries() {
-		// TODO Auto-generated method stub
-		return null;
+		return metaEntries;
 	}
 
 	@Override
 	public void add(MetaEntryView entry) {
 		SMetaEntryView view = (SMetaEntryView) entry;
+		metaEntries.add(entry);
 		int lineCount = view.getViewAtts().getLineCount();
 		
 
@@ -68,26 +71,18 @@ public class SMetaView implements MetaView{
 
 	@Override
 	public void remove(MetaEntryView entry) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void insert(int pos, MetaEntryView entry) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void addListener(DataViewListener<MetaEntryView> listener) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void removeListener(DataViewListener<MetaEntryView> listener) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public JPanel getPanel(){

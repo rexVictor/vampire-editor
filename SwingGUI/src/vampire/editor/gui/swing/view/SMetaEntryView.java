@@ -125,7 +125,7 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 	}
 
 	@Override
-	public void add(MetaEntryViewListener listener) {
+	public void addListener(MetaEntryViewListener listener) {
 		listeners.add(listener);
 	}
 

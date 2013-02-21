@@ -16,6 +16,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.domain.sheet.view.TraitViewAttributes;
+import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
@@ -27,7 +28,7 @@ public class STraitView implements TraitView, ActionListener{
 	
 	private final JTextField textField = new JTextField();
 	
-	private final SValueView valueView;
+	private final AbstractValueView valueView;
 	
 	private final DictionaryAPI dictionary;
 	
@@ -37,7 +38,7 @@ public class STraitView implements TraitView, ActionListener{
 	
 	private final List<TraitViewListener> listeners = new LinkedList<>();
 	
-	public STraitView(SValueView valueView, DictionaryAPI dictionary,
+	public STraitView(AbstractValueView valueView, DictionaryAPI dictionary,
 			TraitViewAttributes attributes) {
 		super();
 		this.valueView = valueView;
@@ -75,7 +76,7 @@ public class STraitView implements TraitView, ActionListener{
 				constraints.gridX 		= 	3;
 				constraints.hAlign		=	CellConstraints.RIGHT;
 				
-				panel.add(valueView.getView(), constraints);
+				panel.add(valueView.getPanel(), constraints);
 			} break;
 			case VERTICAL: {
 				layout.appendRow(RowSpec.decode("pref"));
@@ -94,7 +95,7 @@ public class STraitView implements TraitView, ActionListener{
 				constraints.gridY		=	2;
 				constraints.hAlign		=	CellConstraints.FILL;
 				
-				panel.add(valueView.getView(), constraints);
+				panel.add(valueView.getPanel(), constraints);
 			} break;
 		}
 	}
@@ -107,7 +108,6 @@ public class STraitView implements TraitView, ActionListener{
 		for (TraitViewListener l : listeners){
 			l.traitNameChanged(event);
 		}
-		
 	}
 
 	@Override
