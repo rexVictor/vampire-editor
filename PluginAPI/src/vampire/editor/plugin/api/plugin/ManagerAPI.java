@@ -1,5 +1,6 @@
 package vampire.editor.plugin.api.plugin;
 
+import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 
 public interface ManagerAPI {
@@ -11,6 +12,10 @@ public interface ManagerAPI {
 	public void setGUIPlugin(GUIPlugin gui);
 	
 	public GeneralControllerAPI getGeneralController();
+	
+	public void closed(SheetControllerAPI controller);
+	
+	public void selectedSheetChanged(SheetControllerAPI controller);
 	
 
 }

@@ -8,5 +8,7 @@ public interface SheetView {
 	public void add(CategoryView categoryView);
 	
 	public List<? extends CategoryView> getCategoryViews();
+	
+	public List<? extends MetaEntryView> getMetaViews();
 
 }
