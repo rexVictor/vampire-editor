@@ -83,7 +83,8 @@ public class ValueViewImportTest {
 	 * @throws Throwable
 	 */
 	private static Path createTestCase(Path valueFile, int i) throws Throwable{
-		Objects<? extends ValueViewAttributes> objects = new Objects<>(ValueViewAttributes.class, valueFile, new ResourcesHolderTestImplementation());
+		Objects<? extends ValueViewAttributes> objects 
+			= new Objects<>(ValueViewAttributes.class, valueFile, new ResourcesHolderTestImplementation(), null);
 		BufferedReader reader = Files.newBufferedReader(valueFile, Charset.defaultCharset());
 		System.out.println("original file: ");
 		int read = 0;
@@ -144,7 +145,8 @@ public class ValueViewImportTest {
 	
 	private void testValueImport(Path valuesJson, Path expected) throws Throwable {
 	
-		Objects<? extends ValueViewAttributes> values = new Objects<>(ValueViewAttributes.class, valuesJson, new ResourcesHolderTestImplementation());
+		Objects<? extends ValueViewAttributes> values 
+			= new Objects<>(ValueViewAttributes.class, valuesJson, new ResourcesHolderTestImplementation(), null);
 		List<ValueViewAttributes> valueList = new LinkedList<>();
 		{
 			int i = 0;

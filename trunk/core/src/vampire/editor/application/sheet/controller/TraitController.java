@@ -40,7 +40,6 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 
 	@Override
 	public void traitNameChanged(TraitViewEvent viewEvent) {
-		System.out.println("traitNameChanged to: "+viewEvent.getName());
 		setTraitName(viewEvent.getName());
 	}
 	

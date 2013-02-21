@@ -11,6 +11,7 @@ import vampire.editor.application.GeneralController;
 import vampire.editor.domain.config.Config;
 import vampire.editor.domain.config.Plugin;
 
+import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.plugin.Activator;
 import vampire.editor.plugin.api.plugin.Facade;
@@ -113,6 +114,17 @@ public class Manager implements ManagerAPI{
 	@Override
 	public GeneralControllerAPI getGeneralController() {
 		return controller;		
+	}
+
+	@Override
+	public void closed(SheetControllerAPI controller) {
+		
+	}
+
+	@Override
+	public void selectedSheetChanged(SheetControllerAPI controller) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

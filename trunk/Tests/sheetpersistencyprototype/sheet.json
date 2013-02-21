@@ -2,592 +2,592 @@
 	"version"	:	"1.0 alpha",
 	"meta"		:	[
 	    {
+	    	"mapid"		:	0,
 	    	"name"		:	"name",
-	    	"value"		:	"test",
-	    	"viewAtts"	:	0
+	    	"value"		:	"test"
 	    },
 	    {
+	    	"mapid"		:	1,
 	    	"name"		:	"player",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    },
 	    {
+	    	"mapid"		:	2,
 	    	"name"		:	"creator",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    },
 	    {
+	    	"mapid"		:	3,
 	    	"name"		:	"chronicle",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    },
 	    {
+	    	"mapid"		:	4,
 	    	"name"		:	"nature",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    },
 	    {	
+	    	"mapid"		:	5,
 	    	"name"		:	"demeanor",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    },
 	    {
+	    	"mapid"		:	6,
 	    	"name"		:	"clan",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    },
 	    {
+	    	"mapid"		:	7,
 	    	"name"		:	"generation",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    },
 	    {
+	    	"mapid"		:	8,
 	    	"name"		:	"haven",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    },
 	    {
+	    	"mapid"		:	9,
 	    	"name"		:	"concept",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    },
 	    {
+	    	"mapid"		:	10,
 	    	"name"		:	"sect",
-	    	"value"		:	"",
-	    	"viewAtts"	:	1
+	    	"value"		:	""
 	    }	    
 	],
 	"traits"	:	[
 	    {
-	     	"name" : "attributes",
-	     	"subCats" : [
+	    	"mapid"		:	0,
+	     	"name" 		: 	"attributes",
+	     	"subCats" 	: 	[
 	     	    {
+	     	    	"mapid"		:	0,
 	     	        "name"		: 	"physical",
 	     	        "traits"	:	[
 	     	            {
+	     	            	"mapid"	:	0,
 	     	                "name":"strength",
 	     	                "value":{
-	     	             		"id"		:	0,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts"	:	0	     	                
+	     	                	"mapid"		:	0,
+	     	             		"id"		:	0
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	1,
 	     	                "name":"stamina",
 	     	                "value":{
-	     	             		"id"		:	0,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	1,
+	     	             		"id"		:	0
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	2,
 	     	                "name":"dexterity",
 	     	                "value":{
-	     	             		"id"		:	0,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	2,
+	     	             		"id"		:	0
+	     	                }
 	     	            }
-	     	        ],
-	     	        "viewAtts":0
-	     	        
+	     	        ]
 	     	    },
 	     	    {
+	     	    	"mapid"		:	1,
 	     	        "name" 		: 	"social",
 	     	        "traits"	:	[
 	     	            {
+	     	            	"mapid"	:	3,
 	     	                "name":"charisma",
 	     	                "value":{
-	     	             		"id"		:	0,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	3,
+	     	             		"id"		:	0
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	4,
 	     	                "name":"manipulation",
 	     	                "value":{
-	     	             		"id"		:	0,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	4,
+	     	             		"id"		:	0
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	5,
 	     	                "name":"appearance",
 	     	                "value":{
-	     	             		"id"		:	0,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	5,
+	     	             		"id"		:	0
+	     	                }
 	     	            }
-	     	        ],
-	     	        "viewAtts":0
+	     	        ]
 	     	    },
 	     	    {
+	     	    	"mapid"		:	2,
 	     	        "name" 		: 	"mental",
 	     	        "traits"	:	[
 	     	            {
+	     	            	"mapid"	:	6,
 	     	                "name":"perception",
 	     	                "value":{
-	     	             		"id"		:	0,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	6,
+	     	             		"id"		:	0
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	7,
 	     	                "name":"intelligence",
 	     	                "value":{
-	     	             		"id"		:	0,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	7,
+	     	             		"id"		:	0
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	8,
 	     	                "name":"wits",
 	     	                "value":{
-	     	             		"id"		:	0,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	8,
+	     	             		"id"		:	0
+	     	                }
 	     	            }
-	     	        ],
-	     	        "viewAtts":0
+	     	        ]
 	     	    }
-	     	    
-	     	],
-	     	"viewAtts":0   
+	     	]
 	    },
 	    {
-	     	"name"	:"abilities",
-	     	"subCats":[
+	    	"mapid"	:	1,
+	     	"name"	:	"abilities",
+	     	"subCats":	[
 	     	    {
+	     	    	"mapid"	:	3,
 	     	        "name":"talents",
 	     	        "traits":[
 	     	            {
+	     	            	"mapid"	:	9,
 	     	                "name":"alertness",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	9,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	10,
 	     	                "name":"athletics",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	10,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	11,
 	     	                "name":"brawl",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	11,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	12,
 	     	                "name":"dodge",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	12,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	13,
 	     	                "name":"empathy",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	13,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	14,
 	     	                "name":"expression",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	14,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	15,
 	     	                "name":"intimidation",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	15,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	16,
 	     	                "name":"leadership",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	16,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	17,
 	     	                "name":"subterfuge",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	17,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	18,
 	     	                "name":"streetwise",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	18,
+	     	             		"id"		:	1
+	     	                }
 	     	            }
-	     	        ],
-	     	        "viewAtts":0
+	     	        ]
 	     	    },
 	     	    {
+	     	    	"mapid"	:	4,
 	     	        "name":"skills",
 	     	        "traits":[
 	     	            {
+	     	            	"mapid"	:	19,
 	     	                "name":"animalken",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	19,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	20,
 	     	                "name":"crafts",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	20,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	21,
 	     	                "name":"drive",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	21,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	22,
 	     	                "name":"etiquette",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	22,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	23,
 	     	                "name":"firearms",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	23,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	24,
 	     	                "name":"melee",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	24,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	25,
 	     	                "name":"performance",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	25,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	26,
 	     	                "name":"security",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	26,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	27,
 	     	                "name":"stealth",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	27,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	28,
 	     	                "name":"survival",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	28,
+	     	             		"id"		:	1
+	     	                }
 	     	            }
-	     	        ],
-	     	        "viewAtts":0
+	     	        ]
 	     	    },
 	     	    {
+	     	    	"mapid"	:	5,
 	     	        "name":"knowledges",
 	     	        "traits":[
 	     	            {
+	     	            	"mapid"	:	29,
 	     	                "name":"academics",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	29,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	30,
 	     	                "name":"computer",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	30,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	31,
 	     	                "name":"finance",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	31,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	32,
 	     	                "name":"investigation",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	32,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	33,
 	     	                "name":"law",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	33,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	34,
 	     	                "name":"linguistics",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	34,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	35,
 	     	                "name":"medicine",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	35,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	36,
 	     	                "name":"occult",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	36,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	37,
 	     	                "name":"politics",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	37,
+	     	             		"id"		:	1
+	     	                }
 	     	            },
 	     	            {
+	     	            	"mapid"	:	38,
 	     	                "name":"science",
 	     	                "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	     	                "viewAtts":0
+	     	                	"mapid"		:	38,
+	     	             		"id"		:	1
+	     	                }
 	     	            }
-	     	        ],
-	     	        "viewAtts":1
+	     	        ]
 	     	    }
-	     	    
-	     	],
-	     	"viewAtts":0   
+	     	]
 	    },
 	    {
+	    	"mapid"	:	2,
 	        "name":"virtues",
 	        "subCats":[
 	            {
+	            	"mapid"	:	6,
 	                "name":"way",
 	                "traits":[
 	                    {
+	                    	"mapid"	:	39,
 	                        "name":"humanity",
 	                        "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	2
-	     	                },
-	                        "viewAtts":1                 
+	                        	"mapid"		:	39,
+	     	             		"id"		:	1
+	     	                }
 	                    }
-	                 ],
-	                 "viewAtts":2
+	                 ]
 	            },
 	            {
+	            	"mapid"	:	7,
 	                "name":"willpower",
 	                "traits":[
 	             		{
+	             			"mapid"	:	40,
 	                        "name":"willpower",
 	                        "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	2
-	     	                },
-	                        "viewAtts":2        
+	                        	"mapid"		:	40,
+	     	             		"id"		:	1
+	     	                }
 	                    }       
-	                ],
-	                "viewAtts":2
+	                ]
 	            },
 	            {
+	            	"mapid"	:	8,
 	                "name":"virtues",
 	                "traits":[
 	                    {
+	                    	"mapid"	:	41,
 	                        "name":"conscience",
 	                        "value":{
-	     	             		"id"		:	2,
-	     	             		"viewAtts"	:	1
-	     	                },
-	                        "viewAtts":3                 
+	                        	"mapid"		:	41,
+	     	             		"id"		:	2
+	     	                }
 	                    },
 	                    {
+	                    	"mapid"	:	42,
 	                        "name":"selfcontrol",
 	                        "value":{
-	     	             		"id"		:	2,
-	     	             		"viewAtts"	:	1
-	     	                },
-	                        "viewAtts":3                 
+	                        	"mapid"		:	42,
+	     	             		"id"		:	2
+	     	                }
 	                    },
 	                    {
+	                    	"mapid"	:	43,
 	                        "name":"courage",
 	                        "value":{
-	     	             		"id"		:	2,
-	     	             		"viewAtts"	:	1
-	     	                },
-	                        "viewAtts":3                 
+	                        	"mapid"		:	43,
+	     	             		"id"		:	2
+	     	                }
 	                    }
-	                ],
-	                "viewAtts":2
+	                ]
 	            }
-	       ],
-	       "viewAtts":0
+	       ]
 	    },
 	    {
+	    	"mapid"	:	3,
 	        "name":"advantages",
 	        "subCats":[
 	            {
+	            	"mapid"	:	9,
 	                "name":"disciplines",
 	                "traits":[
 	                    {
+	                    	"mapid"	:	44,
 	                        "name":"",
 	                        "value":{
-	     	             		"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	            	},	                        
-	                        "viewAtts":3
+	                        	"mapid"		:	44,
+	     	             		"id"		:	1
+	     	            	}	                        
 	                    }
-	                ],
-	                "viewAtts":1	                
+	                ]
 	            },
 	            {
+	            	"mapid"	:	10,
 	                "name":"backgrounds",
 	                "traits":[
 	                    {
+	                    	"mapid"	:	45,
 	                        "name":"",
 	                        "value":{
-	     	             		"id"		:	3,
-	     	             		"viewAtts"	:	1
-	     	                },
-	                        "viewAtts":3
+	                        	"mapid"		:	45,
+	     	             		"id"		:	3
+	     	                }
 	                    }
-	                ],
-	                "viewAtts":1	                
+	                ]
 	            },
 	            {
+	            	"mapid"	:	11,
 	                "name":"other",
 	                "traits":[
 	                    {
+	                    	"mapid"	:	46,
 	                        "name":"",
 	                        "value":{
-	                        	"id"		:	1,
-	     	             		"viewAtts"	:	0
-	     	                },
-	                        "viewAtts":3
+	                        	"mapid"		:	46,
+	                        	"id"		:	1
+	     	                }
 	                    }
-	                ],
-	                "viewAtts":1              
+	                ]
 	            }
-	        ],
-	        "viewAtts":0
+	        ]
 	    }	        
 	],
 	"merits":[
 	    {
+	    	"mapid":0,
 	        "cost":0,
 	        "text":""
-	    }
-	],
-	"flaws":[
-	    {
-	        "cost":0,
-	        "test":""
 	    }
 	],
 	"health" : {
 	    "levels":[
 	        {
+	        	"mapid":0,
 	            "name":"bruised",
 	            "type":null,
 	            "penalty":0	            
 	        },
 	        {
+	        	"mapid":1,
 	            "name":"hurt",
 	           	"type":null,
 	            "penalty":1	            
 	        },
 	        {
+	        	"mapid":2,
 	            "name":"injured",
 	            "type":null,
 	            "penalty":1	            
 	        },
 	        {
+	        	"mapid":3,
 	            "name":"wounded",
 	            "type":null,
 	            "penalty":2	            
 	        },
 	        {
+	        	"mapid":4,
 	            "name":"mauled",
 	            "type":null,
 	            "penalty":2	            
 	        },
 	        {
+	        	"mapid":5,
 	            "name":"crippeled",
 	            "type":null,
 	            "penalty":5         
 	        },
 	        {
+	        	"mapid":6,
 	            "name":"incapacitated",
 	            "type":null,
-	            "penalty":null
+	            "penalty":0
 	        }
 	     	
 	    ]
 	},
 	"bloodpool":{
-	    "maximum":20,
-	    "current":0
+		"mapid":0,
+	    "maxValue":20,
+	    "value":0
 	}
 }

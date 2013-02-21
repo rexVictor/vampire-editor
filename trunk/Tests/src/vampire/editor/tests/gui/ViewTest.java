@@ -2,6 +2,7 @@ package vampire.editor.tests.gui;
 
 import static org.junit.Assert.*;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import javax.swing.JFrame;
@@ -17,6 +18,7 @@ import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.gui.swing.application.SheetViewFactory;
 import vampire.editor.gui.swing.view.SSheetView;
 
+import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.sheetloader.application.importer.ResourcesHolderTestImplementation;
 import vampire.editor.sheetloader.application.importer.VMPCSImporter;
 
@@ -24,14 +26,15 @@ public class ViewTest {
 
 	@Test
 	public void test() throws  Throwable {
-	
-		UIManager.setLookAndFeel(NimbusLookAndFeel.class.getName());	
-	
-		VMPCSImporter importer = new VMPCSImporter(new ResourcesHolderTestImplementation());
-		VampireDocument sheet = importer.load(Paths.get("sheetpersistencyprototype"));
+		UIManager.setLookAndFeel(NimbusLookAndFeel.class.getName());
+		ResourcesHolderAPI resourcesHolder = new ResourcesHolderTestImplementation();
+		
+		Path path = Paths.get("sheetpersistencyprototype");
+		VMPCSImporter importer = new VMPCSImporter(resourcesHolder, path);
+		VampireDocument sheet = importer.load();
 		importer = null;
 		
-		SheetViewFactory factory = new SheetViewFactory(new ResourcesHolderTestImplementation());
+		SheetViewFactory factory = new SheetViewFactory(resourcesHolder);
 		SSheetView view = factory.buildSheetView(sheet);
 		
 		SheetControllerFactory controllerFactory = new SheetControllerFactory();

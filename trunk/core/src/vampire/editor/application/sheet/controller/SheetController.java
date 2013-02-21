@@ -1,10 +1,13 @@
 package vampire.editor.application.sheet.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.plugin.api.application.sheet.controller.CategoryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.MetaEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
@@ -16,6 +19,10 @@ public class SheetController implements SheetControllerAPI {
 	private final SheetView view;
 	
 	private final List<CategoryControllerAPI> categoryControllers = new ArrayList<>();
+	
+	private final List<MetaEntryControllerAPI> metaEntryControllers = new ArrayList<>();
+	
+	private final Map<String, MetaEntryControllerAPI> metaEntryControllerMap = new HashMap<>();
 
 	public SheetController(Sheet sheet, SheetView view) {
 		super();
@@ -35,6 +42,18 @@ public class SheetController implements SheetControllerAPI {
 	
 	public Sheet getSheet(){
 		return sheet;
+	}
+
+	@Override
+	public void addMetaEntryController(MetaEntryControllerAPI controller) {
+		metaEntryControllers.add(controller);
+		String title = controller.getMetaEntry().getName();
+		metaEntryControllerMap.put(title, controller);
+	}
+
+	@Override
+	public MetaEntryControllerAPI getMetaEntryController(String key) {
+		return metaEntryControllerMap.get(key);
 	}
 	
 	

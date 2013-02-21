@@ -22,5 +22,20 @@
 		"architect",
 		"bonvivant",
 		"!!TO BE CONTINUED!!"
+	],
+	"disciplines" : [
+	    {
+	    	"name"			:	"auspex",
+	    	"description"	:	"auspex",
+	    	"developments"	:	{
+	    							"1"		: [
+	    							   		   		{
+	    							   		   			"name"	:	"heightened_senses",
+	    							   		   			"description"	:	"heightened_senses"
+	    							   		   		}
+	    							   		  ]	
+	    	}
+	    }
 	]
+
 }

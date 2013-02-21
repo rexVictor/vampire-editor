@@ -66,6 +66,26 @@ public class SubCategoryViewAttributes implements SubCategoryViewAttributesAPI, 
 		return clone;
 	}
 	
+	/**
+	 * Returns true if and only if both are expandable and both show the Title and both have the same font.
+	 */
+	@Override
+	public boolean equals(Object object){
+		if (object == null) return false;
+		if (object == this) return true;
+		if (object instanceof SubCategoryViewAttributes){
+			SubCategoryViewAttributes other = (SubCategoryViewAttributes) object;
+			return other.expandable == expandable && other.showTitle == showTitle && font.equals(other.font); 
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+		return 11 * System.identityHashCode(expandable) + 13 * System.identityHashCode(showTitle)
+				+ 17 * System.identityHashCode(font);
+	}
+	
 	
 	
 	

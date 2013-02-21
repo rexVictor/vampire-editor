@@ -18,6 +18,19 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 	public TraitViewAttributes() {
 		super();
 	}
+	
+	
+
+	public TraitViewAttributes(boolean editable, Orientation orientation,
+			boolean squares, Font font) {
+		super();
+		this.editable = editable;
+		this.orientation = orientation;
+		this.squares = squares;
+		this.font = font;
+	}
+
+
 
 	@Override
 	public boolean isEditable() {
@@ -81,6 +94,23 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 		this.font = font;
 	}
 	
+	@Override
+	public boolean equals(Object object){
+		if (object == null) return false;
+		if (object == this) return true;
+		if (object instanceof TraitViewAttributes){
+			TraitViewAttributes other = (TraitViewAttributes) object;
+			return editable == other.editable && squares == other.squares && orientation.equals(other.orientation)
+					&& font.equals(other.font);
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+		return 11 * System.identityHashCode(editable) + 13 * System.identityHashCode(squares)
+				+ 17 * orientation.hashCode() + 19 * font.hashCode();
+	}
 	
 	
 	

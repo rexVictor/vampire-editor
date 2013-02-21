@@ -48,4 +48,9 @@ public class ResourcesHolderTestImplementation implements ResourcesHolderAPI{
 		return null;
 	}
 
+	@Override
+	public String getKeyOfFont(Font font) {
+		return "cas_antn";
+	}
+
 }
