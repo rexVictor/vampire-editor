@@ -11,7 +11,7 @@ public interface MetaEntryView {
 	
 	public void setPopup(PopupEntriesAPI entries);
 	
-	public void add(MetaEntryViewListener listener);
+	public void addListener(MetaEntryViewListener listener);
 	
 	public void remove(MetaEntryViewListener listener);
 

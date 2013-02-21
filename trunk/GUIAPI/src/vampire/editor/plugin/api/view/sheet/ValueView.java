@@ -10,6 +10,10 @@ public interface ValueView {
 	
 	public void addListener(ValueViewListener listener);
 	
+	public void addCircle();
+	
+	public void removeCircle();
+	
 	
 
 }

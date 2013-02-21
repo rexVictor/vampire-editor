@@ -11,6 +11,8 @@ public interface ResourcesHolderAPI {
 	public DictionaryAPI getDictionary(String key);
 	
 	public Image getLine(String key);
+	
+	public String getKeyOfFont(Font font);
 		
 	
 
