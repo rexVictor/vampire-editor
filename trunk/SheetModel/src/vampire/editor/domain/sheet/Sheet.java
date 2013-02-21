@@ -22,7 +22,6 @@ public class Sheet implements SheetAPI {
 	public Sheet clone(){
 		Sheet clone = new Sheet();
 		Field[] fields = this.getClass().getDeclaredFields();
-	
 		for (Field f : fields){
 			try {
 				f.set(clone, ((Nameable) f.get(this)).clone());

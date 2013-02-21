@@ -1,5 +1,6 @@
 package vampire.editor.domain.sheet;
 
+import java.util.HashMap;
 import java.util.IdentityHashMap;
 import java.util.Map;
 
@@ -9,15 +10,25 @@ import vampire.editor.plugin.api.domain.sheet.view.*;
 
 public class ModelToViewModelMapper implements ModelToViewModelMapperAPI{
 	
-	private Map<Category, CategoryViewAttributes> catViewAtts = new IdentityHashMap<>();
+	private final Map<Category, CategoryViewAttributes> catViewAtts = new IdentityHashMap<>();
 	
-	private Map<SubCategory, SubCategoryViewAttributes> subcatViewAtts = new IdentityHashMap<>();
+	private final Map<SubCategory, SubCategoryViewAttributes> subcatViewAtts = new IdentityHashMap<>();
 	
-	private Map<Trait, TraitViewAttributes> traitViewAtts = new IdentityHashMap<>();
+	private final Map<Trait, TraitViewAttributes> traitViewAtts = new IdentityHashMap<>();
 	
-	private Map<Value, ValueViewAttributes> valueViewAtts = new IdentityHashMap<>();
+	private final Map<Value, ValueViewAttributes> valueViewAtts = new IdentityHashMap<>();
 	
-	private Map<MetaEntry, MetaEntryViewAttributes> metaEntryViewAtts = new IdentityHashMap<>();
+	private final Map<MetaEntry, MetaEntryViewAttributes> metaEntryViewAtts = new IdentityHashMap<>();
+	
+	private final Map<Class<?>, Map<?,?>> map = new HashMap<>();
+	
+	public ModelToViewModelMapper(){
+		map.put(Category.class, catViewAtts);
+		map.put(SubCategory.class, subcatViewAtts);
+		map.put(Trait.class, traitViewAtts);
+		map.put(Value.class, valueViewAtts);
+		map.put(MetaEntry.class, metaEntryViewAtts);
+	}
 
 	@Override
 	public CategoryViewAttributesAPI getViewAttributes(
@@ -61,8 +72,16 @@ public class ModelToViewModelMapper implements ModelToViewModelMapperAPI{
 	}
 
 	@Override
-	public MetaEntryViewAttributesAPI getViewAttributes(MetaEntryAPI metaEntry) {
+	public MetaEntryViewAttributes getViewAttributes(MetaEntryAPI metaEntry) {
 		return metaEntryViewAtts.get(metaEntry);
+	}
+	
+	public Object get(Object object){
+		Map<?, ?> map = this.map.get(object.getClass());
+		if (map != null)
+			return map.get(object);
+		else
+			return null;
 	}
 
 }
