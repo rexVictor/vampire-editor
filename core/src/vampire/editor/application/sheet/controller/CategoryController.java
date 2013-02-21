@@ -71,8 +71,6 @@ public class CategoryController implements CategoryControllerAPI {
 		finally{
 			lock.unlock();
 		}
-		
-		
 	}
 	
 	@Override

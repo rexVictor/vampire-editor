@@ -1,0 +1,25 @@
+[ {
+  "editable" : false,
+  "orientation" : "HORIZONTAL",
+  "squares" : false,
+  "id" : 0,
+  "font" : 0
+}, {
+  "editable" : true,
+  "orientation" : "VERTICAL",
+  "squares" : false,
+  "id" : 1,
+  "font" : 0
+}, {
+  "editable" : false,
+  "orientation" : "VERTICAL",
+  "squares" : false,
+  "id" : 2,
+  "font" : 0
+}, {
+  "editable" : true,
+  "orientation" : "HORIZONTAL",
+  "squares" : false,
+  "id" : 3,
+  "font" : 0
+} ]

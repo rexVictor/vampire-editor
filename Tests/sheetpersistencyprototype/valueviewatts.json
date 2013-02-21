@@ -20,6 +20,15 @@
 		    "dynamic"	:	false,
 		    "circles"	:	10,
 		    "size"		:	14
+		},
+		{
+		    "id"		:	3,
+		    "showSpace"	:	false,
+		    "dynamic"	:	false,
+		    "tempSquared"	:	true,
+		    "circles"	:	10,
+		    "size"		:	14
 		}
+		
 	]
 

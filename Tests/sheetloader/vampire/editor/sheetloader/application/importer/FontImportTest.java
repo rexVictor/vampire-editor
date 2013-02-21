@@ -18,7 +18,7 @@ public class FontImportTest {
 	@Test
 	public void test1() throws JsonParseException, JsonMappingException, IOException, FontFormatException {
 		Path fontPath = Paths.get("importtest","fonts");
-		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderTestImplementation());
+		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderTestImplementation(), null);
 		Font expected = Font.createFont(0, fontPath.resolve("CAS_ANTN.TTF").toFile()).deriveFont(20f);
 		assertEquals(expected, fonts.getObjectByID(0));
 	}
@@ -26,7 +26,7 @@ public class FontImportTest {
 	@Test
 	public void test2() throws JsonParseException, JsonMappingException, IOException, FontFormatException {
 		Path fontPath = Paths.get("importtest","fonts");
-		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderTestImplementation());
+		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderTestImplementation(), null);
 		Font expected = Font.createFont(0, fontPath.resolve("CAS_ANTN.TTF").toFile()).deriveFont(24f);
 		assertEquals(expected, fonts.getObjectByID(1));
 	}

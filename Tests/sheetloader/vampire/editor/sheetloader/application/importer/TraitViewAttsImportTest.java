@@ -19,7 +19,9 @@ public class TraitViewAttsImportTest {
 		Path path = Paths.get("importtest","traitviewatts");
 		Path fontpath = Paths.get("importtest", "traitviewatts", "CAS_ANTN.TTF");
 		Font expectedFont = Font.createFont(0, fontpath.toFile()).deriveFont(20f);
-		Objects<TraitViewAttributes> objects = new Objects<>(path, TraitViewAttributes.class, new ResourcesHolderTestImplementation());
+		Objects<Font> fontObjects = new Objects<>(path, Font.class, new ResourcesHolderTestImplementation(), null);
+		Objects<TraitViewAttributes> objects = 
+				new Objects<>(path, TraitViewAttributes.class, new ResourcesHolderTestImplementation(), fontObjects);
 		TraitViewAttributes viewAttributes = objects.getObjectByID(0);
 		assertEquals(false, viewAttributes.isEditable());
 		assertEquals(Orientation.HORIZONTAL, viewAttributes.getOrientation());
@@ -30,8 +32,9 @@ public class TraitViewAttsImportTest {
 	@Test
 	public void testTraitViewImport1() throws Throwable{
 		Path path = Paths.get("importtest","traitviewatts");
-		Objects<TraitViewAttributes> objects = new Objects<>(path, TraitViewAttributes.class, new ResourcesHolderTestImplementation());
-		Objects<Font> fontObjects = new Objects<>(path, Font.class, new ResourcesHolderTestImplementation());
+		Objects<Font> fontObjects = new Objects<>(path, Font.class, new ResourcesHolderTestImplementation(), null);
+		Objects<TraitViewAttributes> objects = 
+				new Objects<>(path, TraitViewAttributes.class, new ResourcesHolderTestImplementation(), fontObjects);
 		TraitViewAttributes viewAttributes = objects.getObjectByID(1);
 		assertEquals(true, viewAttributes.isEditable());
 		assertEquals(Orientation.VERTICAL, viewAttributes.getOrientation());
@@ -42,8 +45,10 @@ public class TraitViewAttsImportTest {
 	@Test
 	public void testTraitViewImport2() throws Throwable{
 		Path path = Paths.get("importtest","traitviewatts");
-		Objects<TraitViewAttributes> objects = new Objects<>(path, TraitViewAttributes.class, new ResourcesHolderTestImplementation());
-		Objects<Font> fontObjects = new Objects<>(path, Font.class, new ResourcesHolderTestImplementation());
+		Objects<Font> fontObjects = new Objects<>(path, Font.class, new ResourcesHolderTestImplementation(), null);
+		Objects<TraitViewAttributes> objects 
+			= new Objects<>(path, TraitViewAttributes.class, new ResourcesHolderTestImplementation(), fontObjects);
+		
 		TraitViewAttributes viewAttributes = objects.getObjectByID(2);
 		assertEquals(false, viewAttributes.isEditable());
 		assertEquals(Orientation.VERTICAL, viewAttributes.getOrientation());
@@ -54,8 +59,9 @@ public class TraitViewAttsImportTest {
 	@Test
 	public void testTraitViewImport3() throws Throwable{
 		Path path = Paths.get("importtest","traitviewatts");
-		Objects<TraitViewAttributes> objects = new Objects<>(path, TraitViewAttributes.class, new ResourcesHolderTestImplementation());
-		Objects<Font> fontObjects = new Objects<>(path, Font.class, new ResourcesHolderTestImplementation());
+		Objects<Font> fontObjects = new Objects<>(path, Font.class, new ResourcesHolderTestImplementation(), null);
+		Objects<TraitViewAttributes> objects = 
+				new Objects<>(path, TraitViewAttributes.class, new ResourcesHolderTestImplementation(), fontObjects);
 		TraitViewAttributes viewAttributes = objects.getObjectByID(3);
 		assertEquals(true, viewAttributes.isEditable());
 		assertEquals(Orientation.HORIZONTAL, viewAttributes.getOrientation());

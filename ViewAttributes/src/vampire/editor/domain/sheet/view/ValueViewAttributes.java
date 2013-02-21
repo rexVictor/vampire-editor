@@ -10,15 +10,34 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	 */
 	private static final long serialVersionUID = 1886427499077840867L;
 
-	private Boolean showSpace;
+	private boolean showSpace;
 	
-	private Boolean dynamic;
+	private boolean dynamic;
 	
 	private int circles;
 	
-	private Boolean tempSquared = false;
+	private boolean tempSquared = false;
 	
 	private int size;
+	
+	public ValueViewAttributes(){
+	}
+	
+	
+	
+
+	public ValueViewAttributes(boolean showSpace, boolean dynamic, int circles,
+			boolean tempSquared, int size) {
+		super();
+		this.showSpace = showSpace;
+		this.dynamic = dynamic;
+		this.circles = circles;
+		this.tempSquared = tempSquared;
+		this.size = size;
+	}
+
+
+
 
 	@Override
 	public boolean isShowSpace() {
@@ -96,7 +115,7 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	public boolean equals(Object object){
 		if (object instanceof ValueViewAttributes){
 			ValueViewAttributes toCompare = (ValueViewAttributes) object;
-			return toCompare.dynamic.equals(dynamic) && toCompare.showSpace.equals(showSpace) 
+			return toCompare.dynamic == dynamic && toCompare.showSpace == showSpace 
 					&& toCompare.circles == circles	&& toCompare.size == size;
 		}
 		return false;
@@ -105,7 +124,8 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	
 	@Override
 	public int hashCode(){
-		return dynamic.hashCode()+2*showSpace.hashCode()+4*circles+8*size;
+		return System.identityHashCode(dynamic)+2*System.identityHashCode(showSpace)+4*circles+8*size;
+		
 	}
 	
 	

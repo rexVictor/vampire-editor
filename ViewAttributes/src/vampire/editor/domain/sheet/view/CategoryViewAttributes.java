@@ -10,7 +10,7 @@ public class CategoryViewAttributes implements CategoryViewAttributesAPI, FontSe
 	
 	private String image;
 	
-	private String title;
+	private String title = "";
 	
 	private Font font;
 
@@ -61,8 +61,22 @@ public class CategoryViewAttributes implements CategoryViewAttributesAPI, FontSe
 		return clone;
 	}
 	
+	@Override
+	public boolean equals(Object object){
+		if (object == null) return false;
+		if (object == this) return true;
+		if (object instanceof CategoryViewAttributes){
+			CategoryViewAttributes other = (CategoryViewAttributes) object;
+			return other.showLine == showLine && image.equals(other.image) && title.equals(other.title)
+					&& font.equals(other.font); 
+		}
+		return false;
+	}
 	
-	
-	
+	@Override
+	public int hashCode(){
+		return 11 * System.identityHashCode(showLine) + 13 * image.hashCode() + 17 * System.identityHashCode(title)
+				+19 * font.hashCode();
+	}
 
 }

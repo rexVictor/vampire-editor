@@ -1,0 +1,16 @@
+[ {
+  "expandable" : false,
+  "showTitle" : true,
+  "id" : 0,
+  "font" : 1
+}, {
+  "expandable" : false,
+  "showTitle" : false,
+  "id" : 1,
+  "font" : 1
+}, {
+  "expandable" : true,
+  "showTitle" : true,
+  "id" : 2,
+  "font" : 1
+} ]

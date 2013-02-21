@@ -1,0 +1,22 @@
+[ {
+  "showSpace" : true,
+  "dynamic" : true,
+  "circles" : 5,
+  "tempSquared" : false,
+  "size" : 14,
+  "id" : 0
+}, {
+  "showSpace" : false,
+  "dynamic" : false,
+  "circles" : 10,
+  "tempSquared" : false,
+  "size" : 14,
+  "id" : 1
+}, {
+  "showSpace" : false,
+  "dynamic" : false,
+  "circles" : 5,
+  "tempSquared" : false,
+  "size" : 14,
+  "id" : 2
+} ]

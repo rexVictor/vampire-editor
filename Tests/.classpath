@@ -6,8 +6,10 @@
 	<classpathentry kind="src" path="sheetmodel"/>
 	<classpathentry kind="src" path="swingmainframe"/>
 	<classpathentry kind="src" path="configcreator"/>
+	<classpathentry kind="src" path="testimplementations"/>
+	<classpathentry kind="src" path="optiondialog"/>
+	<classpathentry kind="src" path="sheetexporter"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/SheetLoader/ext-libraries/jackson-core-2.0.0.jar"/>
 	<classpathentry kind="lib" path="/ResourceLoader/external/jackson-databind-2.0.0.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-databind/javadoc/2.0.0/"/>
@@ -25,7 +27,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/SheetLoader"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSExporter"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SwingGUI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SwingMainFrame"/>
@@ -33,5 +35,14 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/TestUtils"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/OptionDialog"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSFormatCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSImporter"/>
+	<classpathentry kind="lib" path="/ResourceLoader/external/jackson-annotations-2.0.0.jar"/>
+	<classpathentry kind="lib" path="/ResourceLoader/external/jackson-core-2.0.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-core/javadoc/2.0.0/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
