@@ -9,9 +9,6 @@ public class GuiActivator implements Activator{
 	public void setManager(ManagerAPI manager) {
 		GuiFacade facade = new GuiFacade(manager);
 		manager.setGUIPlugin(facade);
-		
-		
-		
 	}
 
 }

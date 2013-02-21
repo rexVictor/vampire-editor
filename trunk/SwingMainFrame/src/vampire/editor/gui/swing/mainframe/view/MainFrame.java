@@ -41,13 +41,4 @@ public class MainFrame {
 		}
 	}
 
-
-	
-	
-	
-	
-	
-	
-	
-
 }
