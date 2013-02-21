@@ -3,6 +3,7 @@ package vampire.editor.domain.config;
 import java.awt.Font;
 import java.awt.Image;
 import java.util.Map;
+import java.util.Set;
 
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
@@ -45,6 +46,15 @@ public class ResourcesHolder implements ResourcesHolderAPI{
 	@Override
 	public Image getLine(String key){
 		return lines.get(key);
+	}
+
+	@Override
+	public String getKeyOfFont(Font font) {
+		Set<String> keys = fonts.keySet();
+		for (String s : keys){
+			if (fonts.get(s).equals(font)) return s;
+		}
+		return null;
 	}
 	
 
