@@ -12,9 +12,11 @@ public class Sheet implements SheetAPI {
 	
 	private Data<Category> categories;
 	
-	private final Data<Merit> merits = new Data<>();
+	private Data<Merit> merits;
 	
-	private final Data<HealthEntry> bloodpool = new Data<>();
+	private Health health;
+	
+	private BloodPool bloodPool;
 	
 	
 	
@@ -45,6 +47,18 @@ public class Sheet implements SheetAPI {
 			this.meta = meta;
 		}
 	}
+	
+	public void setBloodPool(BloodPool bloodPool){
+		if (this.bloodPool == null){
+			this.bloodPool = bloodPool;
+		}
+	}
+	
+	public void setHealth(Health health){
+		if (health == null){
+			this.health = health;
+		}
+	}
 
 	@Override
 	public Data<MetaEntry> getMeta() {
@@ -60,13 +74,17 @@ public class Sheet implements SheetAPI {
 		return merits;
 	}
 
-	public Data<HealthEntry> getBloodpool() {
-		return bloodpool;
+	public BloodPool getBloodpool() {
+		return bloodPool;
 	}
 	
 	@Override
 	public String toString(){
 		return categories.toString();
+	}
+	
+	public Health getHealth(){
+		return health;
 	}
 
 	

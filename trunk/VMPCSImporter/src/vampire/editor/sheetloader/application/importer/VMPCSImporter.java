@@ -38,6 +38,16 @@ public class VMPCSImporter {
 	
 	private final Objects<ValueViewAttributes> valueViewAtts;
 	
+	private final Objects<MeritViewAttributes> meritViewAtts;
+	
+	private final Objects<MeritEntryViewAttibutes> meritEntryViewAtts;
+	
+	private final Objects<BloodPoolViewAttributes> bloodPoolViewAtts;
+	
+	private final Objects<HealthViewAttributes> healthViewAtts;
+	
+	private final Objects<HealthEntryViewAttributes> healthEntryViewAtts;
+	
 	private final ModelToViewMap modelToViewMap;
 	
 	private final ModelToViewModelMapper viewModelMapper = new ModelToViewModelMapper();
@@ -54,6 +64,11 @@ public class VMPCSImporter {
 			values = new Objects<>(root, Value.class, resources, null);
 			traitViewAtts = new Objects<>(root, TraitViewAttributes.class, resources, fonts);
 			valueViewAtts = new Objects<>(root, ValueViewAttributes.class, resources, fonts);
+			bloodPoolViewAtts = new Objects<>(root, BloodPoolViewAttributes.class, resources, fonts);
+			healthEntryViewAtts = new Objects<>(root, HealthEntryViewAttributes.class, resources, fonts);
+			healthViewAtts = new Objects<>(root, HealthViewAttributes.class, resources, fonts);
+			meritEntryViewAtts = new Objects<>(root, MeritEntryViewAttibutes.class, resources, fonts);
+			meritViewAtts	= new Objects<>(root, MeritViewAttributes.class, resources, fonts);
 			// Loads the ModelToViewProtoMap
 			modelToViewMap = ModelToViewMap.loadModelToViewMap(root.resolve("modeltoviewmap.json"));
 		} catch (JsonParseException | JsonMappingException | ClassCastException | NullPointerException e) {
@@ -69,12 +84,25 @@ public class VMPCSImporter {
 		try{
 			// Loads the Sheet
 			Path sheetFile = root.resolve(ClassToFileMapper.paths.get(Sheet.class));
+			
 			Sheet sheet = new Sheet();
 			Map<String, Object> protoSheet = mapper.readValue(sheetFile.toFile(), Map.class);
+			
 			Data<MetaEntry> meta = loadMeta((List<Map<String, Object>>) protoSheet.get("meta"));
 			sheet.setMeta(meta);
+			
 			Data<Category> categories = loadCategories((List<Map<String, Object>>) protoSheet.get("traits"));
 			sheet.setCategories(categories);
+			
+			BloodPool bloodPool = loadBloodPool((Map<String, Object>) protoSheet.get("bloodpool"));
+			sheet.setBloodPool(bloodPool);
+			
+			Health health = loadHealth((Map<String, Object>) protoSheet.remove("health"));
+			sheet.setHealth(health);
+			
+			
+			
+			
 			return new VampireDocument(sheet, viewModelMapper);
 		}
 		//wrong JSON Format
@@ -87,6 +115,37 @@ public class VMPCSImporter {
 		}
 	}
 	
+	private Health loadHealth(Map<String, Object> protoHealth){
+		int id = (int) protoHealth.remove("mapid");
+		Health health = new Health();
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> protoHealthEntries = (List<Map<String, Object>>) protoHealth.remove("levels");
+		for (Map<String, Object> protoHealthEntry : protoHealthEntries){
+			health.add(loadHealthEntry(protoHealthEntry));
+		}
+		HealthViewAttributes viewAtts = healthViewAtts.getObjectByID(modelToViewMap.getHealthView(id));
+		viewModelMapper.putView(health, viewAtts);
+		return health;
+	}
+	
+	private HealthEntry loadHealthEntry(Map<String, Object> protoHeathEntry){
+		int id = (int) protoHeathEntry.remove("mapid");
+		HealthEntry entry = mapper.convertValue(protoHeathEntry, HealthEntry.class);
+		HealthEntryViewAttributes viewAtts = healthEntryViewAtts.getObjectByID(modelToViewMap.getHealthEntryView(id));
+		viewModelMapper.putView(entry, viewAtts);
+		return entry;
+	}
+	
+	
+	
+	private BloodPool loadBloodPool(Map<String, Object> protoBloodPool){
+		int id = (int) protoBloodPool.remove("mapid");
+		BloodPool bloodPool = mapper.convertValue(protoBloodPool, BloodPool.class);
+		BloodPoolViewAttributes viewAtts = bloodPoolViewAtts.getObjectByID(modelToViewMap.getBloodPoolView(id));
+		viewModelMapper.putView(bloodPool, viewAtts);
+		return bloodPool;
+	}
+	
 	private Data<MetaEntry> loadMeta(List<Map<String, Object>> protoMeta){
 		Data<MetaEntry> meta = new Data<>();
 		for (Map<String, Object> protoMetaEntry : protoMeta){
@@ -97,7 +156,6 @@ public class VMPCSImporter {
 	
 	private MetaEntry loadMetaEntry(Map<String, Object> protoMetaEntry){
 		int id = (int) protoMetaEntry.remove("mapid");
-		ObjectMapper mapper = new ObjectMapper();
 		MetaEntry entry = mapper.convertValue(protoMetaEntry, MetaEntry.class);
 		MetaEntryViewAttributes viewAtts = metaEntryViewAttributes.getObjectByID(modelToViewMap.getMetaView(id));
 		viewModelMapper.putView(entry, viewAtts);
