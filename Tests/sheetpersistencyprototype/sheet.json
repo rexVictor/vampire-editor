@@ -539,50 +539,50 @@
 	    }
 	],
 	"health" : {
+		"mapid":0,
 	    "levels":[
 	        {
 	        	"mapid":0,
 	            "name":"bruised",
-	            "type":null,
+	            "damageType":null,
 	            "penalty":0	            
 	        },
 	        {
 	        	"mapid":1,
 	            "name":"hurt",
-	           	"type":null,
+	           	"damageType":null,
 	            "penalty":1	            
 	        },
 	        {
 	        	"mapid":2,
 	            "name":"injured",
-	            "type":null,
+	            "damageType":null,
 	            "penalty":1	            
 	        },
 	        {
 	        	"mapid":3,
 	            "name":"wounded",
-	            "type":null,
+	            "damageType":null,
 	            "penalty":2	            
 	        },
 	        {
 	        	"mapid":4,
 	            "name":"mauled",
-	            "type":null,
+	            "damageType":null,
 	            "penalty":2	            
 	        },
 	        {
 	        	"mapid":5,
 	            "name":"crippeled",
-	            "type":null,
+	            "damageType":null,
 	            "penalty":5         
 	        },
 	        {
 	        	"mapid":6,
 	            "name":"incapacitated",
-	            "type":null,
+	            "damageType":null,
 	            "penalty":0
 	        }
-	     	
 	    ]
 	},
 	"bloodpool":{

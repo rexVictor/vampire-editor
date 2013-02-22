@@ -8,11 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import vampire.editor.domain.sheet.Category;
-import vampire.editor.domain.sheet.MetaEntry;
-import vampire.editor.domain.sheet.SubCategory;
-import vampire.editor.domain.sheet.Trait;
-import vampire.editor.domain.sheet.Value;
+import vampire.editor.domain.sheet.*;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -34,6 +30,16 @@ public class ModelToViewMap {
 	
 	private final Map<Integer, Integer> valueMap = new HashMap<>();
 	
+	private final Map<Integer, Integer> bloodPoolMap = new HashMap<>();
+	
+	private final Map<Integer, Integer> healthEntryMap = new HashMap<>();
+	
+	private final Map<Integer, Integer> healthMap = new HashMap<>();
+	
+	private final Map<Integer, Integer> meritEntryMap = new HashMap<>();
+	
+	private final Map<Integer, Integer> meritMap = new HashMap<>();
+	
 	private final Map<Class<?>, Map<Integer, Integer>> allMaps = new HashMap<>();
 	
 	public ModelToViewMap(){
@@ -42,7 +48,29 @@ public class ModelToViewMap {
 		allMaps.put(SubCategory.class, subcategoryMap);
 		allMaps.put(Trait.class, traitMap);
 		allMaps.put(Value.class, valueMap);
+		allMaps.put(BloodPool.class, bloodPoolMap);
+		allMaps.put(HealthEntry.class, healthEntryMap);
+		allMaps.put(Health.class, healthMap);
+		allMaps.put(Merit.class, meritEntryMap);
+		allMaps.put(Merits.class, meritMap);
 	}
+	
+	public void putHealthPair(int model, int view){
+		healthMap.put(model, view);
+	}
+	
+	public void putMeritEntryPair(int model, int view){
+		meritEntryMap.put(model, view);
+	}
+	
+	public void putMeritPair(int model, int view){
+		meritMap.put(model, view);
+	}
+	
+	public void putHealthEntryPair(int model, int view){
+		healthEntryMap.put(model, view);
+	}
+	
 	
 	public void putMetaPair(int model, int view){
 		metaMap.put(model, view);
@@ -54,6 +82,22 @@ public class ModelToViewMap {
 	
 	public void putCategoryPair(int model, int view){
 		categoryMap.put(model, view);
+	}
+	
+	public int getHealthEntryView(int model){
+		return healthEntryMap.get(model);
+	}
+	
+	public int getHealthView(int model){
+		return healthMap.get(model);
+	}
+	
+	public int getMeritsView(int model){
+		return meritMap.get(model);
+	}
+	
+	public int getMeritEntryView(int model){
+		return meritEntryMap.get(model);
 	}
 	
 	public int getCategoryView(int model){
@@ -80,6 +124,14 @@ public class ModelToViewMap {
 		valueMap.put(model, view);
 	}
 	
+	public void putBloodPoolPair(int model, int view){
+		bloodPoolMap.put(model, view);
+	}
+	
+	public int getBloodPoolView(int model){
+		return bloodPoolMap.get(model);
+	}
+	
 	public int getValueView(int model){
 		return valueMap.get(model);
 	}
@@ -100,6 +152,8 @@ public class ModelToViewMap {
 		map.put("categories", makeMap(categoryMap));
 		map.put("traits", makeMap(traitMap));
 		map.put("values", makeMap(valueMap));
+		map.put("bloodpool", makeMap(bloodPoolMap).get(0));
+		map.put("healthentries", makeMap(healthEntryMap));
 		return map;
 	}
 	
