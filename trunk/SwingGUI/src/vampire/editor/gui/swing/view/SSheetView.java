@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import com.jgoodies.forms.debug.FormDebugPanel;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -17,22 +18,28 @@ import vampire.editor.plugin.api.view.sheet.SheetView;
 
 public class SSheetView implements SheetView{
 	
-	private final JPanel panel = new JPanel();
+	private final JPanel panel = new FormDebugPanel();
 	
 	private final FormLayout layout = new FormLayout();
 	
 	private final List<SCategoryView> categoryViews = new ArrayList<>();
 	
 	private MetaView metaView;
+	
+	private MiscView miscView;
 
 	
+	public MiscView getMiscView() {
+		return miscView;
+	}
+
 	public SSheetView(){
 		initialize();
 	}
 	
 	private void initialize(){
 		panel.setLayout(layout);
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
+		layout.appendColumn(ColumnSpec.decode("18cm"));
 		
 	}
 
@@ -81,6 +88,20 @@ public class SSheetView implements SheetView{
 	@Override
 	public List<? extends MetaEntryView> getMetaViews() {
 		return metaView.getEntries();
+	}
+	
+	public void setMiscView(MiscView view){
+		this.miscView = view;
+		layout.appendRow(RowSpec.decode("pref"));
+		
+		CellConstraints constraints = new CellConstraints();
+		constraints.gridHeight	=	1;
+		constraints.gridWidth	=	1;
+		constraints.gridX		=	1;
+		constraints.gridY		=	layout.getRowCount();
+		constraints.hAlign		=	CellConstraints.FILL;
+		panel.add(view.getPanel(), constraints);
+		
 	}
 	
 	

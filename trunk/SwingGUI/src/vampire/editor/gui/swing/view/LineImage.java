@@ -113,7 +113,7 @@ public class LineImage {
 		@Override
 		public void ancestorAdded(AncestorEvent event) {
 			if (getWidth()!=0)
-				image = image.getScaledInstance(getWidth(), -1, Image.SCALE_SMOOTH);
+				image = image.getScaledInstance(getWidth(), 10, Image.SCALE_SMOOTH);
 			refreshTextLayout();
 		}
 
@@ -127,7 +127,7 @@ public class LineImage {
 		
 		@Override
 		public int getHeight(){
-			return (int) (font.getSize()*1.4);
+			return (int) (font.getSize()*1.2);
 		}
 		
 		

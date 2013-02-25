@@ -13,8 +13,8 @@ import javax.swing.JTextField;
 
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.DamageType;
-import vampire.editor.plugin.api.domain.sheet.view.HeathEntryViewAttributesAPI;
-import vampire.editor.plugin.api.view.events.HealthViewEntryListener;
+import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;
+import vampire.editor.plugin.api.view.events.HealthEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.HealthEntryView;
 
 public class SHealthEntryView implements HealthEntryView, MouseListener{
@@ -25,7 +25,7 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 	
 	private final JTextField penaltyField = new JTextField();
 	
-	private final List<HealthViewEntryListener> listeners = new LinkedList<>();
+	private final List<HealthEntryViewListener> listeners = new LinkedList<>();
 	
 	private final Lock lock = new ReentrantLock();
 	
@@ -39,7 +39,7 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 	
 	
 
-	public SHealthEntryView(DictionaryAPI dictionary, HeathEntryViewAttributesAPI viewAtts) {
+	public SHealthEntryView(DictionaryAPI dictionary, HealthEntryViewAttributesAPI viewAtts) {
 		super();
 		this.dictionary = dictionary;
 		descriptionField.setBorder(null);
@@ -51,7 +51,7 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 	}
 
 	@Override
-	public void addListener(HealthViewEntryListener listener) {
+	public void addListener(HealthEntryViewListener listener) {
 		lock.lock();
 		try{
 			listeners.add(listener);
@@ -79,7 +79,7 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 		SHeathEntryViewEvent event = makeEvent();
 		lock.lock();
 		try{
-			for (HealthViewEntryListener l : listeners){
+			for (HealthEntryViewListener l : listeners){
 				l.damageTypeChanged(event);
 			}
 		}

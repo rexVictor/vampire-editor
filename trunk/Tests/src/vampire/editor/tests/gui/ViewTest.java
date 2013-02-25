@@ -13,7 +13,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import org.junit.Test;
 
 
-import vampire.editor.application.SheetControllerFactory;
+import vampire.editor.application.sheet.controller.SheetControllerFactory;
 import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.gui.swing.application.SheetViewFactory;
 import vampire.editor.gui.swing.view.SSheetView;
@@ -33,7 +33,6 @@ public class ViewTest {
 		VMPCSImporter importer = new VMPCSImporter(resourcesHolder, path);
 		VampireDocument sheet = importer.load();
 		importer = null;
-		
 		SheetViewFactory factory = new SheetViewFactory(resourcesHolder);
 		SSheetView view = factory.buildSheetView(sheet);
 		
@@ -52,8 +51,6 @@ public class ViewTest {
 			Thread.sleep(10);
 		}
 		assertTrue(true);
-		
-		
 		
 	}
 	

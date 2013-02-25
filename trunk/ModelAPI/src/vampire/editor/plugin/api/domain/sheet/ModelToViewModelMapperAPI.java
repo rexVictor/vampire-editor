@@ -1,10 +1,6 @@
 package vampire.editor.plugin.api.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.*;
 
 public interface ModelToViewModelMapperAPI {
 
@@ -17,6 +13,16 @@ public interface ModelToViewModelMapperAPI {
 	public ValueViewAttributesAPI getViewAttributes(ValueAPI value);
 	
 	public MetaEntryViewAttributesAPI getViewAttributes(MetaEntryAPI metaEntry);
+	
+	public HealthEntryViewAttributesAPI getViewAttributes(HealthEntryAPI healthEntry);
+	
+	public HealthViewAttibutesAPI getViewAttributes(HealthAPI health);
+	
+	public BloodPoolViewAttributesAPI getViewAttributes(BloodPoolAPI bloodPool);
+	
+	public MeritEntryViewAttibutesAPI getViewAttributes(MeritAPI merit);
+	
+	public MeritViewAttributesAPI getViewAttributes(MeritsAPI merits);
 	
 	
 

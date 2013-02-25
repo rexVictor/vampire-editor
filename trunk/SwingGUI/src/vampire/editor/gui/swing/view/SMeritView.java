@@ -1,10 +1,14 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.jgoodies.forms.debug.FormDebugPanel;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
@@ -16,9 +20,11 @@ import vampire.editor.plugin.api.view.sheet.MeritView;
 
 public class SMeritView implements MeritView{
 	
-	private final JPanel panel = new JPanel();
+	private final JPanel panel = new FormDebugPanel();
 	
-	private final FormLayout layout = new FormLayout("5px, pref:GROW, 5px, pref:GROW, 5px", "pref");
+	private final FormLayout layout = new FormLayout("5px, 30px, 5px, pref:GROW, 5px", "pref");
+	
+	private final List<MeritEntryView> entries = new LinkedList<>();
 	
 	public SMeritView(String title, DictionaryAPI dictionary, MeritViewAttributesAPI viewAtts){
 		panel.setBackground(Color.WHITE);
@@ -44,6 +50,7 @@ public class SMeritView implements MeritView{
 	@Override
 	public void addMeritEntryView(MeritEntryView view) {
 		if (view instanceof SMeritEntryView){
+			entries.add(view);
 			SMeritEntryView entryView = (SMeritEntryView) view;
 			layout.appendRow(RowSpec.decode("pref"));
 			
@@ -58,6 +65,8 @@ public class SMeritView implements MeritView{
 			
 			constraints.gridX	=	4;
 			
+			constraints.hAlign	=	CellConstraints.FILL;
+			
 			panel.add(entryView.getTextField(), constraints);
 		}
 	}
@@ -65,6 +74,12 @@ public class SMeritView implements MeritView{
 
 	public JPanel getPanel() {
 		return panel;
+	}
+
+
+	@Override
+	public List<MeritEntryView> getEntries() {
+		return Collections.unmodifiableList(entries);
 	}
 	
 	

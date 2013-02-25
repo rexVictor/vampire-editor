@@ -498,8 +498,32 @@
 		"viewatts"	:	0
 	},
 	"healthentries"	:	[
-	    {
+		 {
 	    	"model"		:	0,
+	    	"viewatts"	:	0
+	    },
+	    {
+	    	"model"		:	1,
+	    	"viewatts"	:	0
+	    },
+	     {
+	    	"model"		:	2,
+	    	"viewatts"	:	0
+	    },
+	     {
+	    	"model"		:	3,
+	    	"viewatts"	:	0
+	    },
+	     {
+	    	"model"		:	4,
+	    	"viewatts"	:	0
+	    },
+	     {
+	    	"model"		:	5,
+	    	"viewatts"	:	0
+	    },
+	     {
+	    	"model"		:	6,
 	    	"viewatts"	:	0
 	    }
 	],
@@ -507,15 +531,24 @@
 		"model"		:	0,
 		"viewatts"	:	0
 	},
-	"merits"	:	[
+	"merits"	: [	
 	    {
 	    	"model"		:	0,
 	    	"viewatts"	:	0
+	    },
+	    {
+	    	"model"		:	1,
+	    	"viewatts"	:	0
 	    }
 	],
+	    
 	"meritentries"	:	[
 		{
 			"model"		:	0,
+			"viewatts"	:	0
+		},
+		{
+			"model"		:	1,
 			"viewatts"	:	0
 		}
 	]

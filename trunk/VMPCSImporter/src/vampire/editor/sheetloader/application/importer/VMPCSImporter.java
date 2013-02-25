@@ -3,6 +3,7 @@ package vampire.editor.sheetloader.application.importer;
 import java.awt.Font;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +49,8 @@ public class VMPCSImporter {
 	
 	private final Objects<HealthEntryViewAttributes> healthEntryViewAtts;
 	
+	private final Map<Class<?>, Objects<?>> allViewAtts = new HashMap<>();
+	
 	private final ModelToViewMap modelToViewMap;
 	
 	private final ModelToViewModelMapper viewModelMapper = new ModelToViewModelMapper();
@@ -77,6 +80,16 @@ public class VMPCSImporter {
 		} catch (IOException e){
 			throw new VMPCSImportException(e);
 		}
+		allViewAtts.put(MeritViewAttributes.class, meritViewAtts);
+		allViewAtts.put(MeritEntryViewAttibutes.class, meritEntryViewAtts);
+		allViewAtts.put(HealthViewAttributes.class, healthViewAtts);
+		allViewAtts.put(HealthEntryViewAttributes.class, healthEntryViewAtts);
+		allViewAtts.put(CategoryViewAttributes.class, catViewAtts);
+		allViewAtts.put(SubCategoryViewAttributes.class, subCatViewAtts);
+		allViewAtts.put(TraitViewAttributes.class, traitViewAtts);
+		allViewAtts.put(ValueViewAttributes.class, valueViewAtts);
+		allViewAtts.put(BloodPoolViewAttributes.class, bloodPoolViewAtts);
+		allViewAtts.put(MetaEntryViewAttributes.class, metaEntryViewAttributes);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -100,8 +113,13 @@ public class VMPCSImporter {
 			Health health = loadHealth((Map<String, Object>) protoSheet.remove("health"));
 			sheet.setHealth(health);
 			
+			Merits merits = loadMerits((Map<String, Object>) protoSheet.remove("merits"));
+			merits.setName("merits");
+			sheet.setMerits(merits);
 			
-			
+			Merits flaws = loadMerits((Map<String, Object>) protoSheet.remove("flaws"));
+			flaws.setName("flaws");
+			sheet.setFlaws(flaws);
 			
 			return new VampireDocument(sheet, viewModelMapper);
 		}
@@ -113,6 +131,23 @@ public class VMPCSImporter {
 		catch (IOException e) {
 			throw new VMPCSImportException(e);
 		}
+	}
+	
+	private Merits loadMerits(Map<String, Object> protoMerits){
+		int id = (int) protoMerits.remove("mapid");
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> entries = (List<Map<String, Object>>) protoMerits.remove("entries");
+		Merits merits = new Merits();
+		for (Map<String, Object> map : entries){
+			merits.add(loadMerit(map));
+		}
+		MeritViewAttributes viewAtts = meritViewAtts.getObjectByID(modelToViewMap.getMeritsView(id));
+		viewModelMapper.putView(merits, viewAtts);
+		return merits;
+	}
+	
+	private Merit loadMerit(Map<String, Object> protoMerit){
+		return loadEntry(protoMerit, Merit.class, MeritEntryViewAttibutes.class);
 	}
 	
 	private Health loadHealth(Map<String, Object> protoHealth){
@@ -128,12 +163,17 @@ public class VMPCSImporter {
 		return health;
 	}
 	
-	private HealthEntry loadHealthEntry(Map<String, Object> protoHeathEntry){
-		int id = (int) protoHeathEntry.remove("mapid");
-		HealthEntry entry = mapper.convertValue(protoHeathEntry, HealthEntry.class);
-		HealthEntryViewAttributes viewAtts = healthEntryViewAtts.getObjectByID(modelToViewMap.getHealthEntryView(id));
+	private <V, W> V loadEntry(Map<String, Object> protoEntry, Class<V> model, Class<W> view){
+		int id = (int) protoEntry.remove("mapid");
+		V entry = mapper.convertValue(protoEntry, model);
+		@SuppressWarnings("unchecked")
+		W viewAtts = (W) allViewAtts.get(view).getObjectByID(modelToViewMap.getView(model, id));
 		viewModelMapper.putView(entry, viewAtts);
 		return entry;
+	}
+	
+	private HealthEntry loadHealthEntry(Map<String, Object> protoHeathEntry){
+		return loadEntry(protoHeathEntry, HealthEntry.class, HealthEntryViewAttributes.class);
 	}
 	
 	
@@ -155,11 +195,7 @@ public class VMPCSImporter {
 	}
 	
 	private MetaEntry loadMetaEntry(Map<String, Object> protoMetaEntry){
-		int id = (int) protoMetaEntry.remove("mapid");
-		MetaEntry entry = mapper.convertValue(protoMetaEntry, MetaEntry.class);
-		MetaEntryViewAttributes viewAtts = metaEntryViewAttributes.getObjectByID(modelToViewMap.getMetaView(id));
-		viewModelMapper.putView(entry, viewAtts);
-		return entry;
+		return loadEntry(protoMetaEntry, MetaEntry.class, MetaEntryViewAttributes.class);
 	}
 	
 	private Data<Category> loadCategories(List<Map<String, Object>> protoCategories){ 

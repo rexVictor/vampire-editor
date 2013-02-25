@@ -1,11 +1,11 @@
 package vampire.editor.plugin.api.view.sheet;
 
 import vampire.editor.plugin.api.domain.sheet.DamageType;
-import vampire.editor.plugin.api.view.events.HealthViewEntryListener;
+import vampire.editor.plugin.api.view.events.HealthEntryViewListener;
 
 public interface HealthEntryView {
 	
-	public void addListener(HealthViewEntryListener listener);
+	public void addListener(HealthEntryViewListener listener);
 	
 	public void setDamageType(DamageType damageType);
 	

@@ -2,7 +2,7 @@ package vampire.editor.plugin.api.domain.sheet.view;
 
 import java.awt.Font;
 
-public interface HeathEntryViewAttributesAPI {
+public interface HealthEntryViewAttributesAPI {
 
 	public Font getFont();
 

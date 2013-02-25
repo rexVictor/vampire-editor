@@ -22,6 +22,8 @@ public class SheetController implements SheetControllerAPI {
 	
 	private final List<MetaEntryControllerAPI> metaEntryControllers = new ArrayList<>();
 	
+	private MiscController miscController;
+	
 	private final Map<String, MetaEntryControllerAPI> metaEntryControllerMap = new HashMap<>();
 
 	public SheetController(Sheet sheet, SheetView view) {
@@ -55,7 +57,14 @@ public class SheetController implements SheetControllerAPI {
 	public MetaEntryControllerAPI getMetaEntryController(String key) {
 		return metaEntryControllerMap.get(key);
 	}
-	
+
+	public MiscController getMiscController() {
+		return miscController;
+	}
+
+	public void setMiscController(MiscController miscController) {
+		this.miscController = miscController;
+	}
 	
 	
 	

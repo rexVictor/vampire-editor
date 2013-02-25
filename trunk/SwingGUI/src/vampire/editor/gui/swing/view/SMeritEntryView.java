@@ -1,5 +1,7 @@
 package vampire.editor.gui.swing.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -12,7 +14,7 @@ import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttibutesAPI;
 import vampire.editor.plugin.api.view.events.MeritEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.MeritEntryView;
 
-public class SMeritEntryView implements MeritEntryView{
+public class SMeritEntryView implements MeritEntryView, ActionListener{
 	
 	private final JTextField textField = new JTextField();
 	
@@ -31,6 +33,8 @@ public class SMeritEntryView implements MeritEntryView{
 		costField.setFont(viewAtts.getFont());
 		textField.setBorder(null);
 		costField.setBorder(null);
+		textField.addActionListener(this);
+		costField.addActionListener(this);
 	}
 
 	@Override
@@ -60,6 +64,29 @@ public class SMeritEntryView implements MeritEntryView{
 
 	public JTextField getCostField() {
 		return costField;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String name = dictionary.getKey(textField.getText());
+		String costString = costField.getText();
+		try{
+			int cost = Integer.parseInt(costString);
+			SMeritEntryViewEvent event = new SMeritEntryViewEvent(cost, name);
+			if (e.getSource() == costField){
+				for (MeritEntryViewListener l : listeners){
+					l.costChanged(event);
+				}
+			}
+			else if (e.getSource() == textField){
+				for (MeritEntryViewListener l : listeners){
+					l.nameChanged(event);
+				}
+			}
+		}
+		catch(NumberFormatException exception){
+			
+		}
 	}
 	
 	

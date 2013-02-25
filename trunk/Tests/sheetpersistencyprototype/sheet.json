@@ -531,13 +531,26 @@
 	        ]
 	    }	        
 	],
-	"merits":[
-	    {
-	    	"mapid":0,
-	        "cost":0,
-	        "text":""
-	    }
-	],
+	"merits":{
+		 "mapid"	:	0,
+		 "entries"	:	[
+		 	{
+	    		"mapid":0,
+	        	"cost":0,
+	        	"name":""
+	        }
+	    ]
+	},
+	"flaws":{
+		 "mapid"	:	1,
+		 "entries"	:	[
+		 	{
+	    		"mapid":1,
+	        	"cost":0,
+	        	"name":""
+	        }
+	    ]
+	},
 	"health" : {
 		"mapid":0,
 	    "levels":[

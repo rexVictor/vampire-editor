@@ -54,14 +54,13 @@ public class STraitView implements TraitView, ActionListener{
 		textField.setBorder(null);
 		textField.setBackground(Color.WHITE);
 		textField.setFont(attributes.getFont());
-		
 		panel.setBackground(Color.WHITE);
 		textField.addActionListener(this);
 		switch (attributes.getOrientation()){
 			case HORIZONTAL: {
-				layout.appendColumn(ColumnSpec.decode("pref:GROW"));
+				layout.appendColumn(ColumnSpec.decode("pref:GROW(0.9)"));
 				layout.appendColumn(ColumnSpec.decode("1px"));
-				layout.appendColumn(ColumnSpec.decode("min"));
+				layout.appendColumn(ColumnSpec.decode("min:GROW(0.1)"));
 				layout.appendRow(RowSpec.decode("pref"));
 				
 				CellConstraints constraints = new CellConstraints();
@@ -102,6 +101,8 @@ public class STraitView implements TraitView, ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println(textField.getPreferredSize().width);
+		textField.invalidate();
 		String input = textField.getText();
 		String translated = dictionary.getKey(input);
 		STraitViewEvent event = new STraitViewEvent(translated);

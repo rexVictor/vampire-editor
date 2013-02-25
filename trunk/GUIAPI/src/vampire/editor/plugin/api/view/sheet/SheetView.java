@@ -10,5 +10,7 @@ public interface SheetView {
 	public List<? extends CategoryView> getCategoryViews();
 	
 	public List<? extends MetaEntryView> getMetaViews();
+	
+	public MiscView getMiscView();
 
 }
