@@ -29,7 +29,12 @@ public class ResourcesHolderTestImplementation implements ResourcesHolderAPI{
 
 	@Override
 	public Font getFont(String key) {
-		return fonts.get(key);
+		Font font = fonts.get(key);
+		if (font == null){
+			font = new Font(key,0,0);
+		}
+		
+		return font;
 	}
 
 	@Override

@@ -2,9 +2,9 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
-import vampire.editor.plugin.api.domain.sheet.view.HeathEntryViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;
 
-public class HealthEntryViewAttributes implements HeathEntryViewAttributesAPI, FontSettable{
+public class HealthEntryViewAttributes implements HealthEntryViewAttributesAPI, FontSettable{
 	
 	private Font font;
 

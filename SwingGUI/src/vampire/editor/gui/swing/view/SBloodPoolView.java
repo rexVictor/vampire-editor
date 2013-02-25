@@ -1,5 +1,6 @@
 package vampire.editor.gui.swing.view;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -40,7 +41,8 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 	private int maxValue = 0;
 	
 	public SBloodPoolView(BloodPoolViewAttributesAPI viewAtts, DictionaryAPI dictionary){
-		squareFont = new Font("Sans Serif", 0, viewAtts.getFont().getSize());
+		panel.setBackground(Color.WHITE);
+		squareFont = new Font("Sans Serif", 0, viewAtts.getSize());
 		panel.setLayout(layout);
 		layout.appendColumn(ColumnSpec.decode("5px"));
 		for (int i = 0; i < 10; i++){
@@ -51,7 +53,7 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 		textField.setBorder(null);
 		textField.setFont(viewAtts.getFont());
 		textField.setEditable(false);
-		textField.setText(dictionary.getValue("bloopool"));
+		textField.setText(dictionary.getValue("bloodpool"));
 		CellConstraints constraints = new CellConstraints();
 		constraints.gridHeight = 1;
 		constraints.gridWidth = layout.getColumnCount()-2;

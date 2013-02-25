@@ -12,7 +12,9 @@ public class Sheet implements SheetAPI {
 	
 	private Data<Category> categories;
 	
-	private Data<Merit> merits;
+	private Merits merits;
+	
+	private Merits flaws;
 	
 	private Health health;
 	
@@ -55,10 +57,23 @@ public class Sheet implements SheetAPI {
 	}
 	
 	public void setHealth(Health health){
-		if (health == null){
+		if (this.health == null){
 			this.health = health;
 		}
 	}
+	
+	public void setMerits(Merits merits){
+		if (this.merits == null){
+			this.merits = merits;
+		}
+	}
+	
+	public void setFlaws(Merits merits){
+		if (this.flaws == null){
+			this.flaws = merits;
+		}
+	}
+	
 
 	@Override
 	public Data<MetaEntry> getMeta() {
@@ -70,11 +85,14 @@ public class Sheet implements SheetAPI {
 		return categories;
 	}
 
-	public Data<Merit> getMerits() {
+	public Merits getMerits() {
 		return merits;
 	}
+	public Merits getFlaws() {
+		return flaws;
+	}
 
-	public BloodPool getBloodpool() {
+	public BloodPool getBloodPool() {
 		return bloodPool;
 	}
 	
@@ -86,6 +104,7 @@ public class Sheet implements SheetAPI {
 	public Health getHealth(){
 		return health;
 	}
+	
 
 	
 	

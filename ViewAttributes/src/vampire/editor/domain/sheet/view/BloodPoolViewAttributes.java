@@ -8,6 +8,8 @@ public class BloodPoolViewAttributes implements BloodPoolViewAttributesAPI, Font
 	
 	private Font font;
 	
+	private int size;
+	
 	@Override
 	public Font getFont() {
 		return font;
@@ -16,5 +18,16 @@ public class BloodPoolViewAttributes implements BloodPoolViewAttributesAPI, Font
 	public void setFont(Font font) {
 		this.font = font;
 	}
+
+	@Override
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+	
+	
 	
 }

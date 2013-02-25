@@ -10,8 +10,8 @@ import javax.swing.JTabbedPane;
 
 import org.junit.Test;
 
-import vampire.editor.application.SheetControllerFactory;
 import vampire.editor.application.sheet.controller.SheetController;
+import vampire.editor.application.sheet.controller.SheetControllerFactory;
 import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.gui.swing.application.SheetViewFactory;
 import vampire.editor.gui.swing.view.SSheetView;

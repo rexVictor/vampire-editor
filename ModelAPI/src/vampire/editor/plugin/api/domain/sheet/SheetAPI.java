@@ -8,5 +8,13 @@ public interface SheetAPI {
 	public DataAPI<? extends MetaEntryAPI> getMeta();
 
 	public DataAPI<? extends CategoryAPI> getCategories();
+	
+	public BloodPoolAPI getBloodPool();
+	
+	public HealthAPI	getHealth();
+	
+	public MeritsAPI	getMerits();
+	
+	public MeritsAPI	getFlaws();
 
 }

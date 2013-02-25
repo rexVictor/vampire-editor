@@ -30,7 +30,7 @@ public class ModelToViewModelMapper implements ModelToViewModelMapperAPI{
 	
 	private final Map<Merits, MeritViewAttributes> meritViewAtts = new IdentityHashMap<>();
 	
-	private final Map<Class<?>, Map<?,?>> map = new HashMap<>();
+	private final Map<Class<?>, Map<?, ?>> map = new HashMap<>();
 	
 	public ModelToViewModelMapper(){
 		map.put(Category.class, catViewAtts);
@@ -45,7 +45,13 @@ public class ModelToViewModelMapper implements ModelToViewModelMapperAPI{
 		map.put(Merits.class, meritViewAtts);
 	}
 	
-	public HealthEntryViewAttributes getViewAttributes(HealthEntryAPI healthEntryAPI){
+	public <V, W> void putView(V model, W view){
+		@SuppressWarnings("unchecked")
+		Map<V, W> map = (Map<V, W>) this.map.get(model.getClass());
+		map.put(model, view);
+	}
+	
+	public HealthEntryViewAttributesAPI getViewAttributes(HealthEntryAPI healthEntryAPI){
 		return healthEntryViewAtts.get(healthEntryAPI);
 	}
 	
@@ -121,6 +127,21 @@ public class ModelToViewModelMapper implements ModelToViewModelMapperAPI{
 			return map.get(object);
 		else
 			return null;
+	}
+
+	@Override
+	public HealthViewAttibutesAPI getViewAttributes(HealthAPI health) {
+		return healthViewAtts.get(health);
+	}
+
+	@Override
+	public MeritEntryViewAttibutesAPI getViewAttributes(MeritAPI merit) {
+		return meritEntryViewAtts.get(merit);
+	}
+	
+	@Override
+	public MeritViewAttributesAPI getViewAttributes(MeritsAPI merit) {
+		return meritViewAtts.get(merit);
 	}
 
 }

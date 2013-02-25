@@ -1,6 +1,7 @@
 package vampire.editor.gui.swing.application;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import vampire.editor.domain.sheet.view.*;
@@ -9,6 +10,7 @@ import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.*;
+import vampire.editor.plugin.api.view.sheet.HealthView;
 
 public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetViewFactory{
 	
@@ -32,7 +34,22 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		for (SCategoryView categoryView : categoryViews){
 			sheetView.add(categoryView);
 		}
+		MiscView view = buildAdvantageView(sheet.getBloodPool(), 
+				sheet.getHealth(), sheet.getMerits(), sheet.getFlaws(), mapper);
+		sheetView.setMiscView(view);
 		return sheetView;
+	}
+	
+	private MiscView buildAdvantageView(
+												BloodPoolAPI bloodPool, HealthAPI health,
+												MeritsAPI merits, MeritsAPI flaws, ModelToViewModelMapperAPI mapper){
+		SBloodPoolView bloodPoolView = buildBloodPoolView(bloodPool, mapper);
+		HealthView healthView = buildHealthView(health, mapper);
+		SMeritView meritView = buildMeritsView(merits, mapper);
+		SMeritView flawView = buildMeritsView(flaws, mapper);
+		MiscView view = new MiscView(bloodPoolView, healthView, meritView, flawView);
+		
+		return view;
 	}
 	
 	private SMetaView buildMetaView(DataAPI<? extends MetaEntryAPI> metas, ModelToViewModelMapperAPI mapper){
@@ -111,6 +128,64 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		view.setValue(value.getValue());
 		view.setTempValue(value.getTempValue());
 		return view;
+	}
+	
+	private SMeritView buildMeritsView(MeritsAPI merits, ModelToViewModelMapperAPI mapper){
+		SMeritView view = new SMeritView(merits.getName(), dictionary, mapper.getViewAttributes(merits));
+		@SuppressWarnings("unchecked")
+		List<SMeritEntryView> entryViews = buildMeritEntryViews((DataAPI<? extends MeritAPI>) merits, mapper);
+		for (SMeritEntryView entryView : entryViews){
+			view.addMeritEntryView(entryView);
+		}
+		return view;
+	}
+	
+	private List<SMeritEntryView> buildMeritEntryViews(DataAPI<? extends MeritAPI> merits, ModelToViewModelMapperAPI mapper){
+		List<SMeritEntryView> entryViews = new LinkedList<>();
+		for (MeritAPI entry : merits){
+			entryViews.add(buildMeritEntryView(entry, mapper));
+		}
+		return entryViews;
+	}
+	
+	private SMeritEntryView buildMeritEntryView(MeritAPI merit, ModelToViewModelMapperAPI mapper){
+		SMeritEntryView view = new SMeritEntryView(dictionary, mapper.getViewAttributes(merit));
+		view.setCost(merit.getCost());
+		view.setText(merit.getName());
+		return view;
+	}
+	
+	private SBloodPoolView buildBloodPoolView(BloodPoolAPI bloodPool, ModelToViewModelMapperAPI mapper){
+		SBloodPoolView view = new SBloodPoolView(mapper.getViewAttributes(bloodPool), dictionary);
+		view.setMaxValue(bloodPool.getMaxValue());
+		view.setValue(bloodPool.getValue());
+		return view;
+	}
+	
+	private HealthView buildHealthView(HealthAPI health, ModelToViewModelMapperAPI mapper){
+		HorizontalHealthView healthView = new HorizontalHealthView(dictionary, mapper.getViewAttributes(health));
+		@SuppressWarnings("unchecked")
+		List<HorizontalHealthEntryView> entryViews = buildHealthEntryViews((DataAPI<? extends HealthEntryAPI>) health, mapper);
+		for (HorizontalHealthEntryView view : entryViews){
+			healthView.addHealthEntryView(view);
+		}
+		return healthView;
+	}
+	
+	private List<HorizontalHealthEntryView> buildHealthEntryViews(DataAPI<? extends HealthEntryAPI> healthEntries, ModelToViewModelMapperAPI mapper){
+		List<HorizontalHealthEntryView> entryViews = new LinkedList<>();
+		for (HealthEntryAPI entry : healthEntries){
+			entryViews.add(buildHealthEntryView(entry, mapper));
+		}
+		return entryViews;
+	}
+	
+	private HorizontalHealthEntryView buildHealthEntryView(HealthEntryAPI healthEntry, ModelToViewModelMapperAPI mapper){
+		HorizontalHealthEntryView entryView = new HorizontalHealthEntryView(dictionary, mapper.getViewAttributes(healthEntry));
+		entryView.setDamageType(healthEntry.getDamageType());
+		entryView.setDescription(healthEntry.getName());
+		entryView.setPenalty(healthEntry.getPenalty());
+		return entryView;
 	}
 
 }

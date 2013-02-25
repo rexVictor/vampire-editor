@@ -94,5 +94,13 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 	public Iterator<W> iterator() {
 		return new DataIterator();
 	}
+	
+	public int size(){
+		return entries.size();
+	}
+	
+	public W get(int i){
+		return entries.get(i);
+	}
 
 }

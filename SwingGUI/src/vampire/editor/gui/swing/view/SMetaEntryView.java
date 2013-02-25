@@ -58,7 +58,10 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 		}
 		else {
 			content = new JTextArea();
-			((JTextArea) content).setRows(viewAttributes.getLineCount());
+			JTextArea area = (JTextArea) content;
+			area.setRows(viewAttributes.getLineCount());
+			area.setLineWrap(true);
+			area.setWrapStyleWord(true);
 			
 			content.getDocument().addDocumentListener(this);
 		}
