@@ -2,7 +2,12 @@ package vampire.editor.sheetloader.application.importer;
 
 import java.awt.Font;
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +25,18 @@ import vampire.editor.sheetloader.common.ClassToFileMapper;
 import vampire.editor.sheetloader.common.ModelToViewMap;
 
 public class VMPCSImporter {
+	
+	private static int id = 0;
+	
+	private static final Path temp = Paths.get(System.getProperty("java.io.tmpdir"));
+	
+	static{
+		try {
+			remove0(temp.resolve("vampireeditor"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	private final Path root;
 	
@@ -57,7 +74,16 @@ public class VMPCSImporter {
 	
 	public VMPCSImporter(ResourcesHolderAPI resources, Path path) throws VMPCSImportException{
 		super();
-		this.root = path;
+		try {
+			this.root = uncompress(path);
+		} catch (IOException e1) {
+			try {
+				remove();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			throw new VMPCSImportException(e1);
+		}
 		try {
 			// Loads all "leaves".
 			fonts = new Objects<>(root, Font.class, resources, null);
@@ -78,6 +104,11 @@ public class VMPCSImporter {
 			//illegal json format
 			throw new VMPCSImportException(e);
 		} catch (IOException e){
+			try {
+				remove();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			throw new VMPCSImportException(e);
 		}
 		allViewAtts.put(MeritViewAttributes.class, meritViewAtts);
@@ -91,17 +122,30 @@ public class VMPCSImporter {
 		allViewAtts.put(BloodPoolViewAttributes.class, bloodPoolViewAtts);
 		allViewAtts.put(MetaEntryViewAttributes.class, metaEntryViewAttributes);
 	}
+	
+	private Path uncompress(Path path) throws IOException{
+		id++;
+		FileSystem fs = FileSystems.newFileSystem(path, null);
+		Path root = fs.getPath("/");
+		Path target = Files.createDirectories(temp.resolve("vampireeditor").resolve(id+""));
+		DirectoryStream<Path> stream = Files.newDirectoryStream(root);
+		for (Path path2 : stream){
+			Files.copy(path2, target.resolve(path2.getFileName().toString()));
+		}
+		return target;
+	}
 
 	@SuppressWarnings("unchecked")
 	public VampireDocument load() throws VMPCSImportException{
+		VampireDocument document = null;
 		try{
 			// Loads the Sheet
 			Path sheetFile = root.resolve(ClassToFileMapper.paths.get(Sheet.class));
 			
-			Sheet sheet = new Sheet();
+			final Sheet sheet = new Sheet();
 			Map<String, Object> protoSheet = mapper.readValue(sheetFile.toFile(), Map.class);
 			
-			Data<MetaEntry> meta = loadMeta((List<Map<String, Object>>) protoSheet.get("meta"));
+			Meta meta = loadMeta((List<Map<String, Object>>) protoSheet.get("meta"));
 			sheet.setMeta(meta);
 			
 			Data<Category> categories = loadCategories((List<Map<String, Object>>) protoSheet.get("traits"));
@@ -121,7 +165,9 @@ public class VMPCSImporter {
 			flaws.setName("flaws");
 			sheet.setFlaws(flaws);
 			
-			return new VampireDocument(sheet, viewModelMapper);
+			sheet.setBorderKey((String) protoSheet.remove("border"));
+			
+			document = new VampireDocument(sheet, viewModelMapper);
 		}
 		//wrong JSON Format
 		catch(JsonParseException | JsonMappingException | ClassCastException e){
@@ -131,6 +177,14 @@ public class VMPCSImporter {
 		catch (IOException e) {
 			throw new VMPCSImportException(e);
 		}
+		finally{
+			try {
+				remove();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return document;
 	}
 	
 	private Merits loadMerits(Map<String, Object> protoMerits){
@@ -186,8 +240,8 @@ public class VMPCSImporter {
 		return bloodPool;
 	}
 	
-	private Data<MetaEntry> loadMeta(List<Map<String, Object>> protoMeta){
-		Data<MetaEntry> meta = new Data<>();
+	private Meta loadMeta(List<Map<String, Object>> protoMeta){
+		Meta meta = new Meta();
 		for (Map<String, Object> protoMetaEntry : protoMeta){
 			meta.add(loadMetaEntry(protoMetaEntry));
 		}
@@ -256,5 +310,26 @@ public class VMPCSImporter {
 		Value value = values.getObjectByID(id);
 		viewModelMapper.putView(value, viewAtts);
 		return value;
+	}
+	
+	private void remove() throws IOException{
+		Path path = temp.resolve("vampireeditor").resolve(id+"");
+		remove0(path);
+	}
+	
+	private static void remove0(Path directory) throws IOException{
+		if (!Files.exists(directory)) return;
+		DirectoryStream<Path> stream = Files.newDirectoryStream(directory);
+		for (Path p : stream){
+			if (Files.isDirectory(p)){
+				remove0(p);
+				Files.deleteIfExists(p);
+			}
+			else{
+				Files.delete(p);				
+			}
+		}
+		stream.close();
+		Files.delete(directory);
 	}
 }

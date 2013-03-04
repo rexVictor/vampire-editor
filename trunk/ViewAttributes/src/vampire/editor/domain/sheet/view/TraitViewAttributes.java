@@ -19,8 +19,6 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 		super();
 	}
 	
-	
-
 	public TraitViewAttributes(boolean editable, Orientation orientation,
 			boolean squares, Font font) {
 		super();

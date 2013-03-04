@@ -102,5 +102,9 @@ public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 	public W get(int i){
 		return entries.get(i);
 	}
+	
+	public int indexOf(W v){
+		return entries.indexOf(v);
+	}
 
 }

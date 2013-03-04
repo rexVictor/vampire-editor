@@ -24,28 +24,38 @@ public class Objects<V> {
 
 	private final Map<Integer, V> values = new HashMap<>();
 	
-	private final ResourcesHolderAPI resources;
-	
 	private final Objects<Font> fonts;
 	
+	private static ObjectMapper mapper = null;;
+	
+	
+	
 	public Objects(Class<? extends V> clazz, Path file, ResourcesHolderAPI resources, Objects<Font> fonts) throws JsonParseException, JsonMappingException, IOException{
-		this.resources = resources;
+		if (mapper == null){
+			mapper = new ObjectMapper();
+			SimpleModule module = new SimpleModule();
+			module.addDeserializer(Font.class, new FontDeserializer(resources));
+			mapper.registerModule(module);
+		}
 		this.fonts = fonts;
 		load(file, clazz);
 	}
 	
 	public Objects(Path root, Class<? extends V> clazz, ResourcesHolderAPI resources, Objects<Font> fonts) throws JsonParseException, JsonMappingException, IOException{
-		this.resources = resources;
+		if (mapper == null){
+			mapper = new ObjectMapper();
+			SimpleModule module = new SimpleModule();
+			module.addDeserializer(Font.class, new FontDeserializer(resources));
+			mapper.registerModule(module);
+		}
 		Path file = root.resolve(ClassToFileMapper.paths.get(clazz));
 		this.fonts = fonts;
 		load(file, clazz);
+		
 	}
 	
 	private void load(Path file, Class<? extends V> clazz) throws JsonParseException, JsonMappingException, IOException{
-		ObjectMapper mapper = new ObjectMapper();
-		SimpleModule module = new SimpleModule();
-		module.addDeserializer(Font.class, new FontDeserializer(resources));
-		mapper.registerModule(module);
+		
 		
 		List<Map<String, Object>> values = mapper.readValue(file.toFile(), new TypeReference<List<Map<String, Object>>>() {
 		});

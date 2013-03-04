@@ -7,6 +7,8 @@ import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;
 public class HealthEntryViewAttributes implements HealthEntryViewAttributesAPI, FontSettable{
 	
 	private Font font;
+	
+	private int size;
 
 	@Override
 	public Font getFont() {
@@ -15,6 +17,14 @@ public class HealthEntryViewAttributes implements HealthEntryViewAttributesAPI, 
 
 	public void setFont(Font font) {
 		this.font = font;
+	}
+	
+	public int getSize(){
+		return size;
+	}
+	
+	public void setSize(int size){
+		this.size = size;
 	}
 
 }
