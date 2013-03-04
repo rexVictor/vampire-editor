@@ -1,6 +1,7 @@
 package vampire.editor.gui.swing.application;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -37,6 +38,9 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		MiscView view = buildAdvantageView(sheet.getBloodPool(), 
 				sheet.getHealth(), sheet.getMerits(), sheet.getFlaws(), mapper);
 		sheetView.setMiscView(view);
+		
+		SBorderView borderView = new SBorderView(resources.getBorder(sheet.getBorderKey()), sheetView);
+		sheetView.setBorderView(borderView);
 		return sheetView;
 	}
 	
@@ -52,10 +56,10 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		return view;
 	}
 	
-	private SMetaView buildMetaView(DataAPI<? extends MetaEntryAPI> metas, ModelToViewModelMapperAPI mapper){
+	private SMetaView buildMetaView(MetaAPI meta, ModelToViewModelMapperAPI mapper){
 		SMetaView view = new SMetaView();
-		for (MetaEntryAPI m : metas){
-			view.add(buildMetaEntryView(m, mapper));
+		for (Iterator<? extends MetaEntryAPI> i = meta.getIterator();i.hasNext();){
+			view.add(buildMetaEntryView(i.next(), mapper));
 		}
 		return view;
 	}

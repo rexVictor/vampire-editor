@@ -8,8 +8,9 @@ import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
-import com.jgoodies.forms.debug.FormDebugPanel;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
@@ -18,13 +19,14 @@ import com.jgoodies.forms.layout.RowSpec;
 import vampire.editor.domain.sheet.view.TraitViewAttributes;
 import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
-public class STraitView implements TraitView, ActionListener{
+public class STraitView implements TraitView, ActionListener, DocumentListener{
 	
-	private final JPanel panel = new FormDebugPanel();
+	private final JPanel panel = new JPanel();
 	
 	private final JTextField textField = new JTextField();
 	
@@ -56,6 +58,7 @@ public class STraitView implements TraitView, ActionListener{
 		textField.setFont(attributes.getFont());
 		panel.setBackground(Color.WHITE);
 		textField.addActionListener(this);
+		textField.getDocument().addDocumentListener(this);
 		switch (attributes.getOrientation()){
 			case HORIZONTAL: {
 				layout.appendColumn(ColumnSpec.decode("pref:GROW(0.9)"));
@@ -101,8 +104,7 @@ public class STraitView implements TraitView, ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(textField.getPreferredSize().width);
-		textField.invalidate();
+		//textField.invalidate();
 		String input = textField.getText();
 		String translated = dictionary.getKey(input);
 		STraitViewEvent event = new STraitViewEvent(translated);
@@ -135,5 +137,31 @@ public class STraitView implements TraitView, ActionListener{
 		return textField;
 	}
 	
+	public TraitView clone(){
+		AbstractValueView clonedValueView = valueView.clone();
+		TraitViewAttributes clonedTraitViewAttributes = attributes.clone();
+		TraitView traitView = new STraitView(clonedValueView, dictionary, clonedTraitViewAttributes);
+		return traitView;
+	}
+
+	@Override
+	public TraitViewAttributesAPI getViewAttributes() {
+		return attributes;
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+		actionPerformed(null);
+		
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+		actionPerformed(null);
+	}
+
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+	}
 
 }

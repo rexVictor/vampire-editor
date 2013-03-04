@@ -86,6 +86,8 @@ public class SSubCategoryView implements SubCategoryView{
 		
 		panel.add(view.getPanel(), constraints);
 		traitViews.add(view);
+		panel.revalidate();
+		panel.repaint();
 	}
 
 	@Override
@@ -96,6 +98,8 @@ public class SSubCategoryView implements SubCategoryView{
 			panel.remove(view.getPanel());
 			layout.removeRow(constraints.gridY);
 			traitViews.remove(view);
+			panel.revalidate();
+			panel.repaint();
 		}		
 	}
 

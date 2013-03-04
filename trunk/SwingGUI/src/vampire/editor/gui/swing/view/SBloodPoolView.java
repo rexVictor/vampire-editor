@@ -1,7 +1,6 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -10,10 +9,13 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import vampire.editor.gui.swing.domain.Images;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.BloodPoolViewListener;
@@ -36,13 +38,17 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 	
 	private final List<JLabel> squares = new ArrayList<>();
 	
-	private final Font squareFont;
-	
 	private int maxValue = 0;
 	
+	private Icon emptyBox;
+	
+	private Icon crossedBox;
+	
 	public SBloodPoolView(BloodPoolViewAttributesAPI viewAtts, DictionaryAPI dictionary){
+		int size = viewAtts.getSize();
+		emptyBox = new ImageIcon(Images.getImage("square_empty", size, size));
+		crossedBox = new ImageIcon(Images.getImage("square_crossed", size, size));
 		panel.setBackground(Color.WHITE);
-		squareFont = new Font("Sans Serif", 0, viewAtts.getSize());
 		panel.setLayout(layout);
 		layout.appendColumn(ColumnSpec.decode("5px"));
 		for (int i = 0; i < 10; i++){
@@ -50,6 +56,7 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 		}
 		layout.appendRow(RowSpec.decode("pref"));
 		JTextField textField = new JTextField();
+		textField.setBackground(Color.WHITE);
 		textField.setBorder(null);
 		textField.setFont(viewAtts.getFont());
 		textField.setEditable(false);
@@ -86,10 +93,10 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 	@Override
 	public void setValue(int value) {
 		for (int i = 0; i < value; i++){
-			squares.get(i).setText("\u2612");
+			squares.get(i).setIcon(crossedBox);
 		}
 		for (int i = value; i < maxValue; i++){
-			squares.get(i).setText("\u2610");
+			squares.get(i).setIcon(emptyBox);
 		}
 	}
 	
@@ -108,8 +115,7 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 	}
 	
 	private void addSquare(){
-		JLabel label = new JLabel("\u2610");
-		label.setFont(squareFont);
+		JLabel label = new JLabel(emptyBox);
 		label.addMouseListener(this);
 		int rowCount = layout.getRowCount();
 		int squareCount = squares.size();
@@ -150,6 +156,8 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 			}
 		}
 		this.maxValue = maxValue;
+		panel.revalidate();
+		panel.repaint();
 	}
 	
 	public JPanel getView(){

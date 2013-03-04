@@ -1,5 +1,7 @@
 package vampire.editor.gui.swing.view.valueviews;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 
 import com.jgoodies.forms.layout.CellConstraints;
@@ -21,6 +23,7 @@ class SpacedValueView extends DefaultValueView{
 	 */
 	SpacedValueView(ValueViewAttributes viewAtts) {
 		super(viewAtts);
+		getPanel().setBackground(Color.WHITE);
 	}
 	
 	@Override
@@ -47,6 +50,5 @@ class SpacedValueView extends DefaultValueView{
 		}
 		super.removeCircle0();
 	}
-
-
+	
 }

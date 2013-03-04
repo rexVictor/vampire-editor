@@ -13,6 +13,8 @@ public interface ResourcesHolderAPI {
 	public Image getLine(String key);
 	
 	public String getKeyOfFont(Font font);
+	
+	public BorderAPI getBorder(String key);
 		
 	
 

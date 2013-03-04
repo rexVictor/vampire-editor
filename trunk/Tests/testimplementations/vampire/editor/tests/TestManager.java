@@ -2,9 +2,11 @@ package vampire.editor.tests;
 
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
+import vampire.editor.plugin.api.plugin.DocumentListener;
 import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
+import vampire.editor.plugin.api.plugin.SheetImporter;
 
 public class TestManager implements ManagerAPI{
 
@@ -40,6 +42,24 @@ public class TestManager implements ManagerAPI{
 
 	@Override
 	public void selectedSheetChanged(SheetControllerAPI controller) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDefaultImporter(SheetImporter importer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addDocumentListener(DocumentListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeDocumentListener(DocumentListener listener) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,7 +1,6 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -10,10 +9,13 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import vampire.editor.gui.swing.domain.Images;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.DamageType;
 import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;
@@ -36,12 +38,21 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 	
 	private JPanel panel = new JPanel();
 	
+	private Icon emptyBox;
+	
+	private Icon slashedBox;
+	
+	private Icon crossedBox;
+	
 	public HorizontalHealthEntryView(DictionaryAPI dictionary, HealthEntryViewAttributesAPI viewAtts) {
 		super();
+		int size = viewAtts.getSize();
+		emptyBox = new ImageIcon(Images.getImage("square_empty", size, size));
+		slashedBox = new ImageIcon(Images.getImage("square_slashed", size, size));
+		crossedBox = new ImageIcon(Images.getImage("square_crossed", size, size));
 		penaltyField.setBorder(null);
 		
 		box.addMouseListener(this);
-		box.setFont(new Font("Sans Serif", 0, viewAtts.getFont().getSize()));
 		penaltyField.setFont(viewAtts.getFont());
 		
 		panel.setBackground(Color.WHITE);
@@ -64,12 +75,12 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 	@Override
 	public void setDamageType(DamageType damageType) {
 		if (damageType == null){
-			box.setText("\u2610");
+			box.setIcon(emptyBox);
 		}
 		else switch(damageType){
 		case LETHAL:
-		case BASHING: box.setText("\u2341"); break;
-		case AGGREVATED: box.setText("\u2612");
+		case BASHING: box.setIcon(slashedBox); break;
+		case AGGREVATED: box.setIcon(crossedBox);
 		}
 		this.damageType = damageType;
 	}

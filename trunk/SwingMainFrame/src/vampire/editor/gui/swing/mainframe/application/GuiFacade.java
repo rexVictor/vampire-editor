@@ -28,8 +28,9 @@ public class GuiFacade implements GUIPlugin{
 //		this.manager = manager;
 		DictionaryAPI dictionary = manager.getResourcesHolder().getDictionary("general");
 		menuBarController = new MenuBarController(dictionary);
-		mainFrame = new MainFrame(menuBarController.getMenuBar());
+		mainFrame = new MainFrame(menuBarController.getMenuBar(), manager);
 		factory = new SheetViewFactory(manager.getResourcesHolder());
+		menuBarController.addMenuItem(new Printer(manager), "file", "print");
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class GuiFacade implements GUIPlugin{
 	}
 
 	public void sheetLoaded(SheetControllerAPI controller) {
-		mainFrame.addSheetView(controller.getView());
+		mainFrame.addSheetView(controller);
 		
 		
 	}

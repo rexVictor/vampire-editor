@@ -1,9 +1,10 @@
 package vampire.editor.gui.swing.view.valueviews;
 
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import com.jgoodies.forms.layout.CellConstraints;
@@ -12,17 +13,26 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.gui.swing.domain.Images;
 
 class SquaredValueView extends AbstractValueView{
 	
 	protected FormLayout layout = new FormLayout();
 	
 	protected List<JLabel> squares = new ArrayList<>();
+	
+	private Icon emptySquare;
+	
+	private Icon crossedSquare;
 
 	SquaredValueView(ValueViewAttributes viewAtts) {
 		super(viewAtts);
+		int size = viewAtts.getSize();
+		emptySquare = new ImageIcon(Images.getImage("square_empty", size, size));
+		crossedSquare = new ImageIcon(Images.getImage("square_crossed", size, size));
 		getPanel().setLayout(layout);
 		layout.appendRow(RowSpec.decode("pref"));
+		layout.appendRow(RowSpec.decode("5px"));
 		layout.appendRow(RowSpec.decode("pref"));
 		for (int i = 0; i < viewAtts.getCircles(); i++){
 			addCircle0();
@@ -33,10 +43,10 @@ class SquaredValueView extends AbstractValueView{
 	protected void redrawTempValue(){
 		int tempValue = this.tempValue;
 		for (int i = 0; i < tempValue; i++) {
-			squares.get(i).setText(SQUARE_CROSSED);
+			squares.get(i).setIcon(crossedSquare);
 		}
 		for (int i = tempValue; i < circles.size(); i++){
-			squares.get(i).setText(SQUARE_EMPTY);
+			squares.get(i).setIcon(emptySquare);
 		}
 	}
 
@@ -48,15 +58,11 @@ class SquaredValueView extends AbstractValueView{
 		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
 		layout.addGroupedColumn(layout.getColumnCount());
 		JLabel circle = new JLabel();
-		Font font = new Font(Font.SERIF, 0, viewAtts.getSize());
-		circle.setFont(font);
-		circle.setText(CIRCLE_WHITE);
 		circle.addMouseListener(new ValueClickListener(this, circles.size()));
 		circles.add(circle);
 		
 		JLabel square = new JLabel();
-		square.setFont(font);
-		square.setText(SQUARE_EMPTY);
+		square.setIcon(emptySquare);
 		square.addMouseListener(new SquareClickListener(this, squares.size()));
 		squares.add(square);
 		
@@ -69,7 +75,7 @@ class SquaredValueView extends AbstractValueView{
 		
 		getPanel().add(circle, constraints);
 		
-		constraints.gridY	=	2;
+		constraints.gridY	=	3;
 		
 		getPanel().add(square, constraints);
 	}

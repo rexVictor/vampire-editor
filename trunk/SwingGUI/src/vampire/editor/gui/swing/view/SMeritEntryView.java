@@ -25,10 +25,13 @@ public class SMeritEntryView implements MeritEntryView, ActionListener{
 	private final List<MeritEntryViewListener> listeners = new LinkedList<>();
 	
 	private final Lock lock = new ReentrantLock();
+	
+	private final MeritEntryViewAttibutesAPI viewAtts;
 
 	public SMeritEntryView(DictionaryAPI dictionary, MeritEntryViewAttibutesAPI viewAtts) {
 		super();
 		this.dictionary = dictionary;
+		this.viewAtts = viewAtts;
 		textField.setFont(viewAtts.getFont());
 		costField.setFont(viewAtts.getFont());
 		textField.setBorder(null);
@@ -87,6 +90,11 @@ public class SMeritEntryView implements MeritEntryView, ActionListener{
 		catch(NumberFormatException exception){
 			
 		}
+	}
+	
+	@Override
+	public SMeritEntryView clone(){
+		return new SMeritEntryView(dictionary, viewAtts);
 	}
 	
 	

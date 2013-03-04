@@ -1,16 +1,19 @@
 package vampire.editor.gui.swing.view.valueviews;
 
 import java.awt.Color;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import vampire.editor.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.gui.swing.domain.Images;
 import vampire.editor.gui.swing.view.SValueViewEvent;
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
@@ -51,12 +54,26 @@ public abstract class AbstractValueView implements ValueView{
 	
 	protected int value;
 	
+	protected ImageIcon circleWhite;
+	
+	protected ImageIcon circleBlack;
+	
+	protected ImageIcon circleRedStriped;
+	
+	protected ImageIcon circleGreenStriped;
+	
 	
 	protected ValueViewAttributes viewAtts;
 	
 	protected AbstractValueView(ValueViewAttributes viewAtts){
 		panel.setBackground(Color.WHITE);
 		this.viewAtts = viewAtts;
+		int size = viewAtts.getSize();
+		
+		circleBlack = new ImageIcon(Images.getImage("circle_filled", size, size));
+		circleWhite = new ImageIcon(Images.getImage("circle_empty", size, size));
+		circleRedStriped = new ImageIcon(Images.getImage("circle_temp_lower", size, size));
+		circleGreenStriped = new ImageIcon(Images.getImage("circle_temp_greater", size, size));
 	}
 	
 	
@@ -91,21 +108,25 @@ public abstract class AbstractValueView implements ValueView{
 			tempValue = 0;
 			this.tempValue = -1;
 		}
-		for (int i = 0; i < tempValue; i++) {
-			circles.get(i).setBackground(Color.LIGHT_GRAY);
+		if (tempValue < value && this.tempValue != -1){
+			for (int i = tempValue; i < value; i++){
+				circles.get(i).setIcon(circleRedStriped);
+			}
 		}
-		for (int i = tempValue; i < circles.size(); i++){
-			circles.get(i).setBackground(Color.WHITE);
+		else{
+			for (int i = value; i < tempValue; i++){
+				circles.get(i).setIcon(circleGreenStriped);
+			}
 		}
+			
 	}
-
 
 	protected void redrawValue(){
 		for (int i = 0; i < value; i++){
-			circles.get(i).setText(CIRCLE_BLACK);
+			circles.get(i).setIcon(circleBlack);
 		}
 		for (int i = value; i < circles.size(); i++){
-			circles.get(i).setText(CIRCLE_WHITE);
+			circles.get(i).setIcon(circleWhite);
 		}
 	}
 	
@@ -152,5 +173,21 @@ public abstract class AbstractValueView implements ValueView{
 			lock.unlock();
 		}
 	}
-
+	
+	public AbstractValueView clone(){
+		try {
+			AbstractValueView view = this.getClass().getDeclaredConstructor(ValueViewAttributes.class).newInstance(viewAtts.clone());
+			return view;
+		} catch (InstantiationException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ValueViewAttributes getViewAttributes(){
+		return viewAtts;
+	}
+	
 }

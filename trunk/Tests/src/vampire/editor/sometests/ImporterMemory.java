@@ -19,7 +19,7 @@ public class ImporterMemory {
 	public void test() {
 		Runtime runtime = Runtime.getRuntime();
 		System.out.println("Start: "+runtime.freeMemory()/1024);
-		Path path = Paths.get("sheetpersistencyprototype");
+		Path path = Paths.get("defaultsheets", "vtmdefault.vmpcs");
 		ResourcesHolderAPI holder = new ResourcesHolderTestImplementation(); 
 		VMPCSImporter importer = new VMPCSImporter(holder, path);
 		VampireDocument sheet = importer.load();

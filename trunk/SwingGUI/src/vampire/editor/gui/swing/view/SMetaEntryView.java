@@ -100,13 +100,15 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 
 	@Override
 	public void setTitle(String title) {
-		this.title.setText(dictionary.getValue(title));
+		String translation = dictionary.getValue(title);
+		this.title.setText(translation);
 		
 	}
 
 	@Override
 	public void setContent(String content) {
-		this.content.setText(dictionary.getValue(content));		
+		String translation = dictionary.getValue(content);
+		this.content.setText(translation);
 	}
 	
 	

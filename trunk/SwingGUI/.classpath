@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libraries/jgoodies-forms-1.4.1/jgoodies-forms-1.4.1.jar"/>
+	<classpathentry kind="lib" path="libraries/jgoodies-forms-1.4.1/jgoodies-forms-1.4.1.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/rex_victor/workspace/SwingGUI/libraries/jgoodies-forms-1.4.1/docs/api/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="libraries/jgoodies-forms-1.4.1/lib/jgoodies-common-1.2.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
@@ -10,5 +14,16 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
+	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik.jar"/>
+	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-rasterizer.jar"/>
+	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-slideshow.jar"/>
+	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-squiggle.jar"/>
+	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-svgpp.jar"/>
+	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-ttf2svg.jar"/>
 	<classpathentry kind="output" path="bin"/>
+	<referencedentry kind="lib" path="libraries/batik/batik-1.7/lib/batik-swing.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://xmlgraphics.apache.org/batik/javadoc/"/>
+		</attributes>
+	</referencedentry>
 </classpath>

@@ -1,5 +1,7 @@
 package vampire.editor.gui.swing.view.valueviews;
 
+import java.awt.Color;
+
 import javax.swing.JLabel;
 
 import vampire.editor.domain.sheet.view.ValueViewAttributes;
@@ -34,8 +36,9 @@ class DefaultValueView extends AbstractValueView{
 	protected void addCircle0() {
 		layout.appendColumn(ColumnSpec.decode("min"));
 		JLabel label = new JLabel();
+		label.setIcon(circleWhite);
 		label.setOpaque(true);
-		label.setText(CIRCLE_WHITE);
+		label.setBackground(Color.WHITE);
 		label.addMouseListener(new ValueClickListener(this, circles.size()));
 		label.addMouseListener(new StrgTempClickListener(this, circles.size()));
 		circles.add(label);
@@ -69,5 +72,5 @@ class DefaultValueView extends AbstractValueView{
 		getPanel().remove(last);
 		layout.removeColumn(constraints.gridX);
 	}
-
+	
 }
