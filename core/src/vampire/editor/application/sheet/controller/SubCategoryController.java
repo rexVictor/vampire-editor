@@ -1,6 +1,7 @@
 package vampire.editor.application.sheet.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -34,16 +35,33 @@ public class SubCategoryController implements SubCategoryControllerAPI {
 	
 	@Override
 	public void addTrait(TraitControllerAPI traitController){
-		//insertTrait(traitControllers.size(), traitController);
 		TraitControllerAPI controller = traitController;
 		int index = traitControllers.size();
 		SubCategoryEvent event = 
 				new SubCategoryEvent(this, 
-					controller, index);
+					controller, null, index);
 		lock.lock();
 		try{
-		//	subCategory.add(controller.getTrait());
-	//		view.add(controller.getTraitView());
+			subCategory.add((Trait) controller.getTrait());
+			view.add(controller.getTraitView());
+			traitControllers.add(index, controller);
+			for (SubCategoryListener l : listeners){
+				l.traitAdded(event);
+			}
+		}
+		finally{
+			lock.unlock();
+		}
+	}
+	
+	void addTrait0(TraitControllerAPI traitController){
+		TraitControllerAPI controller = traitController;
+		int index = traitControllers.size();
+		SubCategoryEvent event = 
+				new SubCategoryEvent(this, 
+					controller, null, index);
+		lock.lock();
+		try{
 			traitControllers.add(index, controller);
 			for (SubCategoryListener l : listeners){
 				l.traitAdded(event);
@@ -55,16 +73,10 @@ public class SubCategoryController implements SubCategoryControllerAPI {
 	}
 	
 	@Override
-	public TraitController addTrait(){
-		
-		return null;
-	}
-	
-	@Override
 	public void removeTrait(TraitControllerAPI traitController){
 		SubCategoryEvent event = 
 				new SubCategoryEvent(this, 
-					traitController, traitControllers.indexOf(traitController));
+					null, traitController, traitControllers.indexOf(traitController));
 		lock.lock();
 		try{
 			subCategory.remove((Trait) traitController.getTrait());
@@ -85,7 +97,7 @@ public class SubCategoryController implements SubCategoryControllerAPI {
 	public void insertTrait(int index, TraitControllerAPI controller){
 		SubCategoryEvent event = 
 				new SubCategoryEvent(this, 
-					controller, index);
+					controller, null, index);
 		lock.lock();
 		try{
 			subCategory.insert(index, (Trait) controller.getTrait());
@@ -131,6 +143,24 @@ public class SubCategoryController implements SubCategoryControllerAPI {
 	@Override
 	public SubCategoryView getView() {
 		return view;
+	}
+
+	@Override
+	public Iterator<TraitControllerAPI> iterator() {
+		return traitControllers.iterator();
+	}
+
+	@Override
+	public int indexOf(TraitControllerAPI traitController) {
+		return traitControllers.indexOf(traitController);
+	}
+	
+	public int size(){
+		return traitControllers.size();
+	}
+	
+	public TraitControllerAPI getTraitController(int i){
+		return traitControllers.get(i);
 	}
 	
 	

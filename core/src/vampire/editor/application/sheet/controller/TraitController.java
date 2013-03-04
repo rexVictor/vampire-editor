@@ -13,6 +13,7 @@ import vampire.editor.plugin.api.application.sheet.events.TraitListener;
 import vampire.editor.plugin.api.view.events.TraitViewEvent;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
+import vampire.editor.plugin.api.view.sheet.ValueView;
 
 public class TraitController implements TraitViewListener, TraitControllerAPI{
 	
@@ -26,8 +27,6 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 	
 	private final ValueController valueController;
 	
-	
-
 	public TraitController(ValueController valueController, Trait trait, TraitView traitView) {
 		super();
 		this.trait = trait;
@@ -40,18 +39,43 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 
 	@Override
 	public void traitNameChanged(TraitViewEvent viewEvent) {
-		setTraitName(viewEvent.getName());
+		String name = viewEvent.getName();
+		final TraitEvent event = new TraitEvent(this, trait.getName(), name);
+		lock.lock();
+		try{
+			trait.setName(name);
+			for (TraitListener l : listeners){
+				final TraitListener listener = l;
+				new Thread(){
+					@Override
+					public void run(){
+						listener.traitNameChanged(event);
+					}
+				}.start();
+				
+			}
+		}
+		finally{
+			lock.unlock();
+		}
 	}
 	
 	@Override
 	public void setTraitName(String name){
-		TraitEvent event = new TraitEvent(this, trait.getName(), name);
+		final TraitEvent event = new TraitEvent(this, trait.getName(), name);
 		lock.lock();
 		try{
 			trait.setName(name);
 			traitView.setName(name);
 			for (TraitListener l : listeners){
-				l.traitNameChanged(event);
+				final TraitListener listener = l;
+				new Thread(){
+					@Override
+					public void run(){
+						listener.traitNameChanged(event);
+					}
+				}.start();
+				
 			}
 		}
 		finally{
@@ -98,6 +122,14 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 	
 	public ValueController getValueController(){
 		return valueController;
+	}
+	
+	public TraitController clone(){
+		Trait cloneTrait = trait.clone();
+		TraitView cloneView = traitView.clone();
+		ValueView cloneValueView = traitView.getValueView();
+		ValueController cloneValueController = new ValueController(cloneTrait.getValue(), cloneValueView);
+		return new TraitController(cloneValueController, cloneTrait, cloneView);
 	}
 	
 	

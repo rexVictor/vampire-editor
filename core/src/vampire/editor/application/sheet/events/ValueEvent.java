@@ -31,7 +31,7 @@ public class ValueEvent implements ValueEventAPI {
 	}
 
 	@Override
-	public int getFormelValue() {
+	public int getFormerValue() {
 		return formelValue;
 	}
 

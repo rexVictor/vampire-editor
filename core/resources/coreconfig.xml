@@ -22,18 +22,29 @@
 	<path name="plugins">
 		<segment append="resources" />
 	</path>
-
+	
+	<locale language="DE" country="" variant=""/>
 
 	<!-- The name of the configs is not processed yet, since there was no need. -->
 	<config name="resources" 	path="resources" 	file="resources.xml" />
 	<!-- config name="userconfig" 	path="userconfig" 	file="userconfig.xml" / -->
 	<!-- config name="plugins" 		path="plugins" 		file="plugins.xml" / -->
+	
+	
 
 
 	<jar name="gui"
 		class="vampire.editor.gui.swing.mainframe.application.GuiActivator" />
 	<jar name="sheetloader"
 		class="vampire.editor.sheetloader.application.LoaderActivator" />
+
+	<plugin name="generationBloodpoolSynchronizer">
+		<jar class="vampire.editor.plugin.generationbloodpoolsynchronizer.application.Constructor"/>
+	</plugin>
+	
+	<plugin name="dynamicSubCategoryView">
+		<jar class="vampire.editor.plugin.dynamicsubcategorymanager.application.Constructor"/>
+	</plugin>
 
 
 </coreconfig>

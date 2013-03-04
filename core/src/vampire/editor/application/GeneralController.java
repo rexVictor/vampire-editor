@@ -1,5 +1,7 @@
 package vampire.editor.application;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import vampire.editor.plugin.Manager;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
+import vampire.editor.plugin.api.plugin.SheetImporter;
 import vampire.editor.plugin.api.plugin.SheetViewFactory;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
@@ -26,8 +29,14 @@ public class GeneralController implements GeneralControllerAPI{
 	public GeneralController(Config config) {
 		super();
 		this.manager = new Manager(config, this);
-		
-
+	}
+	
+	public GeneralController(Config config, String[] initial){
+		this(config);
+		SheetImporter importer = manager.getDefaultImporter();
+		Path path = Paths.get("", initial);
+		VampireDocument document = (VampireDocument) importer.loadDocument(path);
+		open(document);
 	}
 
 
@@ -42,6 +51,7 @@ public class GeneralController implements GeneralControllerAPI{
 			controllers.add(controller);
 			setCurrentController(controller);
 			manager.getGUI().sheetLoaded(controller);
+			manager.documentOpened(controller);
 		}
 	}
 	
