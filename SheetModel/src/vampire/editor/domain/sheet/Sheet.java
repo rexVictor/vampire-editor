@@ -8,7 +8,7 @@ import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 
 public class Sheet implements SheetAPI {
 	
-	private Data<MetaEntry> meta = null;
+	private Meta meta = null;
 	
 	private Data<Category> categories;
 	
@@ -20,8 +20,20 @@ public class Sheet implements SheetAPI {
 	
 	private BloodPool bloodPool;
 	
+	private String borderKey;
 	
 	
+	
+	public String getBorderKey() {
+		return borderKey;
+	}
+
+
+	public void setBorderKey(String borderKey) {
+		this.borderKey = borderKey;
+	}
+
+
 	@Override
 	public Sheet clone(){
 		Sheet clone = new Sheet();
@@ -44,7 +56,7 @@ public class Sheet implements SheetAPI {
 		}
 	}
 	
-	public void setMeta(Data<MetaEntry> meta){
+	public void setMeta(Meta meta){
 		if (this.meta == null){
 			this.meta = meta;
 		}
@@ -76,7 +88,7 @@ public class Sheet implements SheetAPI {
 	
 
 	@Override
-	public Data<MetaEntry> getMeta() {
+	public Meta getMeta() {
 		return meta;
 	}
 

@@ -115,7 +115,7 @@ public class Value implements Serializable, ValueAPI {
 	}
 	
 	/**
-	 * Returns a copy of Value with viewAtts set to null.
+	 * Returns a copy of Value.
 	 */
 	@Override
 	public Value clone(){

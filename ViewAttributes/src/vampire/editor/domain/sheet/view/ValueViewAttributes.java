@@ -5,9 +5,6 @@ import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 
 public class ValueViewAttributes implements ValueViewAttributesAPI{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1886427499077840867L;
 
 	private boolean showSpace;
@@ -23,9 +20,6 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	public ValueViewAttributes(){
 	}
 	
-	
-	
-
 	public ValueViewAttributes(boolean showSpace, boolean dynamic, int circles,
 			boolean tempSquared, int size) {
 		super();
@@ -35,9 +29,6 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 		this.tempSquared = tempSquared;
 		this.size = size;
 	}
-
-
-
 
 	@Override
 	public boolean isShowSpace() {
@@ -125,10 +116,6 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	@Override
 	public int hashCode(){
 		return System.identityHashCode(dynamic)+2*System.identityHashCode(showSpace)+4*circles+8*size;
-		
 	}
-	
-	
-	
 
 }

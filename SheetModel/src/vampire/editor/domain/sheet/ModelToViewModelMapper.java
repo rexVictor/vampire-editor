@@ -144,4 +144,24 @@ public class ModelToViewModelMapper implements ModelToViewModelMapperAPI{
 		return meritViewAtts.get(merit);
 	}
 
+	@Override
+	public void putView(ValueAPI value, ValueViewAttributesAPI viewAtts) {
+		putView((Value) value, (ValueViewAttributes) viewAtts);
+	}
+
+	@Override
+	public void putView(TraitAPI trait, TraitViewAttributesAPI viewAtts) {
+		putView((Trait) trait, (TraitViewAttributes) viewAtts);
+	}
+
+	@Override
+	public void removeView(ValueAPI value) {
+		valueViewAtts.remove(value);
+	}
+
+	@Override
+	public void removeView(TraitAPI trait) {
+		traitViewAtts.remove(trait);
+	}
+
 }
