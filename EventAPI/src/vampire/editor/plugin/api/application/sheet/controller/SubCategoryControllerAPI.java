@@ -4,11 +4,9 @@ import vampire.editor.plugin.api.application.sheet.events.SubCategoryListener;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 
-public interface SubCategoryControllerAPI {
+public interface SubCategoryControllerAPI extends Iterable<TraitControllerAPI>{
 
 	public void addTrait(TraitControllerAPI traitController);
-
-	public TraitControllerAPI addTrait();
 
 	public void removeTrait(TraitControllerAPI traitController);
 
@@ -21,5 +19,10 @@ public interface SubCategoryControllerAPI {
 	public SubCategoryAPI getSubCategory();
 
 	public SubCategoryView getView();
-
+	
+	public int indexOf(TraitControllerAPI traitController);
+	
+	public int size();
+	
+	public TraitControllerAPI getTraitController(int i);
 }

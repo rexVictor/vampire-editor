@@ -16,5 +16,9 @@ public interface TraitControllerAPI {
 	public TraitAPI getTrait();
 
 	public TraitView getTraitView();
-
+	
+	public TraitControllerAPI clone();
+	
+	public ValueControllerAPI getValueController();
+	
 }

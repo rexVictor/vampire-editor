@@ -17,5 +17,11 @@ public interface ManagerAPI {
 	
 	public void selectedSheetChanged(SheetControllerAPI controller);
 	
+	public void setDefaultImporter(SheetImporter importer);
+	
+	public void addDocumentListener(DocumentListener listener);
+	
+	public void removeDocumentListener(DocumentListener listener);
+	
 
 }

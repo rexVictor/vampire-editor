@@ -5,7 +5,7 @@ public interface SheetAPI {
 
 	public SheetAPI clone();
 
-	public DataAPI<? extends MetaEntryAPI> getMeta();
+	public MetaAPI getMeta();
 
 	public DataAPI<? extends CategoryAPI> getCategories();
 	
@@ -16,5 +16,7 @@ public interface SheetAPI {
 	public MeritsAPI	getMerits();
 	
 	public MeritsAPI	getFlaws();
+	
+	public String getBorderKey();
 
 }
