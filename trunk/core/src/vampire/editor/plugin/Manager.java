@@ -14,10 +14,12 @@ import vampire.editor.domain.config.Plugin;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.plugin.Activator;
+import vampire.editor.plugin.api.plugin.DocumentListener;
 import vampire.editor.plugin.api.plugin.Facade;
 import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
+import vampire.editor.plugin.api.plugin.SheetImporter;
 
 public class Manager implements ManagerAPI{
 	
@@ -30,6 +32,10 @@ public class Manager implements ManagerAPI{
 	private final List<Plugin> plugins = new LinkedList<>();
 	
 	private /*final*/ GUIPlugin gui;
+	
+	private SheetImporter defaultImporter;
+	
+	private final List<DocumentListener> documentListeners = new LinkedList<>();
 	
 	public Manager(Config config, GeneralController controller){
 		this.config = config;
@@ -108,7 +114,6 @@ public class Manager implements ManagerAPI{
 	public void setGUIPlugin(GUIPlugin gui) {
 		if (this.gui == null)
 			this.gui = gui;
-		
 	}
 
 	@Override
@@ -125,6 +130,38 @@ public class Manager implements ManagerAPI{
 	public void selectedSheetChanged(SheetControllerAPI controller) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void setDefaultImporter(SheetImporter importer) {
+		this.defaultImporter = importer;
+	}
+	
+	public SheetImporter getDefaultImporter(){
+		return defaultImporter;
+	}
+
+	@Override
+	public void addDocumentListener(DocumentListener listener) {
+		documentListeners.add(listener);
+	}
+
+	@Override
+	public void removeDocumentListener(DocumentListener listener) {
+		documentListeners.remove(listener);
+	}
+	
+	public void documentOpened(SheetControllerAPI controller){
+		final DocumentEvent e = new DocumentEvent(controller);
+		for (DocumentListener l : documentListeners){
+			final DocumentListener listener = l;
+			new Thread(){
+				@Override
+				public void run(){
+					listener.documentAdded(e);
+				}
+			}.start();
+		}
 	}
 	
 	

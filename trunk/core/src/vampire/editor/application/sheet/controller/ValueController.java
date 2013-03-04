@@ -119,5 +119,14 @@ public class ValueController implements ValueViewListener, ValueControllerAPI{
 			lock.unlock();
 		}
 	}
+	
+	@Override
+	public ValueController clone(){
+		Value cloneValue = value.clone();
+		cloneValue.setTempValue(-1);
+		cloneValue.setValue(0);
+		ValueView cloneView = valueView.clone();
+		return new ValueController(cloneValue, cloneView);
+	}
 
 }

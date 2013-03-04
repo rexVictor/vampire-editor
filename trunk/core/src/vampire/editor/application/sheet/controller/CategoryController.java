@@ -1,6 +1,7 @@
 package vampire.editor.application.sheet.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -20,7 +21,7 @@ public class CategoryController implements CategoryControllerAPI {
 	
 	private final CategoryView view;
 	
-	private final List<SubCategoryControllerAPI> traitControllers = new ArrayList<>();
+	private final List<SubCategoryControllerAPI> subCategoryControllers = new ArrayList<>();
 	
 	private final List<CategoryListener> listeners = new LinkedList<>();
 	
@@ -36,7 +37,7 @@ public class CategoryController implements CategoryControllerAPI {
 	public void addSubCategory(SubCategoryControllerAPI traitController){
 		//insertTrait(traitControllers.size(), traitController);
 		SubCategoryControllerAPI controller = traitController;
-		int index = traitControllers.size();
+		int index = subCategoryControllers.size();
 		CategoryEvent event =
 				new CategoryEvent(this, 
 					controller, index);
@@ -44,7 +45,7 @@ public class CategoryController implements CategoryControllerAPI {
 		try{
 		//	subCategory.add(controller.getTrait());
 	//		view.add(controller.getTraitView());
-			traitControllers.add(index, controller);
+			subCategoryControllers.add(index, controller);
 			for (CategoryListener l : listeners){
 				l.subCategoryAdded(event);
 			}
@@ -58,12 +59,12 @@ public class CategoryController implements CategoryControllerAPI {
 	public void removeTrait(SubCategoryControllerAPI traitController){
 		CategoryEvent event = 
 				new CategoryEvent(this, 
-					traitController, traitControllers.indexOf(traitController));
+					traitController, subCategoryControllers.indexOf(traitController));
 		lock.lock();
 		try{
 			subCategory.remove((SubCategory) traitController.getSubCategory());
 		    view.remove(traitController.getView());
-			traitControllers.remove(traitController);
+			subCategoryControllers.remove(traitController);
 			for (CategoryListener l : listeners){
 				l.subCategoryRemoved(event);
 			}
@@ -82,7 +83,7 @@ public class CategoryController implements CategoryControllerAPI {
 		try{
 			subCategory.insert(index, (SubCategory) controller.getSubCategory());
 			view.insert(index, controller.getView());
-			traitControllers.add(index, controller);
+			subCategoryControllers.add(index, controller);
 			for (CategoryListener l : listeners){
 				l.subCategoryAdded(event);
 			}
@@ -123,6 +124,11 @@ public class CategoryController implements CategoryControllerAPI {
 	@Override
 	public CategoryView getView() {
 		return view;
+	}
+
+	@Override
+	public Iterator<? extends SubCategoryControllerAPI> getSubCategoryControllerIterator() {
+		return subCategoryControllers.iterator();
 	}
 
 }

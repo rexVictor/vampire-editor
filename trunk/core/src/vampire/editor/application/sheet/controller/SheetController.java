@@ -1,18 +1,20 @@
 package vampire.editor.application.sheet.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.plugin.api.application.sheet.controller.CategoryControllerAPI;
-import vampire.editor.plugin.api.application.sheet.controller.MetaEntryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.MiscControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
+import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
 
 public class SheetController implements SheetControllerAPI {
+	
+	private final VampireDocumentAPI document;
 	
 	private final Sheet sheet;
 	
@@ -20,16 +22,23 @@ public class SheetController implements SheetControllerAPI {
 	
 	private final List<CategoryControllerAPI> categoryControllers = new ArrayList<>();
 	
-	private final List<MetaEntryControllerAPI> metaEntryControllers = new ArrayList<>();
+	private MetaController metaController;
 	
-	private MiscController miscController;
-	
-	private final Map<String, MetaEntryControllerAPI> metaEntryControllerMap = new HashMap<>();
+	public MetaController getMetaController() {
+		return metaController;
+	}
 
-	public SheetController(Sheet sheet, SheetView view) {
+	public void setMetaController(MetaController metaController) {
+		this.metaController = metaController;
+	}
+
+	private MiscControllerAPI miscController;
+	
+	public SheetController(VampireDocumentAPI document, SheetView view) {
 		super();
-		this.sheet = sheet;
+		this.sheet = (Sheet) document.getSheet();
 		this.view = view;
+		this.document = document;
 	}
 	
 	@Override
@@ -46,29 +55,22 @@ public class SheetController implements SheetControllerAPI {
 		return sheet;
 	}
 
-	@Override
-	public void addMetaEntryController(MetaEntryControllerAPI controller) {
-		metaEntryControllers.add(controller);
-		String title = controller.getMetaEntry().getName();
-		metaEntryControllerMap.put(title, controller);
-	}
-
-	@Override
-	public MetaEntryControllerAPI getMetaEntryController(String key) {
-		return metaEntryControllerMap.get(key);
-	}
-
-	public MiscController getMiscController() {
+	public MiscControllerAPI getMiscController() {
 		return miscController;
 	}
 
-	public void setMiscController(MiscController miscController) {
+	public void setMiscController(MiscControllerAPI miscController) {
 		this.miscController = miscController;
 	}
-	
-	
-	
-	
-	
+
+	@Override
+	public VampireDocumentAPI getDocument() {
+		return document;
+	}
+
+	@Override
+	public Iterator<? extends CategoryControllerAPI> getCategoryIterator() {
+		return categoryControllers.iterator();
+	}
 
 }

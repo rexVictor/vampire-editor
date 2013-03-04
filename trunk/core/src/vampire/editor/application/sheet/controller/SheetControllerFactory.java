@@ -9,12 +9,14 @@ import vampire.editor.domain.sheet.Health;
 import vampire.editor.domain.sheet.HealthEntry;
 import vampire.editor.domain.sheet.Merit;
 import vampire.editor.domain.sheet.Merits;
+import vampire.editor.domain.sheet.Meta;
 import vampire.editor.domain.sheet.MetaEntry;
 import vampire.editor.domain.sheet.Sheet;
 import vampire.editor.domain.sheet.SubCategory;
 import vampire.editor.domain.sheet.Trait;
 import vampire.editor.domain.sheet.Value;
 
+import vampire.editor.plugin.api.application.sheet.controller.MiscControllerAPI;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.plugin.api.view.sheet.BloodPoolView;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
@@ -23,6 +25,7 @@ import vampire.editor.plugin.api.view.sheet.HealthView;
 import vampire.editor.plugin.api.view.sheet.MeritEntryView;
 import vampire.editor.plugin.api.view.sheet.MeritView;
 import vampire.editor.plugin.api.view.sheet.MetaEntryView;
+import vampire.editor.plugin.api.view.sheet.MetaView;
 import vampire.editor.plugin.api.view.sheet.MiscView;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
@@ -34,18 +37,16 @@ public class SheetControllerFactory {
 	
 	public SheetController buildSheetController(VampireDocumentAPI document, SheetView view){
 		Sheet sheet = (Sheet) document.getSheet();
-		SheetController controller = new SheetController(sheet, view);
+		SheetController controller = new SheetController(document, view);
 		
-		Data<? extends MetaEntry> metaEntries = sheet.getMeta();
-		List<? extends MetaEntryView> metaEntryViews = view.getMetaViews();
-		int i = 0;
-		for (MetaEntry entry : metaEntries){
-			controller.addMetaEntryController(buildMetaEntryController(entry, metaEntryViews.get(i)));
-			i++;
-		}
+		Meta meta = sheet.getMeta();
+		MetaView metaView = view.getMetaView();
+		MetaController metaController = buildMetaController(meta, metaView);
+		controller.setMetaController(metaController);
+		
 		Data<? extends Category> cats = sheet.getCategories();
 		List<? extends CategoryView> catViews = view.getCategoryViews();
-		i = 0;
+		int i = 0;
 		
 		for (Category cat : cats){
 			controller.addCategoryController(buildCategoryController(cat, catViews.get(i)));
@@ -58,14 +59,24 @@ public class SheetControllerFactory {
 		BloodPool bloodPool = sheet.getBloodPool();
 		MiscView miscView = view.getMiscView();
 		
-		MiscController miscController = buildMiscController(merits, flaws, bloodPool, health, miscView);
+		MiscControllerAPI miscController = buildMiscController(merits, flaws, bloodPool, health, miscView);
 		controller.setMiscController(miscController);
 		
 		
 		return controller;
 	}
 	
-	public MiscController buildMiscController(Merits merits, Merits flaws, BloodPool bloodPool,
+	public MetaController buildMetaController(Meta meta, MetaView view){
+		MetaController controller = new MetaController(meta, view);
+		List<? extends MetaEntryView> metaEntryViews = view.getEntries();
+		for (int i = 0; i < meta.size(); i++){
+			MetaEntryController entryController = buildMetaEntryController(meta.get(i), metaEntryViews.get(i));
+			controller.addMetaEntry0(entryController);
+		}
+		return controller;
+	}
+	
+	public MiscControllerAPI buildMiscController(Merits merits, Merits flaws, BloodPool bloodPool,
 			Health health, MiscView view){
 		MeritView meritView = view.getMeritsView();
 		MeritView flawView = view.getFlawsView();
@@ -142,7 +153,7 @@ public class SheetControllerFactory {
 		List<? extends TraitView> traitViews = view.getEntries();
 		int i = 0;
 		for (Trait trait : subCategory){
-			controller.addTrait(buildTraitController(trait, traitViews.get(i)));
+			controller.addTrait0(buildTraitController(trait, traitViews.get(i)));
 			i++;
 		}
 		return controller;

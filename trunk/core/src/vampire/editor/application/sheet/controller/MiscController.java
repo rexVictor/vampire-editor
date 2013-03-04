@@ -1,8 +1,9 @@
 package vampire.editor.application.sheet.controller;
 
+import vampire.editor.plugin.api.application.sheet.controller.MiscControllerAPI;
 import vampire.editor.plugin.api.view.sheet.MiscView;
 
-public class MiscController {
+public class MiscController implements MiscControllerAPI {
 	
 	private final MeritsController merits;
 	
@@ -24,22 +25,27 @@ public class MiscController {
 		this.view = view;
 	}
 
+	@Override
 	public MeritsController getMerits() {
 		return merits;
 	}
 
+	@Override
 	public MeritsController getFlaws() {
 		return flaws;
 	}
 
+	@Override
 	public HealthController getHealth() {
 		return health;
 	}
 
+	@Override
 	public BloodPoolController getBloodPool() {
 		return bloodPool;
 	}
 	
+	@Override
 	public MiscView getView(){
 		return view;
 	}
