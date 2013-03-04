@@ -61,6 +61,7 @@ public class SCategoryView implements CategoryView{
 			constraints.gridY		=	1;
 			constraints.gridHeight	=	1;
 			constraints.gridWidth	=	1;
+			constraints.vAlign		=	CellConstraints.TOP;
 			
 			panel.add(title.getPanel(), constraints);			
 			
@@ -75,7 +76,7 @@ public class SCategoryView implements CategoryView{
 			this.panel.remove(panel);
 			constraints.gridWidth = layout.getColumnCount();
 			layout.removeRow(constraints.gridY);
-			layout.insertRow(constraints.gridY, RowSpec.decode(panel.getHeight()+10+"px"));
+			layout.insertRow(constraints.gridY, RowSpec.decode(panel.getHeight()+"px"));
 			this.panel.add(panel, constraints);
 			this.panel.invalidate();
 			this.panel.revalidate();
@@ -104,6 +105,7 @@ public class SCategoryView implements CategoryView{
 		constraints.gridX		=	layout.getColumnCount();
 		constraints.gridY		=	layout.getRowCount();
 		constraints.hAlign		=	CellConstraints.FILL;
+		constraints.vAlign		=	CellConstraints.TOP;
 		
 		panel.add(view.getPanel(), constraints);
 		layout.appendColumn(ColumnSpec.decode("10px"));

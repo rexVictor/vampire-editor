@@ -1,5 +1,6 @@
 package vampire.editor.gui.swing.view;
 
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class SMetaView implements MetaView{
 	
 	private void initialize(){
 		panel.setLayout(layout);
+		panel.setBackground(Color.WHITE);
 		layout.appendRow(RowSpec.decode("pref"));
 		layout.appendRow(RowSpec.decode("pref"));
 		layout.appendRow(RowSpec.decode("pref"));
@@ -38,7 +40,9 @@ public class SMetaView implements MetaView{
 		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
 		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
 		layout.setColumnGroups(new int[][]{{1,2,3}});
-		
+		layout.insertColumn(1, ColumnSpec.decode("10px"));
+		layout.insertColumn(3, ColumnSpec.decode("10px"));
+		layout.insertColumn(5, ColumnSpec.decode("10px"));
 	}
 
 	@Override
@@ -59,7 +63,7 @@ public class SMetaView implements MetaView{
 		CellConstraints constraints = new CellConstraints();
 		constraints.gridHeight	=	lineCount;
 		constraints.gridWidth	=	1;
-		constraints.gridX		=	x;
+		constraints.gridX		=	2*x;
 		constraints.gridY		=	y;
 		constraints.hAlign		=	CellConstraints.FILL;
 		

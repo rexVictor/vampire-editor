@@ -4,14 +4,14 @@
 	        "showSpace"	:	true,
 	        "dynamic"	:	true,
 	        "circles"	:	5,
-	        "size"		:	14	                
+	        "size"		:	12              
 		},
 		{
 		    "id"		:	1,
 		    "showSpace" :	false,
 		    "dynamic"	:	false,
 		    "circles"	:	5,
-		    "size"		:	14
+		    "size"		:	12
 		    
 		},
 		{

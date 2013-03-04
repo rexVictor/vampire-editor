@@ -18,7 +18,7 @@ public class TabComponent{
 	public TabComponent(){
 		tabComponent.setLayout(new BorderLayout());
 		tabComponent.add(title, BorderLayout.CENTER);
-		tabComponent.add(closeButton, BorderLayout.WEST);
+		tabComponent.add(closeButton, BorderLayout.EAST);
 	}
 
 	public JPanel getComponent(){

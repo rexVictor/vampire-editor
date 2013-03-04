@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
+import com.jgoodies.forms.layout.FormLayout;
+
 public class LineImage {
 	
 	private class LinePanel extends JPanel implements AncestorListener{
@@ -44,6 +46,7 @@ public class LineImage {
 		
 		private LinePanel(Image image) {
 			super();
+			this.setLayout(new FormLayout());
 			this.image = image;	
 			addAncestorListener(this);
 			label.setOpaque(true);
@@ -90,14 +93,15 @@ public class LineImage {
 				double xHeight = xGlyph.getGlyphMetrics(0).getBounds2D().getMaxX();
 				yImage = (int) (rectangle.getHeight()-(xHeight+image.getHeight(null))/2);
 				xText = (int) ((getWidth()-rectangle.getWidth())/2);
-				paintable = true;
+				if (getParent() != null) paintable = true;
 			}
 		}
 		
 		@Override
 		public void paint(Graphics g){
 			super.paint(g);
-			if (!paintable)
+			if (paintable){
+				ancestorAdded(null);
 				refreshTextLayout();
 			g.setFont(font);
 			g.drawImage(image, 0, yImage, this);
@@ -107,7 +111,7 @@ public class LineImage {
 				g.setColor(Color.BLACK);
 				layout.draw((Graphics2D) g, xText, (float) rectangle.getHeight());
 			}
-			
+			}
 		}
 
 		@Override
@@ -115,6 +119,7 @@ public class LineImage {
 			if (getWidth()!=0)
 				image = image.getScaledInstance(getWidth(), 10, Image.SCALE_SMOOTH);
 			refreshTextLayout();
+			if (getGraphics() != null) paintable = true;
 		}
 
 		@Override
@@ -170,6 +175,4 @@ public class LineImage {
 		line.setTitleFont(font);
 	}
 	
-	
-
 }

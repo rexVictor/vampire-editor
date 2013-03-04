@@ -79,9 +79,10 @@ public class SheetViewTabPanel implements ChangeListener{
 		SheetView sheetView = sheetController.getView();
 		if (sheetView instanceof SSheetView){
 			controllers.add(sheetController);
-			tabPane.add(new SheetViewPanel(((SSheetView) sheetView).getPanel()));
+			tabPane.add(new SheetViewPanel(((SSheetView) sheetView).getBorderView()));
 			TabComponent tabComponent = new TabComponent();
-			MetaEntryControllerAPI nameController = sheetController.getMetaEntryController("name");
+			
+			MetaEntryControllerAPI nameController = sheetController.getMetaController().getMetaEntryController("name");
 			TitleRefresher titleRefresher = new TitleRefresher(tabComponent);
 			nameController.addMetaEntryListener(titleRefresher);
 			tabComponent.setTitle(nameController.getMetaEntry().getValue());

@@ -44,5 +44,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSImporter"/>
+	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik.jar"/>
+	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-rasterizer.jar"/>
+	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-slideshow.jar"/>
+	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-squiggle.jar"/>
+	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-svgpp.jar"/>
+	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-ttf2svg.jar"/>
+	<classpathentry kind="con" path="org.perfidix.perclipse.PERFIDIX_CONTAINER"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

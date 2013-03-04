@@ -5,25 +5,33 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import com.jgoodies.forms.debug.FormDebugPanel;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.plugin.api.view.sheet.CategoryView;
-import vampire.editor.plugin.api.view.sheet.MetaEntryView;
 import vampire.editor.plugin.api.view.sheet.MetaView;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
 public class SSheetView implements SheetView{
 	
-	private final JPanel panel = new FormDebugPanel();
+	private final JPanel panel = new JPanel();
 	
 	private final FormLayout layout = new FormLayout();
 	
 	private final List<SCategoryView> categoryViews = new ArrayList<>();
 	
+	private SBorderView borderView;
+	
+	public SBorderView getBorderView() {
+		return borderView;
+	}
+
+	public void setBorderView(SBorderView borderView) {
+		this.borderView = borderView;
+	}
+
 	private MetaView metaView;
 	
 	private MiscView miscView;
@@ -39,7 +47,7 @@ public class SSheetView implements SheetView{
 	
 	private void initialize(){
 		panel.setLayout(layout);
-		layout.appendColumn(ColumnSpec.decode("18cm"));
+		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
 		
 	}
 
@@ -47,7 +55,7 @@ public class SSheetView implements SheetView{
 	public void add(CategoryView categoryView) {
 		SCategoryView view = (SCategoryView) categoryView;
 		categoryViews.add(view);
-		layout.appendRow(RowSpec.decode("pref:GROW"));
+		layout.appendRow(RowSpec.decode("pref"));
 		
 		CellConstraints constraints = new CellConstraints();
 		constraints.gridHeight	=	1;
@@ -85,11 +93,6 @@ public class SSheetView implements SheetView{
 		panel.add(view.getPanel(), constraints);
 	}
 
-	@Override
-	public List<? extends MetaEntryView> getMetaViews() {
-		return metaView.getEntries();
-	}
-	
 	public void setMiscView(MiscView view){
 		this.miscView = view;
 		layout.appendRow(RowSpec.decode("pref"));
@@ -102,6 +105,11 @@ public class SSheetView implements SheetView{
 		constraints.hAlign		=	CellConstraints.FILL;
 		panel.add(view.getPanel(), constraints);
 		
+	}
+
+	@Override
+	public MetaView getMetaView() {
+		return metaView;
 	}
 	
 	

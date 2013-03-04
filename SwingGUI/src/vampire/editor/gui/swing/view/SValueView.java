@@ -19,6 +19,7 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.gui.swing.application.Initializer;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
@@ -211,6 +212,17 @@ public class SValueView implements ValueView{
 	
 	public JPanel getView(){
 		return panel;
+	}
+	
+	public ValueView clone(){
+		return null;
+	}
+
+
+	@Override
+	public ValueViewAttributesAPI getViewAttributes() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

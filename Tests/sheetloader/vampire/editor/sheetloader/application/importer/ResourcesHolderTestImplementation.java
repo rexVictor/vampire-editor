@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 
 
 import vampire.editor.gui.swing.view.DictionaryTestImplementation;
+import vampire.editor.plugin.api.domain.BorderAPI;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 
@@ -56,6 +57,12 @@ public class ResourcesHolderTestImplementation implements ResourcesHolderAPI{
 	@Override
 	public String getKeyOfFont(Font font) {
 		return "cas_antn";
+	}
+
+	@Override
+	public BorderAPI getBorder(String key) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
