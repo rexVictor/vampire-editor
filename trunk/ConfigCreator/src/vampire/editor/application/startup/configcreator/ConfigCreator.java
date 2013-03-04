@@ -4,13 +4,18 @@ import java.awt.Font;
 import java.awt.Image;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.jdom2.Document;
 import org.jdom2.Element;
 
+import vampire.editor.domain.Border;
 import vampire.editor.domain.config.Config;
+import vampire.editor.domain.config.Dictionary;
 import vampire.editor.domain.config.Plugin;
 import vampire.editor.persistency.startup.XMLImportException;
 import vampire.editor.persistency.startup.XMLLoader;
@@ -26,11 +31,17 @@ public class ConfigCreator implements ElementProcessor{
 	
 	private final Map<String, Image> lines = new HashMap<>();
 	
-	private final Map<String, Image> borders = new HashMap<>();
+	private final Map<String, Border> borders = new HashMap<>();
 	
 	private final Map<String, Class<Activator>> clazzes = new HashMap<>();
 	
 	private final Map<String, ElementProcessor> processors = new HashMap<>();
+	
+	private final Map<String, Plugin> plugins = new HashMap<>();
+	
+	private final Map<String, ProtoPlugin> protoPlugins = new HashMap<>();
+	
+	private final Map<String, Dictionary> dictionaries = new HashMap<>();
 	
 	public ConfigCreator() {
 		ElementProcessor borderProcessor = new BorderProcessor();
@@ -38,6 +49,9 @@ public class ConfigCreator implements ElementProcessor{
 		ElementProcessor jarProcessor = new JarProcessor();
 		ElementProcessor lineProcessor = new LineProcessor();
 		ElementProcessor pathProcessor = new PathProcessor();
+		ElementProcessor pluginProcessor = new PluginProcessor();
+		ElementProcessor localeProcessor = new LocaleProcessor();
+		ElementProcessor dictionaryProcessor = new DictionaryProcessor();
 		
 		processors.put(borderProcessor.getName(), borderProcessor);
 		processors.put(fontProcessor.getName(), fontProcessor);
@@ -45,6 +59,9 @@ public class ConfigCreator implements ElementProcessor{
 		processors.put(lineProcessor.getName(), lineProcessor);
 		processors.put(getName(), this);
 		processors.put(pathProcessor.getName(), pathProcessor);
+		processors.put(pluginProcessor.getName(), pluginProcessor);
+		processors.put(localeProcessor.getName(), localeProcessor);
+		processors.put(dictionaryProcessor.getName(), dictionaryProcessor);
 	}
 	
 	public Config loadConfig(Path path) throws ConfigImportException{
@@ -55,9 +72,38 @@ public class ConfigCreator implements ElementProcessor{
 		} catch (XMLImportException e) {
 			throw new ConfigImportException(e);
 		}
-		Config config = new Config(path, new HashMap<String, Plugin>(), clazzes.remove("gui"),
-				clazzes.remove("sheetloader"), fonts, borders, lines);
+		makePlugins();
+		Config config = new Config(path, plugins, clazzes.remove(ConfigStrings.GUI),
+				clazzes.remove(ConfigStrings.SHEETLOADER), fonts, borders, lines, dictionaries);
 		return config;
+	}
+	
+	private void makePlugins(){
+		Set<String> protoPluginKeys = protoPlugins.keySet();
+		int preSize = protoPluginKeys.size();
+		int postSize = protoPluginKeys.size();
+		while (postSize != 0){
+			preSize = protoPluginKeys.size();
+			for (Iterator<String> i = protoPluginKeys.iterator();i.hasNext();){
+				String s = i.next();
+				ProtoPlugin protoPlugin = protoPlugins.get(s);
+				List<String> dependencies = protoPlugin.getDependencies();
+				Set<String> pluginKeys = plugins.keySet();
+				if (pluginKeys.containsAll(dependencies)){
+					List<Plugin> plugins = new LinkedList<>();
+					for (String dependency : dependencies){
+						plugins.add(this.plugins.get(dependency));
+					}
+					Plugin plugin = new Plugin(plugins, clazzes.get(protoPlugin.getActivator()), protoPlugin.getName());
+					this.plugins.put(protoPlugin.getName(), plugin);
+					i.remove();
+				}
+			}
+			postSize = protoPluginKeys.size();
+			if (postSize == preSize)
+				throw new ConfigImportException("Error in dependencies");
+		}
+		
 	}
 	
 	void put(String key, Path path){
@@ -72,12 +118,32 @@ public class ConfigCreator implements ElementProcessor{
 		clazzes.put(key, clazz);
 	}
 	
+	void put(String key, Plugin plugin){
+		plugins.put(key, plugin);
+	}
+	
+	void put(String key, ProtoPlugin protoPlugin){
+		protoPlugins.put(key, protoPlugin);
+	}
+	
+	ProtoPlugin getProtoPlugin(String key){
+		return protoPlugins.get(key);
+	}
+	
 	void putLine(String key, Image line){
 		lines.put(key, line);
 	}
 	
-	void putBorder(String key, Image line){
-		borders.put(key, line);
+	void putBorder(String key, Border border){
+		borders.put(key, border);
+	}
+	
+	void put(String key, Dictionary dictionary){
+		dictionaries.put(key, dictionary);
+	}
+	
+	Dictionary getDictionary(String key){
+		return dictionaries.get(key);
 	}
 	
 	Font getFont(String key){
@@ -92,7 +158,7 @@ public class ConfigCreator implements ElementProcessor{
 		return lines.get(key);
 	}
 	
-	Image getBorder(String key){
+	Border getBorder(String key){
 		return borders.get(key);
 	}
 	
@@ -110,8 +176,8 @@ public class ConfigCreator implements ElementProcessor{
 	@Override
 	public void process(Element element, ConfigCreator configCreator) {
 		//String configName = element.getAttributeValue("name");
-		String pathName = element.getAttributeValue("path");
-		String fileName = element.getAttributeValue("file");
+		String pathName = element.getAttributeValue(ConfigStrings.PATH);
+		String fileName = element.getAttributeValue(ConfigStrings.FILE);
 		Path configPath = paths.get(pathName).resolve(fileName);
 		try {
 			Document config = xmlLoader.load(configPath);
@@ -123,7 +189,7 @@ public class ConfigCreator implements ElementProcessor{
 
 	@Override
 	public String getName() {
-		return "config";
+		return ConfigStrings.CONFIG;
 	}
 
 }

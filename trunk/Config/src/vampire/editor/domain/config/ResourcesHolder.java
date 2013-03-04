@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.util.Map;
 import java.util.Set;
 
+import vampire.editor.domain.Border;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 
@@ -12,18 +13,21 @@ public class ResourcesHolder implements ResourcesHolderAPI{
 	
 	private final Map<String, Font> fonts;
 	
-	private final Map<String, Image> borders;
+	private final Map<String, Border> borders;
 	
 	private final Map<String, Image> lines;
 	
+	private final Map<String, Dictionary> dictionaries;
+	
 	
 
-	public ResourcesHolder(Map<String, Font> fonts, Map<String, Image> borders,
-			Map<String, Image> lines) {
+	public ResourcesHolder(Map<String, Font> fonts, Map<String, Border> borders,
+			Map<String, Image> lines, Map<String, Dictionary> dictionaries) {
 		super();
 		this.fonts = fonts;
 		this.borders = borders;
 		this.lines = lines;
+		this.dictionaries = dictionaries;
 	}
 
 	@Override
@@ -36,10 +40,14 @@ public class ResourcesHolder implements ResourcesHolderAPI{
 
 	@Override
 	public DictionaryAPI getDictionary(String key) {
-		return new Dictionary(null, "general");
+		DictionaryAPI dictionary = dictionaries.get(key);
+		if (dictionary == null){
+			return new Dictionary(null, "");
+		}
+		return dictionary;
 	}
 	
-	public Image getBorder(String key){
+	public Border getBorder(String key){
 		return borders.get(key);
 	}
 	

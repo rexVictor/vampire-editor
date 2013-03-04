@@ -12,9 +12,9 @@ class JarProcessor implements ElementProcessor{
 
 	@Override
 	public void process(Element element, ConfigCreator configCreator) {
-		String name = element.getAttributeValue("name");
-		Attribute path = element.getAttribute("path");
-		Attribute file = element.getAttribute("file");
+		String name = element.getAttributeValue(ConfigStrings.NAME);
+		Attribute path = element.getAttribute(ConfigStrings.PATH);
+		Attribute file = element.getAttribute(ConfigStrings.FILE);
 		ClassLoader loader = null;
 		if(path == null){
 			loader = nullProcessor.process(null, null, null, null);
@@ -22,7 +22,7 @@ class JarProcessor implements ElementProcessor{
 		else {
 			loader = pathClassProcessor.process(null, null, path, file);
 		}
-		String clazzname = element.getAttributeValue("class");
+		String clazzname = element.getAttributeValue(ConfigStrings.CLASS);
 		try {
 			@SuppressWarnings("unchecked")
 			Class<Activator> clazz = (Class<Activator>) loader.loadClass(clazzname);
@@ -34,7 +34,7 @@ class JarProcessor implements ElementProcessor{
 
 	@Override
 	public String getName() {
-		return "jar";
+		return ConfigStrings.JAR;
 	}
 
 }

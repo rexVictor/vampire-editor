@@ -28,7 +28,7 @@ class PathClassProcessor implements AttributeProcessor<ClassLoader>{
 
 	@Override
 	public String getName() {
-		return "path";
+		return ConfigStrings.PATH;
 	}
 
 }
