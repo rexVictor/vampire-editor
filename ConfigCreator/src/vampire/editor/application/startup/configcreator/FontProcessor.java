@@ -11,9 +11,9 @@ class FontProcessor implements ElementProcessor{
 
 	@Override
 	public void process(Element element, ConfigCreator configCreator) {
-		String pathName = element.getAttributeValue("path");
-		String fileName = element.getAttributeValue("file");
-		String key = element.getAttributeValue("key");
+		String pathName = element.getAttributeValue(ConfigStrings.PATH);
+		String fileName = element.getAttributeValue(ConfigStrings.FILE);
+		String key = element.getAttributeValue(ConfigStrings.KEY);
 		Path fontPath = configCreator.getPath(pathName).resolve(fileName);
 		try {
 			Font font = Font.createFont(0, fontPath.toFile());
@@ -25,7 +25,7 @@ class FontProcessor implements ElementProcessor{
 
 	@Override
 	public String getName() {
-		return "font";
+		return ConfigStrings.FONT;
 	}
 
 }

@@ -18,7 +18,7 @@ class AppendProcessor implements AttributeProcessor<Path>{
 
 	@Override
 	public String getName() {
-		return "append";
+		return ConfigStrings.APPEND;
 	}
 
 }

@@ -15,7 +15,7 @@ class KeyProcessor implements AttributeProcessor<Path>{
 
 	@Override
 	public String getName() {
-		return "key";
+		return ConfigStrings.KEY;
 	}
 
 }

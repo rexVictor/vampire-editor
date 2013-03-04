@@ -16,7 +16,7 @@ class PathProcessor implements ElementProcessor{
 
 	@Override
 	public void process(Element element, ConfigCreator creator) {
-		String name = element.getAttributeValue("name");
+		String name = element.getAttributeValue(ConfigStrings.NAME);
 		List<Element> children = element.getChildren();
 		Path path = null;
 		for (Element child : children){
@@ -27,7 +27,7 @@ class PathProcessor implements ElementProcessor{
 
 	@Override
 	public String getName() {
-		return "path";
+		return ConfigStrings.PATH;
 	}
 
 }

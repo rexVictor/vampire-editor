@@ -15,7 +15,7 @@ class RootProcessor implements AttributeProcessor<Path>{
 
 	@Override
 	public String getName() {
-		return "root";
+		return ConfigStrings.ROOT;
 	}
 
 }

@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.nio.file.Path;
 import java.util.Map;
 
+import vampire.editor.domain.Border;
 import vampire.editor.plugin.api.plugin.Activator;
 
 public class Config {
@@ -21,14 +22,14 @@ public class Config {
 
 	public Config(Path ownPath, Map<String, Plugin> plugins,
 			Class<Activator> guiPlugin, Class<Activator> sheetLoader,
-			Map<String, Font> fonts, Map<String, Image> borders,
-			Map<String, Image> lines) {
+			Map<String, Font> fonts, Map<String, Border> borders,
+			Map<String, Image> lines, Map<String, Dictionary> dictionaries) {
 		super();
 		this.ownPath = ownPath;
 		this.plugins = plugins;
 		this.guiPlugin = guiPlugin;
 		this.sheetLoader = sheetLoader;
-		holder = new ResourcesHolder(fonts, borders, lines);
+		holder = new ResourcesHolder(fonts, borders, lines, dictionaries);
 		
 	}
 	
