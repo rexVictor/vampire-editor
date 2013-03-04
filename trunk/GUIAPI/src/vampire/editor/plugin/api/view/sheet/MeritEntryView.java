@@ -9,5 +9,7 @@ public interface MeritEntryView {
 	public void setText(String text);
 	
 	public void addListener(MeritEntryViewListener listener);
+	
+	public MeritEntryView clone();
 
 }

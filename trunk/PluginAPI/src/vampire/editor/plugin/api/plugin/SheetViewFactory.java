@@ -6,5 +6,5 @@ import vampire.editor.plugin.api.view.sheet.SheetView;
 public interface SheetViewFactory {
 	
 	public SheetView buildSheetView(VampireDocumentAPI document);
-
+	
 }

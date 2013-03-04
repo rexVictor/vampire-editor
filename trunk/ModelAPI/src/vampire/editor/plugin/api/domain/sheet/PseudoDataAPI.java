@@ -8,5 +8,7 @@ public interface PseudoDataAPI<V extends Nameable> extends Nameable{
 
 	@Override
 	public String getName();
-
+	
+	public int size();
+	
 }

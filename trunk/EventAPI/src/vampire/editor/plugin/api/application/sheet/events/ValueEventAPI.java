@@ -6,7 +6,7 @@ public interface ValueEventAPI {
 
 	public ValueControllerAPI getSource();
 
-	public int getFormelValue();
+	public int getFormerValue();
 
 	public int getNewValue();
 
