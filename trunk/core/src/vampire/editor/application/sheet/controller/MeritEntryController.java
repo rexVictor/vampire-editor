@@ -28,6 +28,7 @@ public class MeritEntryController implements MeritEntryControllerAPI, MeritEntry
 		super();
 		this.merit = merit;
 		this.view = view;
+		view.addListener(this);
 	}
 
 	@Override
@@ -104,6 +105,14 @@ public class MeritEntryController implements MeritEntryControllerAPI, MeritEntry
 	@Override
 	public void nameChanged(MeritEntryViewEvent e) {
 		setName(e.getName());
+	}
+	
+	@Override
+	public MeritEntryController clone(){
+		Merit cloneMerit = merit.clone();
+		MeritEntryView cloneEntryView = view.clone();
+		MeritEntryController clone = new MeritEntryController(cloneMerit, cloneEntryView);
+		return clone;
 	}
 	
 	

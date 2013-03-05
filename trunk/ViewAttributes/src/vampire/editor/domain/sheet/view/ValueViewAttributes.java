@@ -107,7 +107,8 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 		if (object instanceof ValueViewAttributes){
 			ValueViewAttributes toCompare = (ValueViewAttributes) object;
 			return toCompare.dynamic == dynamic && toCompare.showSpace == showSpace 
-					&& toCompare.circles == circles	&& toCompare.size == size;
+					&& toCompare.circles == circles	&& toCompare.size == size 
+					&& toCompare.tempSquared == tempSquared;
 		}
 		return false;
 	}
@@ -115,7 +116,8 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	
 	@Override
 	public int hashCode(){
-		return System.identityHashCode(dynamic)+2*System.identityHashCode(showSpace)+4*circles+8*size;
+		return System.identityHashCode(dynamic)+2*System.identityHashCode(showSpace)
+				+4*circles+8*size+16* System.identityHashCode(tempSquared);
 	}
 
 }

@@ -16,5 +16,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSImporter"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GenerationBloodpoolSynchronizer"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/DynamicSubCategoryTraitManager"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DynamicMeritEntryManager"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

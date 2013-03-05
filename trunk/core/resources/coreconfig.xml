@@ -45,6 +45,10 @@
 	<plugin name="dynamicSubCategoryView">
 		<jar class="vampire.editor.plugin.dynamicsubcategorymanager.application.Constructor"/>
 	</plugin>
+	
+	<plugin name="dynamicMeritsView">
+		<jar class="vampire.editor.plugin.dynamicmeritentrymanager.application.Constructor"/>
+	</plugin>
 
 
 </coreconfig>

@@ -3,7 +3,7 @@
   "dynamic" : true,
   "circles" : 5,
   "tempSquared" : false,
-  "size" : 14,
+  "size" : 12,
   "id" : 0
 }, {
   "showSpace" : false,
@@ -17,6 +17,6 @@
   "dynamic" : false,
   "circles" : 5,
   "tempSquared" : false,
-  "size" : 14,
+  "size" : 12,
   "id" : 2
 } ]

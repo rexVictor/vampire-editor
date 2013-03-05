@@ -15,7 +15,5 @@ public interface ResourcesHolderAPI {
 	public String getKeyOfFont(Font font);
 	
 	public BorderAPI getBorder(String key);
-		
 	
-
 }

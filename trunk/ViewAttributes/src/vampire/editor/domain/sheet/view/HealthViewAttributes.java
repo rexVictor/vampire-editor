@@ -17,6 +17,21 @@ public class HealthViewAttributes implements HealthViewAttibutesAPI, FontSettabl
 		this.font = font;
 	}
 	
+	@Override 
+	public boolean equals(Object that){
+		if (that == null) return false;
+		if (that == this) return true;
+		if (that instanceof HealthViewAttributes){
+			return this.font.equals(((HealthViewAttributes) that).font);
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+		return font.hashCode();
+	}
+	
 	
 
 }

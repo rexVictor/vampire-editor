@@ -43,5 +43,10 @@ public class ProtoExport {
 	public List<Map<String, Object>> getList(){
 		return protoFile;
 	}
+	
+	public void reset(){
+		protoFile.removeAll(protoFile);
+		alreadyInserted.clear();
+	}
 
 }

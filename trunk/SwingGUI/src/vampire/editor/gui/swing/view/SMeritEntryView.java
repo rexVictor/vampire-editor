@@ -96,6 +96,11 @@ public class SMeritEntryView implements MeritEntryView, ActionListener{
 	public SMeritEntryView clone(){
 		return new SMeritEntryView(dictionary, viewAtts);
 	}
+
+	@Override
+	public MeritEntryViewAttibutesAPI getViewAttributes() {
+		return viewAtts;
+	}
 	
 	
 

@@ -158,6 +158,9 @@ public class ModelToViewMap {
 		map.put("values", makeMap(valueMap));
 		map.put("bloodpool", makeMap(bloodPoolMap).get(0));
 		map.put("healthentries", makeMap(healthEntryMap));
+		map.put("health", makeMap(healthMap).get(0));
+		map.put("meritentries", makeMap(meritEntryMap));
+		map.put("merits", makeMap(meritMap));
 		return map;
 	}
 	

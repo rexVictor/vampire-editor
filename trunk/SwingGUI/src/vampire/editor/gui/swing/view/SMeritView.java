@@ -67,10 +67,11 @@ public class SMeritView implements MeritView{
 			constraints.hAlign	=	CellConstraints.FILL;
 			
 			panel.add(entryView.getTextField(), constraints);
+			panel.revalidate();
+			panel.repaint();
 		}
 	}
-
-
+	
 	public JPanel getPanel() {
 		return panel;
 	}
@@ -79,6 +80,20 @@ public class SMeritView implements MeritView{
 	@Override
 	public List<MeritEntryView> getEntries() {
 		return Collections.unmodifiableList(entries);
+	}
+
+
+	@Override
+	public void removeMeritEntryView(MeritEntryView view) {
+		if (view instanceof SMeritEntryView){
+			SMeritEntryView v = (SMeritEntryView) view;
+			CellConstraints constraints = layout.getConstraints(v.getCostField());
+			panel.remove(v.getCostField());
+			panel.remove(v.getTextField());
+			layout.removeRow(constraints.gridY);
+			panel.repaint();
+			panel.revalidate();
+		}
 	}
 	
 	

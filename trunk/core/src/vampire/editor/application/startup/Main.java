@@ -17,7 +17,7 @@ public class Main {
 		Path configPath = Paths.get("resources", "coreconfig.xml");
 		ConfigCreator creator = new ConfigCreator();
 		Config config = creator.loadConfig(configPath);
-		String[] path = new String[]{"..", "Tests", "defaultsheets", "vtmdefault.vmpcs"};
+		String[] path = new String[]{"..", "Tests", "export1", "export1.vmpcs"};
 		new GeneralController(config, path);
 	}
 
