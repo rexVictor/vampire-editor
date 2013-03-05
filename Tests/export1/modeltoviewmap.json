@@ -1,4 +1,26 @@
 {
+  "healthentries" : [ {
+    "model" : 0,
+    "viewatts" : 0
+  }, {
+    "model" : 1,
+    "viewatts" : 0
+  }, {
+    "model" : 2,
+    "viewatts" : 0
+  }, {
+    "model" : 3,
+    "viewatts" : 0
+  }, {
+    "model" : 4,
+    "viewatts" : 0
+  }, {
+    "model" : 5,
+    "viewatts" : 0
+  }, {
+    "model" : 6,
+    "viewatts" : 0
+  } ],
   "values" : [ {
     "model" : 0,
     "viewatts" : 0
@@ -147,6 +169,20 @@
     "model" : 45,
     "viewatts" : 2
   } ],
+  "meritentries" : [ {
+    "model" : 0,
+    "viewatts" : 0
+  }, {
+    "model" : 1,
+    "viewatts" : 0
+  } ],
+  "merits" : [ {
+    "model" : 0,
+    "viewatts" : 0
+  }, {
+    "model" : 1,
+    "viewatts" : 0
+  } ],
   "categories" : [ {
     "model" : 0,
     "viewatts" : 0
@@ -160,6 +196,10 @@
     "model" : 3,
     "viewatts" : 0
   } ],
+  "bloodpool" : {
+    "model" : 0,
+    "viewatts" : 0
+  },
   "traits" : [ {
     "model" : 0,
     "viewatts" : 0
@@ -339,6 +379,10 @@
     "model" : 11,
     "viewatts" : 2
   } ],
+  "health" : {
+    "model" : 0,
+    "viewatts" : 0
+  },
   "meta" : [ {
     "model" : 0,
     "viewatts" : 0

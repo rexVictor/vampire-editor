@@ -28,8 +28,12 @@ public interface ModelToViewModelMapperAPI {
 	
 	public void putView(TraitAPI trait, TraitViewAttributesAPI viewAtts);
 	
+	public void putView(MeritAPI merit, MeritEntryViewAttibutesAPI viewAtts);
+	
 	public void removeView(ValueAPI value);
 	
 	public void removeView(TraitAPI trait);
+	
+	public void removeView(MeritAPI merit);
 	
 }

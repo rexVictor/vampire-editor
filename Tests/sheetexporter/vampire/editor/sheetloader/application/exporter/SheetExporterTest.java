@@ -19,12 +19,12 @@ public class SheetExporterTest {
 
 	@Test
 	public void test() throws JsonGenerationException, JsonMappingException, IOException {
-		Path path = Paths.get("sheetpersistencyprototype");
+		Path path = Paths.get("defaultsheets","vtmdefault.vmpcs");
 		VMPCSImporter importer = new VMPCSImporter(new ResourcesHolderTestImplementation(), path);
 		VampireDocument document = importer.load();
 		SheetExporter exporter = new SheetExporter(document, new ResourcesHolderTestImplementation());
-		Path path2 = Paths.get("export1");
-		System.out.print(exporter.export(path2));
+		Path path2 = Paths.get("export1", "export1.vmpcs");
+		exporter.export(path2);
 		fail("Not yet implemented");
 	}
 

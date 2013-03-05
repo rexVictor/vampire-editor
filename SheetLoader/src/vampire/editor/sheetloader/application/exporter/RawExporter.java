@@ -52,6 +52,16 @@ public class RawExporter {
 		
 	}
 	
+	private class MeritsExporter extends InnerExporter{
+
+		@Override
+		protected Map<String, Object> export(Object object) {
+			Map<String, Object> map = new HashMap<>();
+			return map;
+		}
+		
+	}
+	
 	private final TypeReference<Map<String, Object>> typeReferenceJsonMap = new TypeReference<Map<String,Object>>(){};
 	
 	private final Map<Class<?>, InnerExporter> exporters = new HashMap<>();
@@ -71,7 +81,16 @@ public class RawExporter {
 		exporters.put(Category.class, dataExporter);
 		exporters.put(SubCategory.class, dataExporter);
 		exporters.put(Trait.class, dataExporter);
-		
+		exporters.put(Merit.class, usual);
+		exporters.put(Merits.class, new MeritsExporter());
+		exporters.put(Health.class, new MeritsExporter());
+		exporters.put(HealthEntry.class, usual);
+		exporters.put(HealthViewAttributes.class, usual);
+		exporters.put(HealthEntryViewAttributes.class, usual);
+		exporters.put(BloodPool.class, usual);
+		exporters.put(BloodPoolViewAttributes.class, usual);
+		exporters.put(MeritEntryViewAttibutes.class, usual);
+		exporters.put(MeritViewAttributes.class, usual);
 		
 		SimpleModule module = new SimpleModule();
 		module.addSerializer(new FontEmptySerializer());
@@ -80,6 +99,10 @@ public class RawExporter {
 
 	
 	public Map<String, Object> export(Object object){
-		return exporters.get(object.getClass()).export(object);
+		InnerExporter exporter = exporters.get(object.getClass()); 
+		if (exporter == null){
+			System.out.println();
+		}
+		return exporter.export(object);
 	}
 }

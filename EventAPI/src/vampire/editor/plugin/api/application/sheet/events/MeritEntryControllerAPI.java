@@ -17,5 +17,7 @@ public interface MeritEntryControllerAPI {
 	
 	public void removeListener(MeritEntryListener l);
 	
+	public MeritEntryControllerAPI clone();
+	
 
 }

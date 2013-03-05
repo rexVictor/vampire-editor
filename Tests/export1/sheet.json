@@ -1,4 +1,25 @@
 {
+  "flaws" : {
+    "mapid" : 1,
+    "entries" : [ {
+      "cost" : 0,
+      "name" : "",
+      "mapid" : 1
+    } ]
+  },
+  "merits" : {
+    "mapid" : 0,
+    "entries" : [ {
+      "cost" : 0,
+      "name" : "",
+      "mapid" : 0
+    } ]
+  },
+  "bloodpool" : {
+    "value" : 0,
+    "maxValue" : 20,
+    "mapid" : 0
+  },
   "traits" : [ {
     "subCats" : [ {
       "mapid" : 0,
@@ -393,6 +414,46 @@
     "mapid" : 3,
     "name" : "advantages"
   } ],
+  "border" : "vtmdefault",
+  "health" : {
+    "levels" : [ {
+      "penalty" : 0,
+      "name" : "bruised",
+      "damageType" : null,
+      "mapid" : 0
+    }, {
+      "penalty" : 1,
+      "name" : "hurt",
+      "damageType" : null,
+      "mapid" : 1
+    }, {
+      "penalty" : 1,
+      "name" : "injured",
+      "damageType" : null,
+      "mapid" : 2
+    }, {
+      "penalty" : 2,
+      "name" : "wounded",
+      "damageType" : null,
+      "mapid" : 3
+    }, {
+      "penalty" : 2,
+      "name" : "mauled",
+      "damageType" : null,
+      "mapid" : 4
+    }, {
+      "penalty" : 5,
+      "name" : "crippeled",
+      "damageType" : null,
+      "mapid" : 5
+    }, {
+      "penalty" : 0,
+      "name" : "incapacitated",
+      "damageType" : null,
+      "mapid" : 6
+    } ],
+    "mapid" : 0
+  },
   "meta" : [ {
     "name" : "name",
     "value" : "test",

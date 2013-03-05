@@ -5,7 +5,7 @@ import vampire.editor.plugin.api.application.sheet.events.MeritsListener;
 import vampire.editor.plugin.api.domain.sheet.MeritsAPI;
 import vampire.editor.plugin.api.view.sheet.MeritView;
 
-public interface MeritsControllerAPI {
+public interface MeritsControllerAPI extends Iterable<MeritEntryControllerAPI>{
 	
 	public MeritsAPI getMerits();
 	
@@ -18,5 +18,12 @@ public interface MeritsControllerAPI {
 	public void addListener(MeritsListener l);
 	
 	public void removeListener(MeritsListener l);
+	
+	public int size();
+	
+	public int indexOf(MeritEntryControllerAPI controller);
+	
+	public MeritEntryControllerAPI getController(int index);
+	
 	
 }

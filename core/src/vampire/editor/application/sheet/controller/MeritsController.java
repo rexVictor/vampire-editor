@@ -1,5 +1,6 @@
 package vampire.editor.application.sheet.controller;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -79,6 +80,7 @@ public class MeritsController implements MeritsControllerAPI{
 		lock.lock();
 		try{
 			merits.remove((Merit) merit.getMerit());
+			view.removeMeritEntryView(merit.getView());
 			entryControllers.remove(merit);
 			for (MeritsListener l : listeners){
 				l.meritRemoved(e);
@@ -87,7 +89,6 @@ public class MeritsController implements MeritsControllerAPI{
 		finally{
 			lock.unlock();
 		}
-		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -110,6 +111,26 @@ public class MeritsController implements MeritsControllerAPI{
 		finally{
 			lock.unlock();
 		}
+	}
+
+	@Override
+	public int size() {
+		return entryControllers.size();
+	}
+
+	@Override
+	public int indexOf(MeritEntryControllerAPI controller) {
+		return entryControllers.indexOf(controller);
+	}
+
+	@Override
+	public MeritEntryControllerAPI getController(int index) {
+		return entryControllers.get(index);
+	}
+
+	@Override
+	public Iterator<MeritEntryControllerAPI> iterator() {
+		return entryControllers.iterator();
 	}
 	
 }
