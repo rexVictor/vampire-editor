@@ -16,20 +16,21 @@ public class Config {
 	
 	private final Class<Activator> guiPlugin;
 	
-	private final Class<Activator> sheetLoader;
+	private final Map<String, Importer> importers;
 	
 	private final ResourcesHolder holder;
 
 	public Config(Path ownPath, Map<String, Plugin> plugins,
-			Class<Activator> guiPlugin, Class<Activator> sheetLoader,
+			Class<Activator> guiPlugin, Map<String, Importer> importers,
 			Map<String, Font> fonts, Map<String, Border> borders,
-			Map<String, Image> lines, Map<String, Dictionary> dictionaries) {
+			Map<String, Image> lines, Map<String, Dictionary> dictionaries,
+			Map<String, Path> defaultSheets) {
 		super();
 		this.ownPath = ownPath;
 		this.plugins = plugins;
 		this.guiPlugin = guiPlugin;
-		this.sheetLoader = sheetLoader;
-		holder = new ResourcesHolder(fonts, borders, lines, dictionaries);
+		this.importers = importers;
+		holder = new ResourcesHolder(fonts, borders, lines, dictionaries, defaultSheets);
 		
 	}
 	
@@ -45,8 +46,8 @@ public class Config {
 		return guiPlugin;
 	}
 	
-	public Class<Activator> getLoader(){
-		return sheetLoader;
+	public Map<String, Importer> getImporters(){
+		return importers;
 	}
 	
 	public Map<String, Plugin> getPlugins(){

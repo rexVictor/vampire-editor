@@ -1,5 +1,6 @@
 package vampire.editor.plugin;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -9,10 +10,12 @@ import java.util.Map;
 import vampire.editor.application.GeneralController;
 
 import vampire.editor.domain.config.Config;
+import vampire.editor.domain.config.Importer;
 import vampire.editor.domain.config.Plugin;
 
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
+import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.plugin.api.plugin.Activator;
 import vampire.editor.plugin.api.plugin.DocumentListener;
 import vampire.editor.plugin.api.plugin.Facade;
@@ -31,6 +34,8 @@ public class Manager implements ManagerAPI{
 	
 	private final List<Plugin> plugins = new LinkedList<>();
 	
+	private final List<SheetImporter> importers = new LinkedList<>();
+	
 	private /*final*/ GUIPlugin gui;
 	
 	private SheetImporter defaultImporter;
@@ -47,9 +52,15 @@ public class Manager implements ManagerAPI{
 	private void initialize(){
 		try {
 			Activator gui = config.getGUI().newInstance();
-			gui.setManager(this);			
-			Activator loader = config.getLoader().newInstance();
-			loader.setManager(this);
+			gui.setManager(this);
+			this.gui.addItemToMenuBar(new OpenTrigger(this.gui, this), "file", "open");
+			Map<String, Importer> importers = config.getImporters();
+			for (String s : importers.keySet()){
+				Importer importer = importers.get(s);
+				Activator importerActivator = importer.getActivator().newInstance();
+				importerActivator.setManager(this);
+				this.gui.addImportFileExtension(importer.getFormat());
+			}
 		} catch (InstantiationException | IllegalAccessException e) {
 			throw new RuntimeException(e);			
 		}
@@ -72,6 +83,11 @@ public class Manager implements ManagerAPI{
 					}
 				}
 			}
+		}
+		
+		Map<String, Path> defaultSheets = getResourcesHolder().getDefaultSheets();
+		for (String s : defaultSheets.keySet()){
+			this.gui.addItemToMenuBar(new NewTrigger(defaultSheets.get(s), this), "file", "new", s);
 		}
 		
 	}
@@ -161,6 +177,19 @@ public class Manager implements ManagerAPI{
 					listener.documentAdded(e);
 				}
 			}.start();
+		}
+	}
+	
+	public void addImporter(SheetImporter importer){
+		importers.add(importer);
+	}
+	
+	public void open(Path path){
+		for (SheetImporter importer : importers){
+			if (importer.canHandle(path)){
+				VampireDocumentAPI document = importer.loadDocument(path);
+				controller.open(document);
+			}
 		}
 	}
 	

@@ -3,6 +3,7 @@ package vampire.editor.sheetloader.application.importer;
 import java.awt.Font;
 import java.awt.Image;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,6 +62,12 @@ public class ResourcesHolderTestImplementation implements ResourcesHolderAPI{
 
 	@Override
 	public BorderAPI getBorder(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Path> getDefaultSheets() {
 		// TODO Auto-generated method stub
 		return null;
 	}

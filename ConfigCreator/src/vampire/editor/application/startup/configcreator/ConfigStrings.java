@@ -58,6 +58,12 @@ public class ConfigStrings {
 	
 	public static final String DICTIONARY = "dictionary";
 	
+	public static final String DEFAULT_SHEET	=	"defaultsheet";
+	
+	public static final String IMPORTER	=	"importer";
+	
+	public static final String FORMAT =	"format";
+	
 	private ConfigStrings(){
 	}
 

@@ -2,6 +2,8 @@ package vampire.editor.domain.config;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.nio.file.Path;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,15 +21,19 @@ public class ResourcesHolder implements ResourcesHolderAPI{
 	
 	private final Map<String, Dictionary> dictionaries;
 	
+	private final Map<String, Path> defaultSheets;
+	
 	
 
 	public ResourcesHolder(Map<String, Font> fonts, Map<String, Border> borders,
-			Map<String, Image> lines, Map<String, Dictionary> dictionaries) {
+			Map<String, Image> lines, Map<String, Dictionary> dictionaries,
+			Map<String, Path> defaultSheets) {
 		super();
 		this.fonts = fonts;
 		this.borders = borders;
 		this.lines = lines;
 		this.dictionaries = dictionaries;
+		this.defaultSheets = defaultSheets;
 	}
 
 	@Override
@@ -63,6 +69,14 @@ public class ResourcesHolder implements ResourcesHolderAPI{
 			if (fonts.get(s).equals(font)) return s;
 		}
 		return null;
+	}
+	
+	public Path getDefaultSheet(String key){
+		return defaultSheets.get(key);
+	}
+	
+	public Map<String, Path> getDefaultSheets(){
+		return Collections.unmodifiableMap(defaultSheets);
 	}
 	
 

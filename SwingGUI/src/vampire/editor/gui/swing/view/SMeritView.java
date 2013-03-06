@@ -21,7 +21,7 @@ public class SMeritView implements MeritView{
 	
 	private final JPanel panel = new JPanel();
 	
-	private final FormLayout layout = new FormLayout("5px, 30px, 5px, pref:GROW, 5px", "pref");
+	private final FormLayout layout = new FormLayout("5px, pref:GROW(0.1), 5px, pref:GROW(0.9), 5px", "pref");
 	
 	private final List<MeritEntryView> entries = new LinkedList<>();
 	
@@ -58,7 +58,7 @@ public class SMeritView implements MeritView{
 			constraints.gridWidth	=	1;
 			constraints.gridX		=	2;
 			constraints.gridY		=	layout.getRowCount();
-			constraints.hAlign		=	CellConstraints.LEFT;
+			constraints.hAlign		=	CellConstraints.FILL;
 			
 			panel.add(entryView.getCostField(), constraints);
 			

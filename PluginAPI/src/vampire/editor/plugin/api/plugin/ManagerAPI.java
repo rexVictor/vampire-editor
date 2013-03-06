@@ -1,5 +1,7 @@
 package vampire.editor.plugin.api.plugin;
 
+import java.nio.file.Path;
+
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 
@@ -22,6 +24,10 @@ public interface ManagerAPI {
 	public void addDocumentListener(DocumentListener listener);
 	
 	public void removeDocumentListener(DocumentListener listener);
+	
+	public void addImporter(SheetImporter importer);
+	
+	public void open(Path path);
 	
 
 }

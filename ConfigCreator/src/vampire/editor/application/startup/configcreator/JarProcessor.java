@@ -20,7 +20,7 @@ class JarProcessor implements ElementProcessor{
 			loader = nullProcessor.process(null, null, null, null);
 		}
 		else {
-			loader = pathClassProcessor.process(null, null, path, file);
+			loader = pathClassProcessor.process(null, configCreator, path, file);
 		}
 		String clazzname = element.getAttributeValue(ConfigStrings.CLASS);
 		try {

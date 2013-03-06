@@ -20,35 +20,28 @@
 	</path>
 	<!-- till here -->
 	<path name="plugins">
-		<segment append="resources" />
+		<segment append="plugins" />
 	</path>
 	
 	<locale language="DE" country="" variant=""/>
 
 	<!-- The name of the configs is not processed yet, since there was no need. -->
 	<config name="resources" 	path="resources" 	file="resources.xml" />
+	<config name="plugins" 	path="plugins" 	file="plugins.xml" />
 	<!-- config name="userconfig" 	path="userconfig" 	file="userconfig.xml" / -->
 	<!-- config name="plugins" 		path="plugins" 		file="plugins.xml" / -->
 	
 	
-
+	<importer name="vmpcs" format="vmpcs">
+		<jar name="vmpcs"
+			class="vampire.editor.sheetloader.application.LoaderActivator" />
+	</importer>
 
 	<jar name="gui"
 		class="vampire.editor.gui.swing.mainframe.application.GuiActivator" />
-	<jar name="sheetloader"
-		class="vampire.editor.sheetloader.application.LoaderActivator" />
+	
 
-	<plugin name="generationBloodpoolSynchronizer">
-		<jar class="vampire.editor.plugin.generationbloodpoolsynchronizer.application.Constructor"/>
-	</plugin>
 	
-	<plugin name="dynamicSubCategoryView">
-		<jar class="vampire.editor.plugin.dynamicsubcategorymanager.application.Constructor"/>
-	</plugin>
-	
-	<plugin name="dynamicMeritsView">
-		<jar class="vampire.editor.plugin.dynamicmeritentrymanager.application.Constructor"/>
-	</plugin>
 
 
 </coreconfig>

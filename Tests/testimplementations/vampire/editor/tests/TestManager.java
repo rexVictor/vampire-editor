@@ -1,5 +1,7 @@
 package vampire.editor.tests;
 
+import java.nio.file.Path;
+
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.plugin.DocumentListener;
@@ -60,6 +62,18 @@ public class TestManager implements ManagerAPI{
 
 	@Override
 	public void removeDocumentListener(DocumentListener listener) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addImporter(SheetImporter importer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void open(Path path) {
 		// TODO Auto-generated method stub
 		
 	}

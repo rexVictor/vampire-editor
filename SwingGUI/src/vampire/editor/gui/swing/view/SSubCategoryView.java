@@ -76,7 +76,6 @@ public class SSubCategoryView implements SubCategoryView{
 	public void add(TraitView entry) {
 		STraitView view = (STraitView) entry;
 		layout.appendRow(RowSpec.decode("pref"));
-		
 		CellConstraints constraints = new CellConstraints();
 		constraints.gridHeight	=	1;
 		constraints.gridWidth	=	1;
