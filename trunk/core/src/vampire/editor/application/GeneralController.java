@@ -13,7 +13,6 @@ import vampire.editor.plugin.Manager;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
-import vampire.editor.plugin.api.plugin.SheetImporter;
 import vampire.editor.plugin.api.plugin.SheetViewFactory;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
@@ -33,10 +32,8 @@ public class GeneralController implements GeneralControllerAPI{
 	
 	public GeneralController(Config config, String[] initial){
 		this(config);
-		SheetImporter importer = manager.getDefaultImporter();
 		Path path = Paths.get("", initial);
-		VampireDocument document = (VampireDocument) importer.loadDocument(path);
-		open(document);
+		manager.open(path);
 	}
 
 

@@ -12,13 +12,15 @@
 		<segment root="resources" />
 		<segment append="i18n" />
 	</path>
-
+	<path name="defaultsheets">
+		<segment root="resources"/>
+		<segment append="defaultsheets"/>
+	</path>
 
 	<config name="fonts" path="fonts" file="fonts.xml" />
 	<config name="graphics" path="graphics" file="graphics.xml"/>
 	<config name="i18n" path="i18n" file="i18n.xml"/>
-	<!-- config name="i18n" path="i18n" file="i18n.xml" / -->
-	
+	<config name="defaultsheets" path="defaultsheets" file="defaultsheets.xml"/>	
 
 
 </resources>

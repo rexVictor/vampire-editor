@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins>
+
+	<plugin name="generationBloodpoolSynchronizer">
+		<jar class="vampire.editor.plugin.generationbloodpoolsynchronizer.application.Constructor"
+			path = "plugins" file = "generationbloodpoolsynchronizer.jar"/>
+	</plugin>
+	
+	<plugin name="dynamicSubCategoryView">
+		<jar class="vampire.editor.plugin.dynamicsubcategorymanager.application.Constructor"
+			path = "plugins" file ="dynamicsubcategoryview.jar"/>
+	</plugin>
+	
+	<plugin name="dynamicMeritsView">
+		<jar class="vampire.editor.plugin.dynamicmeritentrymanager.application.Constructor"
+			path = "plugins" file ="dynamicmeritsview.jar"/>
+	</plugin>
+	
+</plugins>

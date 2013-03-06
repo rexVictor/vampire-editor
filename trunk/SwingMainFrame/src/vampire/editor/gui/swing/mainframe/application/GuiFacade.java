@@ -1,10 +1,12 @@
 package vampire.editor.gui.swing.mainframe.application;
 
 import java.awt.Dialog.ModalityType;
+import java.io.File;
 
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
+import javax.swing.filechooser.FileFilter;
 
 import vampire.editor.gui.swing.application.SheetViewFactory;
 import vampire.editor.gui.swing.mainframe.view.MainFrame;
@@ -24,6 +26,8 @@ public class GuiFacade implements GUIPlugin{
 	
 	private final SheetViewFactory factory;
 	
+	private final JFileChooser chooser = new JFileChooser();
+	
 	public GuiFacade(ManagerAPI manager){
 //		this.manager = manager;
 		DictionaryAPI dictionary = manager.getResourcesHolder().getDictionary("general");
@@ -41,8 +45,7 @@ public class GuiFacade implements GUIPlugin{
 
 	@Override
 	public String openFileView() {
-		JFileChooser chooser = new JFileChooser();
-		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		chooser.showOpenDialog(null);
 		if (chooser.getSelectedFile() == null)
 			return null;
@@ -75,6 +78,25 @@ public class GuiFacade implements GUIPlugin{
 		mainFrame.addSheetView(controller);
 		
 		
+	}
+
+	@Override
+	public void addImportFileExtension(final String extension) {
+		FileFilter filter = new FileFilter() {
+			
+			@Override
+			public String getDescription() {
+				return "Vampire Document (*."+extension+")";
+			}
+			
+			@Override
+			public boolean accept(File f) {
+				if (f.isDirectory())
+					return true;
+				return f.toString().endsWith(extension);
+			}
+		};
+		chooser.addChoosableFileFilter(filter);
 	}
 	
 	

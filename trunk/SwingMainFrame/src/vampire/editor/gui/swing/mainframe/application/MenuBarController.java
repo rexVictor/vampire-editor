@@ -78,6 +78,8 @@ public class MenuBarController {
 		if (item == null){
 			item = new JMenu(dictionary.getValue(next));
 			items.put(next, item);
+			topMenu.add(item);
+			lowMenus.put((JMenu)item, new HashMap<String, JMenuItem>());
 		}
 		return getMenu(item, strings);		
 	}
