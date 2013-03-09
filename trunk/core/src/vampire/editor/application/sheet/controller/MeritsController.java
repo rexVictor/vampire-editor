@@ -45,14 +45,20 @@ public class MeritsController implements MeritsControllerAPI{
 
 	@Override
 	public void addMerit(MeritEntryControllerAPI merit) {
-		MeritsEvent e = new MeritsEvent(this, merit, null);
+		final MeritsEvent e = new MeritsEvent(this, merit, null);
 		lock.lock();
 		try{
 			merits.add((Merit) merit.getMerit());
 			view.addMeritEntryView(merit.getView());
 			entryControllers.add(merit);
 			for (MeritsListener l : listeners){
-				l.meritAdded(e);
+				final MeritsListener listener = l;
+				new Thread(){
+					@Override
+					public void run(){
+						listener.meritAdded(e);
+					}
+				}.start();
 			}
 		}
 		finally{
@@ -61,12 +67,18 @@ public class MeritsController implements MeritsControllerAPI{
 	}
 	
 	void addMerit0(MeritEntryControllerAPI merit){
-		MeritsEvent e = new MeritsEvent(this, merit, null);
+		final MeritsEvent e = new MeritsEvent(this, merit, null);
 		lock.lock();
 		try{
 			entryControllers.add(merit);
 			for (MeritsListener l : listeners){
-				l.meritAdded(e);
+				final MeritsListener listener = l;
+				new Thread(){
+					@Override
+					public void run(){
+						listener.meritAdded(e);
+					}
+				}.start();
 			}
 		}
 		finally{
@@ -76,14 +88,20 @@ public class MeritsController implements MeritsControllerAPI{
 
 	@Override
 	public void removeMerit(MeritEntryControllerAPI merit) {
-		MeritsEvent e = new MeritsEvent(this, null, merit);
+		final MeritsEvent e = new MeritsEvent(this, null, merit);
 		lock.lock();
 		try{
 			merits.remove((Merit) merit.getMerit());
 			view.removeMeritEntryView(merit.getView());
 			entryControllers.remove(merit);
 			for (MeritsListener l : listeners){
-				l.meritRemoved(e);
+				final MeritsListener listener = l;
+				new Thread(){
+					@Override
+					public void run(){
+						listener.meritRemoved(e);
+					}
+				}.start();
 			}
 		}
 		finally{

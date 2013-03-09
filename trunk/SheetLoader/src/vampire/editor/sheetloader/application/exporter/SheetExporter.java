@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -26,6 +24,7 @@ import vampire.editor.domain.sheet.*;
 import vampire.editor.domain.sheet.view.*;
 
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
+import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.sheetloader.common.ClassToFileMapper;
 import vampire.editor.sheetloader.common.ModelToViewMap;
 
@@ -126,14 +125,14 @@ public class SheetExporter {
 		idCalculators.put(BloodPoolViewAttributes.class, new IdCalculator<>());
 	}
 	
-	public SheetExporter(VampireDocument document, ResourcesHolderAPI resourcesHolder) {
+	public SheetExporter(VampireDocumentAPI document, ResourcesHolderAPI resourcesHolder) {
 		super();
 		this.resourcesHolder = resourcesHolder;
-		sheet = document.getSheet();
-		modelToViewModelMapper = document.getModelToViewModelMapper();
+		sheet = (Sheet) document.getSheet();
+		modelToViewModelMapper = (ModelToViewModelMapper) document.getModelToViewModelMapper();
 	}
 	
-	public void export(Path path) throws JsonGenerationException, JsonMappingException, IOException{
+	public void export(Path path) throws VMPCSExportException{
 		Data<MetaEntry> metaEntries = sheet.getMeta();
 		exportMetaEntries(metaEntries);
 		sheetMap.put("meta", protoFiles.get(MetaEntry.class).getList());
@@ -211,7 +210,7 @@ public class SheetExporter {
 		}
 	}
 	
-	private void serialize(Path target){
+	private void serialize(Path target) throws VMPCSExportException{
 		Path path = temp.resolve(id+"");
 		mapper.enable(SerializationFeature.INDENT_OUTPUT);
 		Set<Class<?>> classes = ClassToFileMapper.paths.keySet();

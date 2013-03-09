@@ -110,6 +110,4 @@ public class BloodPoolController implements BloodPoolViewListener, BloodPoolCont
 		
 	}
 	
-	
-
 }

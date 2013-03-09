@@ -6,7 +6,7 @@ import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 
 public interface SheetImporter {
 
-	public abstract VampireDocumentAPI loadDocument(Path path);
+	public abstract VampireDocumentAPI loadDocument(Path path) throws DocumentImportException;
 	
 	public boolean canHandle(Path path);
 

@@ -98,6 +98,31 @@ public class GuiFacade implements GUIPlugin{
 		};
 		chooser.addChoosableFileFilter(filter);
 	}
+
+	@Override
+	public String saveFileView(final String format) {
+		JFileChooser chooser = new JFileChooser();
+		FileFilter filter = new FileFilter() {
+			
+			@Override
+			public String getDescription() {
+				return "Vampire Document (*."+format+")";
+			}
+			
+			@Override
+			public boolean accept(File f) {
+				if (f.isDirectory())
+					return true;
+				return f.toString().endsWith("."+format);
+			}
+		};
+		chooser.setFileFilter(filter);
+		chooser.showSaveDialog(null);
+		File selected = chooser.getSelectedFile();
+		if (selected == null)
+			return null;
+		return selected.getAbsolutePath();
+	}
 	
 	
 

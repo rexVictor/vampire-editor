@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exporters>
+	<path name="vmpcsexporter">
+		<segment root="exporters"/>
+		<segment append="vmpcsexporter"/>
+	</path>
+	
+	<exporter name="vmpcsExporter" format="vmpcs">
+		<jar name="vmpcsExporter" path="vmpcsexporter" file="vmpcsexporter.jar"
+			class="vampire.editor.sheetloader.application.exporter.ExporterActivator"/>
+	</exporter>
+	
+</exporters>

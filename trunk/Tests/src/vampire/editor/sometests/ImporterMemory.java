@@ -10,13 +10,14 @@ import org.junit.Test;
 import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.sheetloader.application.importer.ResourcesHolderTestImplementation;
+import vampire.editor.sheetloader.application.importer.VMPCSImportException;
 import vampire.editor.sheetloader.application.importer.VMPCSImporter;
 
 @SuppressWarnings("unused")
 public class ImporterMemory {
 
 	@Test
-	public void test() {
+	public void test() throws Throwable {
 		Runtime runtime = Runtime.getRuntime();
 		System.out.println("Start: "+runtime.freeMemory()/1024);
 		Path path = Paths.get("defaultsheets", "vtmdefault.vmpcs");

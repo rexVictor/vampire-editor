@@ -8,6 +8,7 @@ import vampire.editor.plugin.api.plugin.DocumentListener;
 import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
+import vampire.editor.plugin.api.plugin.SheetExporter;
 import vampire.editor.plugin.api.plugin.SheetImporter;
 
 public class TestManager implements ManagerAPI{
@@ -74,6 +75,12 @@ public class TestManager implements ManagerAPI{
 
 	@Override
 	public void open(Path path) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addExporter(SheetExporter exporter) {
 		// TODO Auto-generated method stub
 		
 	}

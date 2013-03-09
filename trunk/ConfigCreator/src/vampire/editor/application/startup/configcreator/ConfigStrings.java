@@ -64,6 +64,8 @@ public class ConfigStrings {
 	
 	public static final String FORMAT =	"format";
 	
+	public static final String EXPORTER = "exporter";
+	
 	private ConfigStrings(){
 	}
 

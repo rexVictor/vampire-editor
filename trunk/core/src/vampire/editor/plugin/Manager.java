@@ -10,6 +10,7 @@ import java.util.Map;
 import vampire.editor.application.GeneralController;
 
 import vampire.editor.domain.config.Config;
+import vampire.editor.domain.config.Exporter;
 import vampire.editor.domain.config.Importer;
 import vampire.editor.domain.config.Plugin;
 
@@ -17,12 +18,15 @@ import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.plugin.api.plugin.Activator;
+import vampire.editor.plugin.api.plugin.DocumentImportException;
 import vampire.editor.plugin.api.plugin.DocumentListener;
 import vampire.editor.plugin.api.plugin.Facade;
 import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
+import vampire.editor.plugin.api.plugin.SheetExporter;
 import vampire.editor.plugin.api.plugin.SheetImporter;
+import vampire.editor.plugin.api.plugin.Trigger;
 
 public class Manager implements ManagerAPI{
 	
@@ -60,6 +64,13 @@ public class Manager implements ManagerAPI{
 				Activator importerActivator = importer.getActivator().newInstance();
 				importerActivator.setManager(this);
 				this.gui.addImportFileExtension(importer.getFormat());
+			}
+			
+			Map<String, Exporter> exporters = config.getExporters();
+			for (String s : exporters.keySet()){
+				Exporter exporter = exporters.get(s);
+				Activator exporterActivator = exporter.getActivator().newInstance();
+				exporterActivator.setManager(this);
 			}
 		} catch (InstantiationException | IllegalAccessException e) {
 			throw new RuntimeException(e);			
@@ -187,10 +198,21 @@ public class Manager implements ManagerAPI{
 	public void open(Path path){
 		for (SheetImporter importer : importers){
 			if (importer.canHandle(path)){
-				VampireDocumentAPI document = importer.loadDocument(path);
-				controller.open(document);
+				VampireDocumentAPI document;
+				try {
+					document = importer.loadDocument(path);
+					controller.open(document);
+				} catch (DocumentImportException e) {
+					e.printStackTrace();
+				}
 			}
 		}
+	}
+	
+	@Override
+	public void addExporter(SheetExporter exporter) {
+		Trigger saveTrigger = new SaveTrigger(controller, exporter, gui);
+		gui.addItemToMenuBar(saveTrigger, "file", "save", exporter.getFormat());
 	}
 	
 	

@@ -22,26 +22,22 @@
 	<path name="plugins">
 		<segment append="plugins" />
 	</path>
+	<path name="importers">
+		<segment append="importers"/>
+	</path>
+	<path name="exporters">
+		<segment append="exporters"/>
+	</path>
 	
 	<locale language="DE" country="" variant=""/>
 
 	<!-- The name of the configs is not processed yet, since there was no need. -->
 	<config name="resources" 	path="resources" 	file="resources.xml" />
-	<config name="plugins" 	path="plugins" 	file="plugins.xml" />
-	<!-- config name="userconfig" 	path="userconfig" 	file="userconfig.xml" / -->
-	<!-- config name="plugins" 		path="plugins" 		file="plugins.xml" / -->
+	<config name="plugins"		path="plugins" 		file="plugins.xml" />
+	<config name="importers" 	path="importers" 	file="importers.xml"/>
+	<config name="exporters" 	path="exporters" 	file="exporters.xml"/>	
 	
-	
-	<importer name="vmpcs" format="vmpcs">
-		<jar name="vmpcs"
-			class="vampire.editor.sheetloader.application.LoaderActivator" />
-	</importer>
-
 	<jar name="gui"
 		class="vampire.editor.gui.swing.mainframe.application.GuiActivator" />
 	
-
-	
-
-
 </coreconfig>

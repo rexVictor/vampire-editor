@@ -12,7 +12,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Config"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ConfigCreator"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SwingMainFrame"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSExporter"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSImporter"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

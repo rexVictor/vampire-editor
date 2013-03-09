@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.plugin.SheetImporter;
+import vampire.editor.sheetloader.application.importer.VMPCSImportException;
 import vampire.editor.sheetloader.application.importer.VMPCSImporter;
 
 public class VMPCSLoader implements SheetImporter {
@@ -17,7 +18,7 @@ public class VMPCSLoader implements SheetImporter {
 	}
 
 	@Override
-	public VampireDocument loadDocument(Path path){
+	public VampireDocument loadDocument(Path path) throws VMPCSImportException{
 		VMPCSImporter importer = new VMPCSImporter(resources, path);
 		VampireDocument document = importer.load();
 		return document;
