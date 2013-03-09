@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/VMPCSFormatCommon"/>
+	<classpathentry exported="true" kind="lib" path="/ResourceLoader/external/jackson-annotations-2.0.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/ResourceLoader/external/jackson-core-2.0.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-core/javadoc/2.0.0/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="/ResourceLoader/external/jackson-databind-2.0.0.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-databind/javadoc/2.0.0/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

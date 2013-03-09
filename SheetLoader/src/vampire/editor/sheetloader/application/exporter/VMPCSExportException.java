@@ -1,6 +1,8 @@
 package vampire.editor.sheetloader.application.exporter;
 
-public class VMPCSExportException extends RuntimeException{
+import vampire.editor.plugin.api.plugin.DocumentExportException;
+
+public class VMPCSExportException extends DocumentExportException{
 
 	/**
 	 * 

@@ -15,4 +15,6 @@ public interface GUIPlugin {
 	public void sheetLoaded(SheetControllerAPI controller);
 	
 	public void addImportFileExtension(String extension);
+	
+	public String saveFileView(String format);
 }

@@ -66,7 +66,9 @@ public class ResourcesHolder implements ResourcesHolderAPI{
 	public String getKeyOfFont(Font font) {
 		Set<String> keys = fonts.keySet();
 		for (String s : keys){
-			if (fonts.get(s).equals(font)) return s;
+			Font current = fonts.get(s);
+			Font toCompare = font.deriveFont((float) current.getSize()).deriveFont(current.getStyle());
+			if (current.equals(toCompare)) return s;
 		}
 		return null;
 	}

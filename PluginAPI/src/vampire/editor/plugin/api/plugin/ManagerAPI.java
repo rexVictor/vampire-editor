@@ -29,5 +29,7 @@ public interface ManagerAPI {
 	
 	public void open(Path path);
 	
+	public void addExporter(SheetExporter exporter);
+	
 
 }

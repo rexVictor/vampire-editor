@@ -18,10 +18,13 @@ public class Config {
 	
 	private final Map<String, Importer> importers;
 	
+	private final Map<String, Exporter> exporters;
+	
 	private final ResourcesHolder holder;
 
 	public Config(Path ownPath, Map<String, Plugin> plugins,
 			Class<Activator> guiPlugin, Map<String, Importer> importers,
+			Map<String, Exporter> exporters,
 			Map<String, Font> fonts, Map<String, Border> borders,
 			Map<String, Image> lines, Map<String, Dictionary> dictionaries,
 			Map<String, Path> defaultSheets) {
@@ -30,6 +33,7 @@ public class Config {
 		this.plugins = plugins;
 		this.guiPlugin = guiPlugin;
 		this.importers = importers;
+		this.exporters = exporters;
 		holder = new ResourcesHolder(fonts, borders, lines, dictionaries, defaultSheets);
 		
 	}
@@ -48,6 +52,10 @@ public class Config {
 	
 	public Map<String, Importer> getImporters(){
 		return importers;
+	}
+	
+	public Map<String, Exporter> getExporters(){
+		return exporters;
 	}
 	
 	public Map<String, Plugin> getPlugins(){

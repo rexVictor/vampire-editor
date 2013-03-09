@@ -2,14 +2,10 @@ package vampire.editor.sheetloader.application.exporter;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.Test;
-
-import com.fasterxml.jackson.core.JsonGenerationException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 
 import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.sheetloader.application.importer.ResourcesHolderTestImplementation;
@@ -18,7 +14,7 @@ import vampire.editor.sheetloader.application.importer.VMPCSImporter;
 public class SheetExporterTest {
 
 	@Test
-	public void test() throws JsonGenerationException, JsonMappingException, IOException {
+	public void test() throws Throwable {
 		Path path = Paths.get("defaultsheets","vtmdefault.vmpcs");
 		VMPCSImporter importer = new VMPCSImporter(new ResourcesHolderTestImplementation(), path);
 		VampireDocument document = importer.load();

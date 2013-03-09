@@ -66,13 +66,19 @@ public class MeritEntryController implements MeritEntryControllerAPI, MeritEntry
 
 	@Override
 	public void setCost(int cost) {
-		MeritEntryEvent e = new MeritEntryEvent(this, merit.getCost(), cost, merit.getName(), merit.getName());
+		final MeritEntryEvent e = new MeritEntryEvent(this, merit.getCost(), cost, merit.getName(), merit.getName());
 		lock.lock();
 		try{
 			merit.setCost(cost);
 			view.setCost(cost);
 			for (MeritEntryListener l : listeners){
-				l.costChanged(e);
+				final MeritEntryListener listener = l;
+				new Thread(){
+					@Override
+					public void run(){
+						listener.costChanged(e);
+					}
+				}.start();
 			}
 		}
 		finally{
@@ -82,13 +88,19 @@ public class MeritEntryController implements MeritEntryControllerAPI, MeritEntry
 
 	@Override
 	public void setName(String name) {
-		MeritEntryEvent e = new MeritEntryEvent(this, merit.getCost(), merit.getCost(), merit.getName(), name);
+		final MeritEntryEvent e = new MeritEntryEvent(this, merit.getCost(), merit.getCost(), merit.getName(), name);
 		lock.lock();
 		try{
 			merit.setName(name);
 			view.setText(name);
 			for (MeritEntryListener l : listeners){
-				l.nameChanged(e);
+				final MeritEntryListener listener = l;
+				new Thread(){
+					@Override
+					public void run(){
+						listener.nameChanged(e);
+					}
+				}.start();
 			}
 		}
 		finally{

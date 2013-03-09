@@ -16,6 +16,7 @@ import org.jdom2.Element;
 import vampire.editor.domain.Border;
 import vampire.editor.domain.config.Config;
 import vampire.editor.domain.config.Dictionary;
+import vampire.editor.domain.config.Exporter;
 import vampire.editor.domain.config.Importer;
 import vampire.editor.domain.config.Plugin;
 import vampire.editor.persistency.startup.XMLImportException;
@@ -50,6 +51,10 @@ public class ConfigCreator implements ElementProcessor{
 	
 	private final Map<String, ProtoImporter> protoImporters = new HashMap<>();
 	
+	private final Map<String, ProtoExporter> protoExporters = new HashMap<>();
+	
+	private final Map<String, Exporter> exporters = new HashMap<>();
+	
 	public ConfigCreator() {
 		ElementProcessor borderProcessor = new BorderProcessor();
 		ElementProcessor fontProcessor = new FontProcessor();
@@ -61,6 +66,7 @@ public class ConfigCreator implements ElementProcessor{
 		ElementProcessor dictionaryProcessor = new DictionaryProcessor();
 		ElementProcessor defaultSheetProcessor = new DefaultSheetProcessor();
 		ElementProcessor importerProcessor = new ImporterProcessor();
+		ElementProcessor exporterProcessor = new ExporterProcessor();
 		
 		processors.put(borderProcessor.getName(), borderProcessor);
 		processors.put(fontProcessor.getName(), fontProcessor);
@@ -73,6 +79,7 @@ public class ConfigCreator implements ElementProcessor{
 		processors.put(dictionaryProcessor.getName(), dictionaryProcessor);
 		processors.put(defaultSheetProcessor.getName(), defaultSheetProcessor);
 		processors.put(importerProcessor.getName(), importerProcessor);
+		processors.put(exporterProcessor.getName(), exporterProcessor);
 	}
 	
 	public Config loadConfig(Path path) throws ConfigImportException{
@@ -85,8 +92,9 @@ public class ConfigCreator implements ElementProcessor{
 		}
 		makePlugins();
 		makeImporters();
+		makeExporters();
 		Config config = new Config(path, plugins, clazzes.remove(ConfigStrings.GUI),
-				importers, fonts, borders, lines, dictionaries,
+				importers, exporters, fonts, borders, lines, dictionaries,
 				defaultSheets);
 		return config;
 	}
@@ -98,6 +106,16 @@ public class ConfigCreator implements ElementProcessor{
 			Class<Activator> clazz = clazzes.get(current.getJarName());
 			Importer importer = new Importer(clazz, s, current.getFormat());
 			importers.put(s, importer);
+		}
+	}
+	
+	private void makeExporters(){
+		Set<String> protoExporterKeys = protoExporters.keySet();
+		for (String s : protoExporterKeys){
+			ProtoExporter current = protoExporters.get(s);
+			Class<Activator> clazz = clazzes.get(current.getJarName());
+			Exporter exporter = new Exporter(clazz, s, current.getFormat());
+			exporters.put(s, exporter);
 		}
 	}
 	
@@ -127,6 +145,10 @@ public class ConfigCreator implements ElementProcessor{
 				throw new ConfigImportException("Error in dependencies");
 		}
 		
+	}
+	
+	void put(String key, ProtoExporter exporter){
+		protoExporters.put(key, exporter);
 	}
 	
 	void put(String key, Path path){

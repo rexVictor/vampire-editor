@@ -23,8 +23,11 @@ public class OpenTrigger implements Trigger{
 	@Override
 	public void leftClicked() {
 		String file = plugin.openFileView();
-		Path path = Paths.get(file);
-		manager.open(path);
+		if (file != null){
+			Path path = Paths.get(file);
+			manager.open(path);
+		}
+		
 	}
 
 }

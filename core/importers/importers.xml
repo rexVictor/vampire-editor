@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<importers>
+	<path name="vmpcsimporter">
+		<segment root="importers"/>
+		<segment append="vmpcsimporter"/>
+	</path>
+	
+	<importer name="vmpcs" format="vmpcs">
+		<jar name="vmpcs" path="vmpcsimporter" file="vmpcsimporter.jar"
+			class="vampire.editor.sheetloader.application.LoaderActivator" />
+	</importer>
+	
+</importers>
