@@ -1,3 +1,25 @@
+/*******************************************************************************
+ * Vampire Editor Model Implementation.
+ * Copyright (C) 2013  Matthias Johannes Reimchen
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * Further information can be obtained at
+ * https://code.google.com/p/vampire-editor/ or via mail:
+ * Matthias Johannes Reimchen
+ * development.rex@gmail.com
+ ******************************************************************************/
 package vampire.editor.domain.sheet;
 
 import java.io.Serializable;
@@ -19,9 +41,9 @@ public class Value implements Serializable, ValueAPI {
 	 */
 	private static final long serialVersionUID = -2516048495698715631L;
 	
-	public static final int MAX_VALUE = 10;
+	private static final int MAX_VALUE = 10;
 	
-	public static final int MIN_VALUE = 0;
+	private static final int MIN_VALUE = 0;
 	
 	/**
 	 * The value this object wraps.
@@ -87,7 +109,11 @@ public class Value implements Serializable, ValueAPI {
 	public int getValue() {
 		return value;
 	}
-	
+	/**
+	 * Sets the value.
+	 * @param value
+	 * @throws IllegalValueException, if !(minValue<= value <= maxValue)
+	 */
 	public void setValue(int value) {
 		if (minValue<=value&&value<=maxValue)
 			this.value = value;
@@ -114,9 +140,6 @@ public class Value implements Serializable, ValueAPI {
 		
 	}
 	
-	/**
-	 * Returns a copy of Value.
-	 */
 	@Override
 	public Value clone(){
 		Value clone = new  Value(value, minValue, maxValue);
@@ -142,7 +165,6 @@ public class Value implements Serializable, ValueAPI {
 	
 	/**
 	 * Returns true if and only if value, temporary value, minimum value and maximal value are pairwise equal.<br>
-	 * Be aware that equality of the value view attributes is not checked.
 	 */
 	@Override
 	public boolean equals(Object obj){
@@ -152,7 +174,8 @@ public class Value implements Serializable, ValueAPI {
 			return true;
 		if (obj instanceof Value){
 			Value comp = (Value) obj;
-			return comp.value == value && comp.tempValue == tempValue && comp.maxValue == maxValue && comp.minValue == minValue;
+			return comp.value == value && comp.tempValue == tempValue 
+					&& comp.maxValue == maxValue && comp.minValue == minValue;
 		}
 		return false;
 	}
