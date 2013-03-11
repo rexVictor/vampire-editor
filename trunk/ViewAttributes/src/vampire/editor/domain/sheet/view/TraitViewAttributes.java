@@ -1,3 +1,25 @@
+/*******************************************************************************
+ * Vampire Editor View Attributes Implementation.
+ * Copyright (C) 2013  Matthias Johannes Reimchen
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * Further information can be obtained at
+ * https://code.google.com/p/vampire-editor/ or via mail:
+ * Matthias Johannes Reimchen
+ * development.rex@gmail.com
+ ******************************************************************************/
 package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
@@ -5,6 +27,11 @@ import java.awt.Font;
 import vampire.editor.plugin.api.domain.sheet.view.Orientation;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
 
+/**
+ * Provides the attributes for a trait view.
+ * @author rex_victor
+ *
+ */
 public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable{
 	
 	private boolean editable;
@@ -48,11 +75,6 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 		this.orientation = orientation;
 	}
 
-	@Override
-	public boolean isSquares() {
-		return squares;
-	}
-
 	public void setSquares(boolean squares) {
 		this.squares = squares;
 	}
@@ -92,12 +114,17 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 		this.font = font;
 	}
 	
+	/**
+	 * Returns if editables, squares, orientations and fonts are equal
+	 * @param that
+	 * @return if this equals that
+	 */
 	@Override
-	public boolean equals(Object object){
-		if (object == null) return false;
-		if (object == this) return true;
-		if (object instanceof TraitViewAttributes){
-			TraitViewAttributes other = (TraitViewAttributes) object;
+	public boolean equals(Object that){
+		if (that == null) return false;
+		if (that == this) return true;
+		if (that instanceof TraitViewAttributes){
+			TraitViewAttributes other = (TraitViewAttributes) that;
 			return editable == other.editable && squares == other.squares && orientation.equals(other.orientation)
 					&& font.equals(other.font);
 		}
