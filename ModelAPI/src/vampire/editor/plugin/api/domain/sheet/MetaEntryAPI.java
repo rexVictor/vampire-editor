@@ -42,6 +42,7 @@ public interface MetaEntryAPI extends Nameable{
 	public String getValue();
 
 	/**
+	 * Returns a deep copy of this. 
 	 * @return a deep copy of this {@link MetaEntryAPI}.
 	 */
 	@Override
