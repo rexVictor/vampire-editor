@@ -20,11 +20,8 @@
  * Matthias Johannes Reimchen
  * development.rex@gmail.com
  ******************************************************************************/
+/**
+ * This package contains all Interfaces providing read-access for the view attributes classes.
+ */
+
 package vampire.editor.plugin.api.domain.sheet.view;
-
-interface DataViewAttributesAPI extends PublicCloneable{
-	
-	@Override
-	public DataViewAttributesAPI clone();
-
-}
