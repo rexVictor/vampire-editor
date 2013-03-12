@@ -72,17 +72,22 @@ public class VMPCSImporter {
 	
 	private final ModelToViewModelMapper viewModelMapper = new ModelToViewModelMapper();
 	
-	public VMPCSImporter(ResourcesHolderAPI resources, Path path) throws VMPCSImportException{
+	VMPCSImporter(ResourcesHolderAPI resources, Path path, boolean compressed) throws VMPCSImportException{
 		super();
-		try {
-			this.root = uncompress(path);
-		} catch (IOException e1) {
+		if (compressed){
 			try {
-				remove();
-			} catch (IOException e) {
-				e.printStackTrace();
+				this.root = uncompress(path);
+			} catch (IOException e1) {
+				try {
+					remove();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				throw new VMPCSImportException(e1);
 			}
-			throw new VMPCSImportException(e1);
+		}
+		else{
+			this.root = path;
 		}
 		try {
 			// Loads all "leaves".
@@ -99,7 +104,7 @@ public class VMPCSImporter {
 			meritEntryViewAtts = new Objects<>(root, MeritEntryViewAttibutes.class, resources, fonts);
 			meritViewAtts	= new Objects<>(root, MeritViewAttributes.class, resources, fonts);
 			// Loads the ModelToViewProtoMap
-			modelToViewMap = ModelToViewMap.loadModelToViewMap(root.resolve("modeltoviewmap.json"));
+			modelToViewMap = ModelToViewMapFactory.loadModelToViewMap(root.resolve("modeltoviewmap.json"));
 		} catch (JsonParseException | JsonMappingException | ClassCastException | NullPointerException e) {
 			//illegal json format
 			throw new VMPCSImportException(e);
@@ -121,6 +126,10 @@ public class VMPCSImporter {
 		allViewAtts.put(ValueViewAttributes.class, valueViewAtts);
 		allViewAtts.put(BloodPoolViewAttributes.class, bloodPoolViewAtts);
 		allViewAtts.put(MetaEntryViewAttributes.class, metaEntryViewAttributes);
+	}
+	
+	public VMPCSImporter(ResourcesHolderAPI resources, Path path) throws VMPCSImportException{
+		this(resources, path, true);
 	}
 	
 	private Path uncompress(Path path) throws IOException{

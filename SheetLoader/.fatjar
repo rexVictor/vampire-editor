@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sun Mar 10 09:51:05 CET 2013
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=vmpcsexporter.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|PluginAPI>;<po|EventAPI>;<po|GUIAPI>;<po|ResourcesAPI>;<po|ModelAPI>;<po|ViewAttsAPI>;<po|ViewAttsAPI>;<po|ModelAPI>;<po|ViewAttsAPI>;<po|ModelAPI>;<po|ViewAttsAPI>;<po|ResourcesAPI>;<po|GUIAPI>;<po|ResourcesAPI>;<po|ModelAPI>;<po|ViewAttsAPI>;<po|ViewAttsAPI>;<po|SheetModel>;<po|ViewAttsAPI>;<po|ModelAPI>;<po|ViewAttsAPI>;<po|ViewAttributes>;<po|ViewAttsAPI>;<po|ViewAttributes>;<po|ViewAttsAPI>;<po|ModelAPI>;<po|ViewAttsAPI>;<po|ViewAttsAPI>;<po|ResourcesAPI>;<po|SheetModel>;<po|ViewAttsAPI>;<po|ModelAPI>;<po|ViewAttsAPI>;<po|ViewAttributes>;<po|ViewAttsAPI>;<po|ViewAttributes>;<po|ViewAttsAPI>;<po|ResourcesAPI>
+includes=

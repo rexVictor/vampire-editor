@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src">
+	<classpathentry kind="src" path="src">
 		<attributes>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/VMPCSFormatCommon"/>
-	<classpathentry exported="true" kind="lib" path="/ResourceLoader/external/jackson-annotations-2.0.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="/ResourceLoader/external/jackson-core-2.0.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-core/javadoc/2.0.0/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry exported="true" kind="lib" path="/ResourceLoader/external/jackson-databind-2.0.0.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-databind/javadoc/2.0.0/"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
@@ -29,5 +18,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="output" path="target/classes"/>
+	<classpathentry kind="lib" path="libs/jackson-annotations-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-core-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-databind-2.0.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>
