@@ -80,7 +80,7 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 		else switch(damageType){
 		case LETHAL:
 		case BASHING: box.setIcon(slashedBox); break;
-		case AGGREVATED: box.setIcon(crossedBox);
+		case AGGRAVATED: box.setIcon(crossedBox);
 		}
 		this.damageType = damageType;
 	}
@@ -135,8 +135,8 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 		}
 		else switch (damageType) {
 		case BASHING:
-		case LETHAL: setDamageType0(DamageType.AGGREVATED); break;
-		case AGGREVATED: setDamageType0(null);
+		case LETHAL: setDamageType0(DamageType.AGGRAVATED); break;
+		case AGGRAVATED: setDamageType0(null);
 		}
 	}
 	
