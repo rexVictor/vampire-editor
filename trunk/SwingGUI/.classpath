@@ -14,12 +14,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
-	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik.jar"/>
-	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-rasterizer.jar"/>
-	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-slideshow.jar"/>
-	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-squiggle.jar"/>
-	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-svgpp.jar"/>
-	<classpathentry kind="lib" path="libraries/batik/batik-1.7/batik-ttf2svg.jar"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry kind="lib" path="libraries/batik/batik-1.7/lib/batik-swing.jar">
 		<attributes>

@@ -69,7 +69,7 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 		else switch(damageType){
 		case LETHAL:
 		case BASHING: box.setText("\u2341"); break;
-		case AGGREVATED: box.setText("\u2612");
+		case AGGRAVATED: box.setText("\u2612");
 		}
 		this.damageType = damageType;
 	}
@@ -136,8 +136,8 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 		}
 		else switch (damageType) {
 		case BASHING:
-		case LETHAL: setDamageType0(DamageType.AGGREVATED); break;
-		case AGGREVATED: setDamageType0(null);
+		case LETHAL: setDamageType0(DamageType.AGGRAVATED); break;
+		case AGGRAVATED: setDamageType0(null);
 		}
 	}
 
