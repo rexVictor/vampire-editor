@@ -8,11 +8,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EventAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
-	<classpathentry kind="lib" path="/SwingGUI/libraries/jgoodies-forms-1.4.1/lib/jgoodies-common-1.2.0.jar"/>
-	<classpathentry kind="lib" path="/SwingGUI/libraries/jgoodies-forms-1.4.1/jgoodies-forms-1.4.1.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/home/rex_victor/workspace/SwingGUI/libraries/jgoodies-forms-1.4.1/docs/api/"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="libs/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/jgoodies-forms-1.4.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

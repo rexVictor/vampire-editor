@@ -1,5 +1,5 @@
 /*******************************************************************************
- * The Sheetview of the vampire editor implemended using Swing.
+ * The Sheetview of the vampire editor implemented using Swing.
  * Copyright (C) 2013 Matthias Reimchen
  * 
  * This program is free software: you can redistribute it and/or modify
