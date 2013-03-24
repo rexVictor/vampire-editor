@@ -24,6 +24,8 @@ package vampire.editor.application.startup.configcreator;
 
 import java.awt.Font;
 import java.awt.Image;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -78,7 +80,27 @@ public class ConfigCreator implements ElementProcessor{
 	private final Map<String, Exporter> exporters = new HashMap<>();
 	
 	public ConfigCreator() {
-		ElementProcessor borderProcessor = new BorderProcessor();
+		
+		List<Class<? extends ElementProcessor>> processors;
+		try {
+			processors = PackageIterator.getClassesOfType(ElementProcessor.class, getClass().getPackage().toString().substring(8));
+			for (Class<? extends ElementProcessor> c: processors){
+				if (c.equals(this.getClass())){
+					this.processors.put(this.getName(), this);
+					continue;
+				}
+					
+				if (c.isInterface())
+					continue;
+				ElementProcessor processor = c.newInstance();
+				this.processors.put(processor.getName(), processor);
+			}
+		} catch (ClassNotFoundException | IOException | URISyntaxException 
+				| InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+		/*ElementProcessor borderProcessor = new BorderProcessor();
 		ElementProcessor fontProcessor = new FontProcessor();
 		ElementProcessor jarProcessor = new JarProcessor();
 		ElementProcessor lineProcessor = new LineProcessor();
@@ -101,7 +123,7 @@ public class ConfigCreator implements ElementProcessor{
 		processors.put(dictionaryProcessor.getName(), dictionaryProcessor);
 		processors.put(defaultSheetProcessor.getName(), defaultSheetProcessor);
 		processors.put(importerProcessor.getName(), importerProcessor);
-		processors.put(exporterProcessor.getName(), exporterProcessor);
+		processors.put(exporterProcessor.getName(), exporterProcessor);*/
 	}
 	
 	public Config loadConfig(Path path) throws ConfigImportException{
