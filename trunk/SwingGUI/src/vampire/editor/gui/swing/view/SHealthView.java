@@ -30,7 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import vampire.editor.plugin.api.domain.DictionaryAPI;
-import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttibutesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.HealthViewListener;
 import vampire.editor.plugin.api.view.sheet.HealthEntryView;
 import vampire.editor.plugin.api.view.sheet.HealthView;
@@ -53,7 +53,7 @@ public class SHealthView implements HealthView{
 	
 	private final DictionaryAPI dictionary;
 	
-	public SHealthView(DictionaryAPI dictionaryAPI, HealthViewAttibutesAPI viewAtts){
+	public SHealthView(DictionaryAPI dictionaryAPI, HealthViewAttributesAPI viewAtts){
 		this.dictionary = dictionaryAPI;
 		panel.setLayout(layout);
 		panel.setBackground(Color.WHITE);
