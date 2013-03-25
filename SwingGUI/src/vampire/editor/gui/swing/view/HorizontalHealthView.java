@@ -30,7 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import vampire.editor.plugin.api.domain.DictionaryAPI;
-import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttibutesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.HealthViewListener;
 import vampire.editor.plugin.api.view.sheet.HealthEntryView;
 import vampire.editor.plugin.api.view.sheet.HealthView;
@@ -53,7 +53,7 @@ private final JPanel panel = new JPanel();
 	
 	private final DictionaryAPI dictionary;
 	
-	public HorizontalHealthView(DictionaryAPI dictionaryAPI, HealthViewAttibutesAPI viewAtts){
+	public HorizontalHealthView(DictionaryAPI dictionaryAPI, HealthViewAttributesAPI viewAtts){
 		this.dictionary = dictionaryAPI;
 		for (int i = 0; i < 10; i++){
 			layout.appendColumn(ColumnSpec.decode("pref:GROW"));
