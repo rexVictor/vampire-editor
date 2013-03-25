@@ -40,6 +40,25 @@ public class MetaEntryViewAttributes implements MetaEntryViewAttributesAPI{
 	private Font titleFont;
 	
 	private boolean translate = true;
+	
+	
+
+	public MetaEntryViewAttributes() {
+		super();
+	}
+	
+	
+
+	public MetaEntryViewAttributes(Font contentFont, int lineCount,
+			Font titleFont, boolean translate) {
+		super();
+		this.contentFont = contentFont;
+		this.lineCount = lineCount;
+		this.titleFont = titleFont;
+		this.translate = translate;
+	}
+
+
 
 	@Override
 	public boolean isTranslate() {
@@ -56,6 +75,7 @@ public class MetaEntryViewAttributes implements MetaEntryViewAttributesAPI{
 		clone.lineCount = lineCount;
 		clone.titleFont = titleFont;
 		clone.contentFont = contentFont;
+		clone.translate = translate;
 		return clone;
 	}
 	
@@ -70,7 +90,7 @@ public class MetaEntryViewAttributes implements MetaEntryViewAttributesAPI{
 			return false;
 		if (object instanceof MetaEntryViewAttributes){
 			MetaEntryViewAttributes other = (MetaEntryViewAttributes) object;
-			return contentFont.equals(other.contentFont) && titleFont.equals(other.contentFont)
+			return contentFont.equals(other.contentFont) && titleFont.equals(other.titleFont)
 					&& lineCount == other.lineCount && translate == other.translate; 
 		}
 		return false;
@@ -109,6 +129,18 @@ public class MetaEntryViewAttributes implements MetaEntryViewAttributesAPI{
 		this.titleFont = titleFont;
 	}
 	
-	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("linecount: ").append(lineCount).append("; ");
+		sb.append("translate: ").append(translate);
+		sb.append("titlefont: (").append(titleFont.getName()).append(",");
+		sb.append("size: ").append(titleFont.getSize()).append(", ");
+		sb.append("style: ").append(titleFont.getStyle()).append(") ");
+		sb.append("contentfont: (").append(contentFont.getName()).append(",");
+		sb.append("size: ").append(contentFont.getSize()).append(", ");
+		sb.append("style: ").append(contentFont.getStyle()).append(") ");
+		return sb.toString();
+	}
 
 }

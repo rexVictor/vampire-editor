@@ -31,9 +31,22 @@ import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttibutesAPI;
  * @author rex_victor
  *
  */
-public class MeritEntryViewAttibutes implements FontSettable, MeritEntryViewAttibutesAPI{
+public class MeritEntryViewAttributes implements FontSettable, MeritEntryViewAttibutesAPI{
 	
 	private Font font;
+	
+	public MeritEntryViewAttributes() {
+		super();
+	}
+	
+	
+
+	public MeritEntryViewAttributes(Font font) {
+		super();
+		this.font = font;
+	}
+
+
 
 	@Override
 	public void setFont(Font font) {
@@ -67,10 +80,10 @@ public class MeritEntryViewAttibutes implements FontSettable, MeritEntryViewAtti
 		if (that == null) {
 			return false;
 		}
-		if (!(that instanceof MeritEntryViewAttibutes)) {
+		if (!(that instanceof MeritEntryViewAttributes)) {
 			return false;
 		}
-		MeritEntryViewAttibutes other = (MeritEntryViewAttibutes) that;
+		MeritEntryViewAttributes other = (MeritEntryViewAttributes) that;
 		if (font == null) {
 			if (other.font != null) {
 				return false;
@@ -79,6 +92,10 @@ public class MeritEntryViewAttibutes implements FontSettable, MeritEntryViewAtti
 			return false;
 		}
 		return true;
+	}
+	
+	public MeritEntryViewAttributes clone(){
+		return new MeritEntryViewAttributes(font);
 	}
 	
 	

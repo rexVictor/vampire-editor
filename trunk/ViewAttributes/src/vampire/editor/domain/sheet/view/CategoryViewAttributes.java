@@ -40,6 +40,25 @@ public class CategoryViewAttributes implements CategoryViewAttributesAPI, FontSe
 	private String title = "";
 	
 	private Font font;
+	
+	
+
+	public CategoryViewAttributes() {
+		super();
+	}
+	
+	
+
+	public CategoryViewAttributes(boolean showLine, String image, String title,
+			Font font) {
+		super();
+		this.showLine = showLine;
+		this.image = image;
+		this.title = title;
+		this.font = font;
+	}
+
+
 
 	@Override
 	public boolean isShowLine() {
@@ -109,6 +128,16 @@ public class CategoryViewAttributes implements CategoryViewAttributesAPI, FontSe
 	public int hashCode(){
 		return 11 * System.identityHashCode(showLine) + 13 * image.hashCode() + 17 * System.identityHashCode(title)
 				+19 * font.hashCode();
+	}
+	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("showLine: ").append(showLine);
+		sb.append(" image: ").append(image);
+		sb.append(" title: ").append(title);
+		sb.append(" font: ").append(font);
+		return sb.toString();
 	}
 
 }
