@@ -33,6 +33,21 @@ import vampire.editor.plugin.api.domain.sheet.view.MeritViewAttributesAPI;
 public class MeritViewAttributes implements MeritViewAttributesAPI, FontSettable {
 	
 	private Font font;
+	
+	
+
+	public MeritViewAttributes() {
+		super();
+	}
+	
+	
+
+	public MeritViewAttributes(Font font) {
+		super();
+		this.font = font;
+	}
+
+
 
 	/**
 	 * Returns if fonts and sizes are equal.
@@ -78,6 +93,9 @@ public class MeritViewAttributes implements MeritViewAttributesAPI, FontSettable
 		this.font = font;
 	}
 	
+	public MeritViewAttributes clone(){
+		return new MeritViewAttributes(font);
+	}
 	
 
 }

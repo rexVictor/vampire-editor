@@ -36,6 +36,18 @@ public class HealthEntryViewAttributes implements HealthEntryViewAttributesAPI, 
 	private Font font;
 	
 	private int size;
+	
+	
+
+	public HealthEntryViewAttributes() {
+		super();
+	}
+
+	public HealthEntryViewAttributes(Font font, int size) {
+		super();
+		this.font = font;
+		this.size = size;
+	}
 
 	@Override
 	public Font getFont() {
@@ -73,6 +85,11 @@ public class HealthEntryViewAttributes implements HealthEntryViewAttributesAPI, 
 	@Override
 	public int hashCode(){
 		return 11 * font.hashCode() + 13 * size;
+	}
+	
+	@Override
+	public HealthEntryViewAttributes clone(){
+		return new HealthEntryViewAttributes(font, size);
 	}
 
 }

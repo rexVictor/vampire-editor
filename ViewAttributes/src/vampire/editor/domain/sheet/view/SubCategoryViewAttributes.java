@@ -48,6 +48,13 @@ public class SubCategoryViewAttributes implements SubCategoryViewAttributesAPI, 
 		this.expandable = expandable;
 		this.showTitle = showTitle;
 	}
+	
+	public SubCategoryViewAttributes(boolean expandable, boolean showTitle, Font font) {
+		super();
+		this.expandable = expandable;
+		this.showTitle = showTitle;
+		this.font = font;
+	}
 
 
 

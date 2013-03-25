@@ -24,15 +24,30 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
-import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttibutesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
 /**
  * Provides the attributes for the health view.
  * @author rex_victor
  *
  */
-public class HealthViewAttributes implements HealthViewAttibutesAPI, FontSettable{
+public class HealthViewAttributes implements HealthViewAttributesAPI, FontSettable{
 	
 	private Font font;
+	
+	
+
+	public HealthViewAttributes() {
+		super();
+	}
+	
+	
+
+	public HealthViewAttributes(Font font) {
+		super();
+		this.font = font;
+	}
+
+
 
 	@Override
 	public Font getFont() {
@@ -62,6 +77,11 @@ public class HealthViewAttributes implements HealthViewAttibutesAPI, FontSettabl
 	@Override
 	public int hashCode(){
 		return font.hashCode();
+	}
+	
+	@Override
+	public HealthViewAttributes clone(){
+		return new HealthViewAttributes(font);
 	}
 	
 	

@@ -36,6 +36,22 @@ public class BloodPoolViewAttributes implements BloodPoolViewAttributesAPI, Font
 	
 	private int size;
 	
+	
+	
+	public BloodPoolViewAttributes() {
+		super();
+	}
+	
+	
+
+	public BloodPoolViewAttributes(Font font, int size) {
+		super();
+		this.font = font;
+		this.size = size;
+	}
+
+
+
 	@Override
 	public Font getFont() {
 		return font;
@@ -91,6 +107,10 @@ public class BloodPoolViewAttributes implements BloodPoolViewAttributesAPI, Font
 			return false;
 		}
 		return true;
+	}
+	
+	public BloodPoolViewAttributes clone(){
+		return new BloodPoolViewAttributes(font, size);
 	}
 	
 }

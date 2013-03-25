@@ -38,8 +38,6 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 	
 	private Orientation orientation = Orientation.HORIZONTAL;
 	
-	private boolean squares = false;
-	
 	private Font font;
 
 	public TraitViewAttributes() {
@@ -47,11 +45,10 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 	}
 	
 	public TraitViewAttributes(boolean editable, Orientation orientation,
-			boolean squares, Font font) {
+			Font font) {
 		super();
 		this.editable = editable;
 		this.orientation = orientation;
-		this.squares = squares;
 		this.font = font;
 	}
 
@@ -75,17 +72,11 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 		this.orientation = orientation;
 	}
 
-	public void setSquares(boolean squares) {
-		this.squares = squares;
-	}
-	
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 		sb.append("editable: ");
 		sb.append(editable);
-		sb.append(", squares: ");
-		sb.append(squares);
 		sb.append(", orientation: ");
 		sb.append(orientation);
 		sb.append(", font: ");
@@ -99,7 +90,6 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 		TraitViewAttributes clone = new TraitViewAttributes();
 		clone.editable = editable;
 		clone.orientation = orientation;
-		clone.squares = squares;
 		clone.font	=	font;
 		return clone;
 	}
@@ -125,7 +115,7 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 		if (that == this) return true;
 		if (that instanceof TraitViewAttributes){
 			TraitViewAttributes other = (TraitViewAttributes) that;
-			return editable == other.editable && squares == other.squares && orientation.equals(other.orientation)
+			return editable == other.editable && orientation.equals(other.orientation)
 					&& font.equals(other.font);
 		}
 		return false;
@@ -133,11 +123,9 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 	
 	@Override
 	public int hashCode(){
-		return 11 * System.identityHashCode(editable) + 13 * System.identityHashCode(squares)
+		return 11 * System.identityHashCode(editable)
 				+ 17 * orientation.hashCode() + 19 * font.hashCode();
 	}
-	
-	
 	
 
 }
