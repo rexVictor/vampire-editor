@@ -24,6 +24,7 @@ import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.sheetloader.common.ClassToFileMapper;
 import vampire.editor.sheetloader.common.ModelToViewMap;
 
+@Deprecated
 public class VMPCSImporter {
 	
 	private static int id = 0;
@@ -58,7 +59,7 @@ public class VMPCSImporter {
 	
 	private final Objects<MeritViewAttributes> meritViewAtts;
 	
-	private final Objects<MeritEntryViewAttibutes> meritEntryViewAtts;
+	private final Objects<MeritEntryViewAttributes> meritEntryViewAtts;
 	
 	private final Objects<BloodPoolViewAttributes> bloodPoolViewAtts;
 	
@@ -101,7 +102,7 @@ public class VMPCSImporter {
 			bloodPoolViewAtts = new Objects<>(root, BloodPoolViewAttributes.class, resources, fonts);
 			healthEntryViewAtts = new Objects<>(root, HealthEntryViewAttributes.class, resources, fonts);
 			healthViewAtts = new Objects<>(root, HealthViewAttributes.class, resources, fonts);
-			meritEntryViewAtts = new Objects<>(root, MeritEntryViewAttibutes.class, resources, fonts);
+			meritEntryViewAtts = new Objects<>(root, MeritEntryViewAttributes.class, resources, fonts);
 			meritViewAtts	= new Objects<>(root, MeritViewAttributes.class, resources, fonts);
 			// Loads the ModelToViewProtoMap
 			modelToViewMap = ModelToViewMapFactory.loadModelToViewMap(root.resolve("modeltoviewmap.json"));
@@ -117,7 +118,7 @@ public class VMPCSImporter {
 			throw new VMPCSImportException(e);
 		}
 		allViewAtts.put(MeritViewAttributes.class, meritViewAtts);
-		allViewAtts.put(MeritEntryViewAttibutes.class, meritEntryViewAtts);
+		allViewAtts.put(MeritEntryViewAttributes.class, meritEntryViewAtts);
 		allViewAtts.put(HealthViewAttributes.class, healthViewAtts);
 		allViewAtts.put(HealthEntryViewAttributes.class, healthEntryViewAtts);
 		allViewAtts.put(CategoryViewAttributes.class, catViewAtts);
@@ -176,7 +177,7 @@ public class VMPCSImporter {
 			
 			sheet.setBorderKey((String) protoSheet.remove("border"));
 			
-			document = new VampireDocument(sheet, viewModelMapper);
+			document = new VampireDocument(sheet, viewModelMapper, null);
 		}
 		//wrong JSON Format
 		catch(JsonParseException | JsonMappingException | ClassCastException e){
@@ -210,7 +211,7 @@ public class VMPCSImporter {
 	}
 	
 	private Merit loadMerit(Map<String, Object> protoMerit){
-		return loadEntry(protoMerit, Merit.class, MeritEntryViewAttibutes.class);
+		return loadEntry(protoMerit, Merit.class, MeritEntryViewAttributes.class);
 	}
 	
 	private Health loadHealth(Map<String, Object> protoHealth){
@@ -335,7 +336,7 @@ public class VMPCSImporter {
 				Files.deleteIfExists(p);
 			}
 			else{
-				Files.delete(p);				
+				Files.delete(p);
 			}
 		}
 		stream.close();

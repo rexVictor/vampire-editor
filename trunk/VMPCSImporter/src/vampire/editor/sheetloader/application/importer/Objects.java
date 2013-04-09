@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
+@Deprecated
 public class Objects<V> {
 
 	private final Map<Integer, V> values = new HashMap<>();
