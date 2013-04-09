@@ -89,7 +89,7 @@ public class RawExporter {
 		exporters.put(HealthEntryViewAttributes.class, usual);
 		exporters.put(BloodPool.class, usual);
 		exporters.put(BloodPoolViewAttributes.class, usual);
-		exporters.put(MeritEntryViewAttibutes.class, usual);
+		exporters.put(MeritEntryViewAttributes.class, usual);
 		exporters.put(MeritViewAttributes.class, usual);
 		
 		SimpleModule module = new SimpleModule();

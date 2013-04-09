@@ -93,7 +93,7 @@ public class SheetExporter {
 		protoFiles.put(MetaEntryViewAttributes.class, new ProtoExport());
 		protoFiles.put(HealthEntryViewAttributes.class, new ProtoExport());
 		protoFiles.put(HealthViewAttributes.class, new ProtoExport());
-		protoFiles.put(MeritEntryViewAttibutes.class, new ProtoExport());
+		protoFiles.put(MeritEntryViewAttributes.class, new ProtoExport());
 		protoFiles.put(MeritViewAttributes.class, new ProtoExport());
 		protoFiles.put(BloodPoolViewAttributes.class, new ProtoExport());
 		protoFiles.put(Font.class, new ProtoExport());
@@ -120,7 +120,7 @@ public class SheetExporter {
 		idCalculators.put(MetaEntryViewAttributes.class, new IdCalculator<>());
 		idCalculators.put(HealthViewAttributes.class, new IdCalculator<>());
 		idCalculators.put(HealthEntryViewAttributes.class, new IdCalculator<>());
-		idCalculators.put(MeritEntryViewAttibutes.class, new IdCalculator<>());
+		idCalculators.put(MeritEntryViewAttributes.class, new IdCalculator<>());
 		idCalculators.put(MeritViewAttributes.class, new IdCalculator<>());
 		idCalculators.put(BloodPoolViewAttributes.class, new IdCalculator<>());
 	}
