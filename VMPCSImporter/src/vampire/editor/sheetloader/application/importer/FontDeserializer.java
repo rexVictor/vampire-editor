@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
+@Deprecated
 public class FontDeserializer extends StdDeserializer<Font>{
 	
 	private final ResourcesHolderAPI resources;

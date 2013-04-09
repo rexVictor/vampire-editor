@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Deprecated
 public class ModelToViewMapFactory {
 	
 	@SuppressWarnings("unchecked")

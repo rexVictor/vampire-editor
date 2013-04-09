@@ -8,6 +8,7 @@ import vampire.editor.plugin.api.plugin.SheetImporter;
 import vampire.editor.sheetloader.application.importer.VMPCSImportException;
 import vampire.editor.sheetloader.application.importer.VMPCSImporter;
 
+@Deprecated
 public class VMPCSLoader implements SheetImporter {
 	
 	private final ResourcesHolderAPI resources;
