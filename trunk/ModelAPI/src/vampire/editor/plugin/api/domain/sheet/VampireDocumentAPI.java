@@ -22,6 +22,9 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
+import java.nio.file.FileSystem;
+import java.nio.file.Path;
+
 
 /**
  * This interface holds a {@link SheetAPI} and the {@link ModelToViewModelMapperAPI},
@@ -42,5 +45,11 @@ public interface VampireDocumentAPI {
 	 * @see ModelToViewModelMapperAPI
 	 */
 	public ModelToViewModelMapperAPI getModelToViewModelMapper();
+	
+	public Path getPluginDirectory();
+	
+	public FileSystem getFileSystem();
+	
+	public Path getPath();
 
 }

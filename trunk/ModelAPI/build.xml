@@ -1,0 +1,38 @@
+<project name="Vampire Document Model API" basedir="." default="build">
+	
+	<property name="src" location="src"/>
+	<property name="build" location="bin"/>
+	<property name="dist" location="dist"/>
+	<property name="manifest" value="manifest.mf"/>
+	<property name="libs" location="libs"/>
+	<property name="license" value="license.txt"/>
+
+	<path id="classpath">
+		<pathelement path="."/>
+	</path>
+	
+	<target name="clean" description="Removes the compiled classes and the distribution">
+		<delete dir="${build}"/>
+		<delete dir="${dist}"/>
+	</target>
+	
+	<target name="build" depends="clean" description="Builds the project">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${dist}"/>
+		
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath refid="classpath"/>
+		</javac>
+		
+		<jar destfile="${dist}/modelapi.jar" manifest="${manifest}"
+			basedir="${build}">
+		</jar>
+		
+		<!-- copy file="${libs}" todir="${dist}"/ -->
+		<copy file="${license}" todir="${dist}"/>
+	</target>
+
+
+
+
+</project>

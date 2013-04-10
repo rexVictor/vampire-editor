@@ -22,8 +22,6 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.view.PublicCloneable;
-
 /**
  * The ValueAPI offers the methods to get the properties of a value object:<br>
  * <ul>
@@ -38,7 +36,7 @@ import vampire.editor.plugin.api.domain.sheet.view.PublicCloneable;
  * @author rex_victor
  *
  */
-public interface ValueAPI extends PublicCloneable{
+public interface ValueAPI{
 
 	/**
 	 * Returns the value.
@@ -67,7 +65,6 @@ public interface ValueAPI extends PublicCloneable{
 	/**
 	 * Returns a deep copy of this Value Object.
 	 */
-	@Override
 	public ValueAPI clone();
 
 }
