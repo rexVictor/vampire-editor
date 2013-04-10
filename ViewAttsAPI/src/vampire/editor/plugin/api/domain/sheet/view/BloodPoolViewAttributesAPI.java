@@ -28,7 +28,7 @@ import java.awt.Font;
  * The interface providing read-access to the bloodpool view attributes.
  * @author rex_victor
  */
-public interface BloodPoolViewAttributesAPI {
+public interface BloodPoolViewAttributesAPI extends PublicCloneable{
 
 	/**
 	 * The {@link Font} of the title (in English: bloodpool).
@@ -42,5 +42,7 @@ public interface BloodPoolViewAttributesAPI {
 	 * @return the size of the squares.
 	 */
 	public int getSize();
+	
+	public BloodPoolViewAttributesAPI clone();
 
 }

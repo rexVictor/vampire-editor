@@ -29,12 +29,14 @@ import java.awt.Font;
  * @author rex_victor
  *
  */
-public interface MeritEntryViewAttibutesAPI{
+public interface MeritEntryViewAttibutesAPI extends PublicCloneable{
 	
 	/**
 	 * Returns the font, the cost and the name of a merit are printed with.
 	 * @return the font of cost and name
 	 */
 	public Font getFont();
+	
+	public MeritEntryViewAttibutesAPI clone();
 
 }
