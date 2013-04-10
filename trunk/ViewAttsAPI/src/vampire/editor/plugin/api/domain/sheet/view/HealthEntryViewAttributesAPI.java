@@ -29,7 +29,7 @@ import java.awt.Font;
  * @author rex_victor
  *
  */
-public interface HealthEntryViewAttributesAPI {
+public interface HealthEntryViewAttributesAPI extends PublicCloneable{
 	
 	/**
 	 * Returns the font the description of the health entry is printed with.
@@ -42,5 +42,7 @@ public interface HealthEntryViewAttributesAPI {
 	 * @return the size of the square
 	 */
 	public int getSize();
+	
+	public HealthEntryViewAttributesAPI clone();
 
 }

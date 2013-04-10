@@ -24,8 +24,10 @@ package vampire.editor.plugin.api.domain.sheet.view;
 
 import java.awt.Font;
 
-public interface HealthViewAttibutesAPI {
+public interface HealthViewAttributesAPI extends PublicCloneable{
 
 	public Font getFont();
+	
+	public HealthViewAttributesAPI clone();
 
 }

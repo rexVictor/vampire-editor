@@ -30,7 +30,7 @@ import java.awt.Font;
  * @author rex_victor
  *
  */
-public interface MeritViewAttributesAPI {
+public interface MeritViewAttributesAPI extends PublicCloneable{
 
 	/**
 	 * Returns the font of the title this merits shall be printed with.
