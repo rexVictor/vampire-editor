@@ -24,14 +24,19 @@ package vampire.editor.domain.sheet;
 
 import java.util.Iterator;
 
-import vampire.editor.plugin.api.domain.sheet.MetaAPI;
+import vampire.editor.plugin.api.domain.sheet.Health;
+import vampire.editor.plugin.api.domain.sheet.HealthEntry;
 
 /**
- * The Meta is specializing the {@link Data} class. <br> 
- * It provides an {@link Iterator} to get its attached meta entries ({@link MetaEntry}).<br>
+ * The Health is specializing the {@link Data} class. <br> 
+ * It provides an {@link Iterator} to get its attached health entries ({@link MHealthEntry}).<br>
  * @author rex_victor
  *
  */
-public class Meta extends Data<MetaEntry> implements MetaAPI{
+class MHealth extends Data<HealthEntry> implements Health{
+	
+	public MHealth clone(){
+		return (MHealth) super.clone();
+	}
 
 }

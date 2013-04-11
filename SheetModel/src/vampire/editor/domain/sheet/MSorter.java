@@ -22,37 +22,37 @@
  ******************************************************************************/
 package vampire.editor.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-/**
- * This class holds a {@link Sheet} and the {@link ModelToViewModelMapper},
- * therefore providing all the information available of a document.
- * @author rex_victor
- *
- */
-public class VampireDocument implements VampireDocumentAPI{
+import vampire.editor.plugin.api.domain.sheet.Nameable;
+
+class MSorter<V extends Nameable> {
 	
-	private final Sheet sheet;
+	private final Comparator<String> stringComparator;
 	
-	private final ModelToViewModelMapper modelToViewModelMapper;
+	private class DataComparator implements Comparator<V>{
+
+		@Override
+		public int compare(V o1, V o2) {
+			return stringComparator.compare(o1.getName(), o2.getName());
+		}
+		
+	}
 	
+	private final Comparator<V> comparator = new DataComparator();
 	
 
-	public VampireDocument(Sheet sheet,
-			ModelToViewModelMapper modelToViewModelMapper) {
+	public MSorter(Comparator<String> stringComparator) {
 		super();
-		this.sheet = sheet;
-		this.modelToViewModelMapper = modelToViewModelMapper;
+		this.stringComparator = stringComparator;
 	}
-
-	@Override
-	public Sheet getSheet() {
-		return sheet;
+	
+	public void sort(List<? extends V> list){
+		Collections.sort(list, comparator);
 	}
-
-	@Override
-	public ModelToViewModelMapper getModelToViewModelMapper() {
-		return modelToViewModelMapper;
-	}
+	
+	
 
 }

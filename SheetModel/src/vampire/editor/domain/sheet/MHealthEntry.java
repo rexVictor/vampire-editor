@@ -22,42 +22,43 @@
  ******************************************************************************/
 package vampire.editor.domain.sheet;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import vampire.editor.plugin.api.domain.sheet.TraitAPI;
+import vampire.editor.plugin.api.domain.sheet.DamageType;
+import vampire.editor.plugin.api.domain.sheet.HealthEntry;
+import vampire.editor.plugin.api.domain.sheet.HealthEntryAPI;
 
 /**
- * A trait is a object containing the name of a trait and its Value Object. <br>
- * Examples for traits are: Strength, Intelligence.
+ * HealthEntry stores the penalty of the dice pool, the name of the wounded level and the current damage type.
  * @author rex_victor
- *
  */
-public class Trait implements TraitAPI{
+class MHealthEntry implements HealthEntryAPI, HealthEntry {
+	
+	private int penalty;
 	
 	private String name;
 	
-	private Value value;
-	
-	private final List<Specialty> specialties;
-	
-	public Trait(){
-		specialties = new LinkedList<>();
-	}
-
-	public Trait(String name, Value value) {
-		this(name,value, new LinkedList<Specialty>());			
-	}
-	
-	
+	private DamageType damageType;
 	
 	
 
-	private Trait(String name, Value value, List<Specialty> specialties) {
+	public MHealthEntry() {
 		super();
+	}
+
+	public MHealthEntry(int penalty, String name, DamageType damageType) {
+		super();
+		this.penalty = penalty;
 		this.name = name;
-		this.value = value;
-		this.specialties = specialties;
+		this.damageType = damageType;
+	}
+
+	@Override
+	public int getPenalty() {
+		return penalty;
+	}
+
+	
+	public void setPenalty(int penalty) {
+		this.penalty = penalty;
 	}
 
 	@Override
@@ -65,43 +66,24 @@ public class Trait implements TraitAPI{
 		return name;
 	}
 
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 
 	@Override
-	public Value getValue() {
-		return value;
-	}
-	
-	public void addSpecialty(Specialty specialty){
-		specialties.add(specialty);
-	}
-	
-	public void removeSpecialty(Specialty specialty){
-		specialties.remove(specialty);
-	}
-	
-	@Override
-	public Trait clone(){
-		return new Trait(name, value.clone(), new LinkedList<>(specialties));
-	}
-	
-	@Override
-	public String toString(){
-		String toReturn = "";
-		toReturn = toReturn+name+" : "+value.toString();
-		return toReturn;
+	public DamageType getDamageType() {
+		return damageType;
 	}
 
-	public void setValue(Value value) {
-		this.value = value;
+	
+	public void setDamageType(DamageType damageType) {
+		this.damageType = damageType;
 	}
 	
-	
-	
-	
-	
-	
+	@Override
+	public MHealthEntry clone(){
+		return new MHealthEntry(penalty, name, damageType);
+	}
 
 }

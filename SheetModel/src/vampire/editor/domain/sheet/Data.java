@@ -37,7 +37,7 @@ import vampire.editor.plugin.api.domain.sheet.Nameable;
  *
  * @param <W>
  */
-public class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
+class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 	
 	/**
 	 * An iterator for the {@link Data} class.<br>

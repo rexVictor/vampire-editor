@@ -26,7 +26,7 @@ package vampire.editor.domain.sheet;
  * Indicates that a Value was malformed.
  * @author rex
  */
-public class IllegalValueException extends IllegalArgumentException{
+class IllegalValueException extends IllegalArgumentException{
 
 	/**
 	 * 

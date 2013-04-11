@@ -20,39 +20,28 @@
  * Matthias Johannes Reimchen
  * development.rex@gmail.com
  ******************************************************************************/
- 
 package vampire.editor.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.BloodPoolAPI;
+import java.util.Iterator;
+
+import vampire.editor.plugin.api.domain.sheet.Category;
+import vampire.editor.plugin.api.domain.sheet.SubCategory;
+
 /**
- * Implementation of {@link BloodPoolAPI}. It also provides setter Methods.
+ * The Category is specializing the {@link Data} class. <br> 
+ * Examples for categories are Attributes and Abilities. <br>
+ * It provides an {@link Iterator} to get its attached Subcategories ({@link MSubCategory}).<br>
  * @author rex_victor
  *
  */
-public class BloodPool implements BloodPoolAPI {
-
-	private int value;
+class MCategory extends Data<SubCategory> implements Category{
 	
-	private int maxValue;
-
+	public MCategory(){
+	}
 	
 	@Override
-	public int getValue() {
-		return value;
+	public MCategory clone(){
+		return (MCategory) super.clone();
 	}
-
-	public void setValue(int value) {
-		this.value = value;
-	}
-
-	@Override
-	public int getMaxValue() {
-		return maxValue;
-	}
-
-	public void setMaxValue(int maxValue) {
-		this.maxValue = maxValue;
-	}
-	
 	
 }

@@ -22,6 +22,7 @@
  ******************************************************************************/
 package vampire.editor.domain.sheet;
 
+import vampire.editor.plugin.api.domain.sheet.Merit;
 import vampire.editor.plugin.api.domain.sheet.MeritAPI;
 
 /**
@@ -30,13 +31,13 @@ import vampire.editor.plugin.api.domain.sheet.MeritAPI;
  * Merits have positive cost and flaws have negative cost.
  * @author rex_victor
  */
-public class Merit implements MeritAPI {
+class MMerit implements MeritAPI, Merit {
 	
 	private int cost;
 	
 	private String name;
 
-	public Merit() {
+	public MMerit() {
 		super();
 	}
 
@@ -59,8 +60,8 @@ public class Merit implements MeritAPI {
 	}
 	
 	@Override
-	public Merit clone(){
-		Merit clone = new Merit();
+	public MMerit clone(){
+		MMerit clone = new MMerit();
 		clone.cost = cost;
 		clone.name = name;
 		return clone;

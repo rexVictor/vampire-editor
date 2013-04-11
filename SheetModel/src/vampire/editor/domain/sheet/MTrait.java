@@ -22,21 +22,42 @@
  ******************************************************************************/
 package vampire.editor.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
+import java.util.LinkedList;
+import java.util.List;
 
+import vampire.editor.plugin.api.domain.sheet.Trait;
+import vampire.editor.plugin.api.domain.sheet.Value;
 
 /**
- * A meta entry is a pair of {@link String}s, respectively a key and a value.<br>
- * Examples for meta entries are name, generation, haven and demeanor with their corresponding values.
+ * A trait is a object containing the name of a trait and its Value Object. <br>
+ * Examples for traits are: Strength, Intelligence.
  * @author rex_victor
  *
  */
-public class MetaEntry implements MetaEntryAPI {
+class MTrait implements Trait{
 	
 	private String name;
 	
-	private String value;
+	private Value value;
 	
+	private final List<Specialty> specialties;
+	
+	public MTrait(){
+		specialties = new LinkedList<>();
+	}
+
+	public MTrait(String name, Value value) {
+		this(name,value, new LinkedList<Specialty>());
+	}
+	
+
+	private MTrait(String name, Value value, List<Specialty> specialties) {
+		super();
+		this.name = name;
+		this.value = value;
+		this.specialties = specialties;
+	}
+
 	@Override
 	public String getName() {
 		return name;
@@ -47,24 +68,32 @@ public class MetaEntry implements MetaEntryAPI {
 	}
 
 	@Override
-	public String getValue() {
+	public Value getValue() {
 		return value;
 	}
-
-	public void setValue(String value) {
-		this.value = value;
+	
+	public void addSpecialty(Specialty specialty){
+		specialties.add(specialty);
 	}
-
+	
+	public void removeSpecialty(Specialty specialty){
+		specialties.remove(specialty);
+	}
+	
 	@Override
-	public MetaEntryAPI clone(){
-		MetaEntry clone = new MetaEntry();
-		clone.name = name;
-		clone.value = value;
-		return clone;
+	public Trait clone(){
+		return new MTrait(name, value.clone(), new LinkedList<>(specialties));
 	}
 	
 	@Override
 	public String toString(){
-		return name + " : " + value;
+		String toReturn = "";
+		toReturn = toReturn+name+" : "+value.toString();
+		return toReturn;
 	}
+
+	public void setValue(Value value) {
+		this.value = value;
+	}
+
 }

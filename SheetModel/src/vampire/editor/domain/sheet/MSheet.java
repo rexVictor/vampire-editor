@@ -24,7 +24,13 @@ package vampire.editor.domain.sheet;
 
 import java.lang.reflect.Field;
 
+import vampire.editor.plugin.api.domain.sheet.BloodPool;
+import vampire.editor.plugin.api.domain.sheet.Categories;
+import vampire.editor.plugin.api.domain.sheet.Health;
+import vampire.editor.plugin.api.domain.sheet.Merits;
+import vampire.editor.plugin.api.domain.sheet.Meta;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
+import vampire.editor.plugin.api.domain.sheet.Sheet;
 import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 
 /**
@@ -36,11 +42,11 @@ import vampire.editor.plugin.api.domain.sheet.SheetAPI;
  * @author rex_victor
  *
  */
-public class Sheet implements SheetAPI {
+class MSheet implements Sheet {
 	
 	private Meta meta = null;
 	
-	private Data<Category> categories;
+	private Categories categories;
 	
 	private Merits merits;
 	
@@ -51,8 +57,6 @@ public class Sheet implements SheetAPI {
 	private BloodPool bloodPool;
 	
 	private String borderKey;
-	
-	
 	
 	public String getBorderKey() {
 		return borderKey;
@@ -65,8 +69,8 @@ public class Sheet implements SheetAPI {
 
 
 	@Override
-	public Sheet clone(){
-		Sheet clone = new Sheet();
+	public MSheet clone(){
+		MSheet clone = new MSheet();
 		Field[] fields = this.getClass().getDeclaredFields();
 		for (Field f : fields){
 			try {
@@ -80,7 +84,7 @@ public class Sheet implements SheetAPI {
 	}
 	
 
-	public void setCategories(Data<Category> categories){
+	public void setCategories(Categories categories){
 		if (this.categories == null){
 			this.categories = categories;
 		}
@@ -123,7 +127,7 @@ public class Sheet implements SheetAPI {
 	}
 
 	@Override
-	public Data<Category> getCategories() {
+	public Categories getCategories() {
 		return categories;
 	}
 
@@ -146,10 +150,6 @@ public class Sheet implements SheetAPI {
 	public Health getHealth(){
 		return health;
 	}
-	
-
-	
-	
 	
 
 }
