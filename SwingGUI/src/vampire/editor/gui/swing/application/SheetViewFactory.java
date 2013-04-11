@@ -31,6 +31,12 @@ import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.*;
+import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttibutesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.MeritViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
 import vampire.editor.plugin.api.view.sheet.HealthView;
 
 public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetViewFactory{
@@ -85,7 +91,7 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	}
 	
 	private SMetaEntryView buildMetaEntryView(MetaEntryAPI meta, ModelToViewModelMapperAPI mapper){
-		SMetaEntryView view = new SMetaEntryView(dictionary, mapper.getViewAttributes(meta));
+		SMetaEntryView view = new SMetaEntryView(dictionary, (MetaEntryViewAttributesAPI) mapper.getViewAttributes(meta));
 		view.setTitle(meta.getName());
 		view.setContent(meta.getValue());
 		return view;
@@ -155,7 +161,7 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	}
 	
 	private SMeritView buildMeritsView(MeritsAPI merits, ModelToViewModelMapperAPI mapper){
-		SMeritView view = new SMeritView(merits.getName(), dictionary, mapper.getViewAttributes(merits));
+		SMeritView view = new SMeritView(merits.getName(), dictionary, (MeritViewAttributesAPI) mapper.getViewAttributes(merits));
 		@SuppressWarnings("unchecked")
 		List<SMeritEntryView> entryViews = buildMeritEntryViews((DataAPI<? extends MeritAPI>) merits, mapper);
 		for (SMeritEntryView entryView : entryViews){
@@ -173,21 +179,21 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	}
 	
 	private SMeritEntryView buildMeritEntryView(MeritAPI merit, ModelToViewModelMapperAPI mapper){
-		SMeritEntryView view = new SMeritEntryView(dictionary, mapper.getViewAttributes(merit));
+		SMeritEntryView view = new SMeritEntryView(dictionary, (MeritEntryViewAttibutesAPI) mapper.getViewAttributes(merit));
 		view.setCost(merit.getCost());
 		view.setText(merit.getName());
 		return view;
 	}
 	
 	private SBloodPoolView buildBloodPoolView(BloodPoolAPI bloodPool, ModelToViewModelMapperAPI mapper){
-		SBloodPoolView view = new SBloodPoolView(mapper.getViewAttributes(bloodPool), dictionary);
+		SBloodPoolView view = new SBloodPoolView((BloodPoolViewAttributesAPI) mapper.getViewAttributes(bloodPool), dictionary);
 		view.setMaxValue(bloodPool.getMaxValue());
 		view.setValue(bloodPool.getValue());
 		return view;
 	}
 	
 	private HealthView buildHealthView(HealthAPI health, ModelToViewModelMapperAPI mapper){
-		HorizontalHealthView healthView = new HorizontalHealthView(dictionary, mapper.getViewAttributes(health));
+		HorizontalHealthView healthView = new HorizontalHealthView(dictionary, (HealthViewAttributesAPI) mapper.getViewAttributes(health));
 		@SuppressWarnings("unchecked")
 		List<HorizontalHealthEntryView> entryViews = buildHealthEntryViews((DataAPI<? extends HealthEntryAPI>) health, mapper);
 		for (HorizontalHealthEntryView view : entryViews){
@@ -205,7 +211,7 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	}
 	
 	private HorizontalHealthEntryView buildHealthEntryView(HealthEntryAPI healthEntry, ModelToViewModelMapperAPI mapper){
-		HorizontalHealthEntryView entryView = new HorizontalHealthEntryView(dictionary, mapper.getViewAttributes(healthEntry));
+		HorizontalHealthEntryView entryView = new HorizontalHealthEntryView(dictionary, (HealthEntryViewAttributesAPI) mapper.getViewAttributes(healthEntry));
 		entryView.setDamageType(healthEntry.getDamageType());
 		entryView.setDescription(healthEntry.getName());
 		entryView.setPenalty(healthEntry.getPenalty());
