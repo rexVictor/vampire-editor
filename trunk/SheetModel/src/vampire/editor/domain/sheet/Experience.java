@@ -25,7 +25,7 @@ package vampire.editor.domain.sheet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Experience {
+class Experience {
 	
 	private int total;
 	

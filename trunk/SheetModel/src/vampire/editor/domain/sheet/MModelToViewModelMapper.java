@@ -22,67 +22,54 @@
  ******************************************************************************/
 package vampire.editor.domain.sheet;
 
-import vampire.editor.plugin.api.domain.sheet.DamageType;
-import vampire.editor.plugin.api.domain.sheet.HealthEntryAPI;
+import java.util.IdentityHashMap;
+import java.util.Map;
+import java.util.Set;
+
+import vampire.editor.plugin.api.domain.sheet.*;
 
 /**
- * HealthEntry stores the penalty of the dice pool, the name of the wounded level and the current damage type.
+ * The implementation of {@link ModelToViewModelMapperAPI}.
+ * It maps all model objects to the according ViewAttributes object.
  * @author rex_victor
+ *
  */
-public class HealthEntry implements HealthEntryAPI {
+class MModelToViewModelMapper implements ModelToViewModelMapper{
 	
-	private int penalty;
+	private final Map<Object, Object> associations = new IdentityHashMap<>();
 	
-	private String name;
-	
-	private DamageType damageType;
-	
-	
-
-	public HealthEntry() {
-		super();
+	public void putView(Object model, Object view){
+		if (associations.containsKey(model) || associations.containsValue(view)){
+			if (associations.get(model) != view){
+				throw new DuplicateModelViewPairException("Already inserted!\n"+
+						model + " or " + view);
+			}
+		}
+		associations.put(model, view);
 	}
+	
+	public Object getViewAttributes(Object object){
+		return associations.get(object);
+	}
+	
 
-	public HealthEntry(int penalty, String name, DamageType damageType) {
-		super();
-		this.penalty = penalty;
-		this.name = name;
-		this.damageType = damageType;
+	@Override
+	public void removeView(MeritAPI merit) {
+		associations.remove(merit);
 	}
 
 	@Override
-	public int getPenalty() {
-		return penalty;
-	}
-
-	
-	public void setPenalty(int penalty) {
-		this.penalty = penalty;
+	public void removeView(ValueAPI value) {
+		associations.remove(value);
 	}
 
 	@Override
-	public String getName() {
-		return name;
-	}
-
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@Override
-	public DamageType getDamageType() {
-		return damageType;
-	}
-
-	
-	public void setDamageType(DamageType damageType) {
-		this.damageType = damageType;
+	public void removeView(TraitAPI trait) {
+		associations.remove(trait);
 	}
 	
-	@Override
-	public HealthEntry clone(){
-		return new HealthEntry(penalty, name, damageType);
+	public Set<Object> keySet(){
+		return associations.keySet();
 	}
 
 }

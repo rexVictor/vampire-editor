@@ -34,7 +34,7 @@ import vampire.editor.plugin.api.domain.sheet.ValueAPI;
  * @author rex
  *
  */
-public class Value implements Serializable, ValueAPI {
+class MValue implements Serializable, ValueAPI, vampire.editor.plugin.api.domain.sheet.Value {
 	
 	/**
 	 * 
@@ -66,7 +66,7 @@ public class Value implements Serializable, ValueAPI {
 	
 	private final int minValue;
 	
-	public Value(){
+	public MValue(){
 		this(0);
 	}
 	
@@ -76,7 +76,7 @@ public class Value implements Serializable, ValueAPI {
 	 * @param value
 	 * @param viewAttributes
 	 */
-	private Value(int value){
+	private MValue(int value){
 		this(value,MAX_VALUE);
 	}
 	
@@ -87,7 +87,7 @@ public class Value implements Serializable, ValueAPI {
 	 * @param maxValue
 	 * @param viewAttributes
 	 */
-	private Value(int value, int maxValue){
+	private MValue(int value, int maxValue){
 		this(value, MIN_VALUE, maxValue);
 	}
 	
@@ -99,7 +99,7 @@ public class Value implements Serializable, ValueAPI {
 	 * @param maxValue
 	 * @param viewAttributes
 	 */
-	public Value(int value, int minValue, int maxValue){
+	public MValue(int value, int minValue, int maxValue){
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 		setValue(value);
@@ -141,8 +141,8 @@ public class Value implements Serializable, ValueAPI {
 	}
 	
 	@Override
-	public Value clone(){
-		Value clone = new  Value(value, minValue, maxValue);
+	public MValue clone(){
+		MValue clone = new  MValue(value, minValue, maxValue);
 		clone.setTempValue(tempValue);
 		return clone;
 	}
@@ -159,8 +159,8 @@ public class Value implements Serializable, ValueAPI {
 	}
 	
 	@Override
-	public final int hashCode(){
-		return minValue+2*maxValue+4*value+8*tempValue;		
+	public int hashCode(){
+		return minValue+2*maxValue+4*value+8*tempValue;
 	}
 	
 	/**
@@ -172,8 +172,8 @@ public class Value implements Serializable, ValueAPI {
 			return false;
 		if (obj == this)
 			return true;
-		if (obj instanceof Value){
-			Value comp = (Value) obj;
+		if (obj instanceof MValue){
+			MValue comp = (MValue) obj;
 			return comp.value == value && comp.tempValue == tempValue 
 					&& comp.maxValue == maxValue && comp.minValue == minValue;
 		}

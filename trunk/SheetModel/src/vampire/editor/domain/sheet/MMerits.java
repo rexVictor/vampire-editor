@@ -24,24 +24,19 @@ package vampire.editor.domain.sheet;
 
 import java.util.Iterator;
 
-import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
+import vampire.editor.plugin.api.domain.sheet.Merit;
+import vampire.editor.plugin.api.domain.sheet.Merits;
 
 /**
- * The Subcategory is specializing the {@link Data} class. <br> 
- * Examples for subcategories are Physical and Skills. <br>
- * It provides an {@link Iterator} to get its attached traits ({@link Trait}).<br>
+ * The Merits is specializing the {@link Data} class. <br> 
+ * It provides an {@link Iterator} to get its attached Merits ({@link MMerit}).<br>
  * @author rex_victor
  *
  */
-public class SubCategory extends Data<Trait> implements SubCategoryAPI{
+class MMerits extends Data<Merit> implements Merits{
 	
-	public SubCategory(){
-		
-	}
-	
-	@Override
-	public SubCategory clone(){
-		return (SubCategory) super.clone();
+	public MMerits clone(){
+		return (MMerits) super.clone();
 	}
 
 }

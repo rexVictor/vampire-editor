@@ -22,26 +22,50 @@
  ******************************************************************************/
 package vampire.editor.domain.sheet;
 
-import java.util.Iterator;
+import vampire.editor.plugin.api.domain.sheet.MetaEntry;
+import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
 
-import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
 
 /**
- * The Category is specializing the {@link Data} class. <br> 
- * Examples for categories are Attributes and Abilities. <br>
- * It provides an {@link Iterator} to get its attached Subcategories ({@link SubCategory}).<br>
+ * A meta entry is a pair of {@link String}s, respectively a key and a value.<br>
+ * Examples for meta entries are name, generation, haven and demeanor with their corresponding values.
  * @author rex_victor
  *
  */
-public class Category extends Data<SubCategory> implements  CategoryAPI{
+class MMetaEntry implements MetaEntryAPI, MetaEntry {
 	
-	public Category(){
-		
+	private String name;
+	
+	private String value;
+	
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	@Override
+	public MMetaEntry clone(){
+		MMetaEntry clone = new MMetaEntry();
+		clone.name = name;
+		clone.value = value;
+		return clone;
 	}
 	
 	@Override
-	public Category clone(){
-		return (Category) super.clone();
+	public String toString(){
+		return name + " : " + value;
 	}
-	
 }

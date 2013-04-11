@@ -20,18 +20,41 @@
  * Matthias Johannes Reimchen
  * development.rex@gmail.com
  ******************************************************************************/
+ 
 package vampire.editor.domain.sheet;
 
-import java.util.Iterator;
-
-import vampire.editor.plugin.api.domain.sheet.HealthAPI;
-
+import vampire.editor.plugin.api.domain.sheet.BloodPoolAPI;
 /**
- * The Health is specializing the {@link Data} class. <br> 
- * It provides an {@link Iterator} to get its attached health entries ({@link HealthEntry}).<br>
+ * Implementation of {@link BloodPoolAPI}. It also provides setter Methods.
  * @author rex_victor
  *
  */
-public class Health extends Data<HealthEntry> implements HealthAPI{
+class MBloodPool implements vampire.editor.plugin.api.domain.sheet.BloodPool {
 
+	private int value;
+	
+	private int maxValue;
+
+	
+	@Override
+	public int getValue() {
+		return value;
+	}
+
+	@Override
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	@Override
+	public int getMaxValue() {
+		return maxValue;
+	}
+
+	@Override
+	public void setMaxValue(int maxValue) {
+		this.maxValue = maxValue;
+	}
+	
+	
 }
