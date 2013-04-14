@@ -22,7 +22,6 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain;
 
-import java.awt.Font;
 import java.awt.Image;
 import java.nio.file.Path;
 import java.util.Map;
@@ -34,8 +33,6 @@ import java.util.Map;
  */
 public interface ResourcesHolderAPI {
 	
-	public Font getFont(String key);
-	
 	/**
 	 * Returns the dictionary with the specified name.
 	 * @param key
@@ -45,14 +42,6 @@ public interface ResourcesHolderAPI {
 	public DictionaryAPI getDictionary(String key);
 	
 	public Image getLine(String key);
-	
-	/**
-	 * Returns the key of the font as given in the configuration.<br>
-	 * (Needed for export).
-	 * @param font
-	 * @return the key of the font
-	 */
-	public String getKeyOfFont(Font font);
 	
 	/**
 	 * Returns the border with the specified name.

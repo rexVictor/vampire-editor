@@ -56,7 +56,7 @@ public class Config {
 		this.guiPlugin = guiPlugin;
 		this.importers = importers;
 		this.exporters = exporters;
-		holder = new ResourcesHolder(fonts, borders, lines, dictionaries, defaultSheets);
+		holder = new ResourcesHolder(borders, lines, dictionaries, defaultSheets);
 		
 	}
 	

@@ -6,5 +6,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ImporterAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
