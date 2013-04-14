@@ -4,12 +4,12 @@ import java.nio.file.Path;
 
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
+import vampire.editor.plugin.api.importer.SheetImporter;
 import vampire.editor.plugin.api.plugin.DocumentListener;
 import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
 import vampire.editor.plugin.api.plugin.SheetExporter;
-import vampire.editor.plugin.api.plugin.SheetImporter;
 
 public class TestManager implements ManagerAPI{
 
@@ -50,12 +50,6 @@ public class TestManager implements ManagerAPI{
 	}
 
 	@Override
-	public void setDefaultImporter(SheetImporter importer) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void addDocumentListener(DocumentListener listener) {
 		// TODO Auto-generated method stub
 		
@@ -68,12 +62,6 @@ public class TestManager implements ManagerAPI{
 	}
 
 	@Override
-	public void addImporter(SheetImporter importer) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void open(Path path) {
 		// TODO Auto-generated method stub
 		
@@ -81,6 +69,18 @@ public class TestManager implements ManagerAPI{
 
 	@Override
 	public void addExporter(SheetExporter exporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setDefaultImporter(SheetImporter importer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addImporter(SheetImporter importer) {
 		// TODO Auto-generated method stub
 		
 	}

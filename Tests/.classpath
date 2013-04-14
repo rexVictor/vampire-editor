@@ -2,13 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="swingguitests"/>
-	<classpathentry kind="src" path="sheetloader"/>
-	<classpathentry kind="src" path="sheetmodel"/>
-	<classpathentry kind="src" path="swingmainframe"/>
 	<classpathentry kind="src" path="configcreator"/>
 	<classpathentry kind="src" path="testimplementations"/>
 	<classpathentry kind="src" path="optiondialog"/>
-	<classpathentry kind="src" path="sheetexporter"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="/ResourceLoader/external/jackson-databind-2.0.0.jar">
 		<attributes>
@@ -17,9 +13,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/SwingGUI/libraries/jgoodies-forms-1.4.1/jgoodies-forms-1.4.1.jar"/>
 	<classpathentry kind="lib" path="/SwingGUI/libraries/jgoodies-forms-1.4.1/lib/jgoodies-common-1.2.0.jar"/>
-	<classpathentry kind="lib" path="libraries/csv/javacsv.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/vampireeditor/libs/jdom/jdom-2.0.1.jar" sourcepath="/vampireeditor/libs/jdom/jdom-2.0.1-sources.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Config"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ConfigCreator"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EventAPI"/>
@@ -27,7 +21,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSExporter"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SwingGUI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SwingMainFrame"/>
@@ -43,13 +36,7 @@
 			<attribute name="javadoc_location" value="http://fasterxml.github.com/jackson-core/javadoc/2.0.0/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSImporter"/>
-	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik.jar"/>
-	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-rasterizer.jar"/>
-	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-slideshow.jar"/>
-	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-squiggle.jar"/>
-	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-svgpp.jar"/>
-	<classpathentry kind="lib" path="/SwingGUI/libraries/batik/batik-1.7/batik-ttf2svg.jar"/>
-	<classpathentry kind="con" path="org.perfidix.perclipse.PERFIDIX_CONTAINER"/>
+	<classpathentry kind="lib" path="/ConfigCreator/libs/jdom/jdom-2.0.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ImporterAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
