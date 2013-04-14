@@ -20,7 +20,7 @@
 		<mkdir dir="${build}"/>
 		<mkdir dir="${dist}"/>
 		
-		<javac srcdir="${src}" destdir="${build}">
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
 			<classpath refid="classpath"/>
 		</javac>
 		

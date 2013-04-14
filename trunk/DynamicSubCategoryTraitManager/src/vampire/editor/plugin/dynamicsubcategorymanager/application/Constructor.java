@@ -46,7 +46,7 @@ public class Constructor implements Activator, DocumentListener{
 			CategoryControllerAPI categoryController = i.next();
 			for (Iterator<? extends SubCategoryControllerAPI> j = categoryController.getSubCategoryControllerIterator(); j.hasNext();){
 				SubCategoryControllerAPI subCategoryController = j.next();
-				SubCategoryViewAttributesAPI viewAtts = mapper.getViewAttributes(subCategoryController.getSubCategory());
+				SubCategoryViewAttributesAPI viewAtts = (SubCategoryViewAttributesAPI) mapper.getViewAttributes(subCategoryController.getSubCategory());
 				if (viewAtts.isExpandable()){
 					new TraitAdder(mapper, subCategoryController);
 				}
