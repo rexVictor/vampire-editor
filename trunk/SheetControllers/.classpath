@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/EventAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetEvents"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetFullAPI"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
