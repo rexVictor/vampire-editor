@@ -1,0 +1,16 @@
+{
+	"traits"	:	[
+	    {
+	    	"mapid"		:	11,
+	     	"name" 		: 	"attributes"
+	    },
+	    {
+	    	"mapid"	:	12,
+	     	"name"	:	"abilities"
+	    },
+	    {
+	    	"mapid"	:	13,
+	        "name":"virtues"
+		}
+	]
+}

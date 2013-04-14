@@ -1,0 +1,20 @@
+[
+	{
+		"id"	:	0,
+		"key"	:	"CasablancaAntique",
+		"style"	:	0,
+		"size"	:	20
+	},
+	{
+		"id"	:	1,
+		"key"	:	"CasablancaAntique",
+		"style"	:	0,
+		"size"	:	24
+	},
+	{
+		"id"	:	2,
+		"key"	:	"Linux Libertine",
+		"style"	:	0,
+		"size"	:	12
+	}
+]

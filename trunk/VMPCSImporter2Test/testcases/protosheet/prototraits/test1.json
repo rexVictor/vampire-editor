@@ -1,0 +1,20 @@
+{
+	"traits"	:	[
+	    {
+	     	"subCats" 	: 	[
+	     	    {
+	     	        "traits"	:	[
+	     	            {
+	     	            	"mapid"	:	100,
+	     	                "name":"strength"
+	     	            },
+	     	            {
+	     	            	"mapid"	:	101,
+	     	                "name":"stamina"
+	     	            }
+	     	        ]
+	     	    }
+	       ]
+	    }
+	]
+}
