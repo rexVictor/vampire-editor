@@ -24,66 +24,80 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
-import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
+import vampire.editor.plugin.api.domain.sheet.view.MeritViewAttributes;
+
 /**
- * Provides the attributes for the health view.
+ * Provides the attributes for the merit view.
  * @author rex_victor
  *
  */
-public class HealthViewAttributes implements HealthViewAttributesAPI, FontSettable{
+class MMeritViewAttributes implements FontSettable, MeritViewAttributes {
 	
 	private Font font;
 	
 	
 
-	public HealthViewAttributes() {
+	public MMeritViewAttributes() {
 		super();
 	}
 	
 	
 
-	public HealthViewAttributes(Font font) {
+	public MMeritViewAttributes(Font font) {
 		super();
 		this.font = font;
 	}
 
 
+
+	/**
+	 * Returns if fonts and sizes are equal.
+	 * @param that
+	 * @return if this and that are equal
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof MMeritViewAttributes)) {
+			return false;
+		}
+		MMeritViewAttributes other = (MMeritViewAttributes) obj;
+		if (font == null) {
+			if (other.font != null) {
+				return false;
+			}
+		} else if (!font.equals(other.font)) {
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	public Font getFont() {
 		return font;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((font == null) ? 0 : font.hashCode());
+		return result;
+	}
+
 	public void setFont(Font font) {
 		this.font = font;
 	}
 	
-
-	/**
-	 * Returns if the fonts are equal.
-	 * @param that
-	 * @return if this and that are equal
-	 */
-	@Override
-	public boolean equals(Object that){
-		if (that == null) return false;
-		if (that == this) return true;
-		if (that instanceof HealthViewAttributes){
-			return this.font.equals(((HealthViewAttributes) that).font);
-		}
-		return false;
+	public MeritViewAttributes clone(){
+		return new MMeritViewAttributes(font);
 	}
-	
-	@Override
-	public int hashCode(){
-		return font.hashCode();
-	}
-	
-	@Override
-	public HealthViewAttributes clone(){
-		return new HealthViewAttributes(font);
-	}
-	
 	
 
 }

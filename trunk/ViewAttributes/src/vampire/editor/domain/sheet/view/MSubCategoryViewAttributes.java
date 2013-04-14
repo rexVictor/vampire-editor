@@ -24,14 +24,15 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
-import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
+import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 
 /**
  * Provides the attributes for a subcategory view.
  * @author rex_victor
  *
  */
-public class SubCategoryViewAttributes implements SubCategoryViewAttributesAPI, FontSettable{
+class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttributes{
 	
 	private boolean expandable;
 	
@@ -39,17 +40,17 @@ public class SubCategoryViewAttributes implements SubCategoryViewAttributesAPI, 
 	
 	private Font font;
 	
-	public SubCategoryViewAttributes(){
+	public MSubCategoryViewAttributes(){
 		
 	}
 	
-	public SubCategoryViewAttributes(boolean expandable, boolean showTitle) {
+	public MSubCategoryViewAttributes(boolean expandable, boolean showTitle) {
 		super();
 		this.expandable = expandable;
 		this.showTitle = showTitle;
 	}
 	
-	public SubCategoryViewAttributes(boolean expandable, boolean showTitle, Font font) {
+	public MSubCategoryViewAttributes(boolean expandable, boolean showTitle, Font font) {
 		super();
 		this.expandable = expandable;
 		this.showTitle = showTitle;
@@ -93,7 +94,7 @@ public class SubCategoryViewAttributes implements SubCategoryViewAttributesAPI, 
 	
 	@Override 
 	public SubCategoryViewAttributes clone(){
-		SubCategoryViewAttributes clone = new SubCategoryViewAttributes();
+		MSubCategoryViewAttributes clone = new MSubCategoryViewAttributes();
 		clone.expandable = expandable;
 		clone.font	=	font;
 		clone.showTitle	=	showTitle;
@@ -107,8 +108,8 @@ public class SubCategoryViewAttributes implements SubCategoryViewAttributesAPI, 
 	public boolean equals(Object object){
 		if (object == null) return false;
 		if (object == this) return true;
-		if (object instanceof SubCategoryViewAttributes){
-			SubCategoryViewAttributes other = (SubCategoryViewAttributes) object;
+		if (object instanceof MSubCategoryViewAttributes){
+			MSubCategoryViewAttributes other = (MSubCategoryViewAttributes) object;
 			return other.expandable == expandable && other.showTitle == showTitle && font.equals(other.font); 
 		}
 		return false;

@@ -24,63 +24,52 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
-import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
+import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttributes;
 
 /**
- * The class providing bloodpool view attributes.
+ * Provides the attributes for the merit entry view.
  * @author rex_victor
+ *
  */
-public class BloodPoolViewAttributes implements BloodPoolViewAttributesAPI, FontSettable {
-
+class MMeritEntryViewAttributes implements FontSettable, MeritEntryViewAttributes{
+	
 	private Font font;
 	
-	private int size;
-	
-	
-	
-	public BloodPoolViewAttributes() {
+	public MMeritEntryViewAttributes() {
 		super();
 	}
 	
 	
 
-	public BloodPoolViewAttributes(Font font, int size) {
+	public MMeritEntryViewAttributes(Font font) {
 		super();
 		this.font = font;
-		this.size = size;
 	}
 
 
+
+	@Override
+	public void setFont(Font font) {
+		this.font = font;
+		
+	}
 
 	@Override
 	public Font getFont() {
 		return font;
 	}
 
-	public void setFont(Font font) {
-		this.font = font;
-	}
-
-	@Override
-	public int getSize() {
-		return size;
-	}
-
-	public void setSize(int size) {
-		this.size = size;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((font == null) ? 0 : font.hashCode());
-		result = prime * result + size;
 		return result;
 	}
 
 	/**
-	 * Returns if this and that have the same size and their fonts are equal.
+	 * Returns if fonts and sizes are equal.
 	 * @param that
 	 * @return if this and that are equal
 	 */
@@ -92,10 +81,10 @@ public class BloodPoolViewAttributes implements BloodPoolViewAttributesAPI, Font
 		if (that == null) {
 			return false;
 		}
-		if (!(that instanceof BloodPoolViewAttributes)) {
+		if (!(that instanceof MMeritEntryViewAttributes)) {
 			return false;
 		}
-		BloodPoolViewAttributes other = (BloodPoolViewAttributes) that;
+		MMeritEntryViewAttributes other = (MMeritEntryViewAttributes) that;
 		if (font == null) {
 			if (other.font != null) {
 				return false;
@@ -103,14 +92,13 @@ public class BloodPoolViewAttributes implements BloodPoolViewAttributesAPI, Font
 		} else if (!font.equals(other.font)) {
 			return false;
 		}
-		if (size != other.size) {
-			return false;
-		}
 		return true;
 	}
 	
-	public BloodPoolViewAttributes clone(){
-		return new BloodPoolViewAttributes(font, size);
+	public MeritEntryViewAttributes clone(){
+		return new MMeritEntryViewAttributes(font);
 	}
+	
+	
 	
 }
