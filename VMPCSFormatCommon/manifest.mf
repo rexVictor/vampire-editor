@@ -1,0 +1,2 @@
+Manifest-Version: 1.0
+Class-Path: libs/jackson-annotations-2.0.0.jar
