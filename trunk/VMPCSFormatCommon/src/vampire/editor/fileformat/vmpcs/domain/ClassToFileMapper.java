@@ -20,25 +20,16 @@
  * Matthias Johannes Reimchen
  * development.rex@gmail.com
  ******************************************************************************/
-package vampire.editor.sheetloader.common;
+package vampire.editor.fileformat.vmpcs.domain;
 
 import java.awt.Font;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import vampire.editor.domain.sheet.Sheet;
-import vampire.editor.domain.sheet.Value;
-import vampire.editor.domain.sheet.view.BloodPoolViewAttributes;
-import vampire.editor.domain.sheet.view.CategoryViewAttributes;
-import vampire.editor.domain.sheet.view.HealthEntryViewAttributes;
-import vampire.editor.domain.sheet.view.HealthViewAttributes;
-import vampire.editor.domain.sheet.view.MeritEntryViewAttibutes;
-import vampire.editor.domain.sheet.view.MeritViewAttributes;
-import vampire.editor.domain.sheet.view.MetaEntryViewAttributes;
-import vampire.editor.domain.sheet.view.SubCategoryViewAttributes;
-import vampire.editor.domain.sheet.view.TraitViewAttributes;
-import vampire.editor.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.Sheet;
+import vampire.editor.plugin.api.domain.sheet.Value;
+import vampire.editor.plugin.api.domain.sheet.view.*;
 
 public class ClassToFileMapper {
 	
@@ -68,7 +59,7 @@ public class ClassToFileMapper {
 		map.put(HealthEntryViewAttributes.class, healtEntryViewAtts);
 		map.put(HealthViewAttributes.class, healthViewAtts);
 		map.put(MeritViewAttributes.class, meritViewAtts);
-		map.put(MeritEntryViewAttibutes.class, meritEntryViewAtts);
+		map.put(MeritEntryViewAttributes.class, meritEntryViewAtts);
 		map.put(BloodPoolViewAttributes.class, bloodPoolViewAtts);
 		map.put(Sheet.class, sheet);
 		map.put(Value.class, values);
