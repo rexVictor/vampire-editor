@@ -24,14 +24,14 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
-import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributes;
 
 /**
  * Provides the attributes for a meta entry view
  * @author rex_victor
  *
  */
-public class MetaEntryViewAttributes implements MetaEntryViewAttributesAPI{
+class MMetaEntryViewAttributes implements MetaEntryViewAttributes{
 	
 	private Font contentFont;
 	
@@ -43,13 +43,13 @@ public class MetaEntryViewAttributes implements MetaEntryViewAttributesAPI{
 	
 	
 
-	public MetaEntryViewAttributes() {
+	public MMetaEntryViewAttributes() {
 		super();
 	}
 	
 	
 
-	public MetaEntryViewAttributes(Font contentFont, int lineCount,
+	public MMetaEntryViewAttributes(Font contentFont, int lineCount,
 			Font titleFont, boolean translate) {
 		super();
 		this.contentFont = contentFont;
@@ -71,7 +71,7 @@ public class MetaEntryViewAttributes implements MetaEntryViewAttributesAPI{
 
 	@Override
 	public MetaEntryViewAttributes clone(){
-		MetaEntryViewAttributes clone = new MetaEntryViewAttributes();
+		MMetaEntryViewAttributes clone = new MMetaEntryViewAttributes();
 		clone.lineCount = lineCount;
 		clone.titleFont = titleFont;
 		clone.contentFont = contentFont;
@@ -88,8 +88,8 @@ public class MetaEntryViewAttributes implements MetaEntryViewAttributesAPI{
 	public boolean equals(Object object){
 		if (object == null)
 			return false;
-		if (object instanceof MetaEntryViewAttributes){
-			MetaEntryViewAttributes other = (MetaEntryViewAttributes) object;
+		if (object instanceof MMetaEntryViewAttributes){
+			MMetaEntryViewAttributes other = (MMetaEntryViewAttributes) object;
 			return contentFont.equals(other.contentFont) && titleFont.equals(other.titleFont)
 					&& lineCount == other.lineCount && translate == other.translate; 
 		}

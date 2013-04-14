@@ -24,14 +24,16 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
-import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
+
 
 /**
  * Provides the attributes of the category view.
  * @author rex_victor
  *
  */
-public class CategoryViewAttributes implements CategoryViewAttributesAPI, FontSettable{
+class MCategoryViewAttributes implements FontSettable, CategoryViewAttributes{
 	
 	private boolean showLine;
 	
@@ -43,13 +45,13 @@ public class CategoryViewAttributes implements CategoryViewAttributesAPI, FontSe
 	
 	
 
-	public CategoryViewAttributes() {
+	public MCategoryViewAttributes() {
 		super();
 	}
 	
 	
 
-	public CategoryViewAttributes(boolean showLine, String image, String title,
+	public MCategoryViewAttributes(boolean showLine, String image, String title,
 			Font font) {
 		super();
 		this.showLine = showLine;
@@ -98,8 +100,8 @@ public class CategoryViewAttributes implements CategoryViewAttributesAPI, FontSe
 	}
 	
 	@Override
-	public CategoryViewAttributes clone(){
-		CategoryViewAttributes clone = new CategoryViewAttributes();
+	public MCategoryViewAttributes clone(){
+		MCategoryViewAttributes clone = new MCategoryViewAttributes();
 		clone.font		=	font;
 		clone.image		=	image;
 		clone.showLine	=	showLine;
@@ -116,8 +118,8 @@ public class CategoryViewAttributes implements CategoryViewAttributesAPI, FontSe
 	public boolean equals(Object that){
 		if (that == null) return false;
 		if (that == this) return true;
-		if (that instanceof CategoryViewAttributes){
-			CategoryViewAttributes other = (CategoryViewAttributes) that;
+		if (that instanceof MCategoryViewAttributes){
+			MCategoryViewAttributes other = (MCategoryViewAttributes) that;
 			return other.showLine == showLine && image.equals(other.image) && title.equals(other.title)
 					&& font.equals(other.font); 
 		}

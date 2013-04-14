@@ -24,15 +24,68 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
+import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
+import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributes;
+
 /**
- * An interface making implementing classes as font field having.
+ * Provides the attributes for the health view.
  * @author rex_victor
  *
  */
-public interface FontSettable {
+class MHealthViewAttributes implements FontSettable, HealthViewAttributes{
 	
-	public void setFont(Font font);
+	private Font font;
 	
-	public Font getFont();
+	
+
+	public MHealthViewAttributes() {
+		super();
+	}
+	
+	
+
+	public MHealthViewAttributes(Font font) {
+		super();
+		this.font = font;
+	}
+
+
+
+	@Override
+	public Font getFont() {
+		return font;
+	}
+
+	public void setFont(Font font) {
+		this.font = font;
+	}
+	
+
+	/**
+	 * Returns if the fonts are equal.
+	 * @param that
+	 * @return if this and that are equal
+	 */
+	@Override
+	public boolean equals(Object that){
+		if (that == null) return false;
+		if (that == this) return true;
+		if (that instanceof MHealthViewAttributes){
+			return this.font.equals(((MHealthViewAttributes) that).font);
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+		return font.hashCode();
+	}
+	
+	@Override
+	public HealthViewAttributes clone(){
+		return new MHealthViewAttributes(font);
+	}
+	
+	
 
 }

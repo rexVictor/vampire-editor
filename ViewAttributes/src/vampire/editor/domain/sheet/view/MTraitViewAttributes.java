@@ -24,15 +24,16 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
+import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
 import vampire.editor.plugin.api.domain.sheet.view.Orientation;
-import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
 
 /**
  * Provides the attributes for a trait view.
  * @author rex_victor
  *
  */
-public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable{
+class MTraitViewAttributes implements FontSettable, TraitViewAttributes{
 	
 	private boolean editable;
 	
@@ -40,11 +41,11 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 	
 	private Font font;
 
-	public TraitViewAttributes() {
+	public MTraitViewAttributes() {
 		super();
 	}
 	
-	public TraitViewAttributes(boolean editable, Orientation orientation,
+	public MTraitViewAttributes(boolean editable, Orientation orientation,
 			Font font) {
 		super();
 		this.editable = editable;
@@ -87,7 +88,7 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 	
 	@Override
 	public TraitViewAttributes clone(){
-		TraitViewAttributes clone = new TraitViewAttributes();
+		MTraitViewAttributes clone = new MTraitViewAttributes();
 		clone.editable = editable;
 		clone.orientation = orientation;
 		clone.font	=	font;
@@ -113,8 +114,8 @@ public class TraitViewAttributes implements TraitViewAttributesAPI, FontSettable
 	public boolean equals(Object that){
 		if (that == null) return false;
 		if (that == this) return true;
-		if (that instanceof TraitViewAttributes){
-			TraitViewAttributes other = (TraitViewAttributes) that;
+		if (that instanceof MTraitViewAttributes){
+			MTraitViewAttributes other = (MTraitViewAttributes) that;
 			return editable == other.editable && orientation.equals(other.orientation)
 					&& font.equals(other.font);
 		}

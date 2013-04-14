@@ -24,30 +24,34 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
-import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
 
 /**
- * Provides the attributes of a health entry view
+ * The class providing bloodpool view attributes.
  * @author rex_victor
- *
  */
-public class HealthEntryViewAttributes implements HealthEntryViewAttributesAPI, FontSettable{
-	
+class MBloodPoolViewAttributes implements FontSettable, BloodPoolViewAttributes {
+
 	private Font font;
 	
 	private int size;
 	
 	
-
-	public HealthEntryViewAttributes() {
+	
+	public MBloodPoolViewAttributes() {
 		super();
 	}
+	
+	
 
-	public HealthEntryViewAttributes(Font font, int size) {
+	public MBloodPoolViewAttributes(Font font, int size) {
 		super();
 		this.font = font;
 		this.size = size;
 	}
+
+
 
 	@Override
 	public Font getFont() {
@@ -57,39 +61,57 @@ public class HealthEntryViewAttributes implements HealthEntryViewAttributesAPI, 
 	public void setFont(Font font) {
 		this.font = font;
 	}
-	
-	public int getSize(){
+
+	@Override
+	public int getSize() {
 		return size;
 	}
-	
-	public void setSize(int size){
+
+	public void setSize(int size) {
 		this.size = size;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((font == null) ? 0 : font.hashCode());
+		result = prime * result + size;
+		return result;
+	}
+
 	/**
-	 * Returns if fonts and sizes are equal.
+	 * Returns if this and that have the same size and their fonts are equal.
 	 * @param that
 	 * @return if this and that are equal
 	 */
 	@Override
-	public boolean equals(Object that){
-		if (that == null) return false;
-		if (that == this) return true;
-		if (that instanceof HealthEntryViewAttributes){
-			HealthEntryViewAttributes other = (HealthEntryViewAttributes) that;
-			return font.equals(other.font) && size == other.size;
+	public boolean equals(Object that) {
+		if (this == that) {
+			return true;
+		}
+		if (that == null) {
+			return false;
+		}
+		if (!(that instanceof MBloodPoolViewAttributes)) {
+			return false;
+		}
+		MBloodPoolViewAttributes other = (MBloodPoolViewAttributes) that;
+		if (font == null) {
+			if (other.font != null) {
+				return false;
+			}
+		} else if (!font.equals(other.font)) {
+			return false;
+		}
+		if (size != other.size) {
+			return false;
 		}
 		return true;
 	}
 	
-	@Override
-	public int hashCode(){
-		return 11 * font.hashCode() + 13 * size;
+	public BloodPoolViewAttributes clone(){
+		return new MBloodPoolViewAttributes(font, size);
 	}
 	
-	@Override
-	public HealthEntryViewAttributes clone(){
-		return new HealthEntryViewAttributes(font, size);
-	}
-
 }

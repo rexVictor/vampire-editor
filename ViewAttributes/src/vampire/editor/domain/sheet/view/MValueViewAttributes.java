@@ -22,14 +22,14 @@
  ******************************************************************************/
 package vampire.editor.domain.sheet.view;
 
-import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 
 /**
  * Provides the attributes for a value view.
  * @author rex_victor
  *
  */
-public class ValueViewAttributes implements ValueViewAttributesAPI{
+class MValueViewAttributes implements ValueViewAttributes{
 	
 	private static final long serialVersionUID = 1886427499077840867L;
 
@@ -43,10 +43,10 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	
 	private int size;
 	
-	public ValueViewAttributes(){
+	public MValueViewAttributes(){
 	}
 	
-	public ValueViewAttributes(boolean showSpace, boolean dynamic, int circles,
+	public MValueViewAttributes(boolean showSpace, boolean dynamic, int circles,
 			boolean tempSquared, int size) {
 		super();
 		this.showSpace = showSpace;
@@ -119,7 +119,7 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	
 	@Override
 	public ValueViewAttributes clone(){
-		ValueViewAttributes clone = new ValueViewAttributes();
+		MValueViewAttributes clone = new MValueViewAttributes();
 		clone.circles = circles;
 		clone.dynamic = dynamic;
 		clone.showSpace = showSpace;
@@ -135,8 +135,8 @@ public class ValueViewAttributes implements ValueViewAttributesAPI{
 	 */
 	@Override
 	public boolean equals(Object that){
-		if (that instanceof ValueViewAttributes){
-			ValueViewAttributes toCompare = (ValueViewAttributes) that;
+		if (that instanceof MValueViewAttributes){
+			MValueViewAttributes toCompare = (MValueViewAttributes) that;
 			return toCompare.dynamic == dynamic && toCompare.showSpace == showSpace 
 					&& toCompare.circles == circles	&& toCompare.size == size 
 					&& toCompare.tempSquared == tempSquared;

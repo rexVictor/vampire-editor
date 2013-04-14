@@ -24,56 +24,30 @@ package vampire.editor.domain.sheet.view;
 
 import java.awt.Font;
 
-import vampire.editor.plugin.api.domain.sheet.view.MeritViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
+import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributes;
+
 /**
- * Provides the attributes for the merit view.
+ * Provides the attributes of a health entry view
  * @author rex_victor
  *
  */
-public class MeritViewAttributes implements MeritViewAttributesAPI, FontSettable {
+class MHealthEntryViewAttributes implements FontSettable, HealthEntryViewAttributes{
 	
 	private Font font;
 	
+	private int size;
+	
 	
 
-	public MeritViewAttributes() {
+	public MHealthEntryViewAttributes() {
 		super();
 	}
-	
-	
 
-	public MeritViewAttributes(Font font) {
+	public MHealthEntryViewAttributes(Font font, int size) {
 		super();
 		this.font = font;
-	}
-
-
-
-	/**
-	 * Returns if fonts and sizes are equal.
-	 * @param that
-	 * @return if this and that are equal
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof MeritViewAttributes)) {
-			return false;
-		}
-		MeritViewAttributes other = (MeritViewAttributes) obj;
-		if (font == null) {
-			if (other.font != null) {
-				return false;
-			}
-		} else if (!font.equals(other.font)) {
-			return false;
-		}
-		return true;
+		this.size = size;
 	}
 
 	@Override
@@ -81,21 +55,42 @@ public class MeritViewAttributes implements MeritViewAttributesAPI, FontSettable
 		return font;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((font == null) ? 0 : font.hashCode());
-		return result;
-	}
-
 	public void setFont(Font font) {
 		this.font = font;
 	}
 	
-	public MeritViewAttributes clone(){
-		return new MeritViewAttributes(font);
+	public int getSize(){
+		return size;
 	}
 	
+	public void setSize(int size){
+		this.size = size;
+	}
+	
+	/**
+	 * Returns if fonts and sizes are equal.
+	 * @param that
+	 * @return if this and that are equal
+	 */
+	@Override
+	public boolean equals(Object that){
+		if (that == null) return false;
+		if (that == this) return true;
+		if (that instanceof MHealthEntryViewAttributes){
+			MHealthEntryViewAttributes other = (MHealthEntryViewAttributes) that;
+			return font.equals(other.font) && size == other.size;
+		}
+		return true;
+	}
+	
+	@Override
+	public int hashCode(){
+		return 11 * font.hashCode() + 13 * size;
+	}
+	
+	@Override
+	public MHealthEntryViewAttributes clone(){
+		return new MHealthEntryViewAttributes(font, size);
+	}
 
 }
