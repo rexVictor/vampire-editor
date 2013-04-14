@@ -1,0 +1,7 @@
+{
+	"bloodpool":{
+		"mapid":700,
+	    "maxValue":20,
+	    "value":0
+	}
+}

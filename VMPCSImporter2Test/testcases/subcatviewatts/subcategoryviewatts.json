@@ -1,0 +1,20 @@
+[
+		{
+			"id"			:	0,
+			"expandable"	:	false,
+			"showTitle"		:	true,
+			"font"			:	0
+		},
+		{
+			"id"			:	1,
+			"expandable"	:	true,
+			"showTitle"		:	true,
+			"font"			:	1
+		},
+		{
+			"id"			:	2,
+			"expandable"	:	false,
+			"showTitle"		:	false,
+			"font"			:	1
+		}
+]

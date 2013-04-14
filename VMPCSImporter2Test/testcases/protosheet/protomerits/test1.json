@@ -1,0 +1,32 @@
+{
+	"merits":{
+		 "mapid"	:	300,
+		 "entries"	:	[
+		 	{
+	    		"mapid":400,
+	        	"cost":3,
+	        	"name":"merit"
+	        },
+	        {
+	    		"mapid":403,
+	        	"cost":7,
+	        	"name":"other merit"
+	        }
+	    ]
+	},
+	"flaws":{
+		 "mapid"	:	301,
+		 "entries"	:	[
+		 	{
+	    		"mapid":401,
+	        	"cost":1,
+	        	"name":"other flaw"
+	        },
+	        {
+	    		"mapid":404,
+	        	"cost":2,
+	        	"name":"flaw"
+	        }
+	    ]
+	}
+}

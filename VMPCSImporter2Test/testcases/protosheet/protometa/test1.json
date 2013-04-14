@@ -1,0 +1,24 @@
+{
+	"meta"		:	[
+	    {
+	    	"mapid"		:	0,
+	    	"name"		:	"name",
+	    	"value"		:	"test"
+	    },
+	    {
+	    	"mapid"		:	3,
+	    	"name"		:	"chronicle",
+	    	"value"		:	"At Night"
+	    },
+	    {	
+	    	"mapid"		:	5,
+	    	"name"		:	"demeanor",
+	    	"value"		:	"rebel"
+	    },
+	    {
+	    	"mapid"		:	8,
+	    	"name"		:	"haven",
+	    	"value"		:	"home"
+	    }
+	]
+}

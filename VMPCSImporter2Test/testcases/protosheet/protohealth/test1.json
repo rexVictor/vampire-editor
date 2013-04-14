@@ -1,0 +1,31 @@
+{
+	"health" : {
+		"mapid":500,
+	    "levels":[
+	        {
+	        	"mapid":600,
+	            "name":"bruised",
+	            "damageType":null,
+	            "penalty":0	            
+	        },
+	        {
+	        	"mapid":601,
+	            "name":"hurt",
+	           	"damageType":"AGGRAVATED",
+	            "penalty":1	            
+	        },
+	        {
+	        	"mapid":605,
+	            "name":"crippeled",
+	            "damageType":"LETHAL",
+	            "penalty":5         
+	        },
+	        {
+	        	"mapid":606,
+	            "name":"incapacitated",
+	            "damageType":null,
+	            "penalty":0
+	        }
+	    ]
+	}
+}

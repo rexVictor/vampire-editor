@@ -1,0 +1,24 @@
+{
+	"traits"	:	[
+	    {
+	     	"subCats" 	: 	[
+	     	    {
+	     	        "traits"	:	[
+	     	            {
+	     	                "value":{
+	     	                	"mapid"		:	200,
+	     	             		"id"		:	30
+	     	                }
+	     	            },
+	     	            {
+	     	                "value":{
+	     	                	"mapid"		:	201,
+	     	             		"id"		:	30
+	     	                }
+	     	            }
+	     	        ]
+	     	    }
+	       ]
+	    }
+	]
+}

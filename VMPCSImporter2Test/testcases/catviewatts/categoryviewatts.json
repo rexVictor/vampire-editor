@@ -1,0 +1,14 @@
+[
+	{
+		"id"	:	0,
+		"showLine"	:	true,
+		"image"	:	"vtmdefault",
+		"font"	:	1
+	},
+	{
+		"id"	:	1,
+		"showLine"	:	false,
+		"image"	:	"vtmdefault2",
+		"font"	:	0
+	}
+]

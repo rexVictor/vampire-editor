@@ -1,0 +1,122 @@
+{
+	"version"	:	"1.0 alpha",
+	"border"	:	"vtmdefault",
+	"meta"		:	[
+	    {
+	    	"mapid"		:	0,
+	    	"name"		:	"name",
+	    	"value"		:	"test"
+	    },
+	    {
+	    	"mapid"		:	1,
+	    	"name"		:	"player",
+	    	"value"		:	""
+	    }
+	],
+	"traits"	:	[
+	    {
+	    	"mapid"		:	11,
+	     	"name" 		: 	"attributes",
+	     	"subCats" 	: 	[
+	     	    {
+	     	    	"mapid"		:	15,
+	     	        "name"		: 	"physical",
+	     	        "traits"	:	[
+	     	            {
+	     	            	"mapid"	:	100,
+	     	                "name":"strength",
+	     	                "value":{
+	     	                	"mapid"		:	200,
+	     	             		"id"		:	30
+	     	                }
+	     	            },
+	     	            {
+	     	            	"mapid"	:	101,
+	     	                "name":"stamina",
+	     	                "value":{
+	     	                	"mapid"		:	201,
+	     	             		"id"		:	30
+	     	                }
+	     	            }
+	     	        ]
+	     	    },
+	     	    {
+	     	    	"mapid"		:	16,
+	     	        "name" 		: 	"social",
+	     	        "traits"	:	[
+	     	            {
+	     	            	"mapid"	:	103,
+	     	                "name":"charisma",
+	     	                "value":{
+	     	                	"mapid"		:	203,
+	     	             		"id"		:	30
+	     	                }
+	     	            }
+	     	        ]
+	     	    }
+	     	]
+	    },
+	    {
+	    	"mapid"	:	18,
+	     	"name"	:	"abilities",
+	     	"subCats":	[
+	     	    {
+	     	    	"mapid"	:	3,
+	     	        "name":"talents",
+	     	        "traits":[
+	     	            {
+	     	            	"mapid"	:	109,
+	     	                "name":"alertness",
+	     	                "value":{
+	     	                	"mapid"		:	209,
+	     	             		"id"		:	31
+	     	                }
+	     	            }
+	     	        ]
+	     	    }
+	     	]
+	    }
+	],
+	"merits":{
+		 "mapid"	:	300,
+		 "entries"	:	[
+		 	{
+	    		"mapid":400,
+	        	"cost":0,
+	        	"name":""
+	        }
+	    ]
+	},
+	"flaws":{
+		 "mapid"	:	301,
+		 "entries"	:	[
+		 	{
+	    		"mapid":401,
+	        	"cost":0,
+	        	"name":""
+	        }
+	    ]
+	},
+	"health" : {
+		"mapid":500,
+	    "levels":[
+	        {
+	        	"mapid":600,
+	            "name":"bruised",
+	            "damageType":null,
+	            "penalty":0	            
+	        },
+	        {
+	        	"mapid":601,
+	            "name":"hurt",
+	           	"damageType":null,
+	            "penalty":1	            
+	        }
+	    ]
+	},
+	"bloodpool":{
+		"mapid":700,
+	    "maxValue":20,
+	    "value":0
+	}
+}

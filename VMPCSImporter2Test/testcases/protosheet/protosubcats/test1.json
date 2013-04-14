@@ -1,0 +1,21 @@
+{
+	"traits"	:	[
+	    {
+	     	"name" 		: 	"attributes",
+	     	"subCats" 	: 	[
+	     	    {
+	     	    	"mapid"		:	15,
+	     	        "name"		: 	"physical"
+	     	    },
+	     	    {
+	     	    	"mapid"		:	16,
+	     	        "name" 		: 	"social"
+	     	    },
+	     	    {
+	     	    	"mapid"		:	17,
+	     	        "name" 		: 	"mental"
+	     	    }
+	     	]
+	    }
+	]
+}
