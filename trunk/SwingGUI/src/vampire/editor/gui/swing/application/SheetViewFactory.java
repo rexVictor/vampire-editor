@@ -25,18 +25,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import vampire.editor.domain.sheet.view.*;
 import vampire.editor.gui.swing.view.*;
 import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.*;
-import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttibutesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.MeritViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.*;
 import vampire.editor.plugin.api.view.sheet.HealthView;
 
 public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetViewFactory{

@@ -25,7 +25,7 @@ import javax.swing.JLabel;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.ColumnSpec;
 
-import vampire.editor.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 
 /**
  * The ValueView for noSpace, static and no Squares

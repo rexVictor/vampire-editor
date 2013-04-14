@@ -5,11 +5,11 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
 	<classpathentry kind="lib" path="libs/jgoodies-common-1.2.0.jar"/>
 	<classpathentry kind="lib" path="libs/jgoodies-forms-1.4.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
 	<classpathentry kind="output" path="bin"/>
 	<referencedentry kind="lib" path="libraries/batik/batik-1.7/lib/batik-swing.jar">
 		<attributes>

@@ -24,10 +24,10 @@ import java.awt.Color;
 
 import javax.swing.JLabel;
 
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
+
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.ColumnSpec;
-
-import vampire.editor.domain.sheet.view.ValueViewAttributes;
 
 /**
  * The ValueView for showSpace, dynamic and no Squares
