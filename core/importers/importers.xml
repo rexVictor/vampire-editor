@@ -6,8 +6,8 @@
 	</path>
 	
 	<importer name="vmpcs" format="vmpcs">
-		<jar name="vmpcs" path="vmpcsimporter" file="vmpcsimporter.jar"
-			class="vampire.editor.sheetloader.application.LoaderActivator" />
+		<jar name="vmpcs"
+			class="vampire.editor.importer.vmpcs.application.Activator" />
 	</importer>
 	
 </importers>

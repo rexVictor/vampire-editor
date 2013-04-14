@@ -8,8 +8,8 @@ import java.util.List;
 import vampire.editor.application.sheet.controller.SheetController;
 import vampire.editor.application.sheet.controller.SheetControllerFactory;
 import vampire.editor.domain.config.Config;
-import vampire.editor.domain.sheet.VampireDocument;
 import vampire.editor.plugin.Manager;
+import vampire.editor.plugin.api.domain.sheet.VampireDocument;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
