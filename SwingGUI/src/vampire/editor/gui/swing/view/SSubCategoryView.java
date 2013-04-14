@@ -34,8 +34,8 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import vampire.editor.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;

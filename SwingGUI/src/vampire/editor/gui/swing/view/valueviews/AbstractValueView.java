@@ -32,9 +32,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import vampire.editor.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.gui.swing.domain.Images;
 import vampire.editor.gui.swing.view.SValueViewEvent;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 

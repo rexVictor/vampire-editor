@@ -20,7 +20,7 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view.valueviews;
 
-import vampire.editor.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 
 class StaticSpacedValueView extends SpacedValueView{
 

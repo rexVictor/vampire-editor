@@ -32,8 +32,8 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
-import vampire.editor.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.gui.swing.domain.Images;
+import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 
 class SquaredValueView extends AbstractValueView{
 	
