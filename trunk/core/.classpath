@@ -2,7 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libs/jdom/jdom-2.0.1.jar" sourcepath="libs/jdom/jdom-2.0.1-sources.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/EventAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
@@ -10,7 +9,14 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/Config"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/ConfigCreator"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SwingMainFrame"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SwingGUI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSFormatCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSImporter2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ConfigCreator"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetControllers"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetEvents"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ImporterAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetFullAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

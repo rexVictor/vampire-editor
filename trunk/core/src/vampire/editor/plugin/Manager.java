@@ -17,15 +17,15 @@ import vampire.editor.domain.config.Plugin;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
+import vampire.editor.plugin.api.importer.DocumentImportException;
+import vampire.editor.plugin.api.importer.SheetImporter;
 import vampire.editor.plugin.api.plugin.Activator;
-import vampire.editor.plugin.api.plugin.DocumentImportException;
 import vampire.editor.plugin.api.plugin.DocumentListener;
 import vampire.editor.plugin.api.plugin.Facade;
 import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
 import vampire.editor.plugin.api.plugin.SheetExporter;
-import vampire.editor.plugin.api.plugin.SheetImporter;
 import vampire.editor.plugin.api.plugin.Trigger;
 
 public class Manager implements ManagerAPI{
