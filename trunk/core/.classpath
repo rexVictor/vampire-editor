@@ -20,5 +20,12 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ExporterAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DynamicMeritEntryManager"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DynamicSubCategoryTraitManager"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GenerationBloodpoolSynchronizer"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/FreebieCalculator"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSExporter2"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
