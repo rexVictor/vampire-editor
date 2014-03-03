@@ -2,6 +2,7 @@ package vampire.editor.plugin.api.domain.sheet.view;
 
 import java.util.Map;
 
+@VersionViewAttributesSpecification(version = "1.0.0.0", compatibleVersions = "1.0.0.0")
 public interface ViewAttConstructors {
 	
 	public BloodPoolViewAttributes createBloodPoolViewAttributes();
