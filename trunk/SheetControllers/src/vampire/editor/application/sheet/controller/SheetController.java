@@ -1,10 +1,5 @@
 package vampire.editor.application.sheet.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
-import vampire.editor.plugin.api.application.sheet.controller.CategoryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.MiscControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.sheet.Sheet;
@@ -20,7 +15,7 @@ public class SheetController implements SheetControllerAPI {
 	
 	private final SheetView view;
 	
-	private final List<CategoryControllerAPI> categoryControllers = new ArrayList<>();
+	private CategoriesController categoriesController;
 	
 	private MetaController metaController;
 	
@@ -41,10 +36,6 @@ public class SheetController implements SheetControllerAPI {
 		this.document = document;
 	}
 	
-	@Override
-	public void addCategoryController(CategoryControllerAPI controller){
-		categoryControllers.add(controller);
-	}
 	
 	@Override
 	public SheetView getView(){
@@ -68,9 +59,14 @@ public class SheetController implements SheetControllerAPI {
 		return document;
 	}
 
-	@Override
-	public Iterator<? extends CategoryControllerAPI> getCategoryIterator() {
-		return categoryControllers.iterator();
+	public CategoriesController getCategoriesController() {
+		return categoriesController;
 	}
+
+	public void setCategoriesController(CategoriesController categoriesController) {
+		this.categoriesController = categoriesController;
+	}
+	
+	
 
 }

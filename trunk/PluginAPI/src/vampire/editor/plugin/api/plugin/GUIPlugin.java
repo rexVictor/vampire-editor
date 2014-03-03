@@ -39,4 +39,6 @@ public interface GUIPlugin {
 	public void addImportFileExtension(String extension);
 	
 	public String saveFileView(String format);
+	
+	public boolean demandUserChoise(String message);
 }

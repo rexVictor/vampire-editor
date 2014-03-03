@@ -37,12 +37,24 @@ import java.util.Iterator;
  *
  */
 
-public interface SubCategoryAPI extends PseudoDataAPI<TraitAPI>{
+public interface SubCategoryAPI extends Nameable{
 	
 	/**
-	 * The implementation of this method is optional. 
+	 * This implementation is optional
 	 */
-	@Override
 	public SubCategoryAPI clone();
 
+	/**
+	 * @return an {@link Iterator} over the parametrized children of type V
+	 */
+	public Iterator<? extends TraitAPI> getIterator();
+	
+	public String getName();
+	
+	/**
+	 * @return the count of added elements.
+	 */
+	public int size();
+
+	
 }

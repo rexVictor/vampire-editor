@@ -1,13 +1,8 @@
 package vampire.editor.domain.sheet.view;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import rex.utils.packageiterator.application.PackageIterator;
 
 import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
@@ -19,30 +14,27 @@ import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.VersionViewAttributesImplementation;
 import vampire.editor.plugin.api.domain.sheet.view.ViewAttConstructors;
 
+@VersionViewAttributesImplementation(version = "1.0.0.0",
+	compatibleWithSpecifications = "1.0.0.0", name = "Default ViewAttsImpl 1.0.0.0")
 public class MViewConstructors implements ViewAttConstructors{
 	
 	private static Map<Class<?>, Class<?>> interfaceToImplementationMap;
 	
 	static{
-		String packageName = MViewConstructors.class.getPackage().getName();
 		Map<Class<?>, Class<?>> map = new HashMap<>();
-		try {
-			List<Class<?>> classes = PackageIterator.getClassesInPackage(packageName);
-			for (Class<?> clazz : classes){
-				if (clazz.getSimpleName().endsWith("Attributes")){
-					Class<?>[] superTypes = clazz.getInterfaces();
-					for (Class<?> superType : superTypes){
-						if (superType.getSimpleName().endsWith("Attributes")){
-							map.put(superType, clazz);
-						}
-					}
-				}
-			}
-		} catch (ClassNotFoundException | IOException | URISyntaxException e) {
-			throw new RuntimeException(e);
-		}
+		map.put(BloodPoolViewAttributes.class, MBloodPoolViewAttributes.class);
+		map.put(CategoryViewAttributes.class, MCategoryViewAttributes.class);
+		map.put(HealthEntryViewAttributes.class, MHealthEntryViewAttributes.class);
+		map.put(HealthViewAttributes.class, MHealthViewAttributes.class);
+		map.put(MeritEntryViewAttributes.class, MMeritEntryViewAttributes.class);
+		map.put(MeritViewAttributes.class, MMeritViewAttributes.class);
+		map.put(MetaEntryViewAttributes.class, MMetaEntryViewAttributes.class);
+		map.put(SubCategoryViewAttributes.class, MSubCategoryViewAttributes.class);
+		map.put(TraitViewAttributes.class, MTraitViewAttributes.class);
+		map.put(ValueViewAttributes.class, MValueViewAttributes.class);
 		interfaceToImplementationMap = Collections.unmodifiableMap(map);
 	}
 

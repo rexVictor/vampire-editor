@@ -6,10 +6,19 @@
 	<property name="manifest" value="manifest.mf"/>
 	<property name="libs" location="libs"/>
 	<property name="license" value="license.txt"/>
-	<property name="modelapi.dir" location="../ModelAPI"/>
+	<property name="modelapi" location="../ModelAPI"/>
+	<property name="modelspecification" location="../SheetFullAPI"/>
+	<property name="core" location="../vampireeditor/core"/>
+
+
 
 	<path id="classpath">
-		<pathelement path="${modelapi.dir}/bin"/>
+		<fileset dir="${modelapi}/dist">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${modelspecification}/dist">
+			<include name="*.jar"/>
+		</fileset>
 	</path>
 	
 	<target name="clean" description="Removes the compiled classes and the distribution">
@@ -20,9 +29,7 @@
 	<target name="build" depends="clean" description="Builds the project">
 		<mkdir dir="${build}"/>
 		<mkdir dir="${dist}"/>
-		<echo message="${modelapi.dir}"></echo>
-		<ant inheritall="false" antfile="${modelapi.dir}/build.xml"/>
-		<echo message="Sub Builded"></echo>
+		<ant inheritall="false" antfile="${modelspecification}/build.xml"/>
 		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
 			<classpath refid="classpath"/>
 		</javac>
@@ -33,6 +40,10 @@
 		
 		<!-- copy file="${libs}" todir="${dist}"/ -->
 		<copy file="${license}" todir="${dist}"/>
+		
+		<copy>
+			
+		</copy>
 	</target>
 
 </project>

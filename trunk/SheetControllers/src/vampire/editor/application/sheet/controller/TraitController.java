@@ -127,7 +127,7 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 	public TraitController clone(){
 		Trait cloneTrait = trait.clone();
 		TraitView cloneView = traitView.clone();
-		ValueView cloneValueView = traitView.getValueView();
+		ValueView cloneValueView = traitView.getValueView().clone();
 		ValueController cloneValueController = new ValueController(cloneTrait.getValue(), cloneValueView);
 		return new TraitController(cloneValueController, cloneTrait, cloneView);
 	}

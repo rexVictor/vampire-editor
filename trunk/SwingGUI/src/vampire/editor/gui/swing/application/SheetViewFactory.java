@@ -91,9 +91,10 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		return view;
 	}
 	
-	private List<SCategoryView> buildCategoryViews(DataAPI<? extends CategoryAPI> categories, ModelToViewModelMapperAPI mapper){
+	private List<SCategoryView> buildCategoryViews(CategoriesAPI categories, ModelToViewModelMapperAPI mapper){
 		List<SCategoryView> categoryViews = new ArrayList<>();
-		for (CategoryAPI category : categories){
+		for (Iterator<? extends CategoryAPI> i = categories.getIterator(); i.hasNext();) {
+			CategoryAPI category = i.next();
 			categoryViews.add(buildCategoryView(category, mapper));
 		}
 		return categoryViews;
@@ -102,18 +103,18 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	private SCategoryView buildCategoryView(CategoryAPI category, ModelToViewModelMapperAPI mapper){
 		SCategoryView categoryView =
 				new SCategoryView((CategoryViewAttributes) mapper.getViewAttributes(category), resources, category.getName());
-		@SuppressWarnings("unchecked")
-		List<SSubCategoryView> subCategoryViews = buildSubCategoryViews((DataAPI<? extends SubCategoryAPI>) category, mapper);
+		List<SSubCategoryView> subCategoryViews = buildSubCategoryViews(category, mapper);
 		for (SSubCategoryView subCategoryView : subCategoryViews){
 			categoryView.add(subCategoryView);
 		}
 		return categoryView;
 	}
 	
-	private List<SSubCategoryView> buildSubCategoryViews(DataAPI<? extends SubCategoryAPI> subCategories,
+	private List<SSubCategoryView> buildSubCategoryViews(CategoryAPI subCategories,
 				ModelToViewModelMapperAPI mapper){
 		List<SSubCategoryView> subCategoryViews = new ArrayList<>();
-		for (SubCategoryAPI subCategory : subCategories){
+		for (Iterator<? extends SubCategoryAPI> i = subCategories.getIterator(); i.hasNext();) {
+			SubCategoryAPI subCategory = i.next();
 			subCategoryViews.add(buildSubCategoryView(subCategory, mapper));
 		}
 		return subCategoryViews;
@@ -122,17 +123,17 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	private SSubCategoryView buildSubCategoryView(SubCategoryAPI subCategory, ModelToViewModelMapperAPI mapper){
 		SubCategoryViewAttributes atts = (SubCategoryViewAttributes) mapper.getViewAttributes(subCategory);
 		SSubCategoryView subCategoryView = new SSubCategoryView(atts, dictionary, subCategory.getName());
-		@SuppressWarnings("unchecked")
-		List<STraitView> traitViews = buildTraitViews((DataAPI<TraitAPI>) subCategory, mapper);
+		List<STraitView> traitViews = buildTraitViews(subCategory, mapper);
 		for (STraitView traitView : traitViews){
 			subCategoryView.add(traitView);
 		}
 		return subCategoryView;
 	}
 	
-	private List<STraitView> buildTraitViews(DataAPI<? extends TraitAPI> traits, ModelToViewModelMapperAPI mapper){
+	private List<STraitView> buildTraitViews(SubCategoryAPI traits, ModelToViewModelMapperAPI mapper){
 		List<STraitView> traitViews = new ArrayList<>();
-		for (TraitAPI trait : traits) {
+		for (Iterator<? extends TraitAPI> i = traits.getIterator(); i.hasNext();) {
+			TraitAPI trait = i.next();
 			traitViews.add(buildTraitView(trait, mapper));
 		}
 		return traitViews;
@@ -156,17 +157,17 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	
 	private SMeritView buildMeritsView(MeritsAPI merits, ModelToViewModelMapperAPI mapper){
 		SMeritView view = new SMeritView(merits.getName(), dictionary, (MeritViewAttributesAPI) mapper.getViewAttributes(merits));
-		@SuppressWarnings("unchecked")
-		List<SMeritEntryView> entryViews = buildMeritEntryViews((DataAPI<? extends MeritAPI>) merits, mapper);
+		List<SMeritEntryView> entryViews = buildMeritEntryViews(merits, mapper);
 		for (SMeritEntryView entryView : entryViews){
 			view.addMeritEntryView(entryView);
 		}
 		return view;
 	}
 	
-	private List<SMeritEntryView> buildMeritEntryViews(DataAPI<? extends MeritAPI> merits, ModelToViewModelMapperAPI mapper){
+	private List<SMeritEntryView> buildMeritEntryViews(MeritsAPI merits, ModelToViewModelMapperAPI mapper){
 		List<SMeritEntryView> entryViews = new LinkedList<>();
-		for (MeritAPI entry : merits){
+		for (Iterator<? extends MeritAPI> i = merits.getIterator(); i.hasNext();){
+			MeritAPI entry = i.next();
 			entryViews.add(buildMeritEntryView(entry, mapper));
 		}
 		return entryViews;
@@ -188,17 +189,17 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	
 	private HealthView buildHealthView(HealthAPI health, ModelToViewModelMapperAPI mapper){
 		HorizontalHealthView healthView = new HorizontalHealthView(dictionary, (HealthViewAttributesAPI) mapper.getViewAttributes(health));
-		@SuppressWarnings("unchecked")
-		List<HorizontalHealthEntryView> entryViews = buildHealthEntryViews((DataAPI<? extends HealthEntryAPI>) health, mapper);
+		List<HorizontalHealthEntryView> entryViews = buildHealthEntryViews(health, mapper);
 		for (HorizontalHealthEntryView view : entryViews){
 			healthView.addHealthEntryView(view);
 		}
 		return healthView;
 	}
 	
-	private List<HorizontalHealthEntryView> buildHealthEntryViews(DataAPI<? extends HealthEntryAPI> healthEntries, ModelToViewModelMapperAPI mapper){
+	private List<HorizontalHealthEntryView> buildHealthEntryViews(HealthAPI healthEntries, ModelToViewModelMapperAPI mapper){
 		List<HorizontalHealthEntryView> entryViews = new LinkedList<>();
-		for (HealthEntryAPI entry : healthEntries){
+		for (Iterator<? extends HealthEntryAPI> i = healthEntries.getIterator(); i.hasNext();){
+			HealthEntryAPI entry = i.next();
 			entryViews.add(buildHealthEntryView(entry, mapper));
 		}
 		return entryViews;

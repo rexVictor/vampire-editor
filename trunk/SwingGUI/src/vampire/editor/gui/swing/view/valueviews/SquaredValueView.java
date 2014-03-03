@@ -47,6 +47,7 @@ class SquaredValueView extends AbstractValueView{
 
 	SquaredValueView(ValueViewAttributes viewAtts) {
 		super(viewAtts);
+		tempValue = 0;
 		int size = viewAtts.getSize();
 		emptySquare = new ImageIcon(Images.getImage("square_empty", size, size));
 		crossedSquare = new ImageIcon(Images.getImage("square_crossed", size, size));

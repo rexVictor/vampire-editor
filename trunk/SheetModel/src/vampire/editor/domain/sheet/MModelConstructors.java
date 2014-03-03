@@ -18,8 +18,10 @@ import vampire.editor.plugin.api.domain.sheet.SubCategory;
 import vampire.editor.plugin.api.domain.sheet.Trait;
 import vampire.editor.plugin.api.domain.sheet.Value;
 import vampire.editor.plugin.api.domain.sheet.VampireDocument;
+import vampire.editor.plugin.api.domain.sheet.VersionModelImplementation;
 
-class MModelConstructors implements ModelConstructors{
+@VersionModelImplementation(name = "", compatibleWithSpecifications = "1.0.0.0", version = "1.0.0.0")
+public class MModelConstructors implements ModelConstructors{
 
 	@Override
 	public Value createValue(Integer minValue, Integer maxValue) {

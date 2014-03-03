@@ -70,7 +70,7 @@ public abstract class AbstractValueView implements ValueView{
 	
 	private final JPanel panel = new JPanel();
 	
-	protected int tempValue;
+	protected int tempValue = -1;
 	
 	protected int value;
 	
@@ -95,8 +95,6 @@ public abstract class AbstractValueView implements ValueView{
 		circleRedStriped = new ImageIcon(Images.getImage("circle_temp_lower", size, size));
 		circleGreenStriped = new ImageIcon(Images.getImage("circle_temp_greater", size, size));
 	}
-	
-	
 	
 	public abstract void addCircle();
 	
@@ -123,18 +121,18 @@ public abstract class AbstractValueView implements ValueView{
 	}
 	
 	protected void redrawTempValue(){
-		int tempValue = this.tempValue;
-		if (tempValue == value || tempValue == -1){
-			tempValue = 0;
+		int localTempValue = this.tempValue;
+		if (localTempValue == value || localTempValue == -1){
+			localTempValue = 0;
 			this.tempValue = -1;
 		}
-		if (tempValue < value && this.tempValue != -1){
-			for (int i = tempValue; i < value; i++){
+		if (localTempValue < value && this.tempValue != -1){
+			for (int i = localTempValue; i < value; i++){
 				circles.get(i).setIcon(circleRedStriped);
 			}
 		}
 		else{
-			for (int i = value; i < tempValue; i++){
+			for (int i = value; i < localTempValue; i++){
 				circles.get(i).setIcon(circleGreenStriped);
 			}
 		}

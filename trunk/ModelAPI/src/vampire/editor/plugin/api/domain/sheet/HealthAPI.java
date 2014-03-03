@@ -35,6 +35,22 @@ import java.util.Iterator;
  * @author rex_victor
  *
  */
-public interface HealthAPI extends PseudoDataAPI<HealthEntryAPI>{
+public interface HealthAPI {
+	
+	/**
+	 * This implementation is optional
+	 */
+	public HealthAPI clone();
+
+	/**
+	 * @return an {@link Iterator} over the parametrized children of type V
+	 */
+	public Iterator<? extends HealthEntryAPI> getIterator();
+	
+	/**
+	 * @return the count of added elements.
+	 */
+	public int size();
+
 
 }

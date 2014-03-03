@@ -35,6 +35,24 @@ import java.util.Iterator;
  * @author rex_victor
  *
  */
-public interface MeritsAPI extends PseudoDataAPI<MeritAPI>{
+public interface MeritsAPI{
+
+	/**
+	 * This implementation is optional
+	 */
+	public MeritsAPI clone();
+
+	/**
+	 * @return an {@link Iterator} over the parametrized children of type V
+	 */
+	public Iterator<? extends MeritAPI> getIterator();
+	
+	public String getName();
+	
+	/**
+	 * @return the count of added elements.
+	 */
+	public int size();
+
 
 }

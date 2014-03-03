@@ -4,12 +4,12 @@ import java.nio.file.Path;
 
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
+import vampire.editor.plugin.api.exporter.SheetExporter;
 import vampire.editor.plugin.api.importer.SheetImporter;
 import vampire.editor.plugin.api.plugin.DocumentListener;
 import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
-import vampire.editor.plugin.api.plugin.SheetExporter;
 
 public class TestManager implements ManagerAPI{
 

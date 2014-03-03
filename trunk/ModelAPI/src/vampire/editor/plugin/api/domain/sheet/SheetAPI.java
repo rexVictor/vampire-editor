@@ -46,7 +46,7 @@ public interface SheetAPI {
 	 * @return the cateogries of the sheet
 	 * @see CategoryAPI
 	 */
-	public DataAPI<? extends CategoryAPI> getCategories();
+	public CategoriesAPI getCategories();
 	
 	/**
 	 * @return the blood pool of the sheet

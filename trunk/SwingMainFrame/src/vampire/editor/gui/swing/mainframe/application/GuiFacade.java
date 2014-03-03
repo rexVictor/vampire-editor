@@ -25,7 +25,10 @@ import java.io.File;
 
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileFilter;
 
 import vampire.editor.gui.swing.application.SheetViewFactory;
@@ -142,6 +145,16 @@ public class GuiFacade implements GUIPlugin{
 		if (selected == null)
 			return null;
 		return selected.getAbsolutePath();
+	}
+
+	@Override
+	public boolean demandUserChoise(String message) {
+		int option = JOptionPane.showConfirmDialog(null, message, "", JOptionPane.YES_NO_OPTION);
+		switch (option) {
+		case JOptionPane.YES_OPTION: return true;
+		case JOptionPane.NO_OPTION: return false;
+		default: return false;
+		}
 	}
 	
 	

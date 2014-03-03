@@ -25,24 +25,34 @@ package vampire.editor.plugin.api.domain.sheet;
 import java.util.Iterator;
 
 /**
- * The CategoryAPI is an interface specializing the {@link DataAPI} interface. <br> 
  * Examples for categories are Attributes and Abilities. <br>
  * It provides an {@link Iterator} to get its attached Subcategories ({@link SubCategoryAPI}).<br>
  * <br>
- * Implementation Note: <br>
- * This interface does not extend the {@link DataAPI} interface itself, due to problems with Java Generics. <br>
- * But all classes implementing this interface, must also implement the {@link DataAPI} interface. <br>
- * Nevertheless this interface demands all methods demanded by {@link DataAPI}. <br>
  * @author rex_victor
  *
  */
 
-public interface CategoryAPI extends PseudoDataAPI<SubCategoryAPI>, Nameable{
-	
+public interface CategoryAPI extends Nameable{
 	
 	/**
-	 * The implementation of this method is optional. 
+	 * This implementation is optional
 	 */
 	@Override
 	public CategoryAPI clone();
+
+	/**
+	 * @return an {@link Iterator} over the parametrized children of type V
+	 */
+	public Iterator<? extends SubCategoryAPI> getIterator();
+	
+	@Override
+	public String getName();
+	
+	/**
+	 * @return the count of added elements.
+	 */
+	public int size();
+
+	
+	
 }

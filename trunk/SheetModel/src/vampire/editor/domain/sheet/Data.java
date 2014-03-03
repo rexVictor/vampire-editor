@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import vampire.editor.plugin.api.domain.sheet.DataAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
 
 /**
@@ -37,7 +36,7 @@ import vampire.editor.plugin.api.domain.sheet.Nameable;
  *
  * @param <W>
  */
-class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
+class Data<W extends Nameable> implements Iterable<W>{
 	
 	/**
 	 * An iterator for the {@link Data} class.<br>
@@ -100,12 +99,10 @@ class Data<W extends Nameable> implements DataAPI<W>, Iterable<W>{
 		return data;
 	}
 	
-	@Override
 	public Iterator<W> getIterator(){
 		return new DataIterator();
 	}
 	
-	@Override
 	public String getName() {
 		return name;
 	}
