@@ -70,7 +70,6 @@ public class MetaEntryController implements MetaEntryViewListener, MetaEntryCont
 		String formerKey = metaEntry.getName();
 		String newKey = event.getContent();
 		String newValue = event.getTitle();
-		System.out.println(newKey);
 		MetaEntryEvent e = new MetaEntryEvent(formerValue, newValue, formerKey, newKey, this);
 		lock.lock();
 		try{
@@ -90,7 +89,6 @@ public class MetaEntryController implements MetaEntryViewListener, MetaEntryCont
 		String formerKey = metaEntry.getName();
 		String newKey = event.getTitle();
 		String newValue = event.getContent();
-		System.out.println(newValue);
 		final MetaEntryEvent e = new MetaEntryEvent(formerValue, newValue, formerKey, newKey, this);
 		lock.lock();
 		try{

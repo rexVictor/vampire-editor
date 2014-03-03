@@ -25,16 +25,28 @@ package vampire.editor.plugin.api.domain.sheet;
 import java.util.Iterator;
 
 /**
- * The MetaAPI is an interface specializing the {@link DataAPI} interface. <br> 
  * It provides an {@link Iterator} to get its attached MetaEntries ({@link MetaEntryAPI}).<br>
  * <br>
- * Implementation Note: <br>
- * This interface does not extend the {@link DataAPI} interface itself, due to problems with Java Generics. <br>
- * But all classes implementing this interface, must also implement the {@link DataAPI} interface. <br>
- * Nevertheless this interface demands all methods demanded by {@link DataAPI}. <br>
  * @author rex_victor
  *
  */
-public interface MetaAPI extends PseudoDataAPI<MetaEntryAPI>{
+public interface MetaAPI{
+	
+	/**
+	 * This implementation is optional
+	 */
+	public MetaAPI clone();
+
+	/**
+	 * @return an {@link Iterator} over the parametrized children of type V
+	 */
+	public Iterator<? extends MetaEntryAPI> getIterator();
+	
+	
+	/**
+	 * @return the count of added elements.
+	 */
+	public int size();
+
 
 }

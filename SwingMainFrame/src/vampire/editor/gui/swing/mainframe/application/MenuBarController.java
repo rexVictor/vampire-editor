@@ -46,8 +46,6 @@ public class MenuBarController {
 			this.trigger = trigger;
 		}
 
-
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			trigger.leftClicked();
@@ -60,8 +58,6 @@ public class MenuBarController {
 	private final Map<String, JMenu> topMenus = new HashMap<>();
 	
 	private final Map<JMenu, Map<String, JMenuItem>> lowMenus= new HashMap<>();
-	
-	
 	
 	private final DictionaryAPI dictionary;
 
@@ -111,7 +107,4 @@ public class MenuBarController {
 	public JMenuBar getMenuBar(){
 		return menubar;
 	}
-	
-	
-
 }

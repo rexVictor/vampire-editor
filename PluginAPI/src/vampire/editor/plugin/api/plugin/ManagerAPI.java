@@ -26,6 +26,7 @@ import java.nio.file.Path;
 
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
+import vampire.editor.plugin.api.exporter.SheetExporter;
 import vampire.editor.plugin.api.importer.SheetImporter;
 
 public interface ManagerAPI {

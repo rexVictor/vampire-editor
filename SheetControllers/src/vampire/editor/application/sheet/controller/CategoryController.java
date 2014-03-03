@@ -56,7 +56,7 @@ public class CategoryController implements CategoryControllerAPI {
 	}
 	
 	@Override
-	public void removeTrait(SubCategoryControllerAPI traitController){
+	public void removeSubCategory(SubCategoryControllerAPI traitController){
 		CategoryEvent event = 
 				new CategoryEvent(this, 
 					traitController, subCategoryControllers.indexOf(traitController));
@@ -75,7 +75,7 @@ public class CategoryController implements CategoryControllerAPI {
 	}
 	
 	@Override
-	public void insertTrait(int index, SubCategoryControllerAPI controller){
+	public void insertSubCategory(int index, SubCategoryControllerAPI controller){
 		CategoryEvent event = 
 				new CategoryEvent(this, 
 					controller, index);
@@ -117,7 +117,7 @@ public class CategoryController implements CategoryControllerAPI {
 	}
 
 	@Override
-	public Category getSubCategory() {
+	public Category getCategory() {
 		return subCategory;
 	}
 
@@ -127,8 +127,13 @@ public class CategoryController implements CategoryControllerAPI {
 	}
 
 	@Override
-	public Iterator<? extends SubCategoryControllerAPI> getSubCategoryControllerIterator() {
+	public Iterator<SubCategoryControllerAPI> iterator() {
 		return subCategoryControllers.iterator();
+	}
+
+	@Override
+	public SubCategoryControllerAPI get(int i) {
+		return subCategoryControllers.get(i);
 	}
 
 }

@@ -20,11 +20,13 @@ public class SheetControllerFactory {
 		Categories cats = sheet.getCategories();
 		List<? extends CategoryView> catViews = view.getCategoryViews();
 		int i = 0;
-		
+		CategoriesController categoriesController = new CategoriesController();
 		for (Category cat : cats){
-			controller.addCategoryController(buildCategoryController(cat, catViews.get(i)));
+			categoriesController.addCategoryController(buildCategoryController(cat, catViews.get(i)));
 			i++;
 		}
+		
+		controller.setCategoriesController(categoriesController);
 		
 		Health health = sheet.getHealth();
 		Merits merits = sheet.getMerits();

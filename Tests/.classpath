@@ -27,7 +27,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/vampireeditor"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/TestUtils"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/OptionDialog"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSFormatCommon"/>
 	<classpathentry kind="lib" path="/ResourceLoader/external/jackson-annotations-2.0.0.jar"/>
@@ -38,5 +37,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="/ConfigCreator/libs/jdom/jdom-2.0.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ImporterAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ExporterAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

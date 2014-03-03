@@ -34,7 +34,7 @@ import vampire.editor.plugin.api.domain.sheet.Value;
  * @author rex_victor
  *
  */
-class MTrait implements Trait{
+public class MTrait implements Trait{
 	
 	private String name;
 	

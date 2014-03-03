@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Vampire Editor Plugin API.
+ * Vampire Editor Importer API.
  * Copyright (C) 2013  Matthias Johannes Reimchen
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@ import java.nio.file.Path;
 
 import vampire.editor.plugin.api.domain.sheet.ModelConstructors;
 import vampire.editor.plugin.api.domain.sheet.VampireDocument;
+import vampire.editor.plugin.api.domain.sheet.view.ViewAttConstructors;
 
 public interface SheetImporter {
 
@@ -33,6 +34,6 @@ public interface SheetImporter {
 	
 	public boolean canHandle(Path path);
 	
-	public void setModelConstructors(ModelConstructors constructors);
+	public void setModelConstructors(ModelConstructors constructors, ViewAttConstructors viewAttConstructors);
 
 }

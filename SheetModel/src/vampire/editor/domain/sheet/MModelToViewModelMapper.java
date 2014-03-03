@@ -71,5 +71,10 @@ class MModelToViewModelMapper implements ModelToViewModelMapper{
 	public Set<Object> keySet(){
 		return associations.keySet();
 	}
+	
+	@Override
+	public String toString(){
+		return associations.toString();
+	}
 
 }

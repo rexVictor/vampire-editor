@@ -82,12 +82,12 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 			area.setRows(viewAttributes.getLineCount());
 			area.setLineWrap(true);
 			area.setWrapStyleWord(true);
-			
 			content.getDocument().addDocumentListener(this);
 		}
 		content.setFont(viewAttributes.getContentFont());
-		
+		content.setBorder(null);
 		title.setFont(viewAttributes.getTitleFont());
+		title.setBorder(null);
 		Initializer.initialize(panel);
 		Initializer.initialize(title);
 		Initializer.initialize(content);

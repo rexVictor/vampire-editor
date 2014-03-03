@@ -50,7 +50,6 @@ public class Images {
 	public static final String SQUARE_CROSSED = "square_crossed";
 	
 	static{
-		System.out.println("Images initialized");
 		Map<String, Path> imagePaths = new HashMap<>();
 		Path p = Paths.get("..", "SwingGUI", "images");
 		imagePaths.put(CIRCLE_EMPTY, p.resolve("empty_circle.png"));
