@@ -5,9 +5,6 @@
 		<segment append="vmpcsimporter"/>
 	</path>
 	
-	<importer name="vmpcs" format="vmpcs">
-		<jar name="vmpcs"
-			class="vampire.editor.importer.vmpcs.application.Activator" />
-	</importer>
+	<importer name="vmpcs" format="vmpcs" class="vampire.editor.importer.vmpcs.application.VMPCSImporter" />
 	
 </importers>

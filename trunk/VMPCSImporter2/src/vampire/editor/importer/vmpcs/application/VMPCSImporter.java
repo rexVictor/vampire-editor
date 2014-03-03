@@ -27,30 +27,26 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
 import vampire.editor.fileformat.vmpcs.domain.Constructors;
+import vampire.editor.fileformat.vmpcs.domain.MapidResolver;
 import vampire.editor.fileformat.vmpcs.domain.ModelToViewMap;
 import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
 import vampire.editor.importer.vmpcs.domain.MergedObjects;
-import vampire.editor.importer.vmpcs.persistency.FileUtils;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelConstructors;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapper;
 import vampire.editor.plugin.api.domain.sheet.Value;
 import vampire.editor.plugin.api.domain.sheet.VampireDocument;
+import vampire.editor.plugin.api.domain.sheet.view.ViewAttConstructors;
 import vampire.editor.plugin.api.importer.DocumentImportException;
 import vampire.editor.plugin.api.importer.SheetImporter;
 
 public class VMPCSImporter implements SheetImporter{
-	
-	private static int importedDocuments = 0;
-	
-	private static final Path tmpPath = Paths.get(System.getProperty("java.io.tmpdir"), "vampireeditor","importer","vmpcs");
 	
 	private final ResourcesHolderAPI resourcesHolder;
 	
@@ -78,12 +74,7 @@ public class VMPCSImporter implements SheetImporter{
 		Path zipPath = path;
 		FileSystem fileSystem = FileSystems.newFileSystem(zipPath,null);
 		Path pluginDirectory = fileSystem.getPath("/plugins");
-		if (compressed){
-			path = uncompress(path);
-		}
-		else{
-			path = fileSystem.getPath("/");
-		}
+		path = fileSystem.getPath("/");
 		MergedObjects mergedObjects = objectsLoader.loadObjects(path);
 		ProtoSheet protoSheet = modelImporter.loadSheet(path.resolve("sheet.json"));
 		Map<Integer, Object> protoMapIdMap = mapidResolver.generateMapIdMap(protoSheet);
@@ -103,32 +94,9 @@ public class VMPCSImporter implements SheetImporter{
 				(holder.getSheet(), modelToViewModelMapper, pluginDirectory);
 		vampDoc.setFileSystem(fileSystem);
 		vampDoc.setPath(zipPath);
-		if (compressed){
-			cleanup();
-		}
 		return vampDoc;
 	}
 	
-	private void cleanup() throws IOException{
-		FileUtils.deleteAll(tmpPath.resolve(importedDocuments+""));
-	}
-	
-	private Path uncompress(Path zipPath) throws IOException{
-		return uncompress(zipPath, tmpPath);
-	}
-	
-	private Path uncompress(Path zipPath, Path tmpPath) throws IOException{
-		importedDocuments++;
-		int i = importedDocuments;
-		FileSystem fileSystem = FileSystems.newFileSystem(zipPath,null);
-		Path root = fileSystem.getPath("/");
-		Path target = tmpPath.resolve(""+i);
-		Files.createDirectories(target);
-		FileUtils.copyAll(root, target);
-		fileSystem.close();
-		return target;
-	}
-
 	@Override
 	public boolean canHandle(Path path) {
 		if(path.getFileName().toString().endsWith(".vmpcs")){
@@ -152,8 +120,9 @@ public class VMPCSImporter implements SheetImporter{
 	}
 
 	@Override
-	public void setModelConstructors(ModelConstructors constructors) {
+	public void setModelConstructors(ModelConstructors constructors, ViewAttConstructors viewAttConstructors) {
 		Constructors.constructors = constructors;
+		Constructors.viewAttConstructors = viewAttConstructors;
 	}
 	
 	

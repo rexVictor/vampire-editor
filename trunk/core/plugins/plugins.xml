@@ -3,17 +3,21 @@
 
 	<plugin name="generationBloodpoolSynchronizer">
 		<jar class="vampire.editor.plugin.generationbloodpoolsynchronizer.application.Constructor"
-			path = "plugins" file = "generationbloodpoolsynchronizer.jar"/>
+			file = "generationbloodpoolsynchronizer.jar"/>
 	</plugin>
 	
 	<plugin name="dynamicSubCategoryView">
 		<jar class="vampire.editor.plugin.dynamicsubcategorymanager.application.Constructor"
-			path = "plugins" file ="dynamicsubcategoryview.jar"/>
+			file ="dynamicsubcategoryview.jar"/>
 	</plugin>
 	
 	<plugin name="dynamicMeritsView">
 		<jar class="vampire.editor.plugin.dynamicmeritentrymanager.application.Constructor"
-			path = "plugins" file ="dynamicmeritsview.jar"/>
+			file ="dynamicmeritsview.jar"/>
+	</plugin>
+	
+	<plugin name="freebieCalculator">
+		<jar class="vampire.editor.plugin.freebiecalculator.application.Activator"/>
 	</plugin>
 	
 </plugins>

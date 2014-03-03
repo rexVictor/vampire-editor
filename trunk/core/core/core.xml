@@ -1,0 +1,22 @@
+<core>
+	<path name="model">
+		<segment root="core"/>
+		<segment append="model"/>
+	</path>
+	<path name="viewatts">
+		<segment root="core"/>
+		<segment append="viewatts"/>
+	</path>
+	<path name = "controllerevents">
+		<segment root = "core"/>
+		<segment append = "controllerevents"/>
+	</path>
+	<path name = "documentcontrollers">
+		<segment root = "core"/>
+		<segment append = "documentcontrollers"/>
+	</path>
+	
+	<model file="modelimplementation.jar" class="vampire.editor.domain.sheet.MModelConstructors"/>
+	<viewatts file="viewattsimplementation.jar" 
+		class = "vampire.editor.domain.sheet.view.MViewConstructors"/>
+</core>

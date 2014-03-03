@@ -1,5 +1,6 @@
 package vampire.editor.plugin;
 
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +18,7 @@ import vampire.editor.domain.config.Plugin;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
+import vampire.editor.plugin.api.exporter.SheetExporter;
 import vampire.editor.plugin.api.importer.DocumentImportException;
 import vampire.editor.plugin.api.importer.SheetImporter;
 import vampire.editor.plugin.api.plugin.Activator;
@@ -25,7 +27,6 @@ import vampire.editor.plugin.api.plugin.Facade;
 import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
-import vampire.editor.plugin.api.plugin.SheetExporter;
 import vampire.editor.plugin.api.plugin.Trigger;
 
 public class Manager implements ManagerAPI{
@@ -61,19 +62,25 @@ public class Manager implements ManagerAPI{
 			Map<String, Importer> importers = config.getImporters();
 			for (String s : importers.keySet()){
 				Importer importer = importers.get(s);
-				Activator importerActivator = importer.getActivator().newInstance();
-				importerActivator.setManager(this);
+				SheetImporter sheetImporter 
+					= importer.getActivator().
+						getConstructor(ResourcesHolderAPI.class).
+							newInstance(config.getResourcesHolder());
+				sheetImporter.setModelConstructors(config.getModelConstructors(), config.getViewAttConstructors());
+				this.importers.add(sheetImporter);
 				this.gui.addImportFileExtension(importer.getFormat());
 			}
 			
 			Map<String, Exporter> exporters = config.getExporters();
 			for (String s : exporters.keySet()){
 				Exporter exporter = exporters.get(s);
-				Activator exporterActivator = exporter.getActivator().newInstance();
-				exporterActivator.setManager(this);
+				SheetExporter sheetExporter = exporter.getActivator().newInstance();
+				addExporter(sheetExporter);
 			}
-		} catch (InstantiationException | IllegalAccessException e) {
-			throw new RuntimeException(e);			
+		} catch (InstantiationException | IllegalAccessException |
+					IllegalArgumentException | InvocationTargetException | 
+					NoSuchMethodException | SecurityException e) {
+			throw new RuntimeException(e);
 		}
 		Map<String, Plugin> plugins = config.getPlugins();
 		List<String> keys = new ArrayList<>(plugins.keySet());
@@ -211,7 +218,8 @@ public class Manager implements ManagerAPI{
 	
 	@Override
 	public void addExporter(SheetExporter exporter) {
-		Trigger saveTrigger = new SaveTrigger(controller, exporter, gui);
+		Trigger saveTrigger = new SaveTrigger(controller, exporter, gui,
+				config.getResourcesHolder().getDictionary("general"));
 		gui.addItemToMenuBar(saveTrigger, "file", "save", exporter.getFormat());
 	}
 	
