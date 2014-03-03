@@ -2,6 +2,7 @@ package vampire.editor.plugin.api.domain.sheet;
 
 import java.nio.file.Path;
 
+@VersionModelSpecification(compatibleVersions = "1.0.0.0", version = "1.0.0.0")
 public interface ModelConstructors {
 	
 	public Value createValue(Integer minValue, Integer maxValue);
