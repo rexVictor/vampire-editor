@@ -1,5 +1,6 @@
 package vampire.editor.plugin.api.domain.sheet;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 public interface Meta extends MetaAPI, Iterable<MetaEntry>{
@@ -15,5 +16,7 @@ public interface Meta extends MetaAPI, Iterable<MetaEntry>{
 	public void remove(MetaEntry metaEntry);
 	
 	public MetaEntry get(int i);
+	
+	public void sort(Comparator<String> comparator);
 
 }
