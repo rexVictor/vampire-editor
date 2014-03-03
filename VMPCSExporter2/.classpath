@@ -3,5 +3,11 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetFullAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ExporterAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
+	<classpathentry kind="lib" path="libs/jackson-annotations-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-core-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/jackson-databind-2.0.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSFormatCommon"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
