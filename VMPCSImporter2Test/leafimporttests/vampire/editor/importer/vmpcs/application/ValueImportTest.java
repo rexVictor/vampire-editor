@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import org.junit.Before;
 import org.junit.Test;
 
+import vampire.editor.domain.sheet.MModelConstructors;
+import vampire.editor.domain.sheet.view.MViewConstructors;
 import vampire.editor.fileformat.vmpcs.domain.Constructors;
 import vampire.editor.plugin.api.domain.sheet.Value;
 import vampire.editor.sheetloader.application.importer.mock.ResourcesHolderMock;
@@ -16,8 +18,11 @@ public class ValueImportTest {
 	
 	private Objects<Value> objects;
 	
+	
 	@Before
 	public void setup() throws Throwable{
+		Constructors.constructors = new MModelConstructors();
+		Constructors.viewAttConstructors = new MViewConstructors();
 		Path testPath = Paths.get("testcases","values","values.json");
 		objects = new Objects<>(Value.class, testPath, new ResourcesHolderMock(), null);
 	}
