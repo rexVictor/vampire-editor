@@ -22,6 +22,8 @@ package vampire.editor.gui.swing.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,7 +46,7 @@ import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.MetaEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.MetaEntryView;
 
-public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentListener{
+public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentListener, FocusListener{
 	
 	private final DictionaryAPI dictionary;
 	
@@ -75,6 +77,7 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 		if (viewAttributes.getLineCount()==1){
 			content = new JTextField();
 			((JTextField) content).addActionListener(this);
+			((JTextField) content).getDocument().addDocumentListener(this);
 		}
 		else {
 			content = new JTextArea();
@@ -84,6 +87,7 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 			area.setWrapStyleWord(true);
 			content.getDocument().addDocumentListener(this);
 		}
+		content.addFocusListener(this);
 		content.setFont(viewAttributes.getContentFont());
 		content.setBorder(null);
 		title.setFont(viewAttributes.getTitleFont());
@@ -175,12 +179,19 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 
 	@Override
 	public void changedUpdate(DocumentEvent e) {
-		// TODO Auto-generated method stub
-		
+		actionPerformed(null);
 	}
 	
 	public MetaEntryViewAttributesAPI getViewAtts(){
 		return viewAttributes;
+	}
+
+	@Override
+	public void focusGained(FocusEvent e) {}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		actionPerformed(null);
 	}
 
 	
