@@ -66,6 +66,7 @@ public class Objects<V> {
 			for (Class<?> key : classes){
 				initializeModule(key, map.get(key), module);
 			}
+			module.addAbstractTypeMapping(Value.class, Constructors.constructors.createValue(0, 10).getClass());
 			mapper.registerModule(module);
 		}
 		this.fonts = fonts;
@@ -90,7 +91,7 @@ public class Objects<V> {
 			for (Class<?> key : classes){
 				initializeModule(key, map.get(key), module);
 			}
-			mapper.registerModule(module);
+			module.addAbstractTypeMapping(Value.class, Constructors.constructors.createValue(0, 10).getClass());
 			mapper.registerModule(module);
 		}
 		Path file = root.resolve(ClassToFileMapper.paths.get(clazz));

@@ -28,10 +28,14 @@
 	<path name="exporters">
 		<segment append="exporters"/>
 	</path>
+	<path name="core">
+		<segment append="core"/>
+	</path>
 	
 	<locale language="DE" country="" variant=""/>
 
 	<!-- The name of the configs is not processed yet, since there was no need. -->
+	<config name="core"			path="core"			file="core.xml"/>
 	<config name="resources" 	path="resources" 	file="resources.xml" />
 	<config name="plugins"		path="plugins" 		file="plugins.xml" />
 	<config name="importers" 	path="importers" 	file="importers.xml"/>
