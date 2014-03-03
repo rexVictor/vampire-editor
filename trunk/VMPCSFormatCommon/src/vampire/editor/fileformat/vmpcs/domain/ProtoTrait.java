@@ -37,7 +37,7 @@ public class ProtoTrait implements MapId, MapIdChilds, ToRealModelTransformable<
 	private ProtoValue value;
 	
 	@JsonIgnore
-	private Trait trait;
+	private Trait trait = null;
 
 	public ProtoTrait() {
 		super();
@@ -93,8 +93,6 @@ public class ProtoTrait implements MapId, MapIdChilds, ToRealModelTransformable<
 				+ value + "]";
 	}
 
-
-
 	@JsonIgnore
 	@Override
 	public List<? extends MapId> getMapIdChilds() {
@@ -110,7 +108,6 @@ public class ProtoTrait implements MapId, MapIdChilds, ToRealModelTransformable<
 		if (trait == null)
 			trait = Constructors.constructors.createTrait();
 			trait.setName(name);
-			trait.setValue(null);
 		return trait;
 	}
 

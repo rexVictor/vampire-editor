@@ -26,6 +26,7 @@ import java.awt.Font;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import vampire.editor.plugin.api.domain.sheet.Sheet;
 import vampire.editor.plugin.api.domain.sheet.Value;
@@ -67,5 +68,15 @@ public class ClassToFileMapper {
 	}
 	
 	public static final Map<Class<?>, String> paths;
+	
+	public static String getFileName(Class<?> clazz){
+		Set<Class<?>> classes = paths.keySet();
+		for (Class<?> c : classes){
+			if (c.isAssignableFrom(clazz)){
+				return paths.get(c);
+			}
+		}
+		return null;
+	}
 
 }
