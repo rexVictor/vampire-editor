@@ -6,9 +6,19 @@
 	<property name="manifest" value="manifest.mf"/>
 	<property name="libs" location="libs"/>
 	<property name="license" value="license.txt"/>
+	<property name="modelapi" location="../ModelAPI/bin"/>
+	<property name="model" location="../SheetFullAPI/bin"/>
+	<property name="viewattsapi" location="../ViewAttsAPI/bin"/>
+	<property name="viewatts" location="../ViewAttsFullAPI/bin"/>
+	<property name="resourcesapi" location="../ResourcesAPI/bin"/>
 
 	<path id="classpath">
-		<pathelement path="."/>
+		<pathelement location="${modelapi}"/>
+		<pathelement location="${model}"/>
+		<pathelement location="${viewattsapi}"/>
+		<pathelement location="${viewatts}"/>
+		<pathelement location="${resourcesapi}"/>
+		<pathelement location="libs/jackson-annotations-2.0.0.jar"/>
 	</path>
 
 	
@@ -21,15 +31,18 @@
 		<mkdir dir="${build}"/>
 		<mkdir dir="${dist}"/>
 		
-		<javac srcdir="${src}" destdir="${build}">
-			<classpath location="."></classpath>
+		<javac srcdir="${src}" destdir="${build}" classpathref="classpath" includeantruntime="true"
+			target="1.7" source="1.7">
 		</javac>
 		
 		<jar destfile="${dist}/vmpcsformatcommon.jar" manifest="${manifest}"
 			basedir="${build}">
 		</jar>
 		
-		<copy file="${libs}" todir="${dist}"/>
+		<copy todir="${dist}/libs">
+			<fileset dir="${libs}" id="id">
+				</fileset>
+		</copy>
 		<copy file="${license}" todir="${dist}"/>
 	</target>
 

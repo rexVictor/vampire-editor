@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSImporter2"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetModel"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
@@ -15,5 +14,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ImporterAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSExporter2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSImporter2"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
