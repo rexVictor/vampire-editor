@@ -18,5 +18,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetEvents"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ImporterAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetFullAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ExporterAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
