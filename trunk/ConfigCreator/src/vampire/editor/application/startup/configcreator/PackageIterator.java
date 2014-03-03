@@ -29,7 +29,6 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Enumeration;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,11 +38,9 @@ public class PackageIterator {
 			String packageName) throws IOException, URISyntaxException, ClassNotFoundException{
 		List<Class<? extends C>> classes = new LinkedList<>();
 		String resource = packageName.replace(".", "/");
-		Enumeration<URL> urls = new PackageIterator().getClass().getClassLoader().getResources(resource);
-		for (URL url = urls.nextElement(); urls.hasMoreElements();){
+		URL url = new PackageIterator().getClass().getClassLoader().getResource(resource);
 			Path path = Paths.get(url.toURI());
 			loadClasses(path, path, clazz, packageName, classes);
-		}
 		return classes;
 	}
 	

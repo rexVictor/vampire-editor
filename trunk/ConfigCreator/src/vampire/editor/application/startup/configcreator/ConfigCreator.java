@@ -45,6 +45,8 @@ import vampire.editor.domain.config.Importer;
 import vampire.editor.domain.config.Plugin;
 import vampire.editor.persistency.startup.XMLImportException;
 import vampire.editor.persistency.startup.XMLLoader;
+import vampire.editor.plugin.api.domain.sheet.ModelConstructors;
+import vampire.editor.plugin.api.domain.sheet.view.ViewAttConstructors;
 import vampire.editor.plugin.api.plugin.Activator;
 
 public class ConfigCreator implements ElementProcessor{
@@ -73,11 +75,12 @@ public class ConfigCreator implements ElementProcessor{
 	
 	private final Map<String, Importer> importers = new HashMap<>();
 	
-	private final Map<String, ProtoImporter> protoImporters = new HashMap<>();
-	
-	private final Map<String, ProtoExporter> protoExporters = new HashMap<>();
-	
 	private final Map<String, Exporter> exporters = new HashMap<>();
+	
+	private ModelConstructors modelConstructors;
+	
+	private ViewAttConstructors viewAttConstructors;
+	
 	
 	public ConfigCreator() {
 		
@@ -135,32 +138,10 @@ public class ConfigCreator implements ElementProcessor{
 			throw new ConfigImportException(e);
 		}
 		makePlugins();
-		makeImporters();
-		makeExporters();
 		Config config = new Config(path, plugins, clazzes.remove(ConfigStrings.GUI),
 				importers, exporters, fonts, borders, lines, dictionaries,
-				defaultSheets);
+				defaultSheets, modelConstructors, viewAttConstructors);
 		return config;
-	}
-	
-	private void makeImporters(){
-		Set<String> protoImporterKeys = protoImporters.keySet();
-		for (String s : protoImporterKeys){
-			ProtoImporter current = protoImporters.get(s);
-			Class<Activator> clazz = clazzes.get(current.getJarName());
-			Importer importer = new Importer(clazz, s, current.getFormat());
-			importers.put(s, importer);
-		}
-	}
-	
-	private void makeExporters(){
-		Set<String> protoExporterKeys = protoExporters.keySet();
-		for (String s : protoExporterKeys){
-			ProtoExporter current = protoExporters.get(s);
-			Class<Activator> clazz = clazzes.get(current.getJarName());
-			Exporter exporter = new Exporter(clazz, s, current.getFormat());
-			exporters.put(s, exporter);
-		}
 	}
 	
 	private void makePlugins(){
@@ -191,8 +172,8 @@ public class ConfigCreator implements ElementProcessor{
 		
 	}
 	
-	void put(String key, ProtoExporter exporter){
-		protoExporters.put(key, exporter);
+	void put(String key, Exporter exporter){
+		exporters.put(key, exporter);
 	}
 	
 	void put(String key, Path path){
@@ -235,8 +216,8 @@ public class ConfigCreator implements ElementProcessor{
 		defaultSheets.put(key, path);
 	}
 	
-	void put(String key, ProtoImporter protoImporter){
-		protoImporters.put(key, protoImporter);
+	void put(String key, Importer protoImporter){
+		importers.put(key, protoImporter);
 	}
 	
 	Dictionary getDictionary(String key){
@@ -282,6 +263,16 @@ public class ConfigCreator implements ElementProcessor{
 		} catch (XMLImportException e) {
 			throw new ConfigImportException(e);
 		}
+	}
+	
+	
+
+	public void setModelConstructors(ModelConstructors modelConstructors) {
+		this.modelConstructors = modelConstructors;
+	}
+
+	public void setViewAttConstructors(ViewAttConstructors viewAttConstructors) {
+		this.viewAttConstructors = viewAttConstructors;
 	}
 
 	@Override

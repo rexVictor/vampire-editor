@@ -28,6 +28,8 @@ import java.nio.file.Path;
 import java.util.Map;
 
 import vampire.editor.domain.Border;
+import vampire.editor.plugin.api.domain.sheet.ModelConstructors;
+import vampire.editor.plugin.api.domain.sheet.view.ViewAttConstructors;
 import vampire.editor.plugin.api.plugin.Activator;
 
 public class Config {
@@ -43,13 +45,20 @@ public class Config {
 	private final Map<String, Exporter> exporters;
 	
 	private final ResourcesHolder holder;
+	
+	private final ModelConstructors modelConstructors;
+	
+	private final ViewAttConstructors viewAttConstructors;
+	
 
 	public Config(Path ownPath, Map<String, Plugin> plugins,
 			Class<Activator> guiPlugin, Map<String, Importer> importers,
 			Map<String, Exporter> exporters,
 			Map<String, Font> fonts, Map<String, Border> borders,
 			Map<String, Image> lines, Map<String, Dictionary> dictionaries,
-			Map<String, Path> defaultSheets) {
+			Map<String, Path> defaultSheets,
+			ModelConstructors modelConstructors,
+			ViewAttConstructors viewAttConstructors) {
 		super();
 		this.ownPath = ownPath;
 		this.plugins = plugins;
@@ -57,6 +66,8 @@ public class Config {
 		this.importers = importers;
 		this.exporters = exporters;
 		holder = new ResourcesHolder(borders, lines, dictionaries, defaultSheets);
+		this.modelConstructors = modelConstructors;
+		this.viewAttConstructors = viewAttConstructors;
 		
 	}
 	
@@ -83,5 +94,15 @@ public class Config {
 	public Map<String, Plugin> getPlugins(){
 		return plugins;
 	}
+
+	public ModelConstructors getModelConstructors() {
+		return modelConstructors;
+	}
+
+	public ViewAttConstructors getViewAttConstructors() {
+		return viewAttConstructors;
+	}
+	
+	
 
 }

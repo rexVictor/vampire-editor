@@ -7,5 +7,11 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/Resources"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
 	<classpathentry kind="lib" path="libs/jdom/jdom-2.0.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetFullAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ImporterAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ExporterAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

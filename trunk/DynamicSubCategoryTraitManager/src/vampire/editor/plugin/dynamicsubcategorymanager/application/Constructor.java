@@ -22,8 +22,6 @@
  ******************************************************************************/
 package vampire.editor.plugin.dynamicsubcategorymanager.application;
 
-import java.util.Iterator;
-
 import vampire.editor.plugin.api.application.sheet.controller.CategoryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.SubCategoryControllerAPI;
@@ -42,10 +40,8 @@ public class Constructor implements Activator, DocumentListener{
 		SheetControllerAPI sheetController = e.getSource();
 		VampireDocumentAPI document = sheetController.getDocument();
 		ModelToViewModelMapperAPI mapper = document.getModelToViewModelMapper();
-		for (Iterator<? extends CategoryControllerAPI> i = sheetController.getCategoryIterator();i.hasNext();){
-			CategoryControllerAPI categoryController = i.next();
-			for (Iterator<? extends SubCategoryControllerAPI> j = categoryController.getSubCategoryControllerIterator(); j.hasNext();){
-				SubCategoryControllerAPI subCategoryController = j.next();
+		for (CategoryControllerAPI categoryController : sheetController.getCategoriesController()){
+			for (SubCategoryControllerAPI subCategoryController : categoryController){
 				SubCategoryViewAttributesAPI viewAtts = (SubCategoryViewAttributesAPI) mapper.getViewAttributes(subCategoryController.getSubCategory());
 				if (viewAtts.isExpandable()){
 					new TraitAdder(mapper, subCategoryController);

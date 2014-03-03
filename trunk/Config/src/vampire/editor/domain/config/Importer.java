@@ -22,25 +22,25 @@
  ******************************************************************************/
 package vampire.editor.domain.config;
 
-import vampire.editor.plugin.api.plugin.Activator;
+import vampire.editor.plugin.api.importer.SheetImporter;
 
 public class Importer {
 	
-	private final Class<Activator> activator;
+	private final Class<SheetImporter> sheetImporter;
 	
 	private final String name;
 	
 	private final String format;
 
-	public Importer(Class<Activator> activator, String name, String format) {
+	public Importer(Class<SheetImporter> sheetImporter, String name, String format) {
 		super();
-		this.activator = activator;
+		this.sheetImporter = sheetImporter;
 		this.name = name;
 		this.format = format;
 	}
 
-	public Class<Activator> getActivator() {
-		return activator;
+	public Class<SheetImporter> getActivator() {
+		return sheetImporter;
 	}
 
 	public String getName() {
