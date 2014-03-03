@@ -26,6 +26,15 @@ public class MViewConstructors implements ViewAttConstructors{
 	static{
 		Map<Class<?>, Class<?>> map = new HashMap<>();
 		map.put(BloodPoolViewAttributes.class, MBloodPoolViewAttributes.class);
+		map.put(CategoryViewAttributes.class, MCategoryViewAttributes.class);
+		map.put(HealthEntryViewAttributes.class, MHealthEntryViewAttributes.class);
+		map.put(HealthViewAttributes.class, MHealthViewAttributes.class);
+		map.put(MeritEntryViewAttributes.class, MMeritEntryViewAttributes.class);
+		map.put(MeritViewAttributes.class, MMeritViewAttributes.class);
+		map.put(MetaEntryViewAttributes.class, MMetaEntryViewAttributes.class);
+		map.put(SubCategoryViewAttributes.class, MSubCategoryViewAttributes.class);
+		map.put(TraitViewAttributes.class, MTraitViewAttributes.class);
+		map.put(ValueViewAttributes.class, MValueViewAttributes.class);
 		interfaceToImplementationMap = Collections.unmodifiableMap(map);
 	}
 
