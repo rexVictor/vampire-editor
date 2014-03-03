@@ -22,16 +22,12 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.application.sheet.controller;
 
-import java.util.Iterator;
-
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
 
-public interface SheetControllerAPI {
+public interface SheetControllerAPI{
 
-	public void addCategoryController(CategoryControllerAPI controller);
-	
 	public SheetView getView();
 	
 	public MetaControllerAPI getMetaController();
@@ -40,6 +36,5 @@ public interface SheetControllerAPI {
 	
 	public VampireDocumentAPI getDocument();
 	
-	public Iterator<? extends CategoryControllerAPI> getCategoryIterator();
-	
+	public CategoriesControllerAPI getCategoriesController();
 }

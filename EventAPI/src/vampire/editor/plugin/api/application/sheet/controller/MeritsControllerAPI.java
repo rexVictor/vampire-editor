@@ -47,5 +47,4 @@ public interface MeritsControllerAPI extends Iterable<MeritEntryControllerAPI>{
 	
 	public MeritEntryControllerAPI getController(int index);
 	
-	
 }

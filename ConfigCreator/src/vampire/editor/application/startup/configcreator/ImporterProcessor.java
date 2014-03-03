@@ -22,23 +22,40 @@
  ******************************************************************************/
 package vampire.editor.application.startup.configcreator;
 
+import org.jdom2.Attribute;
 import org.jdom2.Element;
+
+import vampire.editor.domain.config.Importer;
+import vampire.editor.plugin.api.importer.SheetImporter;
 
 class ImporterProcessor implements ElementProcessor{
 	
-	private final JarProcessor processor = new JarProcessor();
+	private final NullProcessor nullProcessor = new NullProcessor();
+	private final PathClassProcessor pathClassProcessor = new PathClassProcessor();
 
 	@Override
 	public void process(Element element, ConfigCreator configCreator) {
 		String name = element.getAttributeValue(ConfigStrings.NAME);
+		Attribute path = element.getAttribute(ConfigStrings.PATH);
+		Attribute file = element.getAttribute(ConfigStrings.FILE);
+		ClassLoader loader = null;
+		if(path == null){
+			loader = nullProcessor.process(null, null, null, null);
+		}
+		else {
+			loader = pathClassProcessor.process(null, configCreator, path, file);
+		}
+		String clazzname = element.getAttributeValue(ConfigStrings.CLASS);
 		String format = element.getAttributeValue(ConfigStrings.FORMAT);
-		Element jar = element.getChild(ConfigStrings.JAR);
-		jar.setAttribute(ConfigStrings.NAME, name);
-		processor.process(jar, configCreator);
-		ProtoImporter importer = new ProtoImporter(name, name, format);
-		configCreator.put(name, importer);
+		try {
+			@SuppressWarnings("unchecked")
+			Class<SheetImporter> clazz = (Class<SheetImporter>) loader.loadClass(clazzname);
+			Importer importer = new Importer(clazz, name, format);
+			configCreator.put(name, importer);
+		} catch (ClassNotFoundException e) {
+			throw new ConfigImportException(e);
+		}
 	}
-
 	@Override
 	public String getName() {
 		return ConfigStrings.IMPORTER;
