@@ -1,37 +1,5 @@
-<project name="ViewAttsAPI" basedir="." default="build">
-	
-	<property name="src" location="src"/>
-	<property name="build" location="bin"/>
-	<property name="dist" location="dist"/>
-	<property name="manifest" value="manifest.mf"/>
-	<property name="license" value="license.txt"/>
+<project name="ViewAttsAPI" basedir="." default="default">
 
-	<path id="classpath">
-		<pathelement path="."/>
-	</path>
-
-	
-	<target name="clean" description="Removes the compiled classes and the distribution">
-		<delete dir="${build}"/>
-		<delete dir="${dist}"/>
-	</target>
-	
-	<target name="build" depends="clean" description="Builds the project">
-		<mkdir dir="${build}"/>
-		<mkdir dir="${dist}"/>
-		
-		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
-			<classpath location="."></classpath>
-		</javac>
-		
-		<jar destfile="${dist}/vmpcsformatcommon.jar" manifest="${manifest}"
-			basedir="${build}">
-		</jar>
-		
-		<copy file="${license}" todir="${dist}"/>
-	</target>
-
-
-
+	<import file="../build-common.xml"/>
 
 </project>
