@@ -22,19 +22,23 @@ package vampire.editor.gui.swing.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttibutesAPI;
 import vampire.editor.plugin.api.view.events.MeritEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.MeritEntryView;
 
-public class SMeritEntryView implements MeritEntryView, ActionListener{
+public class SMeritEntryView implements MeritEntryView, ActionListener, DocumentListener, FocusListener{
 	
 	private final JTextField textField = new JTextField();
 	
@@ -58,6 +62,10 @@ public class SMeritEntryView implements MeritEntryView, ActionListener{
 		costField.setBorder(null);
 		textField.addActionListener(this);
 		costField.addActionListener(this);
+		textField.getDocument().addDocumentListener(this);
+		costField.getDocument().addDocumentListener(this);
+		textField.addFocusListener(this);
+		costField.addFocusListener(this);
 	}
 
 	@Override
@@ -88,20 +96,19 @@ public class SMeritEntryView implements MeritEntryView, ActionListener{
 	public JTextField getCostField() {
 		return costField;
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
+	
+	private void changeEvent(Object source){
 		String name = dictionary.getKey(textField.getText());
 		String costString = costField.getText();
 		try{
 			int cost = Integer.parseInt(costString);
 			SMeritEntryViewEvent event = new SMeritEntryViewEvent(cost, name);
-			if (e.getSource() == costField){
+			if (source  == costField){
 				for (MeritEntryViewListener l : listeners){
 					l.costChanged(event);
 				}
 			}
-			else if (e.getSource() == textField){
+			else if (source == textField){
 				for (MeritEntryViewListener l : listeners){
 					l.nameChanged(event);
 				}
@@ -111,17 +118,48 @@ public class SMeritEntryView implements MeritEntryView, ActionListener{
 			
 		}
 	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		changeEvent(e.getSource());
+	}
 	
 	@Override
 	public SMeritEntryView clone(){
-		return new SMeritEntryView(dictionary, viewAtts);
+		return new SMeritEntryView(dictionary, viewAtts.clone());
 	}
 
 	@Override
 	public MeritEntryViewAttibutesAPI getViewAttributes() {
 		return viewAtts;
 	}
-	
-	
 
+	@Override
+	public void focusGained(FocusEvent e) {}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		changeEvent(e.getSource());
+	}
+
+	@Override
+	public void changedUpdate(DocumentEvent e) {
+		if (textField.getDocument() == e.getDocument()){
+			changeEvent(textField);
+		}
+		else if (costField.getDocument() == e.getDocument()){
+			changeEvent(costField);
+		}
+	}
+
+	@Override
+	public void insertUpdate(DocumentEvent e) {
+		changedUpdate(e);
+	}
+
+	@Override
+	public void removeUpdate(DocumentEvent e) {
+		changedUpdate(e);
+	}
+	
 }
