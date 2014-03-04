@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.DirectoryStream;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -39,7 +41,18 @@ public class PackageIterator {
 		List<Class<? extends C>> classes = new LinkedList<>();
 		String resource = packageName.replace(".", "/");
 		URL url = new PackageIterator().getClass().getClassLoader().getResource(resource);
-			Path path = Paths.get(url.toURI());
+		String toManipulate = url.toString();
+		Path path = null;
+		if (toManipulate.contains("!")){
+			String jar = toManipulate.replaceAll(".*:", "");
+			jar = jar.replaceAll("!.*", "");
+			FileSystem fs = FileSystems.newFileSystem(Paths.get(jar), null);
+			toManipulate = url.toString().replaceAll(".*!", "");
+			path = fs.getPath(toManipulate);
+		}
+		else{
+			path = Paths.get(url.toURI());
+		}
 			loadClasses(path, path, clazz, packageName, classes);
 		return classes;
 	}
