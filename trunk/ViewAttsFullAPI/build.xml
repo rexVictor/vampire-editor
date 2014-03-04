@@ -1,0 +1,5 @@
+<project name="ViewAttsAPI" basedir="." default="default">
+
+	<import file="../build-common.xml"/>
+
+</project>
