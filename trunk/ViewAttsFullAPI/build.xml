@@ -1,4 +1,4 @@
-<project name="ViewAttsAPI" basedir="." default="default">
+<project name="ViewAttsFullAPI" default="default">
 
 	<import file="../build-common.xml"/>
 

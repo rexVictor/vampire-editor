@@ -1,3 +1,4 @@
-<project name="">
-	
+<project name="VMPCSImporter2" default="default">
+
+	<import file="../build-common.xml"/>
 </project>
