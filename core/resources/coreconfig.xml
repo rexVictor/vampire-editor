@@ -12,7 +12,7 @@
 	</path>
 	<!-- Uncomment for final deployment 
 		<path name="userconfig"> <segment key="user.home"/> 
-		<segment append=".vampire/config/userconfiig.xml"/> </path> 
+		<segment append=".vampire/config/userconfig.xml"/> </path> 
 	-->
 	<!-- remove this when testing finished -->
 	<path name="userconfig">

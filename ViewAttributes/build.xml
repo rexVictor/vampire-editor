@@ -1,4 +1,4 @@
-<project name="ViewAttributes Implementation" basedir="." default="default">
+<project name="ViewAttributes" default="default">
 	
 	<import file="../build-common.xml"/>
 

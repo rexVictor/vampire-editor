@@ -3,7 +3,7 @@
 
 	<plugin name="generationBloodpoolSynchronizer">
 		<jar class="vampire.editor.plugin.generationbloodpoolsynchronizer.application.Constructor"
-			file = "generationbloodpoolsynchronizer.jar"/>
+			path="plugins" file="generationbloodpoolsynchronizer.jar"/>
 	</plugin>
 	
 	<plugin name="dynamicSubCategoryView">

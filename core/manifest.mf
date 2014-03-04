@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: libs/* api/* libs/configcreator/ConfigCreator.jar libs/Config.jar api/EventAPI.jar api/ExporterAPI.jar api/GUIAPI.jar api/ImporterAPI.jar api/ModelAPI.jar api/PluginAPI.jar api/ResourcesAPI.jar api/SheetFullAPI.jar api/ViewAttsAPI.jar api/ViewAttsFullAPI.jar libs/Resources.jar libs/SheetControllers.jar libs/SheetEvents.jar libs/VMPCSFormatCommon.jar
+Main-Class: vampire.editor.application.startup.Main
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coreconfig>
+
+	<path name="resources">
+		<segment append="resources" />
+	</path>
+	<path name="swingMainFrame">
+		<segment append="core/gui" />
+	</path>
+	<path name="sheetloader">
+		<segment append="core/sheetloader" />
+	</path>
+	<path name="userconfig">
+		<segment key="user.home"/> 
+		<segment append=".vampire/config/userconfiig.xml"/>
+	</path> 
+	<path name="plugins">
+		<segment append="plugins" />
+	</path>
+	<path name="importers">
+		<segment append="importers"/>
+	</path>
+	<path name="exporters">
+		<segment append="exporters"/>
+	</path>
+	<path name="core">
+		<segment append="core"/>
+	</path>
+	
+	<locale language="DE" country="" variant=""/>
+
+	<!-- The name of the configs is not processed yet, since there was no need. -->
+	<!-- config name="core"			path="core"			file="core.xml"/ -->
+	<config name="resources" 	path="resources" 	file="resources.xml" />
+	<config name="plugins"		path="plugins" 		file="plugins.xml" />
+	<config name="importers" 	path="importers" 	file="importers.xml"/>
+	<config name="exporters" 	path="exporters" 	file="exporters.xml"/>	
+	
+	<jar name="gui"
+		path="core" file="SwingMainFrame/SwingMainFrame.jar"
+		class="vampire.editor.gui.swing.mainframe.application.GuiActivator" />
+	
+	<model path="core" file="SheetModel.jar" class="vampire.editor.domain.sheet.MModelConstructors"/>
+	<viewatts path="core" file="ViewAttributes.jar"
+		class="vampire.editor.domain.sheet.view.MViewConstructors"/>
+	
+</coreconfig>

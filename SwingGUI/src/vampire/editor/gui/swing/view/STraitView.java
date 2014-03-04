@@ -196,4 +196,9 @@ public class STraitView implements TraitView, ActionListener, DocumentListener, 
 		actionPerformed(null);
 	}
 
+	@Override
+	public void setTooltip(String text) {
+		textField.setToolTipText(text);
+	}
+
 }
