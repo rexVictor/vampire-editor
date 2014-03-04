@@ -37,4 +37,6 @@ public interface TraitView {
 	
 	public TraitViewAttributesAPI getViewAttributes();
 	
+	public void setTooltip(String text);
+	
 }

@@ -47,4 +47,10 @@ public class TValueView implements ValueView{
 		return null;
 	}
 
+	@Override
+	public void setToolTip(int circle, String text) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
