@@ -1,6 +1,6 @@
 /*******************************************************************************
- * Vampire Editor View Attributes Implementation.
- * Copyright (C) 2013  Matthias Johannes Reimchen
+ * Vampire Editor View Model API with write methods.
+ * Copyright (C) 2014  Matthias Johannes Reimchen
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
