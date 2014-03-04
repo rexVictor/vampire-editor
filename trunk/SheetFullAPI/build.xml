@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="SheetFullAPI" default="default">
 	
-	<property name="classpath" location="../ModelAPI/bin"/>
-	
 	<import file="../build-common.xml"/>
 
 </project>
