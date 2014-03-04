@@ -1,49 +1,6 @@
-<project name="Vampire Document Model Implementation" basedir="." default="build">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="SheetModel" default="default">
 	
-	<property name="src" location="src"/>
-	<property name="build" location="bin"/>
-	<property name="dist" location="dist"/>
-	<property name="manifest" value="manifest.mf"/>
-	<property name="libs" location="libs"/>
-	<property name="license" value="license.txt"/>
-	<property name="modelapi" location="../ModelAPI"/>
-	<property name="modelspecification" location="../SheetFullAPI"/>
-	<property name="core" location="../vampireeditor/core"/>
-
-
-
-	<path id="classpath">
-		<fileset dir="${modelapi}/dist">
-			<include name="*.jar"/>
-		</fileset>
-		<fileset dir="${modelspecification}/dist">
-			<include name="*.jar"/>
-		</fileset>
-	</path>
-	
-	<target name="clean" description="Removes the compiled classes and the distribution">
-		<delete dir="${build}"/>
-		<delete dir="${dist}"/>
-	</target>
-	
-	<target name="build" depends="clean" description="Builds the project">
-		<mkdir dir="${build}"/>
-		<mkdir dir="${dist}"/>
-		<ant inheritall="false" antfile="${modelspecification}/build.xml"/>
-		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
-			<classpath refid="classpath"/>
-		</javac>
-		
-		<jar destfile="${dist}/modelapi.jar" manifest="${manifest}"
-			basedir="${build}">
-		</jar>
-		
-		<!-- copy file="${libs}" todir="${dist}"/ -->
-		<copy file="${license}" todir="${dist}"/>
-		
-		<copy>
-			
-		</copy>
-	</target>
+	<import file="../build-common.xml"/>
 
 </project>
