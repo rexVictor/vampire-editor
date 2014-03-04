@@ -1,0 +1,3 @@
+<project name="DynamicSubCategoryTraitManager" default="default">
+	<import file="../build-common.xml"/>
+</project>
