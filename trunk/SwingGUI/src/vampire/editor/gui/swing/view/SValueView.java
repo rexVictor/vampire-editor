@@ -42,7 +42,6 @@ import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
-
 import static vampire.editor.gui.swing.view.valueviews.AbstractValueView.CIRCLE_BLACK;
 import static vampire.editor.gui.swing.view.valueviews.AbstractValueView.CIRCLE_WHITE;
 
@@ -244,6 +243,10 @@ public class SValueView implements ValueView{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Override
+	public void setToolTip(int circle, String text) {}
 	
 	
 	

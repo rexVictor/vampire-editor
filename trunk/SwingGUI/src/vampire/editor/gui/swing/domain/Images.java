@@ -51,7 +51,7 @@ public class Images {
 	
 	static{
 		Map<String, Path> imagePaths = new HashMap<>();
-		Path p = Paths.get("..", "SwingGUI", "images");
+		Path p = Paths.get("resources", "images");
 		imagePaths.put(CIRCLE_EMPTY, p.resolve("empty_circle.png"));
 		imagePaths.put(CIRCLE_FILLED, p.resolve("filled_circle.png"));
 		imagePaths.put(CIRCLE_TEMP_GREATER, p.resolve( "temp_greater_circle.png"));

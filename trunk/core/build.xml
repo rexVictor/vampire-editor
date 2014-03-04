@@ -1,0 +1,33 @@
+<project name="vampireeditor" basedir="." default="dist">
+
+	<target name="default">
+
+	</target>
+
+	<target name="copyapi">
+		<copy todir="dist/api" flatten="true">
+			<fileset dir="..">
+				<include name="*API/dist/*.jar" />
+			</fileset>
+		</copy>
+		<copy todir="dist/api" file="license.txt" />
+	</target>
+
+	<target name="dist">
+		<delete dir="bin" />
+		<mkdir dir="bin"/>
+		<javac srcdir="src" destdir="bin" includeantruntime="false">
+			<classpath>
+				<dirset dir="..">
+					<include name="**/bin" />
+				</dirset>
+				<fileset dir="libs">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		
+		<jar basedir="bin" destfile="dist/VampireEditor.jar" manifest="manifest.mf"/>
+	</target>
+
+</project>
