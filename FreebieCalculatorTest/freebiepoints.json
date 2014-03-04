@@ -1,0 +1,31 @@
+{
+	"masquerade"	:	{
+		"attributes"	:	{
+			"factor"		:	5,
+			"freeAmount"	:	[3, 5, 7]
+		},
+		"abilities"	:	{
+			"factor"		:	2,
+			"freeAmount"	:	[5, 9, 13]
+		},
+		"disciplines"	:	{
+			"factor"		:	7,
+			"freeAmount"	:	3
+		},
+		"virtues"	:	{
+			"factor"		:	2,
+			"freeAmount"	:	7
+		},
+		"backgrounds"	:	{
+			"factor"		:	1,
+			"freeAmount"	:	5
+		},
+		"path"			:	{
+			"factor"		:	1
+		},
+		"willpower"		:	{
+			"factor"		:	1
+		},
+		"freebies"		:	15
+	}
+}
