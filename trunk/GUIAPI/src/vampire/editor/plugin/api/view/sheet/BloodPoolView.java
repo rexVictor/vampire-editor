@@ -23,7 +23,11 @@
 package vampire.editor.plugin.api.view.sheet;
 
 import vampire.editor.plugin.api.view.events.BloodPoolViewListener;
-
+/**
+ * The Bloodpoolview specification.
+ * @author rex
+ *
+ */
 public interface BloodPoolView {
 	
 	public void addListener(BloodPoolViewListener listener);

@@ -41,6 +41,8 @@ public interface ValueView {
 	
 	public ValueViewAttributesAPI getViewAttributes();
 	
+	public void setToolTip(int circle, String text);
+	
 	
 
 }
