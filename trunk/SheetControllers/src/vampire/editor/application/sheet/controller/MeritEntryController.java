@@ -106,17 +106,50 @@ public class MeritEntryController implements MeritEntryControllerAPI, MeritEntry
 		finally{
 			lock.unlock();
 		}
-		
 	}
 
 	@Override
-	public void costChanged(MeritEntryViewEvent e) {
-		setCost(e.getCost());
+	public void costChanged(MeritEntryViewEvent event) {
+		int cost = event.getCost();
+		final MeritEntryEvent e = new MeritEntryEvent(this, merit.getCost(), cost, merit.getName(), merit.getName());
+		lock.lock();
+		try{
+			merit.setCost(cost);
+			for (MeritEntryListener l : listeners){
+				final MeritEntryListener listener = l;
+				new Thread(){
+					@Override
+					public void run(){
+						listener.costChanged(e);
+					}
+				}.start();
+			}
+		}
+		finally{
+			lock.unlock();
+		}
 	}
 
 	@Override
-	public void nameChanged(MeritEntryViewEvent e) {
-		setName(e.getName());
+	public void nameChanged(MeritEntryViewEvent event) {
+		String name = event.getName();
+		final MeritEntryEvent e = new MeritEntryEvent(this, merit.getCost(), merit.getCost(), merit.getName(), name);
+		lock.lock();
+		try{
+			merit.setName(name);
+			for (MeritEntryListener l : listeners){
+				final MeritEntryListener listener = l;
+				new Thread(){
+					@Override
+					public void run(){
+						listener.nameChanged(e);
+					}
+				}.start();
+			}
+		}
+		finally{
+			lock.unlock();
+		}
 	}
 	
 	@Override

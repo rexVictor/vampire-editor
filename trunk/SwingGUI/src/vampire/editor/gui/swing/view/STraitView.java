@@ -23,6 +23,8 @@ package vampire.editor.gui.swing.view;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -44,7 +46,7 @@ import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
-public class STraitView implements TraitView, ActionListener, DocumentListener{
+public class STraitView implements TraitView, ActionListener, DocumentListener, FocusListener{
 	
 	private final JPanel panel = new JPanel();
 	
@@ -79,6 +81,7 @@ public class STraitView implements TraitView, ActionListener, DocumentListener{
 		panel.setBackground(Color.WHITE);
 		textField.addActionListener(this);
 		textField.getDocument().addDocumentListener(this);
+		textField.addFocusListener(this);
 		switch (attributes.getOrientation()){
 			case HORIZONTAL: {
 				layout.appendColumn(ColumnSpec.decode("pref:GROW(0.9)"));
@@ -182,6 +185,15 @@ public class STraitView implements TraitView, ActionListener, DocumentListener{
 
 	@Override
 	public void changedUpdate(DocumentEvent e) {
+		actionPerformed(null);
+	}
+
+	@Override
+	public void focusGained(FocusEvent arg0) {}
+
+	@Override
+	public void focusLost(FocusEvent arg0) {
+		actionPerformed(null);
 	}
 
 }
