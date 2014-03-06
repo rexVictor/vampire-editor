@@ -38,6 +38,16 @@ class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttribu
 	
 	private boolean showTitle;
 	
+	private boolean shallSort = false;
+	
+	public boolean isShallSort() {
+		return shallSort;
+	}
+
+	public void setShallSort(boolean shallSort) {
+		this.shallSort = shallSort;
+	}
+
 	private Font font;
 	
 	public MSubCategoryViewAttributes(){
@@ -89,7 +99,7 @@ class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttribu
 	
 	@Override
 	public String toString(){
-		return "expandable: "+expandable+", showTitle: "+showTitle+", font: "+font+"\n"; 
+		return "expandable: "+expandable+", shallSort: "+shallSort+", showTitle: "+showTitle+", font: "+font+"\n"; 
 	}
 	
 	@Override 
@@ -98,6 +108,7 @@ class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttribu
 		clone.expandable = expandable;
 		clone.font	=	font;
 		clone.showTitle	=	showTitle;
+		clone.shallSort = shallSort;
 		return clone;
 	}
 	
@@ -110,7 +121,8 @@ class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttribu
 		if (object == this) return true;
 		if (object instanceof MSubCategoryViewAttributes){
 			MSubCategoryViewAttributes other = (MSubCategoryViewAttributes) object;
-			return other.expandable == expandable && other.showTitle == showTitle && font.equals(other.font); 
+			return other.expandable == expandable && other.showTitle == showTitle
+					&& font.equals(other.font) && other.shallSort == shallSort; 
 		}
 		return false;
 	}
@@ -118,7 +130,7 @@ class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttribu
 	@Override
 	public int hashCode(){
 		return 11 * System.identityHashCode(expandable) + 13 * System.identityHashCode(showTitle)
-				+ 17 * System.identityHashCode(font);
+				+ 17 * System.identityHashCode(font) + 19 * System.identityHashCode(shallSort);
 	}
 	
 	

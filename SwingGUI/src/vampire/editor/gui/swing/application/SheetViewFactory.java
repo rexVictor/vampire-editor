@@ -26,6 +26,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import vampire.editor.gui.swing.view.*;
+import vampire.editor.gui.swing.view.subcategoryviews.AbstractSubCategoryView;
 import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
@@ -103,16 +104,16 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	private SCategoryView buildCategoryView(CategoryAPI category, ModelToViewModelMapperAPI mapper){
 		SCategoryView categoryView =
 				new SCategoryView((CategoryViewAttributes) mapper.getViewAttributes(category), resources, category.getName());
-		List<SSubCategoryView> subCategoryViews = buildSubCategoryViews(category, mapper);
-		for (SSubCategoryView subCategoryView : subCategoryViews){
+		List<AbstractSubCategoryView> subCategoryViews = buildSubCategoryViews(category, mapper);
+		for (AbstractSubCategoryView subCategoryView : subCategoryViews){
 			categoryView.add(subCategoryView);
 		}
 		return categoryView;
 	}
 	
-	private List<SSubCategoryView> buildSubCategoryViews(CategoryAPI subCategories,
+	private List<AbstractSubCategoryView> buildSubCategoryViews(CategoryAPI subCategories,
 				ModelToViewModelMapperAPI mapper){
-		List<SSubCategoryView> subCategoryViews = new ArrayList<>();
+		List<AbstractSubCategoryView> subCategoryViews = new ArrayList<>();
 		for (Iterator<? extends SubCategoryAPI> i = subCategories.getIterator(); i.hasNext();) {
 			SubCategoryAPI subCategory = i.next();
 			subCategoryViews.add(buildSubCategoryView(subCategory, mapper));
@@ -120,12 +121,12 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		return subCategoryViews;
 	}
 	
-	private SSubCategoryView buildSubCategoryView(SubCategoryAPI subCategory, ModelToViewModelMapperAPI mapper){
+	private AbstractSubCategoryView buildSubCategoryView(SubCategoryAPI subCategory, ModelToViewModelMapperAPI mapper){
 		SubCategoryViewAttributes atts = (SubCategoryViewAttributes) mapper.getViewAttributes(subCategory);
-		SSubCategoryView subCategoryView = new SSubCategoryView(atts, dictionary, subCategory.getName());
+		AbstractSubCategoryView subCategoryView = AbstractSubCategoryView.buildSubCategoryView(atts, dictionary, subCategory.getName());
 		List<STraitView> traitViews = buildTraitViews(subCategory, mapper);
 		for (STraitView traitView : traitViews){
-			subCategoryView.add(traitView);
+			subCategoryView.add0(traitView);
 		}
 		return subCategoryView;
 	}

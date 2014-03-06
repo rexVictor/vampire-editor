@@ -31,6 +31,7 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.RowSpec;
 
+import vampire.editor.gui.swing.view.subcategoryviews.AbstractSubCategoryView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
@@ -48,7 +49,7 @@ public class SCategoryView implements CategoryView{
 	
 	private final FormLayout layout = new FormLayout();
 	
-	private final List<SSubCategoryView> subCategoryViews = new ArrayList<>();
+	private final List<AbstractSubCategoryView> subCategoryViews = new ArrayList<>();
 	
 	private final ResourcesHolderAPI resources;
 	
@@ -112,7 +113,7 @@ public class SCategoryView implements CategoryView{
 
 	@Override
 	public void add(SubCategoryView entry) {
-		SSubCategoryView view = (SSubCategoryView) entry;
+		AbstractSubCategoryView view = (AbstractSubCategoryView) entry;
 		subCategoryViews.add(view);
 		
 		layout.appendColumn(ColumnSpec.decode("pref:GROW"));

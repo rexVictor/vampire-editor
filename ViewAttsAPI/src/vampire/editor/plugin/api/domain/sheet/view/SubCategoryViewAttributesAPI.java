@@ -50,6 +50,8 @@ public interface SubCategoryViewAttributesAPI extends DataViewAttributesAPI, Pub
 	 */
 	public Font getFont();
 	
+	public boolean isShallSort();
+	
 	/**
 	 * Creates a deep-copy of this {@link SubCategoryViewAttributesAPI}
 	 */
