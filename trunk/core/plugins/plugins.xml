@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugins>
 
+	<path name="TooltipAdderResources">
+		<segment root="resources"/>
+		<segment append="plugins"/>
+		<segment append="TooltipAdder"/>
+	</path>
+	
 	<plugin name="generationBloodpoolSynchronizer">
 		<jar class="vampire.editor.plugin.generationbloodpoolsynchronizer.application.Constructor"
 			/>
