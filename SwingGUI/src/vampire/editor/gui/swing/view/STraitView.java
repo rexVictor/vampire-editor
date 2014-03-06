@@ -28,8 +28,11 @@ import java.awt.event.FocusListener;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
+import javax.swing.ToolTipManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -48,6 +51,17 @@ import vampire.editor.plugin.api.view.sheet.ValueView;
 
 public class STraitView implements TraitView, ActionListener, DocumentListener, FocusListener{
 	
+	private class PopupListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			textField.setText(e.getActionCommand());
+		}
+		
+	}
+	
+	private final ActionListener popupListener = new PopupListener();
+	
 	private final JPanel panel = new JPanel();
 	
 	private final JTextField textField = new JTextField();
@@ -61,6 +75,8 @@ public class STraitView implements TraitView, ActionListener, DocumentListener, 
 	private final FormLayout layout = new FormLayout();
 	
 	private final List<TraitViewListener> listeners = new LinkedList<>();
+	
+	private final JPopupMenu popupMenu = new JPopupMenu();
 	
 	public STraitView(AbstractValueView valueView, DictionaryAPI dictionary,
 			TraitViewAttributes attributes) {
@@ -82,6 +98,7 @@ public class STraitView implements TraitView, ActionListener, DocumentListener, 
 		textField.addActionListener(this);
 		textField.getDocument().addDocumentListener(this);
 		textField.addFocusListener(this);
+		textField.setComponentPopupMenu(popupMenu);
 		switch (attributes.getOrientation()){
 			case HORIZONTAL: {
 				layout.appendColumn(ColumnSpec.decode("pref:GROW(0.9)"));
@@ -193,12 +210,22 @@ public class STraitView implements TraitView, ActionListener, DocumentListener, 
 
 	@Override
 	public void focusLost(FocusEvent arg0) {
-		actionPerformed(null);
+	//	actionPerformed(null);
 	}
 
 	@Override
 	public void setTooltip(String text) {
 		textField.setToolTipText(text);
+		ToolTipManager.sharedInstance().setDismissDelay(120000);
+	}
+	
+	@Override
+	public void addPopupEntry(String entry){
+		String translated = dictionary.getValue(entry);
+		JMenuItem menuItem = new JMenuItem(translated);
+		menuItem.setActionCommand(translated);
+		menuItem.addActionListener(popupListener);
+		popupMenu.add(menuItem);
 	}
 
 }

@@ -36,5 +36,7 @@ public interface MetaEntryView {
 	public void addListener(MetaEntryViewListener listener);
 	
 	public void remove(MetaEntryViewListener listener);
+	
+	public void addPopupEntry(String entry);
 
 }

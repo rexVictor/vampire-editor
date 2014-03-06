@@ -110,7 +110,9 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 
 	@Override
 	public void setPenalty(int penalty) {
-		this.penaltyField.setText("-"+penalty);
+		if (penalty != 0){
+			this.penaltyField.setText("-"+penalty);
+		}
 		this.penatly = penalty;
 	}
 	

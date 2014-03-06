@@ -209,6 +209,9 @@ public abstract class AbstractValueView implements ValueView{
 	}
 	
 	public void setToolTip(int circle, String text){
+		if (circle >= circles.size()){
+			return;
+		}
 		JLabel label = circles.get(circle);
 		if (label != null){
 			label.setToolTipText(text);
