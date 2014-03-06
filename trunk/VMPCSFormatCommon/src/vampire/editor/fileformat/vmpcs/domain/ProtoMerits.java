@@ -34,6 +34,24 @@ public class ProtoMerits implements MapId, MapIdChilds, ToRealModelTransformable
 	
 	private List<ProtoMerit> entries = new LinkedList<>();
 	
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Merits getRealMerits() {
+		return realMerits;
+	}
+
+	public void setRealMerits(Merits realMerits) {
+		this.realMerits = realMerits;
+	}
+
 	@JsonIgnore
 	private Merits realMerits;
 
@@ -89,6 +107,7 @@ public class ProtoMerits implements MapId, MapIdChilds, ToRealModelTransformable
 	public Merits toRealModel() {
 		if (realMerits == null){
 			realMerits = Constructors.constructors.createMerits();
+			realMerits.setName(name);
 			for (ProtoMerit protoMerit : entries){
 				realMerits.add(protoMerit.toRealModel());
 			}

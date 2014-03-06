@@ -39,4 +39,6 @@ public interface TraitView {
 	
 	public void setTooltip(String text);
 	
+	public void addPopupEntry(String entry);
+	
 }

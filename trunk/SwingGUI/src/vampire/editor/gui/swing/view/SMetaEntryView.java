@@ -27,7 +27,9 @@ import java.awt.event.FocusListener;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -48,6 +50,17 @@ import vampire.editor.plugin.api.view.sheet.MetaEntryView;
 
 public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentListener, FocusListener{
 	
+	private class PopupListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			content.setText(e.getActionCommand());
+		}
+		
+	}
+	
+	private final ActionListener popupListener = new PopupListener();
+	
 	private final DictionaryAPI dictionary;
 	
 	private final MetaEntryViewAttributesAPI viewAttributes;
@@ -62,6 +75,7 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 	
 	private final List<MetaEntryViewListener> listeners = new LinkedList<>();
 	
+	private final JPopupMenu popupMenu = new JPopupMenu();
 	
 
 	public SMetaEntryView(DictionaryAPI dictionary,
@@ -87,6 +101,7 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 			area.setWrapStyleWord(true);
 			content.getDocument().addDocumentListener(this);
 		}
+		content.setComponentPopupMenu(popupMenu);
 		content.setFont(viewAttributes.getContentFont());
 		content.setBorder(null);
 		content.addFocusListener(this);
@@ -192,6 +207,15 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 	@Override
 	public void focusLost(FocusEvent e) {
 		actionPerformed(null);
+	}
+	
+	@Override
+	public void addPopupEntry(String entry){
+		String translated = dictionary.getValue(entry);
+		JMenuItem menuItem = new JMenuItem(translated);
+		menuItem.setActionCommand(translated);
+		menuItem.addActionListener(popupListener);
+		popupMenu.add(menuItem);
 	}
 
 	

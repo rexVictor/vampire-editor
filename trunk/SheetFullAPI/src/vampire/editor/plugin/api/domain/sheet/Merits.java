@@ -39,4 +39,6 @@ public interface Merits extends MeritsAPI, Iterable<Merit>{
 	public void remove(Merit merit);
 	
 	public Merit get(int i);
+	
+	public void setName(String name);
 }
