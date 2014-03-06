@@ -27,5 +27,8 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttributes"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSExporter2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/TooltipAdder"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/TraitPopupEntryAdder"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MetaPopupEntryAdder"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
