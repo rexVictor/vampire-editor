@@ -41,6 +41,10 @@ public interface SubCategoryViewAttributes extends SubCategoryViewAttributesAPI{
 	public void setFont(Font font);
 
 	public SubCategoryViewAttributes clone();
+	
+	public boolean isShallSort();
+	
+	public void setShallSort(boolean shallSort);
 
 	/**
 	 * Returns true if and only if both are expandable and both show the Title and both have the same font.

@@ -40,7 +40,7 @@ import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 
-public class SSubCategoryView implements SubCategoryView{
+class SSubCategoryView implements SubCategoryView{
 	
 	private final JPanel panel = new JPanel();
 	
