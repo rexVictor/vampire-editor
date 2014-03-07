@@ -158,4 +158,9 @@ public class CategoryController implements CategoryControllerAPI {
 		return subCategoryControllers.get(i);
 	}
 
+	@Override
+	public int size() {
+		return subCategoryControllers.size();
+	}
+
 }
