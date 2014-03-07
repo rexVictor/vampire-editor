@@ -114,6 +114,11 @@ class SquaredValueView extends AbstractValueView{
 		getPanel().remove(lastSquare);
 		layout.removeColumn(constraints.gridX);
 	}
+	
+	public SquaredValueView clone(){
+		ValueViewAttributes clone = viewAtts.clone();
+		return new SquaredValueView(clone);
+	}
 
 		
 
