@@ -64,6 +64,8 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 	private final List<TraitView> traitViews = new LinkedList<>();
 	
 	protected final JPanel panel = new JPanel();
+	
+	protected int shift = 0;
 
 	public AbstractSubCategoryView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts) {
@@ -119,13 +121,20 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 	public abstract void insert(int pos, TraitView entry);
 
 	public void insert0(int pos, TraitView entry){
+		System.out.println(shift);
 		STraitView view = (STraitView) entry;
-		layout.insertRow(pos+1, RowSpec.decode("pref"));
+		if (pos + shift == layout.getRowCount()){
+			layout.appendRow(RowSpec.decode("pref"));
+		}
+		else{
+			layout.insertRow(pos+1+shift, RowSpec.decode("pref"));
+		}
+		
 		CellConstraints constraints = new CellConstraints();
 		constraints.gridHeight	=	1;
 		constraints.gridWidth	=	1;
 		constraints.gridX		=	1;
-		constraints.gridY		=	pos+1;
+		constraints.gridY		=	pos+shift+1;
 		constraints.hAlign		=	CellConstraints.FILL;
 		
 		panel.add(view.getPanel(), constraints);
