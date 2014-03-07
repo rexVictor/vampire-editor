@@ -1,0 +1,4 @@
+<project name="SheetSummary" default="default">
+	
+	<import file="../build-common.xml"/>
+</project>

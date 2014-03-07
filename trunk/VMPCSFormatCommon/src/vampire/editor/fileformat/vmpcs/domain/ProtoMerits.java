@@ -65,6 +65,7 @@ public class ProtoMerits implements MapId, MapIdChilds, ToRealModelTransformable
 		for (Merit merit : merits){
 			entries.add(new ProtoMerit(merit, integerWrap));
 		}
+		this.name = merits.getName();
 	}
 
 	public Integer getMapid() {
