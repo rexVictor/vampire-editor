@@ -9,6 +9,7 @@ class TitleSortedSubCatView extends SortedSubCatView{
 			SubCategoryViewAttributes viewAtts, String title) {
 		super(dictionary, viewAtts);
 		TitleInserter.insertTitle(panel, dictionary.getValue(title), viewAtts.getFont());
+		shift+=1;
 	}
 
 }

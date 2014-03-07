@@ -22,7 +22,7 @@
 			/>
 	</plugin>
 	
-	<dictionary key="tooltips" path="plugins" file="tooltips"/>
+	<dictionary key="tooltips" path="TooltipAdderResources" file="tooltips"/>
 	
 	<plugin name="TooltipAdder">
 		<jar class="vampire.editor.plugin.tooltipadder.Constructor"/>
