@@ -93,4 +93,9 @@ class DefaultValueView extends AbstractValueView{
 		layout.removeColumn(constraints.gridX);
 	}
 	
+	public DefaultValueView clone(){
+		ValueViewAttributes clone = viewAtts.clone();
+		return new DefaultValueView(clone);
+	}
+	
 }

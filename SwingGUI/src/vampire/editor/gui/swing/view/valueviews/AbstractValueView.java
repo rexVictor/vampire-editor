@@ -21,7 +21,6 @@
 package vampire.editor.gui.swing.view.valueviews;
 
 import java.awt.Color;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -192,17 +191,7 @@ public abstract class AbstractValueView implements ValueView{
 		}
 	}
 	
-	public AbstractValueView clone(){
-		try {
-			AbstractValueView view = this.getClass().getDeclaredConstructor(ValueViewAttributes.class).newInstance(viewAtts.clone());
-			return view;
-		} catch (InstantiationException | IllegalAccessException
-				| IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+	public abstract AbstractValueView clone();
 	
 	public ValueViewAttributes getViewAttributes(){
 		return viewAtts;

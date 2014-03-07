@@ -71,4 +71,8 @@ class SpacedValueView extends DefaultValueView{
 		super.removeCircle0();
 	}
 	
+	public SpacedValueView clone(){
+		ValueViewAttributes clone = viewAtts.clone();
+		return new SpacedValueView(clone);
+	}
 }
