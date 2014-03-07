@@ -41,4 +41,6 @@ public interface GUIPlugin {
 	public String saveFileView(String format);
 	
 	public boolean demandUserChoise(String message);
+	
+	public <V> void addPluginComponent(V component);
 }

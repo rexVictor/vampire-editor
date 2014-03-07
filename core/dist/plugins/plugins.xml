@@ -39,6 +39,11 @@
 			path="plugins" file="MetaPopupEntryAdder/MetaPopupEntryAdder.jar"/>
 	</plugin>
 	
+	<plugin name="Sheetsummary">
+		<jar class="vampire.editor.plugin.sheetsummary.application.Constructor"
+			path="plugins" file="SheetSummary/SheetSummary.jar"/>
+	</plugin>
+	
 	<!-- plugin name="freebieCalculator">
 		<jar class="vampire.editor.plugin.freebiecalculator.application.Activator"/>
 	</plugin -->

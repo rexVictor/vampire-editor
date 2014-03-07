@@ -20,6 +20,7 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.mainframe.application;
 
+import java.awt.Container;
 import java.awt.Dialog.ModalityType;
 import java.io.File;
 
@@ -152,6 +153,13 @@ public class GuiFacade implements GUIPlugin{
 		case JOptionPane.YES_OPTION: return true;
 		case JOptionPane.NO_OPTION: return false;
 		default: return false;
+		}
+	}
+
+	@Override
+	public <V> void addPluginComponent(V component) {
+		if (component instanceof Container){
+			mainFrame.addPluginComponent((Container) component);
 		}
 	}
 	

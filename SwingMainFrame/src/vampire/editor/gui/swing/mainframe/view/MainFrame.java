@@ -20,7 +20,11 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.mainframe.view;
 
+import java.awt.Container;
+
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
@@ -35,6 +39,8 @@ public class MainFrame {
 //	private final JMenuBar menuBar;
 	
 	private final JPanel contentPane = new JPanel();
+	
+	private final JDesktopPane pluginPanel = new JDesktopPane();
 	
 //	private final JTabbedPane tabs = new JTabbedPane();
 	
@@ -57,6 +63,10 @@ public class MainFrame {
 		tabPanel = new SheetViewTabPanel(manager);
 		CellConstraints constraints = new CellConstraints(2,1,1,1);
 		contentPane.add(tabPanel.getTabbedPane(), constraints);
+		constraints.gridX = 1;
+		constraints.hAlign = CellConstraints.FILL;
+		constraints.vAlign = CellConstraints.FILL;
+		contentPane.add(pluginPanel, constraints);
 	}
 	
 	public void setVisible(){
@@ -65,6 +75,18 @@ public class MainFrame {
 	
 	public void addSheetView(SheetControllerAPI controllerAPI){
 		tabPanel.add(controllerAPI);
+	}
+	
+	public JFrame getFrame(){
+		return frame;
+	}
+	
+	public void addPluginComponent(Container container){
+		JInternalFrame internalFrame = new JInternalFrame();
+		internalFrame.setContentPane(container);
+		internalFrame.pack();
+		pluginPanel.add(internalFrame);
+		internalFrame.setVisible(true);
 	}
 
 }
