@@ -22,10 +22,6 @@
 			/>
 	</plugin>
 	
-	<plugin name="freebieCalculator">
-		<jar class="vampire.editor.plugin.freebiecalculator.application.Activator"/>
-	</plugin>
-	
 	<dictionary key="tooltips" path="plugins" file="tooltips"/>
 	
 	<plugin name="TooltipAdder">
@@ -38,5 +34,9 @@
 	
 	<plugin name="MetaPopupEntryAdder">
 		<jar class="vampire.editor.plugin.metapopupentryadder.Constructor"/>
+	</plugin>
+	
+	<plugin name="Sheetsummary">
+		<jar class="vampire.editor.plugin.sheetsummary.application.Constructor"/>
 	</plugin>
 </plugins>

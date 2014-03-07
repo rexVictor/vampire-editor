@@ -30,5 +30,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/TooltipAdder"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/TraitPopupEntryAdder"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/MetaPopupEntryAdder"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SheetSummary"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
