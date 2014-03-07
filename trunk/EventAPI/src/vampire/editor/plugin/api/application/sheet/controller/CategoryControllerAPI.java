@@ -44,4 +44,6 @@ public interface CategoryControllerAPI extends Iterable<SubCategoryControllerAPI
 
 	public CategoryView getView();
 	
+	public int size();
+	
 }
