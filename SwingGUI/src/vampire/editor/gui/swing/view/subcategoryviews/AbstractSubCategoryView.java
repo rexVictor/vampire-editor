@@ -121,7 +121,6 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 	public abstract void insert(int pos, TraitView entry);
 
 	public void insert0(int pos, TraitView entry){
-		System.out.println(shift);
 		STraitView view = (STraitView) entry;
 		if (pos + shift == layout.getRowCount()){
 			layout.appendRow(RowSpec.decode("pref"));
