@@ -22,6 +22,8 @@ package vampire.editor.gui.swing.mainframe.application;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -32,6 +34,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import vampire.editor.gui.swing.mainframe.domain.ProtoMenuEntry;
+import vampire.editor.gui.swing.mainframe.persistence.ProtoMenuEntryLoader;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.plugin.Trigger;
 
@@ -64,6 +68,18 @@ public class MenuBarController {
 	public MenuBarController(DictionaryAPI dictionary) {
 		super();
 		this.dictionary = dictionary;
+		ProtoMenuEntryLoader loader = new ProtoMenuEntryLoader();
+		try {
+			List<ProtoMenuEntry> entries =  loader.load(Paths.get("resources", "guiconfig", "menubar.json"));
+			for (ProtoMenuEntry entry : entries){
+				List<List<String>> paths = entry.toStringArray();
+				for (List<String> s : paths){
+					addMenuItem(null, s.toArray(new String[]{}));
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void addMenuItem(Trigger trigger, String... strings){
@@ -78,10 +94,15 @@ public class MenuBarController {
 		}
 		JMenu toAdd = getMenu(topMenu, menuNames);
 		String itemName = menuNames.remove(0);
-		JMenuItem item = new JMenuItem(dictionary.getValue(itemName));
-		toAdd.add(item);
-		lowMenus.get(toAdd).put(itemName, item);
-		item.addActionListener(triggerToActionListener(trigger));
+		JMenuItem item = lowMenus.get(toAdd).get(itemName);
+		if (item == null){
+			item = new JMenuItem(dictionary.getValue(itemName));
+			toAdd.add(item);
+			lowMenus.get(toAdd).put(itemName, item);
+		}
+		if (trigger != null){
+			item.addActionListener(triggerToActionListener(trigger));
+		}
 	}
 	
 	private JMenu getMenu(JMenuItem topMenu, List<String> strings){

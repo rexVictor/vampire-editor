@@ -21,7 +21,14 @@
 package vampire.editor.gui.swing.mainframe.view;
 
 import java.awt.Container;
+import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
+import javax.imageio.ImageIO;
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
@@ -54,9 +61,17 @@ public class MainFrame {
 	public MainFrame(JMenuBar menuBar, ManagerAPI manager) {
 		super();
 //		this.menuBar = menuBar;
-		
+		Path iconPath = Paths.get("resources", "guiconfig", "icon.gif");
+		Image image = null;
+		try ( InputStream stream = Files.newInputStream(iconPath)){
+			image = ImageIO.read(stream);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		contentPane.setLayout(layout);
 		frame.setContentPane(contentPane);
+		frame.setIconImage(image);
+		frame.setTitle("Vampire Editor");
 		frame.setSize(1000, 700);
 		frame.setJMenuBar(menuBar);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,7 +97,8 @@ public class MainFrame {
 	}
 	
 	public void addPluginComponent(Container container){
-		JInternalFrame internalFrame = new JInternalFrame();
+		JInternalFrame internalFrame = new JInternalFrame("test", true, false, false, false);
+		internalFrame.putClientProperty("JInternalFrame.isPalette",Boolean.TRUE);
 		internalFrame.setContentPane(container);
 		internalFrame.pack();
 		pluginPanel.add(internalFrame);
