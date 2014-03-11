@@ -31,26 +31,74 @@ import vampire.editor.domain.Border;
 import vampire.editor.plugin.api.domain.sheet.ModelConstructors;
 import vampire.editor.plugin.api.domain.sheet.view.ViewAttConstructors;
 import vampire.editor.plugin.api.plugin.Activator;
-
+/**
+ * The Config class for the Vampire Editor.
+ * It contains all the information about plugins, importers etc.
+ * It is created upon start and needed for the GeneralController to be build.
+ * @author rex
+ *
+ */
 public class Config {
+	
+	/**
+	 * The path where the coreconfig.xml is.
+	 */
 	
 	private final Path ownPath;
 	
+	/**
+	 * The Map mapping the name of a plugin to the actual {@link Plugin} Objectj
+	 */
 	private final Map<String, Plugin> plugins;
 	
+	/**
+	 * The Activator Class Object for the GUI. 
+	 */
 	private final Class<Activator> guiPlugin;
+	
+	/**
+	 * The map mapping the format of an {@link Importer} to the {@link Importer} itself.
+	 */
 	
 	private final Map<String, Importer> importers;
 	
+	/**
+	 * The map mapping the format of an {@link Exporter} to the {@link Exporter} itself.
+	 */
+	
 	private final Map<String, Exporter> exporters;
 	
+	/**
+	 * The {@link ResourcesHolder}
+	 */
 	private final ResourcesHolder holder;
 	
+	/**
+	 * The Constructor Object of the ModelImplementation.
+	 */
 	private final ModelConstructors modelConstructors;
 	
+	/**
+	 * The Constructor Object of the ViewModelImplementation
+	 */
 	private final ViewAttConstructors viewAttConstructors;
 	
-
+	/**
+	 * The one and only Constructor for the {@link Config} object. All necessary Information must be provided.
+	 * It builds the {@link ResourcesHolder} object itself, with the corresponding parameters.
+	 * @param ownPath
+	 * @param plugins
+	 * @param guiPlugin
+	 * @param importers
+	 * @param exporters
+	 * @param fonts
+	 * @param borders
+	 * @param lines
+	 * @param dictionaries
+	 * @param defaultSheets
+	 * @param modelConstructors
+	 * @param viewAttConstructors
+	 */
 	public Config(Path ownPath, Map<String, Plugin> plugins,
 			Class<Activator> guiPlugin, Map<String, Importer> importers,
 			Map<String, Exporter> exporters,
@@ -71,34 +119,72 @@ public class Config {
 		
 	}
 	
+	/**
+	 * Returns the {@link ResourcesHolder}
+	 * @return the {@link ResourcesHolder}
+	 */
 	public ResourcesHolder getResourcesHolder(){
 		return holder;
 	}
 	
+	/**
+	 * Returns the path of the coreconfig.xml
+	 * @return the path of the coreconfig.xml
+	 */
 	public Path getConigFile(){
 		return ownPath;
 	}
 	
+	/**
+	 * Returns the {@link Activator} Class of the GUI.
+	 * @return Activator Class of the GUI.
+	 */
 	public Class<Activator> getGUI(){
 		return guiPlugin;
 	}
 	
+	/**
+	 * Returns a map, mapping the {@link Importer} formats to the actual {@link Importer} objects.
+	 * Note: The map returned is not a clone, due to performing reasons. Any modifications in it, can result in
+	 * unexpected behavior. It should only be read.
+	 * @return {@link Importer}s as Map
+	 */
 	public Map<String, Importer> getImporters(){
 		return importers;
 	}
 	
+	/**
+	 * Returns a map, mapping the {@link Exporter} formats to the actual {@link Exporter} objects.
+	 * Note: The map returned is not a clone, due to performing reasons. Any modifications in it, can result in
+	 * unexpected behavior. It should only be read.
+	 * @return {@link Exporter}s as Map
+	 */
 	public Map<String, Exporter> getExporters(){
 		return exporters;
 	}
 	
+	/**
+	 * Returns a map, mapping the {@link Plugin} names to the actual {@link Plugin} objects.
+	 * Note: The map returned is not a clone, due to performing reasons. Any modifications in it, can result in
+	 * unexpected behavior. It should only be read.
+	 * @return {@link Plugin}s as Map
+	 */
 	public Map<String, Plugin> getPlugins(){
 		return plugins;
 	}
 
+	/**
+	 * Returns the factory object for the model implementation.
+	 * @return constructor object of the model implementation
+	 */
 	public ModelConstructors getModelConstructors() {
 		return modelConstructors;
 	}
 
+	/**
+	 * Returns the factory object for the view model implementation.
+	 * @return constructor object of the view model implementation
+	 */
 	public ViewAttConstructors getViewAttConstructors() {
 		return viewAttConstructors;
 	}
