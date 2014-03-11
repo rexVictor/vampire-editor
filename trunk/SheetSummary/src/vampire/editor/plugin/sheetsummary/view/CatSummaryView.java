@@ -1,6 +1,5 @@
 package vampire.editor.plugin.sheetsummary.view;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +15,6 @@ public class CatSummaryView {
 	
 	public CatSummaryView(SubCatSummaryView... subCatSummaryViews){
 		this.subCatSummaryViews = Arrays.asList(subCatSummaryViews);
-		panel.setBackground(Color.WHITE);
 		panel.setLayout(new GridLayout());
 		JLabel paranthesisLeft = new JLabel("(");
 		panel.add(paranthesisLeft);

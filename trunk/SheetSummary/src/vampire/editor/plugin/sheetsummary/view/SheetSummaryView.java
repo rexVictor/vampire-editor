@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import vampire.editor.plugin.api.domain.DictionaryAPI;
+
 public class SheetSummaryView {
 	
 	private final JPanel panel = new JPanel();
@@ -21,7 +23,7 @@ public class SheetSummaryView {
 
 	public SheetSummaryView(CatSummaryView attributes,
 			CatSummaryView abilities, SubCatSummaryView virtues,
-			SubCatSummaryView disciplines, SubCatSummaryView backgrounds) {
+			SubCatSummaryView disciplines, SubCatSummaryView backgrounds, DictionaryAPI dictionary) {
 		super();
 		this.attributes = attributes;
 		this.abilities = abilities;
@@ -29,15 +31,15 @@ public class SheetSummaryView {
 		this.disciplines = disciplines;
 		this.backgrounds = backgrounds;
 		panel.setLayout(new GridLayout(0, 2));
-		panel.add(new JLabel("attributes"));
+		panel.add(new JLabel(dictionary.getValue("attributes")));
 		panel.add(attributes.getPanel());
-		panel.add(new JLabel("abilities"));
+		panel.add(new JLabel(dictionary.getValue("abilities")));
 		panel.add(abilities.getPanel());
-		panel.add(new JLabel("virtues"));
+		panel.add(new JLabel(dictionary.getValue("virtues")));
 		panel.add(virtues.getComponent());
-		panel.add(new JLabel("disciplines"));
+		panel.add(new JLabel(dictionary.getValue("disciplines")));
 		panel.add(disciplines.getComponent());
-		panel.add(new JLabel("backgrounds"));
+		panel.add(new JLabel(dictionary.getValue("backgrounds")));
 		panel.add(backgrounds.getComponent());
 	}
 
