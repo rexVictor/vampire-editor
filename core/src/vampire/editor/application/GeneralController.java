@@ -25,6 +25,10 @@ public class GeneralController implements GeneralControllerAPI{
 	private final Manager manager;
 	
 	
+	public Manager getManager() {
+		return manager;
+	}
+
 	public GeneralController(Config config) {
 		super();
 		this.manager = new Manager(config, this);
