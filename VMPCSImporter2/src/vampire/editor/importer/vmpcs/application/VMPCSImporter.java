@@ -107,10 +107,16 @@ public class VMPCSImporter implements SheetImporter{
 				if (!Files.exists(version)){
 					return false;
 				}
-				ResourceBundle bundle = ResourceBundle.getBundle("version", Locale.getDefault(), classLoader);
-				String versionString = bundle.getString("version");
-				ResourceBundle.clearCache(classLoader);
-				return "1.0.0.0".equals(versionString);
+				try{
+					ResourceBundle bundle = ResourceBundle.getBundle("version", Locale.getDefault(), classLoader);
+					String versionString = bundle.getString("version");
+					ResourceBundle.clearCache(classLoader);
+					return "1.0.0.0".equals(versionString);
+				}
+				catch (Throwable e){
+					return true;
+				}
+				
 			}
 			catch (IOException exception){
 				return false;
