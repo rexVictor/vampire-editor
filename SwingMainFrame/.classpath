@@ -10,5 +10,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry kind="lib" path="libs/jgoodies-common-1.2.0.jar"/>
 	<classpathentry kind="lib" path="libs/jgoodies-forms-1.4.1.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/SwingMainFrameLoader"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

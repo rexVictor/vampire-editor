@@ -20,6 +20,18 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.mainframe.application;
 
+import java.awt.Toolkit;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Properties;
+
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import vampire.editor.gui.swing.domain.Images;
 import vampire.editor.plugin.api.plugin.Activator;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
@@ -28,10 +40,40 @@ public class GuiActivator implements Activator{
 
 	@Override
 	public void setManager(ManagerAPI manager) {
+		try{
+			Toolkit xToolkit = Toolkit.getDefaultToolkit();
+			Field awtAppClassNameField = xToolkit.getClass().getDeclaredField("awtAppClassName");
+			awtAppClassNameField.setAccessible(true);
+			awtAppClassNameField.set(xToolkit, "Vampire Editor");
+		}
+		catch (Throwable e){
+			e.printStackTrace();
+		}
+		
+		
 		try {
 			Class.forName(Images.class.getName());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Path config = Paths.get("resources", "guiconfig", "config.properties");
+		try {
+			InputStream inputStream = Files.newInputStream(config);
+			Properties properties = new Properties();
+			properties.load(inputStream);
+			String laf = properties.getProperty("laf");
+			if (laf != null){
+				if ("auto".equals(laf)){
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				}
+				else {
+					UIManager.setLookAndFeel(laf);
+				}
+			}
+		} catch (IOException e){
+			e.printStackTrace();
+		} catch ( ClassNotFoundException | InstantiationException |		
+				IllegalAccessException | UnsupportedLookAndFeelException e) {
 			e.printStackTrace();
 		}
 		GuiFacade facade = new GuiFacade(manager);
