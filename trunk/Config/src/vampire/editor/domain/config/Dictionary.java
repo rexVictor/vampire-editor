@@ -29,8 +29,11 @@ import java.util.Set;
 
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 
-
-
+/**
+ * The implementaton of the {@link DictionaryAPI} interface.
+ * @author rex
+ *
+ */
 public class Dictionary implements DictionaryAPI {
 	
 	private final Map<String, String> valueToKey = new HashMap<>();

@@ -55,12 +55,4 @@ public class Plugin {
 		return key;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-
 }
