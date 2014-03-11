@@ -21,7 +21,7 @@ class TitleInserter {
 		constraints.gridWidth		=	1;
 		constraints.gridX			=	1;
 		constraints.gridY			=	1;
-		constraints.hAlign			=	CellConstraints.CENTER;
+		constraints.hAlign			=	CellConstraints.FILL;
 		
 		JTextField textField = new JTextField();
 		textField.setFont(font);
@@ -29,7 +29,8 @@ class TitleInserter {
 		textField.setEditable(false);
 		textField.setFocusable(false);
 		textField.setBorder(null);
-		textField.setText(title);		
+		textField.setText(title);
+		textField.setHorizontalAlignment(JTextField.CENTER);
 		
 		panel.add(textField, constraints);
 	}
