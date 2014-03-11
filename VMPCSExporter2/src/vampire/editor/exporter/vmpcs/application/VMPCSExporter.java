@@ -43,6 +43,7 @@ public class VMPCSExporter {
 		generator.generateLeafs(viewAttIdMap, root);
 		generateVersionFile(root);
 		fs.close();
+		document.setPath(path);
 	}
 	
 	private void generateVersionFile(Path root) throws IOException{

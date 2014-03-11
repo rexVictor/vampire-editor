@@ -15,7 +15,6 @@ import vampire.editor.domain.config.Importer;
 import vampire.editor.domain.config.Plugin;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
-import vampire.editor.plugin.api.domain.sheet.VampireDocument;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.plugin.api.exporter.DocumentExportException;
 import vampire.editor.plugin.api.exporter.SheetExporter;
@@ -262,14 +261,5 @@ public class Manager implements ManagerAPI{
 		gui.addItemToMenuBar(saveTrigger, "file", "saveas", exporter.getFormat());
 		sheetExporters.put(exporter.getFormat(), exporter);
 	}
-
-	@Override
-	public void documentSaved(Path path, VampireDocumentAPI document) {
-		if (document instanceof VampireDocument){
-			((VampireDocument) document).setPath(path);
-		}
-	}
-	
-	
 
 }
