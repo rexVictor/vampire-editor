@@ -9,15 +9,15 @@ import java.util.List;
 import java.util.Map;
 
 import vampire.editor.application.GeneralController;
-
 import vampire.editor.domain.config.Config;
 import vampire.editor.domain.config.Exporter;
 import vampire.editor.domain.config.Importer;
 import vampire.editor.domain.config.Plugin;
-
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
+import vampire.editor.plugin.api.domain.sheet.VampireDocument;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
+import vampire.editor.plugin.api.exporter.DocumentExportException;
 import vampire.editor.plugin.api.exporter.SheetExporter;
 import vampire.editor.plugin.api.importer.DocumentImportException;
 import vampire.editor.plugin.api.importer.SheetImporter;
@@ -46,6 +46,8 @@ public class Manager implements ManagerAPI{
 	private SheetImporter defaultImporter;
 	
 	private final List<DocumentListener> documentListeners = new LinkedList<>();
+	
+	private final Map<String, SheetExporter> sheetExporters = new HashMap<>();
 	
 	public Manager(Config config, GeneralController controller){
 		this.config = config;
@@ -108,6 +110,43 @@ public class Manager implements ManagerAPI{
 			this.gui.addItemToMenuBar(new NewTrigger(defaultSheets.get(s), this), "file", "new", s);
 		}
 		
+		/* Make Save Function */
+		
+		Trigger saveTrigger = new Trigger() {
+			
+			@Override
+			public void leftClicked() {
+				SheetControllerAPI sheetController = controller.getCurrentController();
+				if (sheetController == null){
+					System.out.println("SheetController is null");
+					return;
+				}
+				VampireDocumentAPI document = sheetController.getDocument();
+				Path path = document.getPath();
+				int pathNameCount = path.getNameCount();
+				if (pathNameCount > 3){
+					Path containingFolder = path.getName(pathNameCount - 2);
+					Path inFolder = path.getName(pathNameCount - 3);
+					if ("defaultsheets".equals(containingFolder.toString()) && "resources".equals(inFolder.toString())){
+						System.out.println("Defaultsheets cannot be saved");
+						return;
+					}
+				}
+				String fileName = path.getFileName().toString();
+				for (String s : sheetExporters.keySet()){
+					if (fileName.endsWith(s)){
+						SheetExporter exporter = sheetExporters.get(s);
+						try {
+							exporter.export(document, path);
+						} catch (DocumentExportException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+		};
+		
+		this.gui.addItemToMenuBar(saveTrigger, "file", "save");
 	}
 	
 	public void offer(Facade facade){
@@ -220,7 +259,15 @@ public class Manager implements ManagerAPI{
 	public void addExporter(SheetExporter exporter) {
 		Trigger saveTrigger = new SaveTrigger(controller, exporter, gui,
 				config.getResourcesHolder().getDictionary("general"));
-		gui.addItemToMenuBar(saveTrigger, "file", "save", exporter.getFormat());
+		gui.addItemToMenuBar(saveTrigger, "file", "saveas", exporter.getFormat());
+		sheetExporters.put(exporter.getFormat(), exporter);
+	}
+
+	@Override
+	public void documentSaved(Path path, VampireDocumentAPI document) {
+		if (document instanceof VampireDocument){
+			((VampireDocument) document).setPath(path);
+		}
 	}
 	
 	

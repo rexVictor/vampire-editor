@@ -1,0 +1,43 @@
+[
+	{
+		"name"		:	"file"
+		,"entries"	:	[
+			{
+				"name"	:	"new"
+				,"entries"	:	[
+					{
+						"name"	:	"masquerade"
+					}
+				]
+			}
+			,{
+				"name"	:	"open"
+			}
+			,{
+				"name"	:	"save"
+			}
+			,{
+				"name"		:	"saveas"
+				,"entries"	:	[
+					{
+						"name"	:	"vmpcs"
+					}
+				]
+			}
+			,{
+				"name"		:	"print"
+			}
+		]
+	}
+	,{
+		"name"		:	"help"
+		,"entries"	:	[
+			{
+				"name"	:	"about"
+			}
+			,{
+				"name"	:	"copyright"
+			}
+		]
+	}
+]
