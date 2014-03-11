@@ -11,7 +11,7 @@ public class Constructor implements Activator{
 
 	@Override
 	public void setManager(ManagerAPI manager) {
-		ViewFactory factory = new ViewFactory();
+		ViewFactory factory = new ViewFactory(manager.getResourcesHolder().getDictionary("sheet"));
 		SheetSummaryView view = factory.buildSheetSummaryView();
 		PluginController controller = new PluginController(view);
 		manager.addDocumentListener(controller);
