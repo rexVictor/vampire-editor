@@ -22,14 +22,11 @@ package vampire.editor.importer.vmpcs.application;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.Properties;
 import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -80,7 +77,19 @@ public class ModelImporter {
 	
 	public ModelToViewMap buildProtoIdMap(Path path) throws JsonParseException, JsonMappingException, IOException{
 		ModelToViewMap map = new ModelToViewMap();
-		try(URLClassLoader classLoader = new URLClassLoader(new URL[]{path.toUri().toURL()})){
+		Properties properties = new Properties();
+		try(InputStream stream = Files.newInputStream(path.resolve("modeltoviewmap.properties"))){
+			properties.load(stream);
+			Set<Object> keys = properties.keySet();
+			for (Object o : keys){
+				String s = (String) o;
+				Integer mapid = Integer.parseInt(s);
+				String value = properties.getProperty(s);
+				Integer id = Integer.parseInt(value);
+				map.put(mapid, id);
+			}
+		}
+	/*	try(URLClassLoader classLoader = new URLClassLoader(new URL[]{path.toUri().toURL()})){
 			ResourceBundle bundle = ResourceBundle.getBundle("modeltoviewmap", Locale.getDefault(), classLoader);
 			Set<String> keys = bundle.keySet();
 			for (String s : keys){
@@ -90,7 +99,7 @@ public class ModelImporter {
 				map.put(mapid, id);
 			}
 			ResourceBundle.clearCache(classLoader);
-		}
+		}*/
 		return map;
 	}
 	
