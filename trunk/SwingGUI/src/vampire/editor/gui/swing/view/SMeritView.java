@@ -20,17 +20,15 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view;
 
-import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.MeritViewAttributesAPI;
@@ -39,54 +37,27 @@ import vampire.editor.plugin.api.view.sheet.MeritView;
 
 public class SMeritView implements MeritView{
 	
-	private final JPanel panel = new JPanel();
-	
-	private final FormLayout layout = new FormLayout("5px, pref:GROW(0.1), 5px, pref:GROW(0.9), 5px", "pref");
+	private final JPanel panel = Helper.createPanel();
 	
 	private final List<MeritEntryView> entries = new LinkedList<>();
 	
+	private final JPanel entriesPanel = Helper.createPanel();
+	
 	public SMeritView(String title, DictionaryAPI dictionary, MeritViewAttributesAPI viewAtts){
-		panel.setBackground(Color.WHITE);
-		panel.setLayout(layout);
-		JTextField textField = new JTextField();
-		textField.setBorder(null);
-		textField.setEditable(false);
-		textField.setText(dictionary.getValue(title));
-		textField.setFont(viewAtts.getFont());
-		textField.setBackground(Color.WHITE);
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight 	= 	1;
-		constraints.gridWidth	=	3;
-		constraints.gridX		=	2;
-		constraints.gridY		=	1;
-		constraints.hAlign		=	CellConstraints.CENTER;
-		
-		panel.add(textField, constraints);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		JTextField textField = Helper.getTitle(dictionary.getValue(title), viewAtts.getFont());
+		panel.add(textField);
+		panel.add(entriesPanel);
+		entriesPanel.setLayout(new GridLayout(0, 1));
+		panel.add(Box.createGlue());
 	}
 	
-
 	@Override
 	public void addMeritEntryView(MeritEntryView view) {
 		if (view instanceof SMeritEntryView){
 			entries.add(view);
 			SMeritEntryView entryView = (SMeritEntryView) view;
-			layout.appendRow(RowSpec.decode("pref"));
-			
-			CellConstraints constraints = new CellConstraints();
-			constraints.gridHeight	=	1;
-			constraints.gridWidth	=	1;
-			constraints.gridX		=	2;
-			constraints.gridY		=	layout.getRowCount();
-			constraints.hAlign		=	CellConstraints.FILL;
-			
-			panel.add(entryView.getCostField(), constraints);
-			
-			constraints.gridX	=	4;
-			
-			constraints.hAlign	=	CellConstraints.FILL;
-			
-			panel.add(entryView.getTextField(), constraints);
+			entriesPanel.add(entryView.getPanel());
 			panel.revalidate();
 			panel.repaint();
 		}
@@ -102,15 +73,11 @@ public class SMeritView implements MeritView{
 		return Collections.unmodifiableList(entries);
 	}
 
-
 	@Override
 	public void removeMeritEntryView(MeritEntryView view) {
 		if (view instanceof SMeritEntryView){
 			SMeritEntryView v = (SMeritEntryView) view;
-			CellConstraints constraints = layout.getConstraints(v.getCostField());
-			panel.remove(v.getCostField());
-			panel.remove(v.getTextField());
-			layout.removeRow(constraints.gridY);
+			entriesPanel.remove(v.getPanel());
 			panel.repaint();
 			panel.revalidate();
 		}

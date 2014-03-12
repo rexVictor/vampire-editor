@@ -20,14 +20,11 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -46,17 +43,15 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 	
 	private final JLabel box = new JLabel();
 	
-	private final JTextField penaltyField = new JTextField();
+	private final JTextField penaltyField = Helper.createNumberOnlyTextField(2);
 	
 	private final List<HealthEntryViewListener> listeners = new LinkedList<>();
-	
-	private final Lock lock = new ReentrantLock();
 	
 	private int penalty;
 	
 	private DamageType damageType;
 	
-	private JPanel panel = new JPanel();
+	private JPanel panel = Helper.createPanel();
 	
 	private Icon emptyBox;
 	
@@ -70,12 +65,10 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 		emptyBox = new ImageIcon(Images.getImage("square_empty", size, size));
 		slashedBox = new ImageIcon(Images.getImage("square_slashed", size, size));
 		crossedBox = new ImageIcon(Images.getImage("square_crossed", size, size));
-		penaltyField.setBorder(null);
 		
 		box.addMouseListener(this);
 		penaltyField.setFont(viewAtts.getFont());
 		
-		panel.setBackground(Color.WHITE);
 		panel.setLayout(new GridLayout(2, 1));
 		panel.add(box);
 		panel.add(penaltyField);
@@ -83,13 +76,7 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 
 	@Override
 	public void addListener(HealthEntryViewListener listener) {
-		lock.lock();
-		try{
-			listeners.add(listener);
-		}
-		finally{
-			lock.unlock();
-		}
+		listeners.add(listener);
 	}
 
 	@Override
@@ -108,44 +95,28 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 	private void setDamageType0(DamageType damageType){
 		setDamageType(damageType);
 		SHeathEntryViewEvent event = makeEvent();
-		lock.lock();
-		try{
-			for (HealthEntryViewListener l : listeners){
-				l.damageTypeChanged(event);
-			}
-		}
-		finally{
-			lock.unlock();
+		for (HealthEntryViewListener l : listeners){
+			l.damageTypeChanged(event);
 		}
 	}
 
 	@Override
 	public void setPenalty(int penalty) {
-		this.penaltyField.setText("-"+penalty);
+		if (penalty == 0){
+			this.penaltyField.setText("");
+		}
+		else{
+			this.penaltyField.setText("-"+penalty);
+		}
 		this.penalty = penalty;
 	}
-	
-	/*private void setPenalty0(int penalty){
-		setPenalty(penalty);
-		SHeathEntryViewEvent event = makeEvent();
-		lock.lock();
-		try{
-			for (HealthViewEntryListener l : listeners){
-				l.penaltyChanged(event);
-			}
-		}
-		finally{
-			lock.unlock();
-		}
-	}*/
 	
 	private SHeathEntryViewEvent makeEvent(){
 		return new SHeathEntryViewEvent(null, penalty, damageType);
 	}
 
 	@Override
-	public void setDescription(String description) {
-	}
+	public void setDescription(String description) {}
 
 	
 	@Override

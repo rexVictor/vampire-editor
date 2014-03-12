@@ -2,9 +2,12 @@ package vampire.editor.gui.swing.view.subcategoryviews;
 
 import java.awt.Color;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import vampire.editor.gui.swing.view.Helper;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 
@@ -17,8 +20,10 @@ class TitleSortedSubCatView extends SortedSubCatView{
 		super(dictionary, viewAtts);
 		titledPanel.setBackground(Color.WHITE);
 		titledPanel.setLayout(new BoxLayout(titledPanel, BoxLayout.Y_AXIS));
-		TitleInserter.insertTitle(titledPanel, dictionary.getValue(title), viewAtts.getFont());
-		titledPanel.add(panel, 1);
+		JTextField field = Helper.getTitle(dictionary.getValue(title), viewAtts.getFont());
+		titledPanel.add(field);
+		titledPanel.add(panel);
+		titledPanel.add(Box.createGlue());
 	}
 	
 	@Override

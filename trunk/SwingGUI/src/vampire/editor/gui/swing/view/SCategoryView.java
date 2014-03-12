@@ -21,20 +21,15 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
-
 import vampire.editor.gui.swing.view.subcategoryviews.AbstractSubCategoryView;
-import vampire.editor.plugin.api.domain.DictionaryAPI;
-import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
-import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
@@ -43,68 +38,28 @@ public class SCategoryView implements CategoryView{
 	
 	private final JPanel panel = new JPanel();
 	
-	private final CategoryViewAttributes viewAtts;
-	
-	private final DictionaryAPI dictionary;
-	
-	private final FormLayout layout = new FormLayout();
-	
 	private final List<AbstractSubCategoryView> subCategoryViews = new ArrayList<>();
 	
-	private final ResourcesHolderAPI resources;
+	private final JPanel subCategoriesPanel = new JPanel();
 	
-	private LineImage title;
-	
-	
-
-	public SCategoryView(CategoryViewAttributes viewAtts,
-			ResourcesHolderAPI resources, String title) {
+	public SCategoryView() {
 		super();
-		this.viewAtts = viewAtts;
-		this.dictionary = resources.getDictionary("sheet");
-		this.resources = resources;
-		initialize(title);
+		initialize();
 	}
 	
-	private void initialize(String titleName){
-		panel.setLayout(layout);
+	private void initializeSubcategoriesPanel(){
+		subCategoriesPanel.setLayout(new GridLayout(1, 0, 10, 0));
+		subCategoriesPanel.setBackground(Color.WHITE);
+		subCategoriesPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+	}
+	
+	private void initialize(){
+		initializeSubcategoriesPanel();
+		panel.add(subCategoriesPanel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setBackground(Color.WHITE);
-		layout.appendColumn(ColumnSpec.decode("10px"));
-		if (viewAtts.isShowLine()){
-			title = new LineImage(resources.getLine(viewAtts.getImage()));
-			title.setTitle(dictionary.getValue(titleName));
-			title.setTitleFont(viewAtts.getFont());
-			layout.appendRow(RowSpec.decode("pref"));
-			
-			
-			CellConstraints constraints = new CellConstraints();
-			constraints.gridX		=	1;
-			constraints.gridY		=	1;
-			constraints.gridHeight	=	1;
-			constraints.gridWidth	=	1;
-			constraints.vAlign		=	CellConstraints.TOP;
-			
-			panel.add(title.getPanel(), constraints);			
-			
-		}
-		layout.appendRow(RowSpec.decode("pref"));
 	}
 	
-	private void refreshTitle(){
-		if (true) {
-			JPanel panel = title.getPanel();
-			CellConstraints constraints = layout.getConstraints(panel);
-			this.panel.remove(panel);
-			constraints.gridWidth = layout.getColumnCount();
-			layout.removeRow(constraints.gridY);
-			layout.insertRow(constraints.gridY, RowSpec.decode(panel.getHeight()+"px"));
-			this.panel.add(panel, constraints);
-			this.panel.invalidate();
-			this.panel.revalidate();
-			title.getPanel().repaint();
-			
-		}
-	}
 
 	@Override
 	public List<? extends SubCategoryView> getEntries() {
@@ -115,23 +70,9 @@ public class SCategoryView implements CategoryView{
 	public void add(SubCategoryView entry) {
 		AbstractSubCategoryView view = (AbstractSubCategoryView) entry;
 		subCategoryViews.add(view);
-		
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-		
-		layout.addGroupedColumn(layout.getColumnCount());
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	layout.getColumnCount();
-		constraints.gridY		=	layout.getRowCount();
-		constraints.hAlign		=	CellConstraints.FILL;
-		constraints.vAlign		=	CellConstraints.TOP;
-		
-		panel.add(view.getPanel(), constraints);
-		layout.appendColumn(ColumnSpec.decode("10px"));
-		
-		refreshTitle();
+		view.getPanel().setAlignmentX(JPanel.TOP_ALIGNMENT);
+		view.getPanel().setAlignmentY(JPanel.TOP_ALIGNMENT);
+		subCategoriesPanel.add(view.getPanel());
 		
 	}
 
@@ -156,6 +97,10 @@ public class SCategoryView implements CategoryView{
 	public void removeListener(DataViewListener<SubCategoryView> listener) {
 		throw new UnsupportedOperationException();
 		
+	}
+	
+	public void addLine(LineImage lineImage){
+		panel.add(lineImage, 0);
 	}
 
 	public JPanel getPanel() {

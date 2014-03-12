@@ -22,14 +22,11 @@ package vampire.editor.gui.swing.view.valueviews;
 
 import java.awt.Color;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 
 import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
-
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
 
 /**
  * The ValueView for noSpace, dynamic and noSquares
@@ -38,15 +35,13 @@ import com.jgoodies.forms.layout.RowSpec;
  */
 class DefaultValueView extends AbstractValueView{
 	
-	protected final FormLayout layout = new FormLayout();
-	
 	/**
 	 * The ValueView for noSpace, dynamic and noSquares
 	 */
 	DefaultValueView(ValueViewAttributes viewAtts) {
 		super(viewAtts);
-		layout.appendRow(RowSpec.decode("pref"));
-		getPanel().setLayout(layout);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		panel.add(Box.createGlue());
 		for (int i = 0; i < viewAtts.getCircles(); i++){
 			addCircle0();
 		}
@@ -54,7 +49,6 @@ class DefaultValueView extends AbstractValueView{
 
 	@Override
 	protected void addCircle0() {
-		layout.appendColumn(ColumnSpec.decode("min"));
 		JLabel label = new JLabel();
 		label.setIcon(circleWhite);
 		label.setOpaque(true);
@@ -63,13 +57,8 @@ class DefaultValueView extends AbstractValueView{
 		label.addMouseListener(new StrgTempClickListener(this, circles.size()));
 		circles.add(label);
 		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	layout.getColumnCount();
-		constraints.gridY		=	1;
-		
-		getPanel().add(label, constraints);
+		panel.add(label);
+		panel.add(Box.createGlue());
 	}
 
 	@Override
@@ -88,9 +77,8 @@ class DefaultValueView extends AbstractValueView{
 	protected void removeCircle0() {
 		int lastIndex = circles.size()-1;
 		JLabel last = circles.remove(lastIndex);
-		CellConstraints constraints = layout.getConstraints(last);
+		getPanel().remove(panel.getComponentCount()-1);
 		getPanel().remove(last);
-		layout.removeColumn(constraints.gridX);
 	}
 	
 	public DefaultValueView clone(){

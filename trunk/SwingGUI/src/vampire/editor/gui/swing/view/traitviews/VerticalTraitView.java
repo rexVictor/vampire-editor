@@ -14,6 +14,8 @@ public class VerticalTraitView extends AbstractTraitView{
 		super(valueView, viewAtts, dictionary);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(textField);
+		textField.setAlignmentX(JTextField.CENTER_ALIGNMENT);
+		valueView.getPanel().setAlignmentX(JTextField.CENTER_ALIGNMENT);
 		panel.add(valueView.getPanel());
 	}
 	

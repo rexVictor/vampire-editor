@@ -26,8 +26,6 @@ import javax.swing.JLabel;
 
 import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
 
 /**
  * The ValueView for showSpace, dynamic and no Squares
@@ -49,14 +47,7 @@ class SpacedValueView extends DefaultValueView{
 	@Override
 	protected void addCircle0(){
 		if (circles.size() == 5){
-			layout.appendColumn(ColumnSpec.decode("pref"));
-			CellConstraints constraints = new CellConstraints();
-			constraints.gridHeight	=	1;
-			constraints.gridWidth	=	1;
-			constraints.gridX		=	layout.getColumnCount();
-			constraints.gridY		=	1;
-			
-			getPanel().add(space, constraints);
+			getPanel().add(space);
 		}
 		super.addCircle0();
 	}
@@ -64,9 +55,7 @@ class SpacedValueView extends DefaultValueView{
 	@Override
 	public void removeCircle0(){
 		if (circles.size()==6){
-			CellConstraints constraints = layout.getConstraints(space);
 			getPanel().remove(space);
-			layout.removeColumn(constraints.gridX);
 		}
 		super.removeCircle0();
 	}

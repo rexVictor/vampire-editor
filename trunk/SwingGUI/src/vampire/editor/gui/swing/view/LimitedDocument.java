@@ -1,4 +1,4 @@
-package vampire.editor.gui.swing.view.traitviews;
+package vampire.editor.gui.swing.view;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
