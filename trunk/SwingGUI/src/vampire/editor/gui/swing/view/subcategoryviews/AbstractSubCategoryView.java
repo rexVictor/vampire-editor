@@ -1,17 +1,13 @@
 package vampire.editor.gui.swing.view.subcategoryviews;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JPanel;
 
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
-
-import vampire.editor.gui.swing.view.STraitView;
+import vampire.editor.gui.swing.view.traitviews.AbstractTraitView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.plugin.api.view.events.DataViewListener;
@@ -53,8 +49,6 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 		else return new DefaultSubCatView(dictionary, viewAtts);
 	}
 	
-	protected final FormLayout layout = new FormLayout();
-	
 	protected final DictionaryAPI dictionary;
 	
 	protected final SubCategoryViewAttributes viewAtts;
@@ -65,16 +59,13 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 	
 	protected final JPanel panel = new JPanel();
 	
-	protected int shift = 0;
-
 	public AbstractSubCategoryView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts) {
 		super();
 		this.dictionary = dictionary;
 		this.viewAtts = viewAtts;
 		panel.setBackground(Color.WHITE);
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-		this.panel.setLayout(layout);
+		this.panel.setLayout(new GridLayout(0, 1));
 		
 	}
 
@@ -87,16 +78,9 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 	public abstract void add(TraitView entry);
 	
 	public void add0(TraitView entry){
-		STraitView view = (STraitView) entry;
-		layout.appendRow(RowSpec.decode("pref"));
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	1;
-		constraints.gridY		=	layout.getRowCount();
-		constraints.hAlign		=	CellConstraints.FILL;
+		AbstractTraitView view = (AbstractTraitView) entry;
 		
-		panel.add(view.getPanel(), constraints);
+		panel.add(view.getPanel());
 		traitViews.add(view);
 		panel.revalidate();
 		panel.repaint();
@@ -106,11 +90,9 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 	public abstract void remove(TraitView entry);
 	
 	public void remove0(TraitView entry){
-		if (entry instanceof STraitView){
-			STraitView view = (STraitView) entry;
-			CellConstraints constraints = layout.getConstraints(view.getPanel());
+		if (entry instanceof AbstractTraitView){
+			AbstractTraitView view = (AbstractTraitView) entry;
 			panel.remove(view.getPanel());
-			layout.removeRow(constraints.gridY);
 			traitViews.remove(view);
 			panel.revalidate();
 			panel.repaint();
@@ -121,22 +103,8 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 	public abstract void insert(int pos, TraitView entry);
 
 	public void insert0(int pos, TraitView entry){
-		STraitView view = (STraitView) entry;
-		if (pos + shift == layout.getRowCount()){
-			layout.appendRow(RowSpec.decode("pref"));
-		}
-		else{
-			layout.insertRow(pos+1+shift, RowSpec.decode("pref"));
-		}
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	1;
-		constraints.gridY		=	pos+shift+1;
-		constraints.hAlign		=	CellConstraints.FILL;
-		
-		panel.add(view.getPanel(), constraints);
+		AbstractTraitView view = (AbstractTraitView) entry;
+		panel.add(view.getPanel(), pos);
 		traitViews.add(view);
 		panel.revalidate();
 		panel.repaint();

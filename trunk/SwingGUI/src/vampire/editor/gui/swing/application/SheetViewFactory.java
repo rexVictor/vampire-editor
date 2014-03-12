@@ -27,6 +27,7 @@ import java.util.List;
 
 import vampire.editor.gui.swing.view.*;
 import vampire.editor.gui.swing.view.subcategoryviews.AbstractSubCategoryView;
+import vampire.editor.gui.swing.view.traitviews.AbstractTraitView;
 import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
@@ -124,15 +125,15 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	private AbstractSubCategoryView buildSubCategoryView(SubCategoryAPI subCategory, ModelToViewModelMapperAPI mapper){
 		SubCategoryViewAttributes atts = (SubCategoryViewAttributes) mapper.getViewAttributes(subCategory);
 		AbstractSubCategoryView subCategoryView = AbstractSubCategoryView.buildSubCategoryView(atts, dictionary, subCategory.getName());
-		List<STraitView> traitViews = buildTraitViews(subCategory, mapper);
-		for (STraitView traitView : traitViews){
+		List<AbstractTraitView> traitViews = buildTraitViews(subCategory, mapper);
+		for (AbstractTraitView traitView : traitViews){
 			subCategoryView.add0(traitView);
 		}
 		return subCategoryView;
 	}
 	
-	private List<STraitView> buildTraitViews(SubCategoryAPI traits, ModelToViewModelMapperAPI mapper){
-		List<STraitView> traitViews = new ArrayList<>();
+	private List<AbstractTraitView> buildTraitViews(SubCategoryAPI traits, ModelToViewModelMapperAPI mapper){
+		List<AbstractTraitView> traitViews = new ArrayList<>();
 		for (Iterator<? extends TraitAPI> i = traits.getIterator(); i.hasNext();) {
 			TraitAPI trait = i.next();
 			traitViews.add(buildTraitView(trait, mapper));
@@ -140,9 +141,10 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		return traitViews;
 	}
 	
-	private STraitView buildTraitView(TraitAPI trait, ModelToViewModelMapperAPI mapper){
+	private AbstractTraitView buildTraitView(TraitAPI trait, ModelToViewModelMapperAPI mapper){
 		AbstractValueView valueView = buildValueView(trait.getValue(), mapper);
-		STraitView traitView = new STraitView(valueView, dictionary, (TraitViewAttributes) mapper.getViewAttributes(trait));
+		AbstractTraitView traitView = AbstractTraitView.buildTraitView(valueView, 
+				(TraitViewAttributes) mapper.getViewAttributes(trait), dictionary);
 		traitView.setName(trait.getName());
 		return traitView;
 	}

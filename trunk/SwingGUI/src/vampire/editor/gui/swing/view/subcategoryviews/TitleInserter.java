@@ -6,23 +6,9 @@ import java.awt.Font;
 import javax.swing.JComponent;
 import javax.swing.JTextField;
 
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
-
 class TitleInserter {
 	
 	static void insertTitle(JComponent panel, String title, Font font){
-		FormLayout layout = (FormLayout) panel.getLayout();
-		layout.appendRow(RowSpec.decode("pref"));
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight		=	1;
-		constraints.gridWidth		=	1;
-		constraints.gridX			=	1;
-		constraints.gridY			=	1;
-		constraints.hAlign			=	CellConstraints.FILL;
-		
 		JTextField textField = new JTextField();
 		textField.setFont(font);
 		textField.setBackground(Color.WHITE);
@@ -32,7 +18,7 @@ class TitleInserter {
 		textField.setText(title);
 		textField.setHorizontalAlignment(JTextField.CENTER);
 		
-		panel.add(textField, constraints);
+		panel.add(textField,0);
 	}
 
 }

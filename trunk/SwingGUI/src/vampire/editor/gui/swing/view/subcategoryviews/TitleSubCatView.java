@@ -1,5 +1,10 @@
 package vampire.editor.gui.swing.view.subcategoryviews;
 
+import java.awt.Color;
+
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.plugin.api.view.sheet.TraitView;
@@ -10,12 +15,16 @@ import vampire.editor.plugin.api.view.sheet.TraitView;
  *
  */
 class TitleSubCatView extends AbstractSubCategoryView{
+	
+	protected JPanel titledPanel = new JPanel();
 
 	public TitleSubCatView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts, String title) {
 		super(dictionary, viewAtts);
-		TitleInserter.insertTitle(panel, dictionary.getValue(title), viewAtts.getFont());
-		shift+=1;
+		titledPanel.setBackground(Color.WHITE);
+		titledPanel.setLayout(new BoxLayout(titledPanel, BoxLayout.Y_AXIS));
+		TitleInserter.insertTitle(titledPanel, dictionary.getValue(title), viewAtts.getFont());
+		titledPanel.add(panel, 1);
 	}
 
 	@Override
@@ -27,4 +36,8 @@ class TitleSubCatView extends AbstractSubCategoryView{
 	@Override
 	public void insert(int pos, TraitView entry){}
 
+	@Override
+	public JPanel getPanel(){
+		return titledPanel;
+	}
 }
