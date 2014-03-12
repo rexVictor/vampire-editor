@@ -20,6 +20,7 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +69,7 @@ public class SSheetView implements SheetView{
 	private void initialize(){
 		panel.setLayout(layout);
 		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
+		panel.setBackground(Color.WHITE);
 		
 	}
 
@@ -124,7 +126,6 @@ public class SSheetView implements SheetView{
 		constraints.gridY		=	layout.getRowCount();
 		constraints.hAlign		=	CellConstraints.FILL;
 		panel.add(view.getPanel(), constraints);
-		
 	}
 
 	@Override

@@ -21,6 +21,7 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -32,13 +33,8 @@ import java.awt.print.PrinterException;
 import javax.swing.JPanel;
 import javax.swing.RepaintManager;
 
+import vampire.editor.gui.swing.application.SizeConverter;
 import vampire.editor.plugin.api.domain.BorderAPI;
-
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.Sizes;
 
 public class SBorderView extends JPanel implements Printable{
 	
@@ -47,41 +43,63 @@ public class SBorderView extends JPanel implements Printable{
 	 */
 	private static final long serialVersionUID = 6969397550306856891L;
 
-	private Image border;
-	
-	private final FormLayout layout = new FormLayout();
+	private final Image border;
 	
 	private final SSheetView sheetView;
 	
-	private boolean scaled = false;
-	
 	private final int width;
 	
+	private final int height;
+	
+	private Dimension dimension;
+	
 	public SBorderView(BorderAPI border, SSheetView sheetView){
-		setBackground(Color.WHITE);
-		this.setLayout(layout);
-		layout.appendRow(RowSpec.decode(border.getTopInset()+"mm:none"));
-		layout.appendRow(RowSpec.decode(border.getSheetHeight()+"mm:none"));
-		layout.appendRow(RowSpec.decode(border.getBottomInset()+"mm:none"));
-		layout.appendColumn(ColumnSpec.decode(border.getLeftInset()+"mm:none"));
-		layout.appendColumn(ColumnSpec.decode(border.getSheetWidth()+"mm:none"));
-		layout.appendColumn(ColumnSpec.decode(border.getRightInset()+"mm:none"));
-		width = border.getSheetWidth()+border.getLeftInset()+border.getRightInset();
-		Image scaled = border.getImage();
-		this.border = scaled;
-		
 		this.sheetView = sheetView;
 		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridX 		= 	2;
-		constraints.gridY		=	2;
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.vAlign		=	CellConstraints.TOP;
-		constraints.hAlign		=	CellConstraints.FILL;
-		add(sheetView.getPanel(), constraints);
+		int topInset = SizeConverter.millimetersToPixel(border.getTopInset());
+		int sheetHeight = SizeConverter.millimetersToPixel(border.getSheetHeight());
+		int bottomInset = SizeConverter.millimetersToPixel(border.getBottomInset());
+		int leftInset = SizeConverter.millimetersToPixel(border.getLeftInset());
+		int sheetWidth = SizeConverter.millimetersToPixel(border.getSheetWidth());
+		int rightInset = SizeConverter.millimetersToPixel(border.getRightInset());
+		
+		this.width = leftInset + sheetWidth + rightInset;
+		this.height = topInset + sheetHeight + bottomInset;
+		this.dimension = new Dimension(width, height);
+		System.out.println("Width: "+this.width);
+		
+		this.border = border.getImage().getScaledInstance(width, -1, Image.SCALE_SMOOTH);
+		System.out.println("Image width: " +this.border.getWidth(this));
+		
+		setBackground(Color.WHITE);
+		setLayout(null);
+		
+		JPanel view = sheetView.getPanel();
+		this.add(view);
+		view.setBounds(leftInset, topInset, sheetWidth, sheetHeight);
+		repaint();
 	}
-
+	
+	@Override
+	public int getWidth(){
+		return width;
+	}
+	
+	@Override
+	public int getHeight(){
+		return height;
+	}
+	
+	@Override
+	public Dimension getPreferredSize(){
+		return dimension;
+	}
+	
+	@Override
+	public Dimension getMaximumSize(){
+		return dimension;
+	}
+	
 	public Image getImage() {
 		return border;
 	}
@@ -93,13 +111,9 @@ public class SBorderView extends JPanel implements Printable{
 	@Override
 	public void paint(Graphics g){
 		super.paint(g);
-		if (!scaled){
-			border = border.getScaledInstance(Sizes.millimeterAsPixel(width, this), -1, Image.SCALE_SMOOTH);
-			scaled = true;
-		}
 		g.drawImage(border, 0, 0, this);
 	}
-
+	
 	@Override
 	public int print(Graphics graphics, PageFormat pageFormat, int pageIndex)
 			throws PrinterException {
