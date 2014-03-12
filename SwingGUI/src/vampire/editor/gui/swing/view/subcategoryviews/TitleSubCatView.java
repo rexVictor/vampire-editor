@@ -1,10 +1,14 @@
 package vampire.editor.gui.swing.view.subcategoryviews;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
+import vampire.editor.gui.swing.view.Helper;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.plugin.api.view.sheet.TraitView;
@@ -22,9 +26,12 @@ class TitleSubCatView extends AbstractSubCategoryView{
 			SubCategoryViewAttributes viewAtts, String title) {
 		super(dictionary, viewAtts);
 		titledPanel.setBackground(Color.WHITE);
+		JTextField field = Helper.getTitle(dictionary.getValue(title), viewAtts.getFont());
 		titledPanel.setLayout(new BoxLayout(titledPanel, BoxLayout.Y_AXIS));
-		TitleInserter.insertTitle(titledPanel, dictionary.getValue(title), viewAtts.getFont());
-		titledPanel.add(panel, 1);
+		titledPanel.add(field);
+		panel.setMaximumSize(new Dimension(panel.getMaximumSize().width, panel.getPreferredSize().height));
+		titledPanel.add(panel);
+		titledPanel.add(Box.createGlue());
 	}
 
 	@Override

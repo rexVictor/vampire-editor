@@ -20,41 +20,53 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view.valueviews;
 
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.JPanel;
 
 import vampire.editor.gui.swing.domain.Images;
+import vampire.editor.gui.swing.view.Helper;
 import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 
 class SquaredValueView extends AbstractValueView{
-	
-	protected FormLayout layout = new FormLayout();
 	
 	protected List<JLabel> squares = new ArrayList<>();
 	
 	private Icon emptySquare;
 	
 	private Icon crossedSquare;
+	
+	private JPanel total = new JPanel();
+	
+	private JPanel squarePanel = Helper.createPanel();
 
 	SquaredValueView(ValueViewAttributes viewAtts) {
 		super(viewAtts);
 		tempValue = 0;
 		int size = viewAtts.getSize();
-		emptySquare = new ImageIcon(Images.getImage("square_empty", size, size));
+		emptySquare = new ImageIcon(Images.getImage("square_empty", size, size).
+				getScaledInstance(this.circleWhite.getIconWidth(), -1, Image.SCALE_SMOOTH));
 		crossedSquare = new ImageIcon(Images.getImage("square_crossed", size, size));
-		getPanel().setLayout(layout);
-		layout.appendRow(RowSpec.decode("pref"));
-		layout.appendRow(RowSpec.decode("5px"));
-		layout.appendRow(RowSpec.decode("pref"));
+		
+		total.setLayout(new GridLayout(2, 0));
+		total.add(panel);
+		total.add(squarePanel);
+		
+		squarePanel.setLayout(new BoxLayout(squarePanel, BoxLayout.X_AXIS));
+		
+		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+		
+		panel.add(Box.createGlue());
+		squarePanel.add(Box.createGlue());
 		for (int i = 0; i < viewAtts.getCircles(); i++){
 			addCircle0();
 		}
@@ -76,29 +88,24 @@ class SquaredValueView extends AbstractValueView{
 
 	@Override
 	protected void addCircle0() {
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-		layout.addGroupedColumn(layout.getColumnCount());
-		JLabel circle = new JLabel();
-		circle.addMouseListener(new ValueClickListener(this, circles.size()));
-		circles.add(circle);
+		JLabel label = new JLabel();
+		label.setIcon(circleWhite);
+		label.setOpaque(true);
+		label.setBackground(Color.WHITE);
+		label.addMouseListener(new ValueClickListener(this, circles.size()));
+		label.addMouseListener(new StrgTempClickListener(this, circles.size()));
+		circles.add(label);
 		
+		panel.add(label);
+		panel.add(Box.createGlue());
 		JLabel square = new JLabel();
 		square.setIcon(emptySquare);
+		square.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		square.addMouseListener(new SquareClickListener(this, squares.size()));
 		squares.add(square);
 		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	layout.getColumnCount();
-		constraints.gridY		=	1;
-		constraints.hAlign		=	CellConstraints.FILL;
-		
-		getPanel().add(circle, constraints);
-		
-		constraints.gridY	=	3;
-		
-		getPanel().add(square, constraints);
+		squarePanel.add(square);
+		squarePanel.add(Box.createGlue());
 	}
 
 	@Override
@@ -108,16 +115,22 @@ class SquaredValueView extends AbstractValueView{
 	protected void removeCircle0() {
 		int lastIndex = circles.size()-1;
 		JLabel last = circles.remove(lastIndex);
-		CellConstraints constraints = layout.getConstraints(last);
-		getPanel().remove(last);
+		JPanel subPanel = (JPanel) last.getParent();
+		subPanel.remove(last);
 		JLabel lastSquare = squares.remove(lastIndex);
-		getPanel().remove(lastSquare);
-		layout.removeColumn(constraints.gridX);
+		subPanel.remove(lastSquare);
+		panel.remove(panel.getComponentCount()-1);
+		panel.remove(subPanel);
 	}
 	
 	public SquaredValueView clone(){
 		ValueViewAttributes clone = viewAtts.clone();
 		return new SquaredValueView(clone);
+	}
+	
+	@Override
+	public JPanel getPanel(){
+		return total;
 	}
 
 		

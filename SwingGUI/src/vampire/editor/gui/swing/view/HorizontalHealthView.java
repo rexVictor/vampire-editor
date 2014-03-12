@@ -20,14 +20,15 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view;
 
-import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
-import javax.swing.JLabel;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
@@ -35,43 +36,29 @@ import vampire.editor.plugin.api.view.events.HealthViewListener;
 import vampire.editor.plugin.api.view.sheet.HealthEntryView;
 import vampire.editor.plugin.api.view.sheet.HealthView;
 
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-
 public class HorizontalHealthView implements HealthView{
 	
-private final JPanel panel = new JPanel();
-	
-	private final FormLayout layout = new FormLayout("5px", "pref,pref");
+	private final JPanel panel = Helper.createPanel();
 	
 	private final List<HealthViewListener> listeners = new LinkedList<>();
 	
 	private final List<HealthEntryView> healthEntryViews = new LinkedList<>();
 	
-	private final Lock lock = new ReentrantLock();
-	
 	private final DictionaryAPI dictionary;
+	
+	private final JPanel healthEntriesPanel = Helper.createPanel();
 	
 	public HorizontalHealthView(DictionaryAPI dictionaryAPI, HealthViewAttributesAPI viewAtts){
 		this.dictionary = dictionaryAPI;
-		for (int i = 0; i < 10; i++){
-			layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-			layout.appendColumn(ColumnSpec.decode("5px"));
-		}
-		panel.setLayout(layout);
-		panel.setBackground(Color.WHITE);
-		JLabel label = new JLabel();
-		label.setFont(viewAtts.getFont());
-		label.setText(dictionary.getValue("health"));
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight = 1;
-		constraints.gridWidth = 19;
-		constraints.gridX = 2;
-		constraints.gridY = 1;
-		constraints.hAlign = CellConstraints.CENTER;
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		JTextField title = Helper.getTitle(dictionary.getValue("health"), viewAtts.getFont());
 		
-		panel.add(label, constraints);
+		healthEntriesPanel.setLayout(new GridLayout(1, 0));
+		healthEntriesPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+		panel.add(title);
+		panel.add(healthEntriesPanel);
+		panel.add(Box.createGlue());
+		
 	}
 
 	@Override
@@ -83,41 +70,22 @@ private final JPanel panel = new JPanel();
 	public void addHealthEntryView(HealthEntryView healthEntryView) {
 		healthEntryViews.add(healthEntryView);
 		HorizontalHealthEntryView view = (HorizontalHealthEntryView) healthEntryView;
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight = 1;
-		constraints.gridWidth = 1;
-		constraints.gridX = healthEntryViews.size()*2;
-		constraints.gridY = layout.getRowCount();
-		constraints.hAlign = CellConstraints.FILL;
-		
-		panel.add(view.getPanel(), constraints);
+		healthEntriesPanel.add(view.getPanel());
 		
 	}
 
 	@Override
 	public void removeHealthEntryView(HealthEntryView healthEntryView) {
 		healthEntryViews.remove(healthEntryView);
-		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public void addListener(HealthViewListener listener) {
-		lock.lock();
-		try{
-			listeners.add(listener);
-		}
-		finally{
-			lock.unlock();
-		}
+		listeners.add(listener);
 	}
 	
 	public JPanel getPanel(){
 		return panel;
 	}
 	
-	public FormLayout getLayout(){
-		return layout;
-	}
-
 }

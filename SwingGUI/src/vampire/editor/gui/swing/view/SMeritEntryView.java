@@ -20,15 +20,11 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.BorderLayout;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -38,19 +34,19 @@ import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttibutesAPI;
 import vampire.editor.plugin.api.view.events.MeritEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.MeritEntryView;
 
-public class SMeritEntryView implements MeritEntryView, ActionListener, DocumentListener, FocusListener{
+public class SMeritEntryView implements MeritEntryView, DocumentListener{
 	
-	private final JTextField textField = new JTextField();
+	private final JTextField textField = Helper.createLimitedTextField(25);
 	
-	private final JTextField costField = new JTextField();
+	private final JTextField costField = Helper.createNumberOnlyTextField(1);
 	
 	private final DictionaryAPI dictionary;
 	
 	private final List<MeritEntryViewListener> listeners = new LinkedList<>();
 	
-	private final Lock lock = new ReentrantLock();
-	
 	private final MeritEntryViewAttibutesAPI viewAtts;
+	
+	private final JPanel panel = Helper.createPanel();
 
 	public SMeritEntryView(DictionaryAPI dictionary, MeritEntryViewAttibutesAPI viewAtts) {
 		super();
@@ -58,14 +54,12 @@ public class SMeritEntryView implements MeritEntryView, ActionListener, Document
 		this.viewAtts = viewAtts;
 		textField.setFont(viewAtts.getFont());
 		costField.setFont(viewAtts.getFont());
-		textField.setBorder(null);
-		costField.setBorder(null);
-		textField.addActionListener(this);
-		costField.addActionListener(this);
 		textField.getDocument().addDocumentListener(this);
 		costField.getDocument().addDocumentListener(this);
-		textField.addFocusListener(this);
-		costField.addFocusListener(this);
+		
+		panel.setLayout(new BorderLayout(10,0));
+		panel.add(costField, BorderLayout.WEST);
+		panel.add(textField, BorderLayout.CENTER);
 	}
 
 	@Override
@@ -80,13 +74,7 @@ public class SMeritEntryView implements MeritEntryView, ActionListener, Document
 
 	@Override
 	public void addListener(MeritEntryViewListener listener) {
-		lock.lock();
-		try{
-			listeners.add(listener);
-		}
-		finally{
-			lock.unlock();
-		}
+		listeners.add(listener);
 	}
 
 	public JTextField getTextField() {
@@ -100,30 +88,20 @@ public class SMeritEntryView implements MeritEntryView, ActionListener, Document
 	private void changeEvent(Object source){
 		String name = dictionary.getKey(textField.getText());
 		String costString = costField.getText();
-		try{
-			int cost = Integer.parseInt(costString);
-			SMeritEntryViewEvent event = new SMeritEntryViewEvent(cost, name);
-			if (source  == costField){
-				for (MeritEntryViewListener l : listeners){
-					l.costChanged(event);
-				}
-			}
-			else if (source == textField){
-				for (MeritEntryViewListener l : listeners){
-					l.nameChanged(event);
-				}
+		int cost = Integer.parseInt(costString);
+		SMeritEntryViewEvent event = new SMeritEntryViewEvent(cost, name);
+		if (source  == costField){
+			for (MeritEntryViewListener l : listeners){
+				l.costChanged(event);
 			}
 		}
-		catch(NumberFormatException exception){
-			
+		else if (source == textField){
+			for (MeritEntryViewListener l : listeners){
+				l.nameChanged(event);
+			}
 		}
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		changeEvent(e.getSource());
-	}
-	
 	@Override
 	public SMeritEntryView clone(){
 		return new SMeritEntryView(dictionary, viewAtts.clone());
@@ -132,14 +110,6 @@ public class SMeritEntryView implements MeritEntryView, ActionListener, Document
 	@Override
 	public MeritEntryViewAttibutesAPI getViewAttributes() {
 		return viewAtts;
-	}
-
-	@Override
-	public void focusGained(FocusEvent e) {}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		changeEvent(e.getSource());
 	}
 
 	@Override
@@ -160,6 +130,10 @@ public class SMeritEntryView implements MeritEntryView, ActionListener, Document
 	@Override
 	public void removeUpdate(DocumentEvent e) {
 		changedUpdate(e);
+	}
+	
+	public JPanel getPanel(){
+		return panel;
 	}
 	
 }

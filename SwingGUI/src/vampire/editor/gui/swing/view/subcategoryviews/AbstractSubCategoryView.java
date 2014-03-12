@@ -1,12 +1,12 @@
 package vampire.editor.gui.swing.view.subcategoryviews;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.JPanel;
 
+import vampire.editor.gui.swing.view.Helper;
 import vampire.editor.gui.swing.view.traitviews.AbstractTraitView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
@@ -57,14 +57,13 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 	
 	private final List<TraitView> traitViews = new LinkedList<>();
 	
-	protected final JPanel panel = new JPanel();
+	protected final JPanel panel = Helper.createPanel();
 	
 	public AbstractSubCategoryView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts) {
 		super();
 		this.dictionary = dictionary;
 		this.viewAtts = viewAtts;
-		panel.setBackground(Color.WHITE);
 		this.panel.setLayout(new GridLayout(0, 1));
 		
 	}
@@ -79,7 +78,6 @@ public abstract class AbstractSubCategoryView implements SubCategoryView{
 	
 	public void add0(TraitView entry){
 		AbstractTraitView view = (AbstractTraitView) entry;
-		
 		panel.add(view.getPanel());
 		traitViews.add(view);
 		panel.revalidate();

@@ -20,6 +20,7 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.application;
 
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -103,11 +104,17 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	}
 	
 	private SCategoryView buildCategoryView(CategoryAPI category, ModelToViewModelMapperAPI mapper){
-		SCategoryView categoryView =
-				new SCategoryView((CategoryViewAttributes) mapper.getViewAttributes(category), resources, category.getName());
+		CategoryViewAttributes viewAtts = (CategoryViewAttributes) mapper.getViewAttributes(category); 
+		SCategoryView categoryView = new SCategoryView();
 		List<AbstractSubCategoryView> subCategoryViews = buildSubCategoryViews(category, mapper);
 		for (AbstractSubCategoryView subCategoryView : subCategoryViews){
 			categoryView.add(subCategoryView);
+		}
+		if (viewAtts.isShowLine()){
+			Image line = resources.getLine(viewAtts.getImage());
+			line = line.getScaledInstance(SizeConverter.millimetersToPixel(180), -1, Image.SCALE_SMOOTH);
+			LineImage lineImage = new LineImage(line, dictionary.getValue(category.getName()), viewAtts.getFont());
+			categoryView.addLine(lineImage);
 		}
 		return categoryView;
 	}

@@ -1,7 +1,5 @@
 package vampire.editor.gui.swing.view.traitviews;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -13,8 +11,8 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
 
+import vampire.editor.gui.swing.view.Helper;
 import vampire.editor.gui.swing.view.STraitViewEvent;
 import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
@@ -34,7 +32,7 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 		return null;
 	}
 	
-	protected final JPanel panel = new JPanel();
+	protected final JPanel panel = Helper.createPanel();
 	
 	protected final AbstractValueView valueView;
 	
@@ -42,7 +40,7 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 	
 	private final TraitViewAttributes viewAtts;
 	
-	protected final JTextField textField = new JTextField();
+	protected final JTextField textField = Helper.createLimitedTextField(20);
 	
 	protected final JPopupMenu popupMenu = new JPopupMenu();
 	
@@ -56,21 +54,13 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 	}
 	
 	protected void initializeTextField(){
-		Document document = new LimitedDocument(20);
-		textField.setDocument(document);
 		textField.setEditable(viewAtts.isEditable());
 		textField.setFocusable(viewAtts.isEditable());
-		textField.setBorder(null);
-		textField.setBackground(Color.WHITE);
 		textField.getDocument().addDocumentListener(this);
 		textField.setComponentPopupMenu(popupMenu);
 		textField.setFont(viewAtts.getFont());
 	}
 	
-	protected void initializePanel(){
-		panel.setBackground(Color.WHITE);
-	}
-
 	@Override
 	public void setName(String name) {
 		String newName = dictionary.getValue(name);
@@ -139,7 +129,7 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 		textField.setText(e.getActionCommand());
 	}
 
-	public Component getPanel() {
+	public JPanel getPanel() {
 		return panel;
 	}
 

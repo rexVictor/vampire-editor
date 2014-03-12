@@ -42,7 +42,7 @@ public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 	private final JPanel panel = new JPanel();
 	
 	private final FormLayout layout = new FormLayout("5px, pref:GROW, 5px, pref:GROW, 5px, pref:GROW, 5px",
-												"pref,pref,pref");
+												"pref,pref:GROw");
 	
 	public MiscView(
 			SBloodPoolView bloodPoolView, HealthView healthView,
@@ -65,6 +65,7 @@ public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 		constraints.gridY		=	1;
 		constraints.gridHeight	=	2;
 		constraints.gridWidth	=	1;
+		constraints.vAlign		=	CellConstraints.TOP;
 			
 		panel.add(meritView.getPanel(), constraints);
 		

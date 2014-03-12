@@ -21,14 +21,14 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -41,20 +41,11 @@ import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.BloodPoolViewListener;
 import vampire.editor.plugin.api.view.sheet.BloodPoolView;
 
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
-
 public class SBloodPoolView implements BloodPoolView, MouseListener{
 	
 	private final JPanel panel = new JPanel();
 	
-	private final FormLayout layout = new FormLayout();
-	
 	private final List<BloodPoolViewListener> listeners = new LinkedList<>();
-	
-	private final Lock lock = new ReentrantLock();
 	
 	private final List<JLabel> squares = new ArrayList<>();
 	
@@ -64,50 +55,28 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 	
 	private Icon crossedBox;
 	
+	private final JPanel entries = new JPanel();
+	
 	public SBloodPoolView(BloodPoolViewAttributesAPI viewAtts, DictionaryAPI dictionary){
 		int size = viewAtts.getSize();
 		emptyBox = new ImageIcon(Images.getImage("square_empty", size, size));
 		crossedBox = new ImageIcon(Images.getImage("square_crossed", size, size));
 		panel.setBackground(Color.WHITE);
-		panel.setLayout(layout);
-		layout.appendColumn(ColumnSpec.decode("5px"));
-		for (int i = 0; i < 10; i++){
-			addColumn();
-		}
-		layout.appendRow(RowSpec.decode("pref"));
-		JTextField textField = new JTextField();
-		textField.setBackground(Color.WHITE);
-		textField.setBorder(null);
-		textField.setFont(viewAtts.getFont());
-		textField.setEditable(false);
-		textField.setText(dictionary.getValue("bloodpool"));
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight = 1;
-		constraints.gridWidth = layout.getColumnCount()-2;
-		constraints.gridX = 2;
-		constraints.gridY = 1;
-		constraints.hAlign = CellConstraints.CENTER;
-		
-		panel.add(textField, constraints);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+		JTextField textField = Helper.getTitle(dictionary.getValue("bloodpool"), viewAtts.getFont());
+		entries.setBackground(Color.WHITE);
+		panel.setBackground(Color.WHITE);
+		panel.add(textField);
+		entries.setLayout(new GridLayout(0,10,0,5));
+		panel.add(entries);
 		
 		setMaxValue(10);
 	}
 	
-	private void addColumn(){
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-		layout.appendColumn(ColumnSpec.decode("5px"));
-		layout.addGroupedColumn(layout.getColumnCount()-1);
-	}
- 
 	@Override
 	public void addListener(BloodPoolViewListener listener) {
-		lock.lock();
-		try{
-			listeners.add(listener);
-		}
-		finally{
-			lock.unlock();
-		}
+		listeners.add(listener);
 	}
 
 	@Override
@@ -123,44 +92,22 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 	private void setValue0(int value){
 		setValue(value);
 		SBloodPoolViewEvent event = new SBloodPoolViewEvent(value, maxValue);
-		lock.lock();
-		try{
-			for (BloodPoolViewListener listener : listeners){
-				listener.valueChanged(event);
-			}
-		}
-		finally{
-			lock.unlock();
+		for (BloodPoolViewListener listener : listeners){
+			listener.valueChanged(event);
 		}
 	}
 	
 	private void addSquare(){
 		JLabel label = new JLabel(emptyBox);
 		label.addMouseListener(this);
-		int rowCount = layout.getRowCount();
-		int squareCount = squares.size();
-		int x = squareCount % 10;
-		int y = squareCount / 10;
-		if (rowCount < y+2){
-			layout.appendRow(RowSpec.decode("pref"));
-		}
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight = 1;
-		constraints.gridWidth = 1;
-		constraints.gridX = 2 * x+2;
-		constraints.gridY = y +2;
 		squares.add(label);
-		panel.add(label, constraints);
+		entries.add(label);
 	} 
 	
 	private void removeSquare(){
 		int size = squares.size();
 		JLabel last = squares.remove(size-1);
-		CellConstraints constraints = layout.getConstraints(last);
 		panel.remove(last);
-		if (constraints.gridX == 2){
-			layout.removeRow(layout.getRowCount());
-		}
 	}
 	
 	@Override

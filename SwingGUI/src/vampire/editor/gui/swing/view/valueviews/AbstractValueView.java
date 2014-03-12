@@ -24,8 +24,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -65,9 +63,7 @@ public abstract class AbstractValueView implements ValueView{
 	
 	private final List<ValueViewListener> listeners = new LinkedList<>();
 	
-	protected final Lock lock = new ReentrantLock();
-	
-	private final JPanel panel = new JPanel();
+	protected final JPanel panel = new JPanel();
 	
 	protected int tempValue = -1;
 	
@@ -101,13 +97,7 @@ public abstract class AbstractValueView implements ValueView{
 	
 	@Override
 	public void addListener(ValueViewListener listener) {
-		lock.lock();
-		try{
-			listeners.add(listener);
-		}
-		finally{
-			lock.unlock();
-		}
+		listeners.add(listener);
 	}
 	
 	public JPanel getPanel(){
@@ -160,14 +150,8 @@ public abstract class AbstractValueView implements ValueView{
 	protected void setTempValue0(int value){
 		setTempValue(value);
 		SValueViewEvent viewEvent = new SValueViewEvent(value, tempValue);
-		lock.lock();
-		try{
-			for (ValueViewListener l : listeners) {
-				l.tempValueChanged(viewEvent);
-			}
-		}
-		finally{
-			lock.unlock();
+		for (ValueViewListener l : listeners) {
+			l.tempValueChanged(viewEvent);
 		}
 	}
 	
@@ -180,14 +164,8 @@ public abstract class AbstractValueView implements ValueView{
 	protected void setValue0(int value){
 		setValue(value);
 		SValueViewEvent viewEvent = new SValueViewEvent(value, tempValue);
-		lock.lock();
-		try{
-			for (ValueViewListener l : listeners) {
-				l.valueChanged(viewEvent);
-			}
-		}
-		finally{
-			lock.unlock();
+		for (ValueViewListener l : listeners) {
+			l.valueChanged(viewEvent);
 		}
 	}
 	
