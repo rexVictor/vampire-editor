@@ -20,10 +20,9 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,11 +35,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
-
 import vampire.editor.gui.swing.application.Initializer;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.PopupEntriesAPI;
@@ -48,18 +42,7 @@ import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.MetaEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.MetaEntryView;
 
-public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentListener, FocusListener{
-	
-	private class PopupListener implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			content.setText(e.getActionCommand());
-		}
-		
-	}
-	
-	private final ActionListener popupListener = new PopupListener();
+public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentListener{
 	
 	private final DictionaryAPI dictionary;
 	
@@ -68,8 +51,6 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 	private final JTextField title = new JTextField();
 	
 	private /*final*/ JTextComponent content;
-	
-	private final FormLayout layout = new FormLayout();
 	
 	private final JPanel panel = new JPanel();
 	
@@ -87,11 +68,9 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 	}
 	
 	private void initialize(){
-		panel.setLayout(layout);
+		panel.setLayout(new BorderLayout(5, 0));
 		if (viewAttributes.getLineCount()==1){
 			content = new JTextField();
-			((JTextField) content).addActionListener(this);
-			content.getDocument().addDocumentListener(this);
 		}
 		else {
 			content = new JTextArea();
@@ -99,12 +78,11 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 			area.setRows(viewAttributes.getLineCount());
 			area.setLineWrap(true);
 			area.setWrapStyleWord(true);
-			content.getDocument().addDocumentListener(this);
 		}
+		content.getDocument().addDocumentListener(this);
 		content.setComponentPopupMenu(popupMenu);
 		content.setFont(viewAttributes.getContentFont());
 		content.setBorder(null);
-		content.addFocusListener(this);
 		title.setFont(viewAttributes.getTitleFont());
 		title.setBorder(null);
 		Initializer.initialize(panel);
@@ -115,25 +93,9 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 		title.setFocusable(false);
 		content.setEditable(true);
 		
-		layout.appendColumn(ColumnSpec.decode("pref"));
-		layout.appendColumn(ColumnSpec.decode("10px"));
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-		layout.appendRow(RowSpec.decode("pref"));
+		panel.add(title, BorderLayout.WEST);
 		
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	1;
-		constraints.gridY		=	1;
-		constraints.hAlign		=	CellConstraints.LEFT;
-		
-		panel.add(title, constraints);
-		
-		constraints.gridX		=	3;
-		constraints.hAlign		=	CellConstraints.FILL;
-		
-		panel.add(content, constraints);
+		panel.add(content, BorderLayout.CENTER);
 	}
 	
 
@@ -159,13 +121,7 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String title = dictionary.getKey(this.title.getText());
-		String content = dictionary.getKey(this.content.getText());
-		SMetaEntryViewEvent event = new SMetaEntryViewEvent(title, content);
-		for (MetaEntryViewListener l : listeners){
-			l.contentChanged(event);
-		}
-		
+		content.setText(e.getActionCommand());
 	}
 
 	@Override
@@ -184,17 +140,22 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 
 	@Override
 	public void insertUpdate(DocumentEvent e) {
-		actionPerformed(null);
+		String title = dictionary.getKey(this.title.getText());
+		String content = dictionary.getKey(this.content.getText());
+		SMetaEntryViewEvent event = new SMetaEntryViewEvent(title, content);
+		for (MetaEntryViewListener l : listeners){
+			l.contentChanged(event);
+		}
 	}
 
 	@Override
 	public void removeUpdate(DocumentEvent e) {
-		actionPerformed(null);
+		insertUpdate(e);
 	}
 
 	@Override
 	public void changedUpdate(DocumentEvent e) {
-		actionPerformed(null);
+		insertUpdate(e);
 	}
 	
 	public MetaEntryViewAttributesAPI getViewAtts(){
@@ -202,19 +163,11 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 	}
 
 	@Override
-	public void focusGained(FocusEvent e) {}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		actionPerformed(null);
-	}
-	
-	@Override
 	public void addPopupEntry(String entry){
 		String translated = dictionary.getValue(entry);
 		JMenuItem menuItem = new JMenuItem(translated);
 		menuItem.setActionCommand(translated);
-		menuItem.addActionListener(popupListener);
+		menuItem.addActionListener(this);
 		popupMenu.add(menuItem);
 	}
 
