@@ -9,5 +9,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/EventAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SwingMainFrameLoader"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/CopyrightView"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
