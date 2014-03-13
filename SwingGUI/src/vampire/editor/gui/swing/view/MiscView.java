@@ -22,6 +22,7 @@ package vampire.editor.gui.swing.view;
 
 import java.awt.GridLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
@@ -61,7 +62,7 @@ public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 	
 	
 	private void build(){
-		panel.setLayout(new GridLayout(1, 0));
+		panel.setLayout(new GridLayout(1, 0, 10, 0));
 		panel.add(leftColoumn);
 		panel.add(middleColoumn);
 		panel.add(rightColoumn);
@@ -80,6 +81,8 @@ public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 		
 		rightColoumn.add(flawView.getPanel());
 		rightColoumn.add(Box.createGlue());
+		
+		panel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 	}
 	
 	public JPanel getPanel(){
