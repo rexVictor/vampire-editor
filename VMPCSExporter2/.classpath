@@ -5,9 +5,9 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetFullAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ExporterAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
-	<classpathentry kind="lib" path="libs/jackson-annotations-2.0.0.jar"/>
-	<classpathentry kind="lib" path="libs/jackson-core-2.0.0.jar"/>
-	<classpathentry kind="lib" path="libs/jackson-databind-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/Jackson/jackson-annotations-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/Jackson/jackson-core-2.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/Jackson/jackson-databind-2.0.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSFormatCommon"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
