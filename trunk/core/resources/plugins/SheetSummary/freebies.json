@@ -1,0 +1,23 @@
+{
+	"defaults"	:	{
+		"attributes":	[
+			8,
+			6,
+			4
+		],
+		"abilities"	:	[
+			13,
+			9,
+			5
+		]
+	},
+	"factors"	:	{
+		"attributes"	:	5,
+		"abilities"		:	2,
+		"disciplines"	:	7,
+		"backgrounds"	:	1,
+		"virtues"		:	2,
+		"humanity"		:	1,
+		"willpower"		:	1
+	}
+}

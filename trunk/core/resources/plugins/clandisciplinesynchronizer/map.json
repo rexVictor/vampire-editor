@@ -1,0 +1,67 @@
+{
+	"assamite"		:	[
+		"quietus"
+		,"celerity"
+		,"obfuscate"
+	]
+	,"brujah"	:	[
+		"celerity"
+		,"potence"
+		,"presence"
+	]
+	,"gangrel"	:	[
+		"animalism"
+		,"protean"
+		,"fortitude"
+	]
+	,"malkavian":	[
+		"auspex"
+		,"dementation"
+		,"obfuscate"
+	]
+	,"nosferatu"	:	[
+		"animalism"
+		,"obfuscate"
+		,"potence"
+	]
+	,"toreador"	:	[
+		"auspex"
+		,"celerity"
+		,"presence"
+	]
+	,"tremere"	:	[
+		"auspex"
+		,"dominate"
+		,"thaumaturgy"
+	]
+	,"ventrue"	:	[
+		"dominate"
+		,"presence"
+		,"fortitude"
+	]
+	,"lasombra"	:	[
+		"dominate"
+		,"obtenebration"
+		,"potence"
+	]
+	,"tzimisce"	:	[
+		"animalism"
+		,"auspex"
+		,"vicissitude"
+	]
+	,"setites"	:	[
+		"obfuscate"
+		,"presence"
+		,"serpentis"
+	]
+	,"giovanni"	:	[
+		"dominate"
+		,"necromancy"
+		,"potence"
+	]
+	,"ravnos"	:	[
+		"animalism"
+		,"chimestry"
+		,"fortitude"
+	]
+}

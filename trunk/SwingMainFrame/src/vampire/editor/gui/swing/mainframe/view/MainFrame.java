@@ -55,9 +55,6 @@ public class MainFrame {
 	
 	public MainFrame(JMenuBar menuBar, ManagerAPI manager) {
 		super();
-//		this.menuBar = menuBar;
-		//int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-		//height = (int) (height * 0.9);
 		Path iconPath = Paths.get("resources", "guiconfig", "icon.gif");
 		Image image = null;
 		try ( InputStream stream = Files.newInputStream(iconPath)){

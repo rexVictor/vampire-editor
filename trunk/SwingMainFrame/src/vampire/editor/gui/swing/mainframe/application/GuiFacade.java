@@ -23,6 +23,8 @@ package vampire.editor.gui.swing.mainframe.application;
 import java.awt.Container;
 import java.awt.Dialog.ModalityType;
 import java.io.File;
+import java.nio.file.Paths;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -30,6 +32,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileFilter;
 
+import vampire.editor.copyright.domain.Project;
+import vampire.editor.copyright.persistency.CopyrightLoader;
+import vampire.editor.copyright.view.View;
 import vampire.editor.gui.swing.application.SheetViewFactory;
 import vampire.editor.gui.swing.mainframe.view.MainFrame;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
@@ -50,13 +55,25 @@ public class GuiFacade implements GUIPlugin{
 	
 	private final JFileChooser chooser = new JFileChooser();
 	
+	private final View copyrightView;
+	
 	public GuiFacade(ManagerAPI manager){
 //		this.manager = manager;
+		CopyrightLoader loader = new CopyrightLoader();
+		List<Project> projects = loader.loadCopyright(Paths.get("resources", "copyright.json"));
+		copyrightView = new View(projects);
 		DictionaryAPI dictionary = manager.getResourcesHolder().getDictionary("general");
 		menuBarController = new MenuBarController(dictionary);
 		mainFrame = new MainFrame(menuBarController.getMenuBar(), manager);
 		factory = new SheetViewFactory(manager.getResourcesHolder());
 		menuBarController.addMenuItem(new Printer(manager), "file", "print");
+		menuBarController.addMenuItem(new Trigger() {
+			
+			@Override
+			public void leftClicked() {
+				copyrightView.showDialog();
+			}
+		}, "help", "copyright");
 	}
 
 	@Override
