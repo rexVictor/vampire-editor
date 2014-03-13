@@ -29,6 +29,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
+import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -40,6 +41,7 @@ public class GuiActivator implements Activator{
 
 	@Override
 	public void setManager(ManagerAPI manager) {
+		ToolTipManager.sharedInstance().setDismissDelay(120000);
 		try{
 			Toolkit xToolkit = Toolkit.getDefaultToolkit();
 			Field awtAppClassNameField = xToolkit.getClass().getDeclaredField("awtAppClassName");
