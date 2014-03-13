@@ -24,7 +24,6 @@ import java.awt.Container;
 import java.awt.Dialog.ModalityType;
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -32,10 +31,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileFilter;
 
-import vampire.editor.copyright.domain.Project;
-import vampire.editor.copyright.persistency.CopyrightLoader;
-import vampire.editor.copyright.view.View;
+import vampire.editor.copyright.application.CopyrightViewFactory;
+import vampire.editor.copyright.view.CopyrightView;
 import vampire.editor.gui.swing.application.SheetViewFactory;
+import vampire.editor.gui.swing.mainframe.view.AboutView;
 import vampire.editor.gui.swing.mainframe.view.MainFrame;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
@@ -55,13 +54,10 @@ public class GuiFacade implements GUIPlugin{
 	
 	private final JFileChooser chooser = new JFileChooser();
 	
-	private final View copyrightView;
+	private final CopyrightView copyrightView = CopyrightViewFactory.buildView(Paths.get("resources", "copyright.json"));
 	
 	public GuiFacade(ManagerAPI manager){
 //		this.manager = manager;
-		CopyrightLoader loader = new CopyrightLoader();
-		List<Project> projects = loader.loadCopyright(Paths.get("resources", "copyright.json"));
-		copyrightView = new View(projects);
 		DictionaryAPI dictionary = manager.getResourcesHolder().getDictionary("general");
 		menuBarController = new MenuBarController(dictionary);
 		mainFrame = new MainFrame(menuBarController.getMenuBar(), manager);
@@ -74,6 +70,8 @@ public class GuiFacade implements GUIPlugin{
 				copyrightView.showDialog();
 			}
 		}, "help", "copyright");
+		
+		menuBarController.addMenuItem(new AboutView(dictionary), "help", "about");
 	}
 
 	@Override
