@@ -24,12 +24,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.MetaView;
@@ -38,8 +35,6 @@ import vampire.editor.plugin.api.view.sheet.SheetView;
 public class SSheetView implements SheetView{
 	
 	private final JPanel panel = new JPanel();
-	
-	private final FormLayout layout = new FormLayout();
 	
 	private final List<SCategoryView> categoryViews = new ArrayList<>();
 	
@@ -67,28 +62,16 @@ public class SSheetView implements SheetView{
 	}
 	
 	private void initialize(){
-		panel.setLayout(layout);
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setBackground(Color.WHITE);
-		
 	}
 
 	@Override
 	public void add(CategoryView categoryView) {
 		SCategoryView view = (SCategoryView) categoryView;
 		categoryViews.add(view);
-		layout.appendRow(RowSpec.decode("pref"));
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	1;
-		constraints.gridY		=	layout.getRowCount();
-		constraints.hAlign		=	CellConstraints.FILL;
-		
-		panel.add(view.getPanel(), constraints);
-		
-		
+		Helper.setMaximumHeightToPreferredHeight(view.getPanel());
+		panel.add(view.getPanel());
 	}
 
 	public JPanel getPanel() {
@@ -103,29 +86,14 @@ public class SSheetView implements SheetView{
 	public void setMetaView(MetaView metaView){
 		SMetaView view = (SMetaView) metaView;
 		this.metaView = metaView;
-		layout.appendRow(RowSpec.decode("pref"));
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	1;
-		constraints.gridY		=	1;
-		constraints.hAlign		=	CellConstraints.FILL;
-		
-		panel.add(view.getPanel(), constraints);
+		Helper.setMaximumHeightToPreferredHeight(view.getPanel());
+		panel.add(view.getPanel());
 	}
 
 	public void setMiscView(MiscView view){
 		this.miscView = view;
-		layout.appendRow(RowSpec.decode("pref"));
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	1;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	1;
-		constraints.gridY		=	layout.getRowCount();
-		constraints.hAlign		=	CellConstraints.FILL;
-		panel.add(view.getPanel(), constraints);
+		panel.add(view.getPanel());
+		panel.add(Box.createGlue());
 	}
 
 	@Override

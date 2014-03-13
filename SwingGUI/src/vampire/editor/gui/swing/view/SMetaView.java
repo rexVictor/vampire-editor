@@ -21,15 +21,13 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.RowSpec;
 
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.MetaEntryView;
@@ -39,7 +37,7 @@ public class SMetaView implements MetaView{
 	
 	private final JPanel panel = new JPanel();
 	
-	private final FormLayout layout = new FormLayout();
+	private final List<JPanel> coloumns = new LinkedList<>();
 	
 	private final List<MetaEntryView> metaEntries = new LinkedList<>();
 	
@@ -50,19 +48,15 @@ public class SMetaView implements MetaView{
 	}
 	
 	private void initialize(){
-		panel.setLayout(layout);
+		panel.setLayout(new GridLayout(1,0,10,0));
 		panel.setBackground(Color.WHITE);
-		layout.appendRow(RowSpec.decode("pref"));
-		layout.appendRow(RowSpec.decode("pref"));
-		layout.appendRow(RowSpec.decode("pref"));
-		layout.appendRow(RowSpec.decode("pref"));
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-		layout.appendColumn(ColumnSpec.decode("pref:GROW"));
-		layout.setColumnGroups(new int[][]{{1,2,3}});
-		layout.insertColumn(1, ColumnSpec.decode("10px"));
-		layout.insertColumn(3, ColumnSpec.decode("10px"));
-		layout.insertColumn(5, ColumnSpec.decode("10px"));
+		panel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+		for (int i = 0; i < 3; i++){
+			JPanel coloumn = new JPanel();
+			coloumn.setLayout(new BoxLayout(coloumn, BoxLayout.Y_AXIS));
+			panel.add(coloumn);
+			coloumns.add(coloumn);
+		}
 	}
 
 	@Override
@@ -75,20 +69,8 @@ public class SMetaView implements MetaView{
 		SMetaEntryView view = (SMetaEntryView) entry;
 		metaEntries.add(entry);
 		int lineCount = view.getViewAtts().getLineCount();
-		
-
-		int x = added/4+1;
-		int y = added%4+1;
-		
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridHeight	=	lineCount;
-		constraints.gridWidth	=	1;
-		constraints.gridX		=	2*x;
-		constraints.gridY		=	y;
-		constraints.hAlign		=	CellConstraints.FILL;
-		
-		panel.add(view.getPanel(), constraints);
-		
+		int x = added/4;
+		coloumns.get(x).add(view.getPanel());
 		added+=lineCount;
 		
 	}

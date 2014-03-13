@@ -20,14 +20,14 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view;
 
-import java.awt.Color;
+import java.awt.GridLayout;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import vampire.editor.plugin.api.view.sheet.HealthView;
 
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.FormLayout;
 
 public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 	
@@ -39,10 +39,14 @@ public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 	
 	private final SMeritView flawView;
 	
-	private final JPanel panel = new JPanel();
+	private final JPanel panel = Helper.createPanel();
 	
-	private final FormLayout layout = new FormLayout("5px, pref:GROW, 5px, pref:GROW, 5px, pref:GROW, 5px",
-												"pref,pref:GROw");
+	private final JPanel leftColoumn = Helper.createPanel();
+	
+	private final JPanel middleColoumn = Helper.createPanel();
+	
+	private final JPanel rightColoumn = Helper.createPanel();
+	
 	
 	public MiscView(
 			SBloodPoolView bloodPoolView, HealthView healthView,
@@ -57,31 +61,25 @@ public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 	
 	
 	private void build(){
-		layout.setColumnGroups(new int[][]{{2,4,6}});
-		panel.setLayout(layout);
-		panel.setBackground(Color.WHITE);
-		CellConstraints constraints = new CellConstraints();
-		constraints.gridX		=	2;
-		constraints.gridY		=	1;
-		constraints.gridHeight	=	2;
-		constraints.gridWidth	=	1;
-		constraints.vAlign		=	CellConstraints.TOP;
-			
-		panel.add(meritView.getPanel(), constraints);
+		panel.setLayout(new GridLayout(1, 0));
+		panel.add(leftColoumn);
+		panel.add(middleColoumn);
+		panel.add(rightColoumn);
 		
-		constraints.gridX		=	4;
-		constraints.gridHeight	=	1;
+		leftColoumn.setLayout(new BoxLayout(leftColoumn, BoxLayout.Y_AXIS));
+		middleColoumn.setLayout(new BoxLayout(middleColoumn, BoxLayout.Y_AXIS));
+		rightColoumn.setLayout(new BoxLayout(rightColoumn, BoxLayout.Y_AXIS));
 		
-		panel.add(bloodPoolView.getView(), constraints);
+		leftColoumn.add(meritView.getPanel());
+		leftColoumn.add(Box.createGlue());
 		
-		constraints.gridY		=	2;
-		panel.add(healthView.getPanel(), constraints);
+		Helper.setMaximumHeightToPreferredHeight(bloodPoolView.getView());
+		middleColoumn.add(bloodPoolView.getView());
+		middleColoumn.add(healthView.getPanel());
+		middleColoumn.add(Box.createGlue());
 		
-		constraints.gridY		=	1;
-		constraints.gridX		=	6;
-		constraints.gridHeight	=	2;
-		
-		panel.add(flawView.getPanel(), constraints);
+		rightColoumn.add(flawView.getPanel());
+		rightColoumn.add(Box.createGlue());
 	}
 	
 	public JPanel getPanel(){
