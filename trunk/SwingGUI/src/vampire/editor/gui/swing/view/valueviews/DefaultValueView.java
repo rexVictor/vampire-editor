@@ -65,12 +65,14 @@ class DefaultValueView extends AbstractValueView{
 	public void addCircle() {
 		addCircle0();
 		viewAtts.setCircles(viewAtts.getCircles()+1);
+		panel.revalidate();
 	}
 
 	@Override
 	public void removeCircle() {
 		removeCircle0();
 		viewAtts.setCircles(viewAtts.getCircles()-1);
+		panel.revalidate();
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="ModelAPI" default="default">
-	<property name="final.dist" location="../vampireeditor/api"/>
+	<property name="final.dist" location="../vampireeditor/dist/api"/>
 	<import file="../build-common.xml"/>
 
 </project>

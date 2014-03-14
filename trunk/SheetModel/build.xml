@@ -2,5 +2,12 @@
 <project name="SheetModel" default="default">
 	<property name="final.dist" location="../vampireeditor/dist/core"/>
 	<import file="../build-common.xml"/>
+	
+	<target name="addToXML" depends="default">
+		<replace file="${xml.file}" token="&lt;/core&gt;" value="&lt;model path=&quot;core&quot;
+			file=&quot;${ant.project.name}.jar&quot;
+			class=&quot;vampire.editor.domain.sheet.MModelConstructors&quot;/&gt;${line.separator}&lt;/core&gt;">
+		</replace>
+	</target>
 
 </project>
