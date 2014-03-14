@@ -1,4 +1,4 @@
 <project name="VMPCSExporter2" default="default">
-
+	<property name="final.dist" location="../vampireeditor/dist/exporters"/>
 	<import file="../build-common.xml"/>
 </project>

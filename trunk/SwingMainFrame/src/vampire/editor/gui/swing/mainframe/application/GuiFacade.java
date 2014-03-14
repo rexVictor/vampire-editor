@@ -44,8 +44,6 @@ import vampire.editor.plugin.api.plugin.Trigger;
 
 public class GuiFacade implements GUIPlugin{
 	
-//private final ManagerAPI manager;
-	
 	private final MainFrame mainFrame;
 	
 	private final MenuBarController menuBarController;
@@ -57,7 +55,6 @@ public class GuiFacade implements GUIPlugin{
 	private final CopyrightView copyrightView = CopyrightViewFactory.buildView(Paths.get("resources", "copyright.json"));
 	
 	public GuiFacade(ManagerAPI manager){
-//		this.manager = manager;
 		DictionaryAPI dictionary = manager.getResourcesHolder().getDictionary("general");
 		menuBarController = new MenuBarController(dictionary);
 		mainFrame = new MainFrame(menuBarController.getMenuBar(), manager);
