@@ -170,11 +170,6 @@ public class Manager implements ManagerAPI{
 	public GUIPlugin getGUI() {
 		return gui;
 	}
-
-	
-	
-	
-	
 	
 
 	@Override

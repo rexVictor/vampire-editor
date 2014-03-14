@@ -2,5 +2,4 @@
 <project name="SwingGUI" default="default">
 	<property name="final.dist" location="../vampireeditor/dist/core"/>
 	<import file="../build-common.xml"/>
-
 </project>

@@ -1,0 +1,7 @@
+<core>
+	<model path="core" file="SheetModel/SheetModel.jar" class="vampire.editor.domain.sheet.MModelConstructors"/>
+	<jar name="gui" path="core" file="SwingMainFrame/SwingMainFrame.jar" 
+		class="vampire.editor.gui.swing.mainframe.application.GuiActivator"/>
+	<viewatts path="core" file="ViewAttributes/ViewAttributes.jar"
+		class="vampire.editor.domain.sheet.view.MViewConstructors"/>
+</core>

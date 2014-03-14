@@ -1,4 +1,4 @@
 <project name="ExporterAPI" default="default">
-	<property name="final.dist" location="../vampireeditor/api"/>
+	<property name="final.dist" location="../vampireeditor/dist/api"/>
 	<import file="../build-common.xml"/>
 </project>

@@ -39,4 +39,9 @@
 	<plugin name="Sheetsummary">
 		<jar class="vampire.editor.plugin.sheetsummary.application.Constructor"/>
 	</plugin>
+	
+	<plugin name="DynamicCircleAdder">
+		<jar class="vampire.editor.plugin.dynamiccircleadder.application.Constructor"/>
+	</plugin>
 </plugins>
+

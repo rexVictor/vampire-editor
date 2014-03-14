@@ -30,18 +30,10 @@
 	<locale language="DE" country="" variant=""/>
 
 	<!-- The name of the configs is not processed yet, since there was no need. -->
-	<!-- config name="core"			path="core"			file="core.xml"/ -->
+	<config name="core"			path="core"			file="core.xml"/>
 	<config name="resources" 	path="resources" 	file="resources.xml" />
 	<config name="plugins"		path="plugins" 		file="plugins.xml" />
 	<config name="importers" 	path="importers" 	file="importers.xml"/>
 	<config name="exporters" 	path="exporters" 	file="exporters.xml"/>	
-	
-	<jar name="gui"
-		path="core" file="SwingMainFrame/SwingMainFrame.jar"
-		class="vampire.editor.gui.swing.mainframe.application.GuiActivator" />
-	
-	<model path="core" file="SheetModel.jar" class="vampire.editor.domain.sheet.MModelConstructors"/>
-	<viewatts path="core" file="ViewAttributes.jar"
-		class="vampire.editor.domain.sheet.view.MViewConstructors"/>
 	
 </coreconfig>

@@ -1,21 +1,76 @@
 <project name="vampireeditor" basedir="." default="dist">
+	
+	<property name="source" location="src"/>
+	<property name="build" location="bin"/>
+	<property name="dist" location="dist"/>
+	<property name="dist.parent" location="."/>
+	<property name="manifest" value="manifest.mf"/>
+	<property name="libs" location="libs"/>
+	<property name="license" location="license.txt"/>
+	<property name="core" location="${dist}/core"/>
+	<property name="xml.core" location="${core}/core.xml"/>
 
 	<target name="default">
 
 	</target>
-
-	<target name="copyapi">
-		<copy todir="dist/api" flatten="true">
-			<fileset dir="..">
-				<include name="*API/dist/*.jar" />
-			</fileset>
-		</copy>
-		<copy todir="dist/api" file="license.txt" />
+	
+	<target name="clean">
+		<delete dir="${dist}"/>
+    	<delete dir="${build}"/>
+		<delete file="manifest.mf"/>
 	</target>
-
-	<target name="dist">
-		<delete dir="bin" />
-		<mkdir dir="bin"/>
+	
+	<target name="createTargetStructure">
+		<mkdir dir="${dist}"/>
+		<mkdir dir="${core}"/>
+		<echo file="${xml.core}" message="&lt;core&gt;${line.separator}&lt;/core&gt;"/>
+	</target>
+	
+	<target name="createManifest" depends="createTargetStructure">
+		<delete file="manifest.mf"/>
+		<echo file="manifest.mf" message="Manifest-Version: 1.0${line.separator}Class-Path: "/> 
+	</target>
+	
+	<target name="distapi" depends="createManifest">
+		<subant target="default">
+			<dirset dir="..">
+				<include name="*API"/>
+			</dirset>
+			<property name="final.manifest" location="manifest.mf"/>
+			<property name="final.manifestFolder"	value="api"/>
+		</subant>
+	</target>
+	
+	<target name="distlibs" depends="distapi">
+		<subant target="default">
+			<dirset dir="..">
+				<include name="Config"/>
+				<include name="ConfigCreator"/>
+				<include name="Resources"/>
+				<include name="SheetControllers"/>
+				<include name="SheetEvents"/>
+			</dirset>
+		<property name="final.manifest" location="manifest.mf"/>
+		<property name="final.manifestFolder"	value="libs"/>
+		</subant>
+	</target>
+	
+	<target name="distcore" depends="distlibs">
+		<subant target="addToXML">
+			<dirset dir="..">
+				<include name="SwingMainFrame"/>
+				<include name="SheetModel"/>
+				<include name="ViewAttributes"/>
+			</dirset>
+		<property name="xml.file" value="${xml.core}"/>
+		</subant>
+	</target>
+	
+	<target name="dist" depends="distcore">
+		<mkdir dir="${build}"/>
+		<concat append="true" destfile="manifest.mf">${line.separator}</concat>
+		<concat append="true" destfile="manifest.mf">Main-Class: vampire.editor.application.startup.Main</concat>
+		<concat append="true" destfile="manifest.mf">${line.separator}</concat>
 		<javac srcdir="src" destdir="bin" includeantruntime="false">
 			<classpath>
 				<dirset dir="..">
