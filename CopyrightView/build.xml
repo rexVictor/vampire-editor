@@ -1,4 +1,4 @@
 <project name="CopyrightView" default="default">
-
+	<property name="final.dist" location="../vampireeditor/dist/core"/>
 	<import file="../build-common.xml"/>
 </project>

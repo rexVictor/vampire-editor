@@ -1,5 +1,5 @@
-<project name="ViewAttsAPI" basedir="." default="default">
-
+<project name="ViewAttsAPI" default="default">
+	<property name="final.dist" location="../vampireeditor/api"/>
 	<import file="../build-common.xml"/>
 
 </project>

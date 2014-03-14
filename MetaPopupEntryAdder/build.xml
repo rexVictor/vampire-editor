@@ -1,3 +1,4 @@
 <project name="MetaPopupEntryAdder" default="default">
+	<property name="final.dist" location="../vampireeditor/api"/>
 	<import file="../build-common.xml"/>
 </project>

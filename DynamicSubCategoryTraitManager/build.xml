@@ -1,3 +1,4 @@
 <project name="DynamicSubCategoryTraitManager" default="default">
+	<property name="final.dist" location="../vampireeditor/plugins"/>
 	<import file="../build-common.xml"/>
 </project>
