@@ -11,10 +11,11 @@ import vampire.editor.gui.swing.view.traitviews.AbstractTraitView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.plugin.api.view.events.DataViewListener;
+import vampire.editor.plugin.api.view.sheet.Addable;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 
-public abstract class AbstractSubCategoryView implements SubCategoryView{
+public abstract class AbstractSubCategoryView implements SubCategoryView, Addable<TraitView>{
 	
 	public static AbstractSubCategoryView buildSubCategoryView(SubCategoryViewAttributes viewAtts
 												,DictionaryAPI dictionary

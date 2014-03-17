@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.swing.JPopupMenu;
 
 import vampire.editor.gui.swing.view.traitviews.AbstractTraitView;
-import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
@@ -25,8 +24,7 @@ public class Module implements SubCategoryViewFactoryModule{
 
 	@Override
 	public void process(SubCategoryAPI subCategory,
-			ModelToViewModelMapperAPI mapper, SubCategoryView traitView,
-			DictionaryAPI dictionary) {
+			ModelToViewModelMapperAPI mapper, SubCategoryView traitView) {
 		for (TraitView tv : traitView.getEntries()){
 			((AbstractTraitView) tv).getField().addMouseListener(Loader.listener);
 			((AbstractTraitView) tv).setPopupMenu(map.get(subCategory.getName()));

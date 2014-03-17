@@ -31,10 +31,11 @@ import javax.swing.JPanel;
 
 import vampire.editor.gui.swing.view.subcategoryviews.AbstractSubCategoryView;
 import vampire.editor.plugin.api.view.events.DataViewListener;
+import vampire.editor.plugin.api.view.sheet.Addable;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 
-public class SCategoryView implements CategoryView{
+public class SCategoryView implements CategoryView, Addable<SubCategoryView>{
 	
 	private final JPanel panel = new JPanel();
 	
@@ -105,6 +106,11 @@ public class SCategoryView implements CategoryView{
 
 	public JPanel getPanel() {
 		return panel;
+	}
+
+	@Override
+	public void add0(SubCategoryView s) {
+		add(s);
 	}
 	
 	

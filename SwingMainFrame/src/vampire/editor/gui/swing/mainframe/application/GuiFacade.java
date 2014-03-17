@@ -33,7 +33,7 @@ import javax.swing.filechooser.FileFilter;
 
 import vampire.editor.copyright.application.CopyrightViewFactory;
 import vampire.editor.copyright.view.CopyrightView;
-import vampire.editor.gui.swing.application.SheetViewFactory;
+import vampire.editor.gui.swing.application.factories.SheetViewFactory;
 import vampire.editor.gui.swing.mainframe.view.AboutView;
 import vampire.editor.gui.swing.mainframe.view.MainFrame;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;

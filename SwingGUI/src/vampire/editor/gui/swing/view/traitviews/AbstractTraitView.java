@@ -173,4 +173,10 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 		textField.setComponentPopupMenu(menu);
 	}
 
+	@Override
+	public void add(ValueView s) {}
+
+	@Override
+	public void add0(ValueView s) {}
+
 }
