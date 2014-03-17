@@ -33,6 +33,7 @@ public class SheetViewPanel extends JScrollPane{
 	
 	public SheetViewPanel(JPanel sheetView){
 		super(sheetView);
+		getVerticalScrollBar().setUnitIncrement(16);
 	}
 	
 

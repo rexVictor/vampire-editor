@@ -21,10 +21,17 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -34,7 +41,7 @@ import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttibutesAPI;
 import vampire.editor.plugin.api.view.events.MeritEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.MeritEntryView;
 
-public class SMeritEntryView implements MeritEntryView, DocumentListener{
+public class SMeritEntryView implements MeritEntryView, DocumentListener, ActionListener{
 	
 	private final JTextField textField = Helper.createLimitedTextField(25);
 	
@@ -47,6 +54,10 @@ public class SMeritEntryView implements MeritEntryView, DocumentListener{
 	private final MeritEntryViewAttibutesAPI viewAtts;
 	
 	private final JPanel panel = Helper.createPanel();
+	
+	private final JPopupMenu popupMenu = new JPopupMenu();
+	
+	private final Map<String, JMenu> menuMap = new HashMap<>();
 
 	public SMeritEntryView(DictionaryAPI dictionary, MeritEntryViewAttibutesAPI viewAtts) {
 		super();
@@ -57,14 +68,23 @@ public class SMeritEntryView implements MeritEntryView, DocumentListener{
 		textField.getDocument().addDocumentListener(this);
 		costField.getDocument().addDocumentListener(this);
 		
+		costField.setColumns(1);
+		
 		panel.setLayout(new BorderLayout(10,0));
 		panel.add(costField, BorderLayout.WEST);
 		panel.add(textField, BorderLayout.CENTER);
+		
+		textField.setComponentPopupMenu(popupMenu);
 	}
 
 	@Override
 	public void setCost(int cost) {
-		costField.setText(cost+"");
+		if (cost == 0){
+			costField.setText("");
+		}
+		else{
+			costField.setText(cost+"");
+		}
 	}
 
 	@Override
@@ -88,7 +108,10 @@ public class SMeritEntryView implements MeritEntryView, DocumentListener{
 	private void changeEvent(Object source){
 		String name = dictionary.getKey(textField.getText());
 		String costString = costField.getText();
-		int cost = Integer.parseInt(costString);
+		int cost = 0;
+		if (!costString.isEmpty()){
+			cost = Integer.parseInt(costString);
+		}
 		SMeritEntryViewEvent event = new SMeritEntryViewEvent(cost, name);
 		if (source  == costField){
 			for (MeritEntryViewListener l : listeners){
@@ -134,6 +157,29 @@ public class SMeritEntryView implements MeritEntryView, DocumentListener{
 	
 	public JPanel getPanel(){
 		return panel;
+	}
+
+	@Override
+	public void addPopupEntry(String first, String second) {
+		JMenu menu = menuMap.get(first);
+		if (menu == null){
+			menu = new JMenu(first);
+			menuMap.put(first, menu);
+			popupMenu.add(menu);
+		}
+		String translated = dictionary.getValue(second);
+		JMenuItem item = new JMenuItem(translated);
+		item.setActionCommand(first+translated);
+		item.addActionListener(this);
+		menu.add(item);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.out.println(e.getActionCommand());
+		setCost(Integer.parseInt(e.getActionCommand().substring(0,1)));
+		setText(e.getActionCommand().substring(1));
+		
 	}
 	
 }

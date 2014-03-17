@@ -1,5 +1,7 @@
 package vampire.editor.gui.swing.mainframe.view;
 
+import java.awt.Dialog.ModalityType;
+
 import javax.swing.JDialog;
 import javax.swing.JTextPane;
 
@@ -16,6 +18,7 @@ public class AboutView implements Trigger{
 		pane.setContentType("text/html");
 		pane.setText(dictionary.getValue("aboutcontent"));
 		dialog.add(pane);
+		dialog.setModalityType(ModalityType.APPLICATION_MODAL);
 	}
 	
 	public void showDialog(){

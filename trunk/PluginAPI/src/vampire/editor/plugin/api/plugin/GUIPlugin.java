@@ -43,4 +43,8 @@ public interface GUIPlugin {
 	public boolean demandUserChoise(String message);
 	
 	public <V> void addPluginComponent(V component);
+	
+	public void createErrorMessage(String e);
+	
+	public void createErrorMessage(Throwable e);
 }

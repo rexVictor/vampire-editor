@@ -2,21 +2,16 @@ package vampire.editor.gui.swing.view;
 
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.PlainDocument;
 
-public class NumberDocument extends PlainDocument{
+public class NumberDocument extends LimitedDocument{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6728086844861062860L;
 	
-	private final int length;
-	
-	
 	public NumberDocument(int length) {
-		super();
-		this.length = length;
+		super(length);
 	}
 
 	@Override
@@ -25,16 +20,12 @@ public class NumberDocument extends PlainDocument{
 	    	return;
 	    }
 	    String current = getText(0, getLength());
-	    if ((getLength() + str.length() > length)){
-	    	return;
-	    }
 	    if (getLength() == 0){
 	    	if ("+".equals(str) || "-".equals(str)){
 	    		super.insertString(offset, str, attr);
 	    	}
 	    }
 	    try{
-	    	
 	    	Integer.parseInt(current+str);
 	    }
 	    catch (NumberFormatException e){

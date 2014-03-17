@@ -20,20 +20,21 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.application;
 
-import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import vampire.editor.gui.swing.view.*;
-import vampire.editor.gui.swing.view.subcategoryviews.AbstractSubCategoryView;
-import vampire.editor.gui.swing.view.traitviews.AbstractTraitView;
-import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.*;
 import vampire.editor.plugin.api.domain.sheet.view.*;
+import vampire.editor.plugin.api.plugin.CategoryViewFactory;
+import vampire.editor.plugin.api.plugin.SubCategoryViewFactory;
+import vampire.editor.plugin.api.plugin.TraitViewFactory;
+import vampire.editor.plugin.api.plugin.ValueViewFactory;
+import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.HealthView;
 
 public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetViewFactory{
@@ -42,9 +43,21 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	
 	private final ResourcesHolderAPI resources;
 	
+	private final CategoryViewFactory categoryViewFactory;
+	
+	private final SubCategoryViewFactory subCategoryViewFactory;
+	
+	private final TraitViewFactory traitViewFactory;
+	
+	private final ValueViewFactory valueViewFactory;
+	
 	public SheetViewFactory(ResourcesHolderAPI resources){
 		this.dictionary = resources.getDictionary("sheet");
 		this.resources = resources;
+		valueViewFactory = new SValueViewFactory();
+		traitViewFactory = new STraitViewFactory(dictionary, valueViewFactory);
+		subCategoryViewFactory = new SSubCategoryViewFactory(traitViewFactory, dictionary);
+		categoryViewFactory = new SCategoryViewFactory(resources, dictionary, subCategoryViewFactory);
 	}
 	
 	@Override
@@ -54,8 +67,8 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		SSheetView sheetView = new SSheetView();
 		SMetaView metaView = buildMetaView(sheet.getMeta(), mapper);
 		sheetView.setMetaView(metaView);
-		List<SCategoryView> categoryViews = buildCategoryViews(sheet.getCategories(), mapper);
-		for (SCategoryView categoryView : categoryViews){
+		List<CategoryView> categoryViews = buildCategoryViews(sheet.getCategories(), mapper);
+		for (CategoryView categoryView : categoryViews){
 			sheetView.add(categoryView);
 		}
 		MiscView view = buildAdvantageView(sheet.getBloodPool(), 
@@ -94,75 +107,13 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		return view;
 	}
 	
-	private List<SCategoryView> buildCategoryViews(CategoriesAPI categories, ModelToViewModelMapperAPI mapper){
-		List<SCategoryView> categoryViews = new ArrayList<>();
+	private List<CategoryView> buildCategoryViews(CategoriesAPI categories, ModelToViewModelMapperAPI mapper){
+		List<CategoryView> categoryViews = new ArrayList<>();
 		for (Iterator<? extends CategoryAPI> i = categories.getIterator(); i.hasNext();) {
 			CategoryAPI category = i.next();
-			categoryViews.add(buildCategoryView(category, mapper));
+			categoryViews.add(categoryViewFactory.build(category, mapper));
 		}
 		return categoryViews;
-	}
-	
-	private SCategoryView buildCategoryView(CategoryAPI category, ModelToViewModelMapperAPI mapper){
-		CategoryViewAttributes viewAtts = (CategoryViewAttributes) mapper.getViewAttributes(category); 
-		SCategoryView categoryView = new SCategoryView();
-		List<AbstractSubCategoryView> subCategoryViews = buildSubCategoryViews(category, mapper);
-		for (AbstractSubCategoryView subCategoryView : subCategoryViews){
-			categoryView.add(subCategoryView);
-		}
-		if (viewAtts.isShowLine()){
-			Image line = resources.getLine(viewAtts.getImage());
-			line = line.getScaledInstance(SizeConverter.millimetersToPixel(180), -1, Image.SCALE_SMOOTH);
-			LineImage lineImage = new LineImage(line, dictionary.getValue(category.getName()), viewAtts.getFont());
-			categoryView.addLine(lineImage);
-		}
-		return categoryView;
-	}
-	
-	private List<AbstractSubCategoryView> buildSubCategoryViews(CategoryAPI subCategories,
-				ModelToViewModelMapperAPI mapper){
-		List<AbstractSubCategoryView> subCategoryViews = new ArrayList<>();
-		for (Iterator<? extends SubCategoryAPI> i = subCategories.getIterator(); i.hasNext();) {
-			SubCategoryAPI subCategory = i.next();
-			subCategoryViews.add(buildSubCategoryView(subCategory, mapper));
-		}
-		return subCategoryViews;
-	}
-	
-	private AbstractSubCategoryView buildSubCategoryView(SubCategoryAPI subCategory, ModelToViewModelMapperAPI mapper){
-		SubCategoryViewAttributes atts = (SubCategoryViewAttributes) mapper.getViewAttributes(subCategory);
-		AbstractSubCategoryView subCategoryView = AbstractSubCategoryView.buildSubCategoryView(atts, dictionary, subCategory.getName());
-		List<AbstractTraitView> traitViews = buildTraitViews(subCategory, mapper);
-		for (AbstractTraitView traitView : traitViews){
-			subCategoryView.add0(traitView);
-		}
-		return subCategoryView;
-	}
-	
-	private List<AbstractTraitView> buildTraitViews(SubCategoryAPI traits, ModelToViewModelMapperAPI mapper){
-		List<AbstractTraitView> traitViews = new ArrayList<>();
-		for (Iterator<? extends TraitAPI> i = traits.getIterator(); i.hasNext();) {
-			TraitAPI trait = i.next();
-			traitViews.add(buildTraitView(trait, mapper));
-		}
-		return traitViews;
-	}
-	
-	private AbstractTraitView buildTraitView(TraitAPI trait, ModelToViewModelMapperAPI mapper){
-		AbstractValueView valueView = buildValueView(trait.getValue(), mapper);
-		AbstractTraitView traitView = AbstractTraitView.buildTraitView(valueView, 
-				(TraitViewAttributes) mapper.getViewAttributes(trait), dictionary);
-		traitView.setName(trait.getName());
-		return traitView;
-	}
-	
-	private AbstractValueView buildValueView(ValueAPI value, ModelToViewModelMapperAPI mapper){
-		AbstractValueView view = 
-				AbstractValueView.getValueView((
-						(ValueViewAttributes) mapper.getViewAttributes(value)));
-		view.setValue(value.getValue());
-		view.setTempValue(value.getTempValue());
-		return view;
 	}
 	
 	private SMeritView buildMeritsView(MeritsAPI merits, ModelToViewModelMapperAPI mapper){
@@ -221,6 +172,10 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		entryView.setDescription(healthEntry.getName());
 		entryView.setPenalty(healthEntry.getPenalty());
 		return entryView;
+	}
+	
+	public SubCategoryViewFactory getSubCategoryViewFactory(){
+		return subCategoryViewFactory;
 	}
 
 }

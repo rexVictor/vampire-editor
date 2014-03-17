@@ -29,4 +29,6 @@ public interface SheetViewFactory {
 	
 	public SheetView buildSheetView(VampireDocumentAPI document);
 	
+	public SubCategoryViewFactory getSubCategoryViewFactory();
+	
 }

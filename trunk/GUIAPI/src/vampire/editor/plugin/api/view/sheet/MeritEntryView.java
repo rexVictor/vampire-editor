@@ -36,5 +36,7 @@ public interface MeritEntryView {
 	public MeritEntryView clone();
 
 	public MeritEntryViewAttibutesAPI getViewAttributes();
+	
+	public void addPopupEntry(String first, String second);
 
 }

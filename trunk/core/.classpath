@@ -32,5 +32,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/MetaPopupEntryAdder"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetSummary"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/DynamicCircleAdder"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MeritPopupEntryAdder"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
