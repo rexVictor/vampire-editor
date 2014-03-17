@@ -18,7 +18,7 @@
  * For further information see https://code.google.com/p/vampire-editor/ or write a
  * mail to development.rex@gmail.com
  ******************************************************************************/
-package vampire.editor.gui.swing.application;
+package vampire.editor.gui.swing.application.factories;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -111,7 +111,7 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		List<CategoryView> categoryViews = new ArrayList<>();
 		for (Iterator<? extends CategoryAPI> i = categories.getIterator(); i.hasNext();) {
 			CategoryAPI category = i.next();
-			categoryViews.add(categoryViewFactory.build(category, mapper));
+			categoryViews.add(categoryViewFactory.build(mapper, category));
 		}
 		return categoryViews;
 	}

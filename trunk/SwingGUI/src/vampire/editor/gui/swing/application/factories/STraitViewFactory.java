@@ -1,4 +1,4 @@
-package vampire.editor.gui.swing.application;
+package vampire.editor.gui.swing.application.factories;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,6 +10,7 @@ import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.TraitAPI;
+import vampire.editor.plugin.api.domain.sheet.ValueAPI;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
 import vampire.editor.plugin.api.plugin.TraitViewFactory;
 import vampire.editor.plugin.api.plugin.TraitViewFactoryModule;
@@ -17,7 +18,8 @@ import vampire.editor.plugin.api.plugin.ValueViewFactory;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
-public class STraitViewFactory implements TraitViewFactory{
+public class STraitViewFactory extends AbstractFactory<TraitAPI, ValueAPI, ValueView, TraitView, TraitViewFactoryModule>
+			implements TraitViewFactory{
 	
 	private final DictionaryAPI dictionary;
 	
@@ -36,21 +38,26 @@ public class STraitViewFactory implements TraitViewFactory{
 		modules.add(module);
 	}
 	
-	public List<TraitView> build(SubCategoryAPI traits, ModelToViewModelMapperAPI mapper){
+	public List<TraitView> buildList(SubCategoryAPI traits, ModelToViewModelMapperAPI mapper){
 		List<TraitView> traitViews = new ArrayList<>();
 		for (Iterator<? extends TraitAPI> i = traits.getIterator(); i.hasNext();) {
 			TraitAPI trait = i.next();
-			traitViews.add(build(trait, mapper));
+			traitViews.add(build(mapper, trait));
 		}
 		return traitViews;
 	}
 	
-	public AbstractTraitView build(TraitAPI trait, ModelToViewModelMapperAPI mapper){
+	public TraitView build(ModelToViewModelMapperAPI mapper, TraitAPI trait){
 		ValueView valueView = valueViewFactory.build(trait.getValue(), mapper);
 		AbstractTraitView traitView = AbstractTraitView.buildTraitView(valueView, 
 				(TraitViewAttributes) mapper.getViewAttributes(trait), dictionary);
 		traitView.setName(trait.getName());
 		return traitView;
+	}
+
+	@Override
+	protected TraitView constructView(Object viewAtts, TraitAPI m) {
+		return null;
 	}
 	
 	

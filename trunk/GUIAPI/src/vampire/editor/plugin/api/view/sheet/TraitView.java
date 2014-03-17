@@ -26,7 +26,7 @@ import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.TraitMouseViewListener;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 
-public interface TraitView {
+public interface TraitView extends Addable<ValueView>{
 	
 	public void setName(String name);
 	

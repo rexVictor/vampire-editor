@@ -7,13 +7,9 @@ import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 
-public interface SubCategoryViewFactory {
+public interface SubCategoryViewFactory extends AbstractViewsFactory<CategoryAPI, SubCategoryAPI,
+													SubCategoryView, SubCategoryViewFactoryModule>{
 	
-	public SubCategoryView build(SubCategoryAPI subCategory, ModelToViewModelMapperAPI mapper);
+	public List<SubCategoryView> buildList(CategoryAPI category, ModelToViewModelMapperAPI mapper);
 	
-	public List<SubCategoryView> build(CategoryAPI category, ModelToViewModelMapperAPI mapper);
-	
-	public void add(SubCategoryViewFactoryModule module);
-	
-
 }
