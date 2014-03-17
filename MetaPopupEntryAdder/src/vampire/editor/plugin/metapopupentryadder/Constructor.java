@@ -14,14 +14,10 @@ import vampire.editor.plugin.api.view.sheet.MetaEntryView;
 
 public class Constructor implements Activator, DocumentListener{
 	
-	private final Map<String, List<String>> map;
-	
-	
+	private Map<String, List<String>> map;
 
 	public Constructor() {
 		super();
-		Loader loader = new Loader();
-		this.map = loader.loadFiles();
 	}
 
 	@Override
@@ -46,6 +42,8 @@ public class Constructor implements Activator, DocumentListener{
 
 	@Override
 	public void setManager(ManagerAPI manager) {
+		Loader loader = new Loader(manager.getResourcesHolder().getDictionary("sheet"));
+		this.map = loader.loadFiles();
 		manager.addDocumentListener(this);
 	}
 

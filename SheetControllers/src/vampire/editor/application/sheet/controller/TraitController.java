@@ -27,23 +27,28 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-
 import vampire.editor.application.sheet.events.TraitEvent;
+import vampire.editor.application.sheet.events.TraitMouseEvent;
 import vampire.editor.plugin.api.application.sheet.controller.TraitControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.TraitListener;
+import vampire.editor.plugin.api.application.sheet.events.TraitMouseListener;
 import vampire.editor.plugin.api.domain.sheet.Trait;
+import vampire.editor.plugin.api.view.events.TraitMouseViewEvent;
+import vampire.editor.plugin.api.view.events.TraitMouseViewListener;
 import vampire.editor.plugin.api.view.events.TraitViewEvent;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
-public class TraitController implements TraitViewListener, TraitControllerAPI{
+public class TraitController implements TraitViewListener, TraitControllerAPI, TraitMouseViewListener{
 	
 	private final Trait trait;
 	
 	private final TraitView traitView;
 	
 	private final List<TraitListener> listeners = new LinkedList<>();
+	
+	private final List<TraitMouseListener> mouseListeners = new LinkedList<>();
 	
 	private final Lock lock = new ReentrantLock(true);
 	
@@ -152,6 +157,23 @@ public class TraitController implements TraitViewListener, TraitControllerAPI{
 		ValueView cloneValueView = cloneView.getValueView();
 		ValueController cloneValueController = new ValueController(cloneTrait.getValue(), cloneValueView);
 		return new TraitController(cloneValueController, cloneTrait, cloneView);
+	}
+
+
+
+	@Override
+	public void addMouseListener(TraitMouseListener listener) {
+		mouseListeners.add(listener);
+	}
+
+
+
+	@Override
+	public void mouseViewEventFired(TraitMouseViewEvent e) {
+		TraitMouseEvent event = new TraitMouseEvent(this, e.getClickCount(), e.getButton());
+		for (TraitMouseListener l : mouseListeners){
+			l.mouseEventFired(event);
+		}
 	}
 	
 	

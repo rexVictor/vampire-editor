@@ -87,6 +87,7 @@ public class GuiFacade implements GUIPlugin{
 		
 	}
 
+	@Override
 	public void createErrorMessage(String message) {
 		JDialog dialog = new JDialog();
 		dialog.setModalityType(ModalityType.APPLICATION_MODAL);
@@ -97,7 +98,11 @@ public class GuiFacade implements GUIPlugin{
 		dialog.pack();
 		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		dialog.setVisible(true);
-		
+	}
+	
+	@Override
+	public void createErrorMessage(Throwable e){
+		createErrorMessage(e.toString());
 	}
 	
 	public void setVisible(){

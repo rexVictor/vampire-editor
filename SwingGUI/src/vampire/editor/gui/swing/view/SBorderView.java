@@ -66,10 +66,8 @@ public class SBorderView extends JPanel implements Printable{
 		this.width = leftInset + sheetWidth + rightInset;
 		this.height = topInset + sheetHeight + bottomInset;
 		this.dimension = new Dimension(width, height);
-		System.out.println("Width: "+this.width);
 		
 		this.border = border.getImage().getScaledInstance(width, -1, Image.SCALE_SMOOTH);
-		System.out.println("Image width: " +this.border.getWidth(this));
 		
 		setBackground(Color.WHITE);
 		setLayout(null);

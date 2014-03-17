@@ -31,8 +31,6 @@ import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
  */
 class MValueViewAttributes implements ValueViewAttributes{
 	
-	private static final long serialVersionUID = 1886427499077840867L;
-
 	private boolean showSpace;
 	
 	private boolean dynamic;

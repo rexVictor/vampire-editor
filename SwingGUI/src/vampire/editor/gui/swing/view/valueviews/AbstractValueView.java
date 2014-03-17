@@ -45,8 +45,6 @@ public abstract class AbstractValueView implements ValueView{
 	
 	public static final String SQUARE_CROSSED	=	"\u2612";
 	
-	public static final String SQUARE_SLASH		=	"\u29C4";
-	
 	
 	public static AbstractValueView getValueView(ValueViewAttributes viewAtts){
 		if (viewAtts.isTempSquared()){
@@ -78,7 +76,6 @@ public abstract class AbstractValueView implements ValueView{
 	protected ImageIcon circleRedStriped;
 	
 	protected ImageIcon circleGreenStriped;
-	
 	
 	protected ValueViewAttributes viewAtts;
 	

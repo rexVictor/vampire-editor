@@ -20,7 +20,6 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view.valueviews;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -37,7 +36,7 @@ import vampire.editor.gui.swing.domain.Images;
 import vampire.editor.gui.swing.view.Helper;
 import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 
-class SquaredValueView extends AbstractValueView{
+class SquaredValueView extends DefaultValueView{
 	
 	protected List<JLabel> squares = new ArrayList<>();
 	
@@ -50,7 +49,7 @@ class SquaredValueView extends AbstractValueView{
 	private JPanel squarePanel = Helper.createPanel();
 
 	SquaredValueView(ValueViewAttributes viewAtts) {
-		super(viewAtts);
+		super(viewAtts, false);
 		tempValue = 0;
 		int size = viewAtts.getSize();
 		emptySquare = new ImageIcon(Images.getImage("square_empty", size, size).
@@ -88,22 +87,13 @@ class SquaredValueView extends AbstractValueView{
 
 	@Override
 	protected void addCircle0() {
-		JLabel label = new JLabel();
-		label.setIcon(circleWhite);
-		label.setOpaque(true);
-		label.setBackground(Color.WHITE);
-		label.addMouseListener(new ValueClickListener(this, circles.size()));
-		label.addMouseListener(new StrgTempClickListener(this, circles.size()));
-		circles.add(label);
+		super.addCircle0();
 		
-		panel.add(label);
-		panel.add(Box.createGlue());
 		JLabel square = new JLabel();
 		square.setIcon(emptySquare);
 		square.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 		square.addMouseListener(new SquareClickListener(this, squares.size()));
 		squares.add(square);
-		
 		squarePanel.add(square);
 		squarePanel.add(Box.createGlue());
 	}
@@ -113,14 +103,10 @@ class SquaredValueView extends AbstractValueView{
 
 	@Override
 	protected void removeCircle0() {
-		int lastIndex = circles.size()-1;
-		JLabel last = circles.remove(lastIndex);
-		JPanel subPanel = (JPanel) last.getParent();
-		subPanel.remove(last);
-		JLabel lastSquare = squares.remove(lastIndex);
-		subPanel.remove(lastSquare);
-		panel.remove(panel.getComponentCount()-1);
-		panel.remove(subPanel);
+		super.removeCircle0();
+		JLabel lastSquare = squares.remove(squares.size()-1);
+		squarePanel.remove(squarePanel.getComponentCount()-1);
+		squarePanel.remove(lastSquare);
 	}
 	
 	public SquaredValueView clone(){

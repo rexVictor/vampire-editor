@@ -39,11 +39,17 @@ class DefaultValueView extends AbstractValueView{
 	 * The ValueView for noSpace, dynamic and noSquares
 	 */
 	DefaultValueView(ValueViewAttributes viewAtts) {
+		this(viewAtts, true);
+	}
+	
+	DefaultValueView(ValueViewAttributes viewAtts, boolean initialize){
 		super(viewAtts);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-		panel.add(Box.createGlue());
-		for (int i = 0; i < viewAtts.getCircles(); i++){
-			addCircle0();
+		if (initialize){
+			panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+			panel.add(Box.createGlue());
+			for (int i = 0; i < viewAtts.getCircles(); i++){
+				addCircle0();
+			}
 		}
 	}
 
@@ -79,8 +85,8 @@ class DefaultValueView extends AbstractValueView{
 	protected void removeCircle0() {
 		int lastIndex = circles.size()-1;
 		JLabel last = circles.remove(lastIndex);
-		getPanel().remove(panel.getComponentCount()-1);
-		getPanel().remove(last);
+		panel.remove(panel.getComponentCount()-1);
+		panel.remove(last);
 	}
 	
 	public DefaultValueView clone(){

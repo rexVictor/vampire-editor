@@ -43,5 +43,8 @@
 	<plugin name="DynamicCircleAdder">
 		<jar class="vampire.editor.plugin.dynamiccircleadder.application.Constructor"/>
 	</plugin>
+	<plugin name="MeritPopupEntryAdder">
+		<jar class="vampire.editor.plugin.meritpopupentryadder.application.Constructor"/>
+	</plugin>
 </plugins>
 

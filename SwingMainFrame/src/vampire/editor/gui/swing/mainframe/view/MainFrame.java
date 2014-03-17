@@ -30,9 +30,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
@@ -45,7 +43,7 @@ public class MainFrame {
 	
 	private final JPanel contentPane = new JPanel();
 	
-	private final JDesktopPane pluginPanel = new PluginPanel();
+	private final PluginPanel pluginPanel = new PluginPanel();
 	
 //	private final JTabbedPane tabs = new JTabbedPane();
 	
@@ -87,12 +85,7 @@ public class MainFrame {
 	}
 	
 	public void addPluginComponent(Container container){
-		JInternalFrame internalFrame = new JInternalFrame("test", true, false, false, false);
-		internalFrame.putClientProperty("JInternalFrame.isPalette",Boolean.TRUE);
-		internalFrame.setContentPane(container);
-		internalFrame.pack();
-		pluginPanel.add(internalFrame);
-		internalFrame.setVisible(true);
+		pluginPanel.add((Container) container);
 	}
 
 }

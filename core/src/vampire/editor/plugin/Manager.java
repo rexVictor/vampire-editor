@@ -117,7 +117,6 @@ public class Manager implements ManagerAPI{
 			public void leftClicked() {
 				SheetControllerAPI sheetController = controller.getCurrentController();
 				if (sheetController == null){
-					System.out.println("SheetController is null");
 					return;
 				}
 				VampireDocumentAPI document = sheetController.getDocument();
@@ -127,7 +126,6 @@ public class Manager implements ManagerAPI{
 					Path containingFolder = path.getName(pathNameCount - 2);
 					Path inFolder = path.getName(pathNameCount - 3);
 					if ("defaultsheets".equals(containingFolder.toString()) && "resources".equals(inFolder.toString())){
-						System.out.println("Defaultsheets cannot be saved");
 						return;
 					}
 				}
@@ -243,7 +241,7 @@ public class Manager implements ManagerAPI{
 					document = importer.loadDocument(path);
 					controller.open(document);
 				} catch (DocumentImportException e) {
-					e.printStackTrace();
+					gui.createErrorMessage(e);
 				}
 			}
 		}

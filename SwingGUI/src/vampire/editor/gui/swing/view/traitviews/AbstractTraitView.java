@@ -2,10 +2,11 @@ package vampire.editor.gui.swing.view.traitviews;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
@@ -17,17 +18,20 @@ import vampire.editor.gui.swing.view.STraitViewEvent;
 import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
+import vampire.editor.plugin.api.view.events.TraitMouseViewListener;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
+import vampire.editor.plugin.api.view.sheet.ValueView;
 
-public class AbstractTraitView implements TraitView, DocumentListener, ActionListener{
+public class AbstractTraitView implements TraitView, DocumentListener, ActionListener, MouseListener{
 	
-	public static AbstractTraitView buildTraitView(AbstractValueView valueView,
+	public static AbstractTraitView buildTraitView(ValueView valueView,
 													TraitViewAttributes viewAtts,
 													DictionaryAPI dictionary){
+		AbstractValueView vv = (AbstractValueView) valueView;
 		switch (viewAtts.getOrientation()){
-		case HORIZONTAL: return new HorizontalTraitView(valueView, viewAtts, dictionary);
-		case VERTICAL: return new VerticalTraitView(valueView, viewAtts, dictionary);
+		case HORIZONTAL: return new HorizontalTraitView(vv, viewAtts, dictionary);
+		case VERTICAL: return new VerticalTraitView(vv, viewAtts, dictionary);
 		}
 		return null;
 	}
@@ -42,9 +46,9 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 	
 	protected final JTextField textField = Helper.createLimitedTextField(20);
 	
-	protected final JPopupMenu popupMenu = new JPopupMenu();
-	
 	private final List<TraitViewListener> listeners = new LinkedList<>();
+	
+	private final List<TraitMouseViewListener> mouseListeners = new LinkedList<>();
 	
 	public AbstractTraitView(AbstractValueView valueView, TraitViewAttributes viewAtts, DictionaryAPI dictionary){
 		this.viewAtts = viewAtts;
@@ -57,7 +61,6 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 		textField.setEditable(viewAtts.isEditable());
 		textField.setFocusable(viewAtts.isEditable());
 		textField.getDocument().addDocumentListener(this);
-		textField.setComponentPopupMenu(popupMenu);
 		textField.setFont(viewAtts.getFont());
 	}
 	
@@ -89,11 +92,11 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 
 	@Override
 	public void addPopupEntry(String entry) {
-		String translated = dictionary.getValue(entry);
+		/*String translated = dictionary.getValue(entry);
 		JMenuItem menuItem = new JMenuItem(translated);
 		menuItem.setActionCommand(translated);
 		menuItem.addActionListener(this);
-		popupMenu.add(menuItem);
+		popupMenu.add(menuItem);*/
 	}
 
 	@Override
@@ -121,6 +124,10 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 		TraitViewAttributes clonedTraitViewAttributes = viewAtts.clone();
 		AbstractTraitView traitView = AbstractTraitView.buildTraitView(
 				clonedValueView, clonedTraitViewAttributes, dictionary);
+		traitView.setPopupMenu(textField.getComponentPopupMenu());
+		for (MouseListener l : textField.getMouseListeners()){
+			traitView.textField.addMouseListener(l);
+		}
 		return traitView;
 	}
 
@@ -135,6 +142,35 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 
 	public JTextField getField() {
 		return textField;
+	}
+
+	@Override
+	public void addMouseListener(TraitMouseViewListener l) {
+		mouseListeners.add(l);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		STraitMouseViewEvent event = new STraitMouseViewEvent(e.getClickCount(), e.getButton());
+		for (TraitMouseViewListener l : mouseListeners){
+			l.mouseViewEventFired(event);
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+
+	@Override
+	public void mouseExited(MouseEvent e) {}
+	
+	public void setPopupMenu(JPopupMenu menu){
+		textField.setComponentPopupMenu(menu);
 	}
 
 }

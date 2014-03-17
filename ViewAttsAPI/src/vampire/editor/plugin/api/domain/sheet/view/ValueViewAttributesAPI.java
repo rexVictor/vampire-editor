@@ -22,14 +22,12 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet.view;
 
-import java.io.Serializable;
-
 /**
  * Provides read-only access to the view attributes of a value.
  * @author rex_victor
  *
  */
-public interface ValueViewAttributesAPI extends PublicCloneable, Serializable{
+public interface ValueViewAttributesAPI extends PublicCloneable{
 	
 	/**
 	 * Returns if a space shall be shown after the first 5 circles.

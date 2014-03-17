@@ -23,6 +23,7 @@
 package vampire.editor.plugin.api.application.sheet.controller;
 
 import vampire.editor.plugin.api.application.sheet.events.TraitListener;
+import vampire.editor.plugin.api.application.sheet.events.TraitMouseListener;
 import vampire.editor.plugin.api.domain.sheet.TraitAPI;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 
@@ -42,5 +43,7 @@ public interface TraitControllerAPI {
 	public TraitControllerAPI clone();
 	
 	public ValueControllerAPI getValueController();
+	
+	public void addMouseListener(TraitMouseListener listener);
 	
 }

@@ -5,15 +5,24 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import vampire.editor.plugin.api.domain.DictionaryAPI;
+
 public class Loader {
 	
 	private final Path fileDirectory = Paths.get("resources", "plugins", "metapopupentryadder");
+	
+	private final Comparator comparator;
+	
+	public Loader(DictionaryAPI dictionary){
+		comparator = new Comparator(dictionary);
+	}
 	
 	public List<String> load(Path p){
 		List<String> entries = new LinkedList<>();
@@ -24,6 +33,13 @@ public class Loader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.out.println(p.getFileName().toString());
+		if ("generation".equals(p.getFileName().toString())){
+		}
+		else {
+			Collections.sort(entries, comparator);
+		}
+		
 		return entries;
 	}
 	
