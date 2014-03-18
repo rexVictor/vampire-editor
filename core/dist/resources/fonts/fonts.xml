@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<fonts>
-	<path name="fonts">
-			<segment root="resources"/>
-			<segment append="fonts"/>
-		</path>
-	
-	<font path="fonts" file="CAS_ANTN.TTF" key="cas_antn"/>
-</fonts>
