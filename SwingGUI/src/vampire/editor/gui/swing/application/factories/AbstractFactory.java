@@ -14,8 +14,6 @@ public abstract class AbstractFactory<M, SM, SV, V extends Addable<SV>, FM exten
 	
 	protected final AbstractViewsFactory<M, SM, SV, ?> viewFactory;
 	
-	
-	
 	public AbstractFactory(AbstractViewsFactory<M, SM, SV, ?> viewFactory) {
 		super();
 		this.viewFactory = viewFactory;
