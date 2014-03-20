@@ -7,6 +7,5 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ResourcesAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/SwingGUI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

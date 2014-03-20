@@ -2,7 +2,7 @@
 	<property name="final.dist" location="../vampireeditor/dist/core"/>
 	<import file="../build-common.xml"/>
 	
-	<target name="addToXML" depends="default">
+	<target name="addToXML">
 		<replace file="${xml.file}" token="&lt;/core&gt;" value="&lt;viewatts path=&quot;core&quot;
 			file=&quot;${ant.project.name}.jar&quot;
 			class=&quot;vampire.editor.domain.sheet.view.MViewConstructors&quot;/&gt;${line.separator}&lt;/core&gt;">

@@ -31,6 +31,8 @@ import org.jdom2.Attribute;
 
 
 class PathClassProcessor implements AttributeProcessor<ClassLoader>{
+	
+	private static ClassLoader classLoader = PathClassProcessor.class.getClassLoader();
 
 	@Override
 	public ClassLoader process(ClassLoader v, ConfigCreator creator,
@@ -41,7 +43,8 @@ class PathClassProcessor implements AttributeProcessor<ClassLoader>{
 		try {
 			URL jarURL = jarPath.toUri().toURL();
 			URL[] urls = new URL[]{jarURL};
-			URLClassLoader classLoader = new URLClassLoader(urls);
+			URLClassLoader classLoader = new URLClassLoader(urls, PathClassProcessor.classLoader);
+			PathClassProcessor.classLoader = classLoader;
 			return classLoader;
 		} catch (MalformedURLException e) {
 			throw new ConfigImportException(e);

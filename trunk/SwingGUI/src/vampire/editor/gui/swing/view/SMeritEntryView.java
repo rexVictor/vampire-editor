@@ -176,7 +176,6 @@ public class SMeritEntryView implements MeritEntryView, DocumentListener, Action
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(e.getActionCommand());
 		setCost(Integer.parseInt(e.getActionCommand().substring(0,1)));
 		setText(e.getActionCommand().substring(1));
 		

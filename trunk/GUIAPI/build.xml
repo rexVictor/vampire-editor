@@ -1,4 +1,3 @@
 <project name="GUIAPI" default="default">
-	<property name="final.dist" location="../vampireeditor/dist/api"/>
 	<import file="../build-common.xml"/>
 </project>

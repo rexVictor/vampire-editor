@@ -42,6 +42,6 @@ public interface TraitView extends Addable<ValueView>{
 	
 	public void setTooltip(String text);
 	
-	public void addPopupEntry(String entry);
+	public void setPopupMenu(Object popupMenu);
 	
 }

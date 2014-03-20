@@ -81,7 +81,7 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 		}
 		content.getDocument().addDocumentListener(this);
 		content.setComponentPopupMenu(popupMenu);
-		//content.setFont(viewAttributes.getContentFont());
+		content.setFont(viewAttributes.getContentFont());
 		content.setBorder(null);
 		title.setFont(viewAttributes.getTitleFont());
 		title.setBorder(null);
