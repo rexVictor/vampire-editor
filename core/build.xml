@@ -17,32 +17,43 @@
 	<target name="clean">
 		<delete dir="${dist}"/>
     	<delete dir="${build}"/>
+		<delete dir="${dist}"/>
 		<delete file="manifest.mf"/>
 	</target>
 	
-	<target name="createTargetStructure">
+	<target name="createTargetStructure" depends="clean">
 		<mkdir dir="${dist}"/>
 		<mkdir dir="${core}"/>
+		<mkdir dir="dist/libs"/>
+		<mkdir dir="dist/importers"/>
+		<mkdir dir="dist/exporters"/>
 		<echo file="${xml.core}" message="&lt;core&gt;${line.separator}&lt;/core&gt;"/>
-	</target>
-	
-	<target name="createManifest" depends="createTargetStructure">
-		<delete file="manifest.mf"/>
 		<echo file="manifest.mf" message="Manifest-Version: 1.0${line.separator}Class-Path: "/> 
+		<copy todir="dist/resources">
+			<fileset dir="resources" id="id">
+    			<include name="**"/>
+			</fileset>
+		</copy>
 	</target>
 	
-	<target name="distapi" depends="createManifest">
-		<subant target="default">
+	<target name="distapi" depends="createTargetStructure">
+		<subant target="copydist">
 			<dirset dir="..">
 				<include name="*API"/>
 			</dirset>
-			<property name="final.manifest" location="manifest.mf"/>
-			<property name="final.manifestFolder"	value="api"/>
+			<property name="final.dist" location="dist/api"/>
+		</subant>
+		<subant target="addToManifest">
+			<dirset dir="..">
+				<include name="*API"/>
+			</dirset>
+			<property name="file.manifest" location="manifest.mf"/>
+			<property name="folder.manifest" value="api"/>
 		</subant>
 	</target>
 	
 	<target name="distlibs" depends="distapi">
-		<subant target="default">
+		<subant target="copydist">
 			<dirset dir="..">
 				<include name="Config"/>
 				<include name="ConfigCreator"/>
@@ -50,12 +61,38 @@
 				<include name="SheetControllers"/>
 				<include name="SheetEvents"/>
 			</dirset>
-		<property name="final.manifest" location="manifest.mf"/>
-		<property name="final.manifestFolder"	value="libs"/>
+			<property name="final.dist" location="dist/libs"/>
+		</subant>
+		<subant target="addToManifest">
+			<dirset dir="..">
+				<include name="Config"/>
+				<include name="ConfigCreator"/>
+				<include name="Resources"/>
+				<include name="SheetControllers"/>
+				<include name="SheetEvents"/>
+			</dirset>
+			<property name="file.manifest" location="manifest.mf"/>
+			<property name="folder.manifest" value="libs"/>
 		</subant>
 	</target>
 	
-	<target name="distcore" depends="distlibs">
+	<target name="distGUI" depends="distlibs">
+			<subant target="distdependencies">
+				<dirset dir="..">
+					<include name="SwingMainFrame"/>
+				</dirset>
+				<property name="final.dist" location="dist/core"/>
+			</subant>
+	</target>
+	
+	<target name="distcore" depends="distGUI">
+		<subant target="copydist">
+			<dirset dir="..">
+				<include name="SheetModel"/>
+				<include name="ViewAttributes"/>
+			</dirset>
+			<property name="final.dist" location="dist/core"/>
+		</subant>
 		<subant target="addToXML">
 			<dirset dir="..">
 				<include name="SwingMainFrame"/>
