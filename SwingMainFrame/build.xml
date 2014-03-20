@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <project name="SwingMainFrame" default="default">
-	<property name="final.dist" location="../vampireeditor/dist/core"/>
 	<import file="../build-common.xml"/>
 	
-	<target name="addToXML" depends="default">
-		<ant antfile="../SwingGUI/build.xml"/>
-		<ant antfile="../SwingMainFrameLoader/build.xml"/>
-		<ant antfile="../CopyrightView/build.xml"/>
+	<target name="distdependencies" depends="copydist">
+		<subant target="copydist">
+			<dirset dir="..">
+				<include name="SwingMainFrameLoader"/>
+				<include name="CopyrightView"/>
+				<include name="SwingGUI"/>
+			</dirset>
+		</subant>
+	</target>
+	
+	<target name="addToXML">
 		<replace file="${xml.file}" token="&lt;/core&gt;" value="&lt;jar name=&quot;gui&quot;
-			path=&quot;core&quot; file=&quot;SwingMainFrame/SwingMainFrame.jar&quot;
-			class=&quot;vampire.editor.gui.swing.mainframe.application.GuiActivator&quot;/&gt;">
+					path=&quot;core&quot; file=&quot;SwingMainFrame/SwingMainFrame.jar&quot;
+					class=&quot;vampire.editor.gui.swing.mainframe.application.GuiActivator&quot;/&gt;${line.separator}&lt;/core&gt;">
 		</replace>
 	</target>
 	

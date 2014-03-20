@@ -91,15 +91,6 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 	}
 
 	@Override
-	public void addPopupEntry(String entry) {
-		/*String translated = dictionary.getValue(entry);
-		JMenuItem menuItem = new JMenuItem(translated);
-		menuItem.setActionCommand(translated);
-		menuItem.addActionListener(this);
-		popupMenu.add(menuItem);*/
-	}
-
-	@Override
 	public void insertUpdate(DocumentEvent e) {
 		String input = textField.getText();
 		String translated = dictionary.getKey(input);
@@ -169,8 +160,9 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 	@Override
 	public void mouseExited(MouseEvent e) {}
 	
-	public void setPopupMenu(JPopupMenu menu){
-		textField.setComponentPopupMenu(menu);
+	public void setPopupMenu(Object menu){
+		if (menu instanceof JPopupMenu)
+			textField.setComponentPopupMenu((JPopupMenu) menu);
 	}
 
 	@Override
