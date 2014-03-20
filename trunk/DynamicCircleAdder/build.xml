@@ -1,0 +1,4 @@
+<project name="DynamicCircleAdder" default="default">
+	<property name="final.dist" location="../vampireeditor/dist/libs"/>
+	<import file="../build-common.xml"/>
+</project>
