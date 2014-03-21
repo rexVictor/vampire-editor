@@ -36,7 +36,9 @@ import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
 import vampire.editor.plugin.api.domain.sheet.Value;
 import vampire.editor.plugin.api.domain.sheet.ValueAPI;
+import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
+import vampire.editor.plugin.api.domain.sheet.view.LineAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.PublicCloneable;
 
@@ -52,28 +54,24 @@ public class Objects<V> {
 	
 	private final Objects<Font> fonts;
 	
-	private static ObjectMapper mapper = null;;
+	private final Objects<LineAttributes> lineAtts;
 	
+	private static ObjectMapper mapper = null;
 	
-	
-	public Objects(Class<? extends V> clazz, Path file, ResourcesHolderAPI resources, Objects<Font> fonts) throws JsonParseException, JsonMappingException, IOException{
-		if (mapper == null){
-			mapper = new ObjectMapper();
-			SimpleModule module = new SimpleModule();
-			module.addDeserializer(Font.class, new FontDeserializer());
-			Map<Class<?>, Class<?>> map = Constructors.viewAttConstructors.getInterfaceToImplementationMap();
-			Set<Class<?>> classes = map.keySet();
-			for (Class<?> key : classes){
-				initializeModule(key, map.get(key), module);
-			}
-			module.addAbstractTypeMapping(Value.class, Constructors.constructors.createValue(0, 10).getClass());
-			mapper.registerModule(module);
+	static{
+		mapper = new ObjectMapper();
+		SimpleModule module = new SimpleModule();
+		module.addDeserializer(Font.class, new FontDeserializer());
+		Map<Class<?>, Class<?>> map = Constructors.viewAttConstructors.getInterfaceToImplementationMap();
+		Set<Class<?>> classes = map.keySet();
+		for (Class<?> key : classes){
+			initializeModule(key, map.get(key), module);
 		}
-		this.fonts = fonts;
-		load(file, clazz);
+		module.addAbstractTypeMapping(Value.class, Constructors.constructors.createValue(0, 10).getClass());
+		mapper.registerModule(module);
 	}
 	
-	private <C> void initializeModule(Class<?> clazz1, Class<?> clazz2, SimpleModule module){
+	private static <C> void initializeModule(Class<?> clazz1, Class<?> clazz2, SimpleModule module){
 		@SuppressWarnings("unchecked")
 		Class<C> class1 = (Class<C>) clazz1;
 		@SuppressWarnings("unchecked")
@@ -81,21 +79,22 @@ public class Objects<V> {
 		module.addAbstractTypeMapping(class1, class2);
 	}
 	
-	public Objects(Path root, Class<? extends V> clazz, ResourcesHolderAPI resources, Objects<Font> fonts) throws JsonParseException, JsonMappingException, IOException{
-		if (mapper == null){
-			mapper = new ObjectMapper();
-			SimpleModule module = new SimpleModule();
-			module.addDeserializer(Font.class, new FontDeserializer());
-			Map<Class<?>, Class<?>> map = Constructors.viewAttConstructors.getInterfaceToImplementationMap();
-			Set<Class<?>> classes = map.keySet();
-			for (Class<?> key : classes){
-				initializeModule(key, map.get(key), module);
-			}
-			module.addAbstractTypeMapping(Value.class, Constructors.constructors.createValue(0, 10).getClass());
-			mapper.registerModule(module);
-		}
+	
+	
+	public Objects(Class<? extends V> clazz, Path file, ResourcesHolderAPI resources,
+					Objects<Font> fonts, Objects<LineAttributes> lineAtts)
+							throws JsonParseException, JsonMappingException, IOException{
+		this.fonts = fonts;
+		this.lineAtts = lineAtts;
+		load(file, clazz);
+	}
+	
+	public Objects(Path root, Class<? extends V> clazz, ResourcesHolderAPI resources,
+					Objects<Font> fonts, Objects<LineAttributes> lineAtts)
+							throws JsonParseException, JsonMappingException, IOException{
 		Path file = root.resolve(ClassToFileMapper.paths.get(clazz));
 		this.fonts = fonts;
+		this.lineAtts = lineAtts;
 		load(file, clazz);
 	}
 	
@@ -108,6 +107,7 @@ public class Objects<V> {
 			Integer fontId = (Integer) o.remove("font");
 			Integer titleID = (Integer) o.remove("titleFont");
 			Integer contentID = (Integer) o.remove("contentFont");
+			Integer lineID = (Integer) o.remove("line");
 			V value = mapper.convertValue(o, clazz);
 			if (fontId != null)
 				if (value instanceof FontSettable)
@@ -116,6 +116,10 @@ public class Objects<V> {
 				MetaEntryViewAttributes meta = (MetaEntryViewAttributes) value;
 				meta.setContentFont(fonts.getObjectByID(contentID));
 				meta.setTitleFont(fonts.getObjectByID(titleID));
+			}
+			if (value instanceof CategoryViewAttributes){
+				CategoryViewAttributes catViewAtts = (CategoryViewAttributes) value;
+				catViewAtts.setLine(lineAtts.getObjectByID(lineID));
 			}
 			this.values.put(id, value);
 		}

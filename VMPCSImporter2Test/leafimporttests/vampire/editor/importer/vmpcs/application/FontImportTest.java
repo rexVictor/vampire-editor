@@ -15,7 +15,7 @@ public class FontImportTest {
 	@Test
 	public void testFontImportTest1() throws Throwable{
 		Path fontPath = Paths.get("testcases","fonts");
-		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderMock(), null);
+		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderMock(), null, null);
 		Font expected = Font.createFont(0, fontPath.resolve("CAS_ANTN.TTF").toFile()).deriveFont(20f);
 		assertEquals(expected, fonts.getObjectByID(0));
 	}
@@ -23,7 +23,7 @@ public class FontImportTest {
 	@Test
 	public void testFontImport2() throws Throwable{
 		Path fontPath = Paths.get("testcases","fonts");
-		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderMock(), null);
+		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderMock(), null, null);
 		Font expected = Font.createFont(0, fontPath.resolve("CAS_ANTN.TTF").toFile()).deriveFont(24f);
 		assertEquals(expected, fonts.getObjectByID(1));
 	}
@@ -31,7 +31,7 @@ public class FontImportTest {
 	@Test
 	public void testFontImport3() throws Throwable{
 		Path fontPath = Paths.get("testcases","fonts");
-		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderMock(), null);
+		Objects<Font> fonts = new Objects<>(fontPath, Font.class, new ResourcesHolderMock(), null, null);
 		Font expected = new Font("Linux Libertine", 0, 12);
 		assertEquals(expected, fonts.getObjectByID(2));
 	}

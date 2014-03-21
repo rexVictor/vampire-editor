@@ -37,6 +37,7 @@ public class ClassToFileMapper {
 	static
 	{
 		String fonts = "fonts.json";
+		String lines = "lines.json";
 		String valueViewAtts = "valueviewatts.json";
 		String traitViewAtts = "traitviewatts.json";
 		String subCategoryViewAtts = "subcategoryviewatts.json";
@@ -52,6 +53,7 @@ public class ClassToFileMapper {
 		
 		Map<Class<?>, String> map = new HashMap<>();
 		map.put(Font.class, fonts);
+		map.put(LineAttributes.class, lines);
 		map.put(ValueViewAttributes.class, valueViewAtts);
 		map.put(TraitViewAttributes.class, traitViewAtts);
 		map.put(SubCategoryViewAttributes.class, subCategoryViewAtts);

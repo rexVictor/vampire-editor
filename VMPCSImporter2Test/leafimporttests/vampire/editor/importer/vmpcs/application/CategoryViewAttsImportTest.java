@@ -32,14 +32,14 @@ public class CategoryViewAttsImportTest {
 	public void setup() throws Throwable{
 		Path testPath = Paths.get("testcases","catviewatts","categoryviewatts.json");
 		objects = new Objects<>(CategoryViewAttributes.class, testPath,
-						new ResourcesHolderMock(), FontObjectsMock.getInstance());
+						new ResourcesHolderMock(), FontObjectsMock.getInstance(), null);
 	}
 	
 	@Test
 	public void testCategoryViewAttsImportTest1() throws Throwable{
 		CategoryViewAttributes expected = constructors.createCategoryViewAttributes();
 		expected.setShowLine(true);
-		expected.setImage("vtmdefault");
+		//expected.setImage("vtmdefault");
 		expected.setTitle("");
 		expected.setFont(FontObjectsMock.getInstance().getObjectByID(1));
 		assertEquals(expected, objects.getObjectByID(0));
@@ -49,7 +49,7 @@ public class CategoryViewAttsImportTest {
 	public void testCategoryViewAttsImportTest2() throws Throwable{
 		CategoryViewAttributes expected = constructors.createCategoryViewAttributes();
 		expected.setShowLine(false);
-		expected.setImage("vtmdefault2");
+		//expected.setImage("vtmdefault2");
 		expected.setTitle("");
 		expected.setFont(FontObjectsMock.getInstance().getObjectByID(0));
 		assertEquals(expected, objects.getObjectByID(1));

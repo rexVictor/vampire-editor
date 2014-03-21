@@ -24,7 +24,7 @@ public class ValueImportTest {
 		Constructors.constructors = new MModelConstructors();
 		Constructors.viewAttConstructors = new MViewConstructors();
 		Path testPath = Paths.get("testcases","values","values.json");
-		objects = new Objects<>(Value.class, testPath, new ResourcesHolderMock(), null);
+		objects = new Objects<>(Value.class, testPath, new ResourcesHolderMock(), null, null);
 	}
 
 	@Test

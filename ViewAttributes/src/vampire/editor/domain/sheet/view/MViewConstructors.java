@@ -8,6 +8,7 @@ import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributes;
+import vampire.editor.plugin.api.domain.sheet.view.LineAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.MeritViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributes;
@@ -35,6 +36,7 @@ public class MViewConstructors implements ViewAttConstructors{
 		map.put(SubCategoryViewAttributes.class, MSubCategoryViewAttributes.class);
 		map.put(TraitViewAttributes.class, MTraitViewAttributes.class);
 		map.put(ValueViewAttributes.class, MValueViewAttributes.class);
+		map.put(LineAttributes.class, MLineAttributes.class);
 		interfaceToImplementationMap = Collections.unmodifiableMap(map);
 	}
 

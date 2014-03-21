@@ -26,6 +26,7 @@ import java.awt.Font;
 
 import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.FontSettable;
+import vampire.editor.plugin.api.domain.sheet.view.LineAttributes;
 
 
 /**
@@ -37,7 +38,7 @@ class MCategoryViewAttributes implements FontSettable, CategoryViewAttributes{
 	
 	private boolean showLine;
 	
-	private String image;
+	private LineAttributes image;
 	
 	private String title = "";
 	
@@ -51,7 +52,7 @@ class MCategoryViewAttributes implements FontSettable, CategoryViewAttributes{
 	
 	
 
-	public MCategoryViewAttributes(boolean showLine, String image, String title,
+	public MCategoryViewAttributes(boolean showLine, LineAttributes image, String title,
 			Font font) {
 		super();
 		this.showLine = showLine;
@@ -72,11 +73,11 @@ class MCategoryViewAttributes implements FontSettable, CategoryViewAttributes{
 	}
 
 	@Override
-	public String getImage() {
+	public LineAttributes getLine() {
 		return image;
 	}
 
-	public void setImage(String image) {
+	public void setLine(LineAttributes image) {
 		this.image = image;
 	}
 

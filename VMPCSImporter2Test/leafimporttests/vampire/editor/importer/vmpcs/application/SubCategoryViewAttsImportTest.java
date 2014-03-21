@@ -32,7 +32,7 @@ public class SubCategoryViewAttsImportTest {
 	public void setup() throws Throwable{
 		Path testPath = Paths.get("testcases","subcatviewatts","subcategoryviewatts.json");
 		objects = new Objects<>(SubCategoryViewAttributes.class, testPath,
-						new ResourcesHolderMock(), FontObjectsMock.getInstance());
+						new ResourcesHolderMock(), FontObjectsMock.getInstance(), null);
 	}
 	
 	@Test

@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="/VMPCSExporter2/libs/Jackson/jackson-annotations-2.0.0.jar"/>
 	<classpathentry kind="lib" path="/VMPCSExporter2/libs/Jackson/jackson-core-2.0.0.jar"/>
 	<classpathentry kind="lib" path="/VMPCSExporter2/libs/Jackson/jackson-databind-2.0.0.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsFullAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

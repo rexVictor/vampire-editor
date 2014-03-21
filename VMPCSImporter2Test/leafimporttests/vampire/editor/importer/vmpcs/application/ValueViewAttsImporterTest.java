@@ -31,7 +31,7 @@ public class ValueViewAttsImporterTest {
 	public void setup() throws Throwable{
 		Path testPath = Paths.get("testcases","valueviewatts");
 		objects = new Objects<>(testPath, ValueViewAttributes.class,
-						new ResourcesHolderMock(), null);
+						new ResourcesHolderMock(), null, null);
 	}
 
 	@Test

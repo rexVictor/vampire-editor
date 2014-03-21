@@ -79,7 +79,7 @@ public class VMPCSImporter implements SheetImporter{
 		ProtoSheet protoSheet = modelImporter.loadSheet(path.resolve("sheet.json"));
 		Map<Integer, Object> protoMapIdMap = mapidResolver.generateMapIdMap(protoSheet);
 		ModelToViewMap modelToViewMap = modelImporter.buildProtoIdMap(path);
-		Objects<Value> realValues = new Objects<>(path, Value.class, resourcesHolder, null);
+		Objects<Value> realValues = new Objects<>(path, Value.class, resourcesHolder, null, null);
 		SheetAndMapIdHolder holder = modelImporter.buildSheet(protoSheet, protoMapIdMap, realValues);
 		Map<Integer, Object> mapIdToRealValues = holder.getMapIdToRealModelMap();
 		ModelToViewModelMapper modelToViewModelMapper = Constructors.constructors.createModelToViewModelMapper();

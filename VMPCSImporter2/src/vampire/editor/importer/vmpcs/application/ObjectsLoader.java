@@ -33,6 +33,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import vampire.editor.fileformat.vmpcs.domain.ClassToFileMapper;
 import vampire.editor.importer.vmpcs.domain.MergedObjects;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
+import vampire.editor.plugin.api.domain.sheet.view.LineAttributes;
 
 public class ObjectsLoader {
 	
@@ -46,7 +47,8 @@ public class ObjectsLoader {
 	public MergedObjects loadObjects(Path root) throws JsonParseException, JsonMappingException, IOException{
 		MergedObjects mergedObjects = new MergedObjects();
 		Map<Class<?>, String> map = ClassToFileMapper.paths;
-		Objects<Font> fonts = new Objects<>(root, Font.class,resourcesHolder, null);
+		Objects<Font> fonts = new Objects<>(root, Font.class,resourcesHolder, null, null);
+		Objects<LineAttributes> lineAttributes = new Objects<>(root, LineAttributes.class, resourcesHolder, null, null);
 		Set<Class<?>> classesSet = map.keySet();
 		Set<Class<?>> viewAtts = new HashSet<>();
 		for (Class<?> clazz : classesSet){
@@ -56,7 +58,7 @@ public class ObjectsLoader {
 			}
 		}
 		for (Class<?> clazz : viewAtts){
-			Objects<?> objects = new Objects<>(root, clazz, resourcesHolder, fonts);
+			Objects<?> objects = new Objects<>(root, clazz, resourcesHolder, fonts, lineAttributes);
 			mergedObjects.addObjects(objects);
 		}
 		return mergedObjects;

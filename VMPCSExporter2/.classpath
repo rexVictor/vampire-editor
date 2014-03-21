@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="libs/Jackson/jackson-core-2.0.0.jar"/>
 	<classpathentry kind="lib" path="libs/Jackson/jackson-databind-2.0.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/VMPCSFormatCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

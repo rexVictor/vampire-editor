@@ -35,7 +35,7 @@ public class MeritViewAttsImportTest {
 		Path testPath = Paths.get("testcases","meritviewatts","meritviewatts.json");
 		fontObjects = FontObjectsMock.getInstance();
 		objects = new Objects<>(MeritViewAttributes.class, testPath,
-						new ResourcesHolderMock(), fontObjects);
+						new ResourcesHolderMock(), fontObjects, null);
 	}
 	
 	@Test

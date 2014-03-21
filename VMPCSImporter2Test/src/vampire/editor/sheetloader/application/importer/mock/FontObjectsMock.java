@@ -16,7 +16,7 @@ public class FontObjectsMock extends Objects<Font>{
 	private static FontObjectsMock FONT_OBJECTS;
 	
 	private FontObjectsMock() throws Throwable{
-		super(Font.class, fonts, new ResourcesHolderMock(), null);
+		super(Font.class, fonts, new ResourcesHolderMock(), null, null);
 	}
 	
 	public static FontObjectsMock getInstance() throws Throwable{
