@@ -36,7 +36,7 @@ public class HealthEntryImportTest {
 		Path testPath = Paths.get("testcases","healthentryviewatts","healthentryviewatts.json");
 		fontObjects = FontObjectsMock.getInstance();
 		objects = new Objects<>(HealthEntryViewAttributes.class, testPath,
-						new ResourcesHolderMock(), fontObjects);
+						new ResourcesHolderMock(), fontObjects, null);
 	}
 	
 	@Test

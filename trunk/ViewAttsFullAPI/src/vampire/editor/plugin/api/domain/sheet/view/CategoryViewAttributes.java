@@ -32,9 +32,9 @@ public interface CategoryViewAttributes extends CategoryViewAttributesAPI{
 
 	public void setShowLine(boolean showLine);
 
-	public String getImage();
+	public LineAttributes getLine();
 
-	public void setImage(String image);
+	public void setLine(LineAttributes line);
 
 	public String getTitle();
 

@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 import vampire.editor.fileformat.vmpcs.domain.ClassToFileMapper;
+import vampire.editor.plugin.api.domain.sheet.view.LineAttributesAPI;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,11 +31,15 @@ public class LeafGenerator {
 	
 	private final FontIdSerializer serializer;
 	
+	private final LineIdSerializer lineIdSerializer;
+	
 	public LeafGenerator(){
 		converter = new ObjectMapper();
 		SimpleModule module = new SimpleModule();
 		serializer = new FontIdSerializer();
 		module.addSerializer(serializer);
+		lineIdSerializer = new LineIdSerializer();
+		module.addSerializer(lineIdSerializer);
 		converter.registerModule(module);
 		
 		writer = new ObjectMapper();
@@ -48,7 +53,9 @@ public class LeafGenerator {
 	public void generateLeafs(Map<Object, Integer> viewAtts, Path path) throws IOException{
 		addToMap(converter, viewAtts);
 		Map<Font, Integer> fonts = serializer.getFonts();
+		Map<LineAttributesAPI, Integer> lines = lineIdSerializer.getLines();
 		addToMap(writer, fonts);
+		addToMap(writer, lines);
 		serialize(path);
 	}
 	

@@ -35,7 +35,7 @@ public class BloodpoolViewImportTest {
 		Path testPath = Paths.get("testcases","healthentryviewatts","healthentryviewatts.json");
 		fontObjects = FontObjectsMock.getInstance();
 		objects = new Objects<>(BloodPoolViewAttributes.class, testPath,
-						new ResourcesHolderMock(), fontObjects);
+						new ResourcesHolderMock(), fontObjects, null);
 	}
 	
 	@Test

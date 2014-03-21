@@ -36,7 +36,7 @@ public class MetaEntryViewAttsImportTest {
 		Path testPath = Paths.get("testcases","metaentryviewatts","metaentryviewatts.json");
 		fontObjects = FontObjectsMock.getInstance();
 		objects = new Objects<>(MetaEntryViewAttributes.class, testPath,
-						new ResourcesHolderMock(), fontObjects);
+						new ResourcesHolderMock(), fontObjects, null);
 	}
 	
 	@Test

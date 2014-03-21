@@ -46,7 +46,7 @@ public interface CategoryViewAttributesAPI extends DataViewAttributesAPI, Public
 	 * Returns the key of the image of the line. Read more about this in the ResourcesAPI.
 	 * @return the key of the image
 	 */
-	public String getImage();
+	public LineAttributesAPI getLine();
 	
 	/**
 	 * Returns the font, the title is printed with.

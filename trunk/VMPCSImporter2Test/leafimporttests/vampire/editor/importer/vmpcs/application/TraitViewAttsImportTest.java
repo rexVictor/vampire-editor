@@ -36,7 +36,7 @@ public class TraitViewAttsImportTest {
 	public void initialize() throws Throwable{
 		Path path = Paths.get("testcases","traitviewatts");
 		objects = new Objects<>(path, TraitViewAttributes.class,
-						new ResourcesHolderMock(), FontObjectsMock.getInstance());
+						new ResourcesHolderMock(), FontObjectsMock.getInstance(), null);
 	}
 
 	@Test
