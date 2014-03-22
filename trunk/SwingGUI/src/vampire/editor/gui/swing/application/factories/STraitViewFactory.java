@@ -10,7 +10,6 @@ import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.TraitAPI;
-import vampire.editor.plugin.api.domain.sheet.ValueAPI;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
 import vampire.editor.plugin.api.plugin.TraitViewFactory;
 import vampire.editor.plugin.api.plugin.TraitViewFactoryModule;
@@ -18,7 +17,7 @@ import vampire.editor.plugin.api.plugin.ValueViewFactory;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
-public class STraitViewFactory extends AbstractFactory<TraitAPI, ValueAPI, ValueView, TraitView, TraitViewFactoryModule>
+public class STraitViewFactory extends AbstractFactory<TraitView, TraitAPI, TraitViewFactoryModule>
 			implements TraitViewFactory{
 	
 	private final DictionaryAPI dictionary;
@@ -54,12 +53,5 @@ public class STraitViewFactory extends AbstractFactory<TraitAPI, ValueAPI, Value
 		traitView.setName(trait.getName());
 		return traitView;
 	}
-
-	@Override
-	protected TraitView constructView(Object viewAtts, TraitAPI m) {
-		return null;
-	}
-	
-	
 
 }

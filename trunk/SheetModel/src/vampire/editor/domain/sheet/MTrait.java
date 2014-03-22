@@ -96,4 +96,5 @@ public class MTrait implements Trait{
 		this.value = value;
 	}
 
+
 }

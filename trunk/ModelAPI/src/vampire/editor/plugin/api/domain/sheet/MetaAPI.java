@@ -30,19 +30,13 @@ import java.util.Iterator;
  * @author rex_victor
  *
  */
-public interface MetaAPI{
+public interface MetaAPI extends HasIterator<MetaEntryAPI>{
 	
 	/**
 	 * This implementation is optional
 	 */
 	public MetaAPI clone();
 
-	/**
-	 * @return an {@link Iterator} over the parametrized children of type V
-	 */
-	public Iterator<? extends MetaEntryAPI> getIterator();
-	
-	
 	/**
 	 * @return the count of added elements.
 	 */

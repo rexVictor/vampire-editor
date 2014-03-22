@@ -22,15 +22,20 @@ public class Module implements SubCategoryViewFactoryModule{
 	}
 
 	@Override
-	public void process(SubCategoryAPI subCategory,
-			ModelToViewModelMapperAPI mapper, SubCategoryView traitView) {
-		for (TraitView tv : traitView.getEntries()){
-			tv.setPopupMenu(map.get(subCategory.getName()));
-		}
-	}
+	public void processFinal(SubCategoryAPI subCategory,
+			ModelToViewModelMapperAPI mapper, SubCategoryView traitView) {}
 
 	@Override
 	public void setManager(ManagerAPI manager) {
+	}
+
+	@Override
+	public void processInitial(SubCategoryAPI m,ModelToViewModelMapperAPI mapper) {}
+
+	@Override
+	public void addToChild(SubCategoryAPI m, ModelToViewModelMapperAPI mapper,
+			TraitView subView) {
+		subView.setPopupMenu(map.get(m.getName()));
 	}
 
 }

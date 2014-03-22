@@ -22,7 +22,6 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.view.sheet;
 
-import vampire.editor.plugin.api.domain.PopupEntriesAPI;
 import vampire.editor.plugin.api.view.events.MetaEntryViewListener;
 
 public interface MetaEntryView {
@@ -31,12 +30,10 @@ public interface MetaEntryView {
 	
 	public void setContent(String content);
 	
-	public void setPopup(PopupEntriesAPI entries);
+	public void setPopupMenu(Object entries);
 	
 	public void addListener(MetaEntryViewListener listener);
 	
 	public void remove(MetaEntryViewListener listener);
 	
-	public void addPopupEntry(String entry);
-
 }

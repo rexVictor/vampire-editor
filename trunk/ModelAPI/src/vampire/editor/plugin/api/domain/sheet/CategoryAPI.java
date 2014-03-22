@@ -32,7 +32,7 @@ import java.util.Iterator;
  *
  */
 
-public interface CategoryAPI extends Nameable{
+public interface CategoryAPI extends Nameable, HasIterator<SubCategoryAPI>{
 	
 	/**
 	 * This implementation is optional

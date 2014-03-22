@@ -37,18 +37,13 @@ import java.util.Iterator;
  *
  */
 
-public interface SubCategoryAPI extends Nameable{
+public interface SubCategoryAPI extends Nameable, HasIterator<TraitAPI>{
 	
 	/**
 	 * This implementation is optional
 	 */
 	public SubCategoryAPI clone();
 
-	/**
-	 * @return an {@link Iterator} over the parametrized children of type V
-	 */
-	public Iterator<? extends TraitAPI> getIterator();
-	
 	public String getName();
 	
 	/**

@@ -28,6 +28,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import vampire.editor.plugin.api.view.sheet.HealthView;
+import vampire.editor.plugin.api.view.sheet.MeritView;
 
 
 public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
@@ -51,12 +52,12 @@ public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 	
 	public MiscView(
 			SBloodPoolView bloodPoolView, HealthView healthView,
-			SMeritView meritView, SMeritView flawView) {
+			MeritView meritView, MeritView flawView) {
 		super();
 		this.bloodPoolView = bloodPoolView;
 		this.healthView = (HorizontalHealthView) healthView;
-		this.meritView = meritView;
-		this.flawView = flawView;
+		this.meritView = (SMeritView) meritView;
+		this.flawView = (SMeritView) flawView;
 		build();
 	}
 	

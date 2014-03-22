@@ -71,7 +71,7 @@ public class MeritsController implements MeritsControllerAPI{
 		lock.lock();
 		try{
 			merits.add((Merit) merit.getMerit());
-			view.addMeritEntryView(merit.getView());
+			view.add(merit.getView());
 			entryControllers.add(merit);
 			for (MeritsListener l : listeners){
 				final MeritsListener listener = l;

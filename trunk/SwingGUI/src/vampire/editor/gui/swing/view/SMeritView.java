@@ -53,7 +53,12 @@ public class SMeritView implements MeritView{
 	}
 	
 	@Override
-	public void addMeritEntryView(MeritEntryView view) {
+	public void add(MeritEntryView view){
+		add0(view);
+	}
+	
+	@Override
+	public void add0(MeritEntryView view) {
 		if (view instanceof SMeritEntryView){
 			entries.add(view);
 			SMeritEntryView entryView = (SMeritEntryView) view;
