@@ -5,12 +5,14 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 
@@ -18,37 +20,50 @@ public class Loader {
 	
 	private final Path fileDirectory = Paths.get("resources", "plugins", "metapopupentryadder");
 	
+	private final DictionaryAPI dictionary;
+	
+	public static final Listener listener = new Listener();
+	
 	private final Comparator comparator;
 	
-	public Loader(DictionaryAPI dictionary){
-		comparator = new Comparator(dictionary);
-	}
 	
-	public List<String> load(Path p){
-		List<String> entries = new LinkedList<>();
+	public Loader(DictionaryAPI dictionary) {
+		super();
+		this.dictionary = dictionary;
+		this.comparator = new Comparator(dictionary);
+	}
+
+	public SortedSet<String> load(Path p){
+		SortedSet<String> entries;
+		if (p.toString().endsWith("generation")){
+			entries = new TreeSet<>();
+		}
+		else {
+			entries = new TreeSet<>(comparator);
+		}
 		try (Scanner scanner = new Scanner(p)){
 			while (scanner.hasNextLine()){
-				entries.add(scanner.nextLine());
+				entries.add(dictionary.getValue(scanner.nextLine()));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(p.getFileName().toString());
-		if ("generation".equals(p.getFileName().toString())){
-		}
-		else {
-			Collections.sort(entries, comparator);
-		}
-		
 		return entries;
 	}
 	
-	public Map<String, List<String>> loadFiles(){
-		Map<String, List<String>> map = new HashMap<>();
+	public Map<String, JPopupMenu> loadFiles(){
+		Map<String, JPopupMenu> map = new HashMap<>();
 		try (DirectoryStream<Path> stream = Files.newDirectoryStream(fileDirectory)){
 			for (Path p: stream){
 				if (!Files.isDirectory(p)){
-					map.put(p.getFileName().toString(), load(p));
+					JPopupMenu menu = new JPopupMenu();
+					SortedSet<String> entries = load(p);
+					for (String s : entries){
+						JMenuItem menuItem = new JMenuItem(s);
+						menuItem.addActionListener(listener);
+						menu.add(menuItem);
+					}
+					map.put(p.getFileName().toString(), menu);
 				}
 			}
 		} catch (IOException e) {

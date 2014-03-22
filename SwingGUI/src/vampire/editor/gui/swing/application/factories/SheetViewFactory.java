@@ -25,17 +25,38 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import vampire.editor.gui.swing.view.*;
+import vampire.editor.gui.swing.view.HorizontalHealthEntryView;
+import vampire.editor.gui.swing.view.HorizontalHealthView;
+import vampire.editor.gui.swing.view.MiscView;
+import vampire.editor.gui.swing.view.SBloodPoolView;
+import vampire.editor.gui.swing.view.SBorderView;
+import vampire.editor.gui.swing.view.SSheetView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
-import vampire.editor.plugin.api.domain.sheet.*;
-import vampire.editor.plugin.api.domain.sheet.view.*;
+import vampire.editor.plugin.api.domain.sheet.BloodPoolAPI;
+import vampire.editor.plugin.api.domain.sheet.CategoriesAPI;
+import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
+import vampire.editor.plugin.api.domain.sheet.HealthAPI;
+import vampire.editor.plugin.api.domain.sheet.HealthEntryAPI;
+import vampire.editor.plugin.api.domain.sheet.MeritsAPI;
+import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
+import vampire.editor.plugin.api.domain.sheet.SheetAPI;
+import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
+import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;
+import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
 import vampire.editor.plugin.api.plugin.CategoryViewFactory;
+import vampire.editor.plugin.api.plugin.MeritEntryViewFactory;
+import vampire.editor.plugin.api.plugin.MeritViewFactory;
+import vampire.editor.plugin.api.plugin.MetaEntryViewFactory;
+import vampire.editor.plugin.api.plugin.MetaViewFactory;
 import vampire.editor.plugin.api.plugin.SubCategoryViewFactory;
 import vampire.editor.plugin.api.plugin.TraitViewFactory;
 import vampire.editor.plugin.api.plugin.ValueViewFactory;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.HealthView;
+import vampire.editor.plugin.api.view.sheet.MeritView;
+import vampire.editor.plugin.api.view.sheet.MetaView;
 
 public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetViewFactory{
 	
@@ -51,6 +72,14 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	
 	private final ValueViewFactory valueViewFactory;
 	
+	private final MetaEntryViewFactory metaEntryViewFactory;
+	
+	private final MetaViewFactory metaViewFactory;
+	
+	private final MeritEntryViewFactory meritEntryViewFactory;
+	
+	private final MeritViewFactory meritViewFactory;
+	
 	public SheetViewFactory(ResourcesHolderAPI resources){
 		this.dictionary = resources.getDictionary("sheet");
 		this.resources = resources;
@@ -58,6 +87,10 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		traitViewFactory = new STraitViewFactory(dictionary, valueViewFactory);
 		subCategoryViewFactory = new SSubCategoryViewFactory(traitViewFactory, dictionary);
 		categoryViewFactory = new SCategoryViewFactory(resources, dictionary, subCategoryViewFactory);
+		metaEntryViewFactory = new SMetaEntryViewFactory(dictionary);
+		metaViewFactory = new SMetaViewFactory(metaEntryViewFactory);
+		meritEntryViewFactory = new SMeritEntryViewFactory(dictionary);
+		meritViewFactory = new SMeritViewFactory(meritEntryViewFactory, dictionary);
 	}
 	
 	@Override
@@ -65,7 +98,7 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		SheetAPI sheet = document.getSheet();
 		ModelToViewModelMapperAPI mapper = document.getModelToViewModelMapper();
 		SSheetView sheetView = new SSheetView();
-		SMetaView metaView = buildMetaView(sheet.getMeta(), mapper);
+		MetaView metaView = metaViewFactory.build(mapper, sheet.getMeta());
 		sheetView.setMetaView(metaView);
 		List<CategoryView> categoryViews = buildCategoryViews(sheet.getCategories(), mapper);
 		for (CategoryView categoryView : categoryViews){
@@ -85,25 +118,10 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 												MeritsAPI merits, MeritsAPI flaws, ModelToViewModelMapperAPI mapper){
 		SBloodPoolView bloodPoolView = buildBloodPoolView(bloodPool, mapper);
 		HealthView healthView = buildHealthView(health, mapper);
-		SMeritView meritView = buildMeritsView(merits, mapper);
-		SMeritView flawView = buildMeritsView(flaws, mapper);
+		MeritView meritView = meritViewFactory.build(mapper, merits);
+		MeritView flawView = meritViewFactory.build(mapper, flaws);
 		MiscView view = new MiscView(bloodPoolView, healthView, meritView, flawView);
 		
-		return view;
-	}
-	
-	private SMetaView buildMetaView(MetaAPI meta, ModelToViewModelMapperAPI mapper){
-		SMetaView view = new SMetaView();
-		for (Iterator<? extends MetaEntryAPI> i = meta.getIterator();i.hasNext();){
-			view.add(buildMetaEntryView(i.next(), mapper));
-		}
-		return view;
-	}
-	
-	private SMetaEntryView buildMetaEntryView(MetaEntryAPI meta, ModelToViewModelMapperAPI mapper){
-		SMetaEntryView view = new SMetaEntryView(dictionary, (MetaEntryViewAttributesAPI) mapper.getViewAttributes(meta));
-		view.setTitle(meta.getName());
-		view.setContent(meta.getValue());
 		return view;
 	}
 	
@@ -114,31 +132,6 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 			categoryViews.add(categoryViewFactory.build(mapper, category));
 		}
 		return categoryViews;
-	}
-	
-	private SMeritView buildMeritsView(MeritsAPI merits, ModelToViewModelMapperAPI mapper){
-		SMeritView view = new SMeritView(merits.getName(), dictionary, (MeritViewAttributesAPI) mapper.getViewAttributes(merits));
-		List<SMeritEntryView> entryViews = buildMeritEntryViews(merits, mapper);
-		for (SMeritEntryView entryView : entryViews){
-			view.addMeritEntryView(entryView);
-		}
-		return view;
-	}
-	
-	private List<SMeritEntryView> buildMeritEntryViews(MeritsAPI merits, ModelToViewModelMapperAPI mapper){
-		List<SMeritEntryView> entryViews = new LinkedList<>();
-		for (Iterator<? extends MeritAPI> i = merits.getIterator(); i.hasNext();){
-			MeritAPI entry = i.next();
-			entryViews.add(buildMeritEntryView(entry, mapper));
-		}
-		return entryViews;
-	}
-	
-	private SMeritEntryView buildMeritEntryView(MeritAPI merit, ModelToViewModelMapperAPI mapper){
-		SMeritEntryView view = new SMeritEntryView(dictionary, (MeritEntryViewAttibutesAPI) mapper.getViewAttributes(merit));
-		view.setCost(merit.getCost());
-		view.setText(merit.getName());
-		return view;
 	}
 	
 	private SBloodPoolView buildBloodPoolView(BloodPoolAPI bloodPool, ModelToViewModelMapperAPI mapper){
@@ -177,5 +170,37 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	public SubCategoryViewFactory getSubCategoryViewFactory(){
 		return subCategoryViewFactory;
 	}
+
+	public CategoryViewFactory getCategoryViewFactory() {
+		return categoryViewFactory;
+	}
+
+	public TraitViewFactory getTraitViewFactory() {
+		return traitViewFactory;
+	}
+
+	public ValueViewFactory getValueViewFactory() {
+		return valueViewFactory;
+	}
+
+	public MetaEntryViewFactory getMetaEntryViewFactory() {
+		return metaEntryViewFactory;
+	}
+
+	public MetaViewFactory getMetaViewFactory() {
+		return metaViewFactory;
+	}
+
+	public MeritEntryViewFactory getMeritEntryViewFactory() {
+		return meritEntryViewFactory;
+	}
+
+	public MeritViewFactory getMeritViewFactory() {
+		return meritViewFactory;
+	}
+	
+	
+	
+	
 
 }

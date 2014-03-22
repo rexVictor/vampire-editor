@@ -1,4 +1,4 @@
-package vampire.editor.plugin.metapopupentryadder;
+package vampire.editor.plugin.popupentryadder;
 
 import java.text.Collator;
 

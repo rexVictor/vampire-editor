@@ -26,7 +26,6 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
@@ -37,7 +36,6 @@ import javax.swing.text.JTextComponent;
 
 import vampire.editor.gui.swing.application.Initializer;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
-import vampire.editor.plugin.api.domain.PopupEntriesAPI;
 import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.MetaEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.MetaEntryView;
@@ -56,9 +54,6 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 	
 	private final List<MetaEntryViewListener> listeners = new LinkedList<>();
 	
-	private final JPopupMenu popupMenu = new JPopupMenu();
-	
-
 	public SMetaEntryView(DictionaryAPI dictionary,
 			MetaEntryViewAttributesAPI viewAttributes) {
 		super();
@@ -80,7 +75,6 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 			area.setWrapStyleWord(true);
 		}
 		content.getDocument().addDocumentListener(this);
-		content.setComponentPopupMenu(popupMenu);
 		content.setFont(viewAttributes.getContentFont());
 		content.setBorder(null);
 		title.setFont(viewAttributes.getTitleFont());
@@ -113,11 +107,6 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 	}
 	
 	
-
-	@Override
-	public void setPopup(PopupEntriesAPI entries) {
-		throw new UnsupportedOperationException();
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -163,13 +152,10 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 	}
 
 	@Override
-	public void addPopupEntry(String entry){
-		String translated = dictionary.getValue(entry);
-		JMenuItem menuItem = new JMenuItem(translated);
-		menuItem.setActionCommand(translated);
-		menuItem.addActionListener(this);
-		popupMenu.add(menuItem);
+	public void setPopupMenu(Object entries) {
+		if (entries instanceof JPopupMenu){
+			content.setComponentPopupMenu((JPopupMenu) entries);
+		}
+		
 	}
-
-	
 }

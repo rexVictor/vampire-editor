@@ -13,6 +13,7 @@ import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.LineAttributes;
 import vampire.editor.plugin.api.plugin.CategoryViewFactoryModule;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
+import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 
 public class LineAdder implements CategoryViewFactoryModule{
 	
@@ -27,7 +28,7 @@ public class LineAdder implements CategoryViewFactoryModule{
 	}
 
 	@Override
-	public void process(CategoryAPI category, ModelToViewModelMapperAPI mapper,
+	public void processFinal(CategoryAPI category, ModelToViewModelMapperAPI mapper,
 			CategoryView categoryView) {
 		CategoryViewAttributes viewAtts = (CategoryViewAttributes) mapper.getViewAttributes(category);
 		if (viewAtts.isShowLine()){
@@ -40,5 +41,12 @@ public class LineAdder implements CategoryViewFactoryModule{
 			cv.addLine(lineImage);
 		}
 	}
+
+	@Override
+	public void addToChild(CategoryAPI m, ModelToViewModelMapperAPI mapper,
+			SubCategoryView subView) {}
+
+	@Override
+	public void processInitial(CategoryAPI m, ModelToViewModelMapperAPI mapper) {}
 
 }

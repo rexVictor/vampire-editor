@@ -5,13 +5,11 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.Collator;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -26,14 +24,17 @@ public class Loader {
 	
 	public static final Listener listener = new Listener();
 	
+	private final Comparator comparator;
+	
 	
 	public Loader(DictionaryAPI dictionary) {
 		super();
 		this.dictionary = dictionary;
+		this.comparator = new Comparator(dictionary);
 	}
 
-	public List<String> load(Path p){
-		List<String> entries = new LinkedList<>();
+	public SortedSet<String> load(Path p){
+		SortedSet<String> entries = new TreeSet<>(comparator);
 		try (Scanner scanner = new Scanner(p)){
 			while (scanner.hasNextLine()){
 				entries.add(dictionary.getValue(scanner.nextLine()));
@@ -41,7 +42,7 @@ public class Loader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		Collections.sort(entries, Collator.getInstance());
+		//Collections.sort(entries, Collator.getInstance());
 		return entries;
 	}
 	
@@ -51,7 +52,7 @@ public class Loader {
 			for (Path p: stream){
 				if (!Files.isDirectory(p)){
 					JPopupMenu menu = new JPopupMenu();
-					List<String> entries = load(p);
+					SortedSet<String> entries = load(p);
 					for (String s : entries){
 						JMenuItem menuItem = new JMenuItem(s);
 						menuItem.addActionListener(listener);

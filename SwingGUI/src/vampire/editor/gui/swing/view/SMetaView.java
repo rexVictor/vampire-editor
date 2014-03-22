@@ -66,13 +66,7 @@ public class SMetaView implements MetaView{
 
 	@Override
 	public void add(MetaEntryView entry) {
-		SMetaEntryView view = (SMetaEntryView) entry;
-		metaEntries.add(entry);
-		int lineCount = view.getViewAtts().getLineCount();
-		int x = added/4;
-		coloumns.get(x).add(view.getPanel());
-		added+=lineCount;
-		
+		add0(entry);
 	}
 
 	@Override
@@ -93,6 +87,16 @@ public class SMetaView implements MetaView{
 	
 	public JPanel getPanel(){
 		return panel;
+	}
+
+	@Override
+	public void add0(MetaEntryView entry) {
+		SMetaEntryView view = (SMetaEntryView) entry;
+		metaEntries.add(entry);
+		int lineCount = view.getViewAtts().getLineCount();
+		int x = added/4;
+		coloumns.get(x).add(view.getPanel());
+		added+=lineCount;
 	}
 
 }

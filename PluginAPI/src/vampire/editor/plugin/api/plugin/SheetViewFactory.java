@@ -31,4 +31,18 @@ public interface SheetViewFactory {
 	
 	public SubCategoryViewFactory getSubCategoryViewFactory();
 	
+	public MetaViewFactory getMetaViewFactory();
+	
+	public MetaEntryViewFactory getMetaEntryViewFactory();
+	
+	public MeritEntryViewFactory getMeritEntryViewFactory();
+	
+	public MeritViewFactory getMeritViewFactory();
+	
+	public CategoryViewFactory getCategoryViewFactory();
+	
+	public TraitViewFactory getTraitViewFactory();
+	
+	public ValueViewFactory getValueViewFactory();
+	
 }

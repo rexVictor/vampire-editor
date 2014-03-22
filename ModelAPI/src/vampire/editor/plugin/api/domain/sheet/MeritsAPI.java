@@ -35,18 +35,13 @@ import java.util.Iterator;
  * @author rex_victor
  *
  */
-public interface MeritsAPI{
+public interface MeritsAPI extends HasIterator<MeritAPI>{
 
 	/**
 	 * This implementation is optional
 	 */
 	public MeritsAPI clone();
 
-	/**
-	 * @return an {@link Iterator} over the parametrized children of type V
-	 */
-	public Iterator<? extends MeritAPI> getIterator();
-	
 	public String getName();
 	
 	/**

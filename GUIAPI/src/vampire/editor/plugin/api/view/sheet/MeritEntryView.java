@@ -37,6 +37,6 @@ public interface MeritEntryView {
 
 	public MeritEntryViewAttibutesAPI getViewAttributes();
 	
-	public void addPopupEntry(String first, String second);
-
+	public void setPopupMenu(Object object);
+	
 }
