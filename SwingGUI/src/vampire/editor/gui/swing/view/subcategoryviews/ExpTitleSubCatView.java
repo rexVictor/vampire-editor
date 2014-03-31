@@ -12,7 +12,7 @@ import vampire.editor.plugin.api.view.sheet.TraitView;
  */
 class ExpTitleSubCatView extends TitleSubCatView{
 
-	public ExpTitleSubCatView(DictionaryAPI dictionary,
+	protected ExpTitleSubCatView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts, String title) {
 		super(dictionary, viewAtts, title);
 	}

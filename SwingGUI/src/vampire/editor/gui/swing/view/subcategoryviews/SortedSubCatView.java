@@ -15,7 +15,7 @@ class SortedSubCatView extends AbstractSubCategoryView{
 	
 	private static final Comparator<TraitView> COMPARATOR = new TraitViewSorter();
 
-	public SortedSubCatView(DictionaryAPI dictionary,
+	protected SortedSubCatView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts) {
 		super(dictionary, viewAtts);
 	}

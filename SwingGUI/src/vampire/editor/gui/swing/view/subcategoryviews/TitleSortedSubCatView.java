@@ -9,7 +9,7 @@ class TitleSortedSubCatView extends SortedSubCatView{
 	
 	protected JPanel titledPanel = new JPanel();
 
-	public TitleSortedSubCatView(DictionaryAPI dictionary,
+	protected TitleSortedSubCatView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts, String title) {
 		super(dictionary, viewAtts);
 		TitleMaker.makeTitle(titledPanel, panel, dictionary, viewAtts, title);

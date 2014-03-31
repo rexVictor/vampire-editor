@@ -6,7 +6,7 @@ import vampire.editor.plugin.api.view.sheet.TraitView;
 
 class DefaultSubCatView extends AbstractSubCategoryView{
 
-	public DefaultSubCatView(DictionaryAPI dictionary,
+	protected DefaultSubCatView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts) {
 		super(dictionary, viewAtts);
 	}

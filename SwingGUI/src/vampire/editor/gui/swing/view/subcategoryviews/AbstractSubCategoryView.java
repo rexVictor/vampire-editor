@@ -49,7 +49,7 @@ public abstract class AbstractSubCategoryView implements SubCategoryView, Addabl
 	
 	protected final JPanel panel = Helper.createPanel();
 	
-	public AbstractSubCategoryView(DictionaryAPI dictionary,
+	protected AbstractSubCategoryView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts) {
 		super();
 		this.dictionary = dictionary;
