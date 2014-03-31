@@ -98,6 +98,8 @@ class MValueViewAttributes implements ValueViewAttributes{
 		builder.append(dynamic);
 		builder.append(", showspace: ");
 		builder.append(showSpace);
+		builder.append(", tempSquared: ");
+		builder.append(tempSquared);
 		builder.append(", circles: ");
 		builder.append(circles);
 		builder.append(", size: ");

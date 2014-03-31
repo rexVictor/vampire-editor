@@ -1,8 +1,10 @@
 package vampire.editor.gui.swing.view.subcategoryviews;
 
 import java.awt.GridLayout;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JPanel;
 
@@ -17,37 +19,24 @@ import vampire.editor.plugin.api.view.sheet.TraitView;
 
 public abstract class AbstractSubCategoryView implements SubCategoryView, Addable<TraitView>{
 	
+	private static final Map<SSubCategoryViewAtts, AbstractSubCategoryView> views = new HashMap<>();
+	
+	static{
+		views.put(new SSubCategoryViewAtts(true, true, true), new ExpTitleSortedSubCatView());
+		views.put(new SSubCategoryViewAtts(true, true, false), new ExpTitleSubCatView());
+		views.put(new SSubCategoryViewAtts(true, false, true), new ExpSortedSubCatView());
+		views.put(new SSubCategoryViewAtts(true, false, false), new ExpSubCatView());
+		views.put(new SSubCategoryViewAtts(false, true, true), new TitleSortedSubCatView());
+		views.put(new SSubCategoryViewAtts(false, true, false), new TitleSubCatView());
+		views.put(new SSubCategoryViewAtts(false, false, true), new SortedSubCatView());
+		views.put(new SSubCategoryViewAtts(false, false, false), new DefaultSubCatView());
+	}
+	
 	public static AbstractSubCategoryView buildSubCategoryView(SubCategoryViewAttributes viewAtts
 												,DictionaryAPI dictionary
 												,String title){
-		if (viewAtts.isShallSort()){
-			if (viewAtts.isShowTitle()){
-				if (viewAtts.isExpandable()){
-					return new ExpTitleSortedSubCatView(dictionary, viewAtts, title);
-				}
-				else {
-					return new TitleSortedSubCatView(dictionary, viewAtts, title);
-				}
-			}
-			else if (viewAtts.isExpandable()){
-					return new ExpSortedSubCatView(dictionary, viewAtts);
-			}
-			else {
-				return new SortedSubCatView(dictionary, viewAtts);
-			}
-		}
-		else if (viewAtts.isShowTitle()){
-			if (viewAtts.isExpandable()){
-				return new ExpTitleSubCatView(dictionary, viewAtts, title);
-			}
-			else {
-				return new TitleSubCatView(dictionary, viewAtts, title);
-			}
-		}
-		else if (viewAtts.isExpandable()){
-			return new ExpSubCatView(dictionary, viewAtts);
-		}
-		else return new DefaultSubCatView(dictionary, viewAtts);
+		SSubCategoryViewAtts sViewAtts = new SSubCategoryViewAtts(viewAtts);
+		return views.get(sViewAtts).newInstance(viewAtts, dictionary, title);
 	}
 	
 	protected final DictionaryAPI dictionary;
@@ -66,7 +55,11 @@ public abstract class AbstractSubCategoryView implements SubCategoryView, Addabl
 		this.dictionary = dictionary;
 		this.viewAtts = viewAtts;
 		this.panel.setLayout(new GridLayout(0, 1));
-		
+	}
+	
+	protected AbstractSubCategoryView(){
+		this.dictionary = null;
+		this.viewAtts = null;
 	}
 
 	@Override
@@ -122,5 +115,8 @@ public abstract class AbstractSubCategoryView implements SubCategoryView, Addabl
 	public JPanel getPanel() {
 		return panel;
 	}
+	
+	public abstract AbstractSubCategoryView newInstance(SubCategoryViewAttributes viewAtts,
+														DictionaryAPI dictionary, String title);
 
 }

@@ -198,9 +198,4 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	public MeritViewFactory getMeritViewFactory() {
 		return meritViewFactory;
 	}
-	
-	
-	
-	
-
 }

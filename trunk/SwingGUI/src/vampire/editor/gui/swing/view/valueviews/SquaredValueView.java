@@ -71,6 +71,9 @@ class SquaredValueView extends DefaultValueView{
 		}
 	}
 	
+	SquaredValueView() {
+	}
+	
 	@Override
 	protected void redrawTempValue(){
 		int tempValue = this.tempValue;
@@ -118,7 +121,10 @@ class SquaredValueView extends DefaultValueView{
 	public JPanel getPanel(){
 		return total;
 	}
-
-		
-
+	
+	@Override
+	public AbstractValueView createNew(ValueViewAttributes viewAtts) {
+		return new SquaredValueView(viewAtts);
+	}
+	
 }

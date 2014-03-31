@@ -11,6 +11,10 @@ class ExpSortedSubCatView extends SortedSubCatView{
 		super(dictionary, viewAtts);
 	}
 	
+	public ExpSortedSubCatView(){
+		
+	}
+	
 	@Override
 	public void add(TraitView entry){
 		add0(entry);
@@ -24,6 +28,11 @@ class ExpSortedSubCatView extends SortedSubCatView{
 	@Override
 	public void insert(int pos, TraitView entry){
 		insert0(pos, entry);
+	}
+	
+	@Override
+	public ExpSortedSubCatView newInstance(SubCategoryViewAttributes viewAtts, DictionaryAPI dictionary, String title){
+		return new ExpSortedSubCatView(dictionary, viewAtts);
 	}
 
 }
