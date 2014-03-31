@@ -19,6 +19,10 @@ class SortedSubCatView extends AbstractSubCategoryView{
 			SubCategoryViewAttributes viewAtts) {
 		super(dictionary, viewAtts);
 	}
+	
+	protected SortedSubCatView(){
+		
+	}
 
 	@Override
 	public void add(TraitView entry) {}
@@ -36,6 +40,13 @@ class SortedSubCatView extends AbstractSubCategoryView{
 
 	@Override
 	public void insert(int pos, TraitView entry) {}
+
+	@Override
+	public SortedSubCatView newInstance(
+			SubCategoryViewAttributes viewAtts, DictionaryAPI dictionary,
+			String title) {
+		return new SortedSubCatView(dictionary, viewAtts);
+	}
 	
 	
 

@@ -52,6 +52,9 @@ class DefaultValueView extends AbstractValueView{
 			}
 		}
 	}
+	
+	DefaultValueView() {
+	}
 
 	@Override
 	protected void addCircle0() {
@@ -93,5 +96,10 @@ class DefaultValueView extends AbstractValueView{
 		ValueViewAttributes clone = viewAtts.clone();
 		return new DefaultValueView(clone);
 	}
-	
+
+	@Override
+	public AbstractValueView createNew(ValueViewAttributes viewAtts) {
+		return new DefaultValueView(viewAtts);
+	}
+
 }

@@ -15,9 +15,18 @@ class TitleSortedSubCatView extends SortedSubCatView{
 		TitleMaker.makeTitle(titledPanel, panel, dictionary, viewAtts, title);
 	}
 	
+	protected TitleSortedSubCatView(){
+		
+	}
+	
 	@Override
 	public JPanel getPanel(){
 		return titledPanel;
+	}
+	
+	@Override
+	public TitleSortedSubCatView newInstance(SubCategoryViewAttributes viewAtts, DictionaryAPI dictionary, String title){
+		return new TitleSortedSubCatView(dictionary, viewAtts, title);
 	}
 
 }

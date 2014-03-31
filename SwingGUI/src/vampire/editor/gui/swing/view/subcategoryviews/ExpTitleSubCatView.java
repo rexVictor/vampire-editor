@@ -17,6 +17,10 @@ class ExpTitleSubCatView extends TitleSubCatView{
 		super(dictionary, viewAtts, title);
 	}
 	
+	protected ExpTitleSubCatView(){
+		
+	}
+	
 	@Override
 	public void add(TraitView entry){
 		add0(entry);
@@ -30,6 +34,11 @@ class ExpTitleSubCatView extends TitleSubCatView{
 	@Override
 	public void insert(int pos, TraitView entry){
 		insert0(pos, entry);
+	}
+	
+	@Override
+	public ExpTitleSubCatView newInstance(SubCategoryViewAttributes viewAtts, DictionaryAPI dictionary, String title){
+		return new ExpTitleSubCatView(dictionary, viewAtts, title);
 	}
 
 }

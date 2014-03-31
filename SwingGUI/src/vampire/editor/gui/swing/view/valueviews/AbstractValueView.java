@@ -22,8 +22,10 @@ package vampire.editor.gui.swing.view.valueviews;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -45,18 +47,19 @@ public abstract class AbstractValueView implements ValueView{
 	
 	public static final String SQUARE_CROSSED	=	"\u2612";
 	
+	private static final Map<SValueViewAtts, AbstractValueView> valueViews = new HashMap<>();
+	
+	static{
+		valueViews.put(new SValueViewAtts(true, true, false), new SpacedValueView());
+		valueViews.put(new SValueViewAtts(false, false, false), new StaticValueView());
+		valueViews.put(new SValueViewAtts(false, false, true), new SquaredValueView());
+		valueViews.put(new SValueViewAtts(false, true, false), new DefaultValueView());
+		valueViews.put(new SValueViewAtts(true, false, false), new StaticSpacedValueView());
+	}
 	
 	public static AbstractValueView getValueView(ValueViewAttributes viewAtts){
-		if (viewAtts.isTempSquared()){
-			return new SquaredValueView(viewAtts);
-		}
-		if (viewAtts.isDynamic() && viewAtts.isShowSpace()){
-			return new SpacedValueView(viewAtts);
-		}
-		if (!(viewAtts.isDynamic()) && !(viewAtts.isShowSpace())){
-			return new StaticValueView(viewAtts);
-		}
-		return null;
+		SValueViewAtts atts = new SValueViewAtts(viewAtts);
+		return valueViews.get(atts).createNew(viewAtts);
 	}
 	
 	protected final List<JLabel> circles = new ArrayList<>();
@@ -88,6 +91,10 @@ public abstract class AbstractValueView implements ValueView{
 		circleWhite = new ImageIcon(Images.getImage("circle_empty", size, size));
 		circleRedStriped = new ImageIcon(Images.getImage("circle_temp_lower", size, size));
 		circleGreenStriped = new ImageIcon(Images.getImage("circle_temp_greater", size, size));
+	}
+	
+	protected AbstractValueView(){
+		
 	}
 	
 	public abstract void addCircle();
@@ -183,5 +190,7 @@ public abstract class AbstractValueView implements ValueView{
 			label.setToolTipText(text);
 		}
 	}
+	
+	public abstract AbstractValueView createNew(ValueViewAttributes viewAtts);
 	
 }

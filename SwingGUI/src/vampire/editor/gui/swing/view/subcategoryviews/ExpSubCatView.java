@@ -10,6 +10,10 @@ class ExpSubCatView extends AbstractSubCategoryView{
 			SubCategoryViewAttributes viewAtts) {
 		super(dictionary, viewAtts);
 	}
+	
+	protected ExpSubCatView(){
+		
+	}
 
 	@Override
 	public void add(TraitView entry) {
@@ -24,6 +28,13 @@ class ExpSubCatView extends AbstractSubCategoryView{
 	@Override
 	public void insert(int pos, TraitView entry) {
 		insert0(pos, entry);
+	}
+
+	@Override
+	public ExpSubCatView newInstance(
+			SubCategoryViewAttributes viewAtts, DictionaryAPI dictionary,
+			String title) {
+		return new ExpSubCatView(dictionary, viewAtts);
 	}
 
 }

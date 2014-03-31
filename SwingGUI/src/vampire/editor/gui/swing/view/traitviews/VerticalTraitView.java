@@ -7,9 +7,9 @@ import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
 
-public class VerticalTraitView extends AbstractTraitView{
+class VerticalTraitView extends AbstractTraitView{
 
-	public VerticalTraitView(AbstractValueView valueView,
+	private VerticalTraitView(AbstractValueView valueView,
 			TraitViewAttributes viewAtts, DictionaryAPI dictionary) {
 		super(valueView, viewAtts, dictionary);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -19,10 +19,19 @@ public class VerticalTraitView extends AbstractTraitView{
 		panel.add(valueView.getPanel());
 	}
 	
+	VerticalTraitView(){
+	}
+	
 	@Override
 	protected void initializeTextField(){
 		super.initializeTextField();
 		textField.setHorizontalAlignment(JTextField.CENTER);
+	}
+	
+	@Override
+	public AbstractTraitView createNewInstance(AbstractValueView vv,
+			TraitViewAttributes atts, DictionaryAPI dictionary) {
+		return new VerticalTraitView(vv, atts, dictionary);
 	}
 
 }

@@ -4,8 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -17,44 +19,54 @@ import vampire.editor.gui.swing.view.Helper;
 import vampire.editor.gui.swing.view.STraitViewEvent;
 import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
+import vampire.editor.plugin.api.domain.sheet.view.Orientation;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
 import vampire.editor.plugin.api.view.events.TraitMouseViewListener;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
-public class AbstractTraitView implements TraitView, DocumentListener, ActionListener, MouseListener{
+public abstract class AbstractTraitView implements TraitView, DocumentListener, ActionListener, MouseListener{
+	
+	private static final Map<Orientation, AbstractTraitView> traitViews = new HashMap<>();
+	
+	static{
+		traitViews.put(Orientation.HORIZONTAL, new HorizontalTraitView());
+		traitViews.put(Orientation.VERTICAL, new VerticalTraitView());
+	}
 	
 	public static AbstractTraitView buildTraitView(ValueView valueView,
 													TraitViewAttributes viewAtts,
 													DictionaryAPI dictionary){
 		AbstractValueView vv = (AbstractValueView) valueView;
-		switch (viewAtts.getOrientation()){
-		case HORIZONTAL: return new HorizontalTraitView(vv, viewAtts, dictionary);
-		case VERTICAL: return new VerticalTraitView(vv, viewAtts, dictionary);
-		}
-		return null;
+		return traitViews.get(viewAtts.getOrientation()).createNewInstance(vv, viewAtts, dictionary);
 	}
 	
 	protected final JPanel panel = Helper.createPanel();
 	
 	protected final AbstractValueView valueView;
 	
+	protected final JTextField textField = Helper.createLimitedTextField(20);
+	
 	private final DictionaryAPI dictionary;
 	
 	private final TraitViewAttributes viewAtts;
-	
-	protected final JTextField textField = Helper.createLimitedTextField(20);
 	
 	private final List<TraitViewListener> listeners = new LinkedList<>();
 	
 	private final List<TraitMouseViewListener> mouseListeners = new LinkedList<>();
 	
-	public AbstractTraitView(AbstractValueView valueView, TraitViewAttributes viewAtts, DictionaryAPI dictionary){
+	protected AbstractTraitView(AbstractValueView valueView, TraitViewAttributes viewAtts, DictionaryAPI dictionary){
 		this.viewAtts = viewAtts;
 		this.valueView = valueView;
 		this.dictionary = dictionary;
 		initializeTextField();
+	}
+	
+	protected AbstractTraitView(){
+		viewAtts = null;
+		valueView = null;
+		dictionary = null;
 	}
 	
 	protected void initializeTextField(){
@@ -165,10 +177,6 @@ public class AbstractTraitView implements TraitView, DocumentListener, ActionLis
 			textField.setComponentPopupMenu((JPopupMenu) menu);
 	}
 
-	@Override
-	public void add(ValueView s) {}
-
-	@Override
-	public void add0(ValueView s) {}
+	protected abstract AbstractTraitView createNewInstance(AbstractValueView vv, TraitViewAttributes atts, DictionaryAPI dictionary);
 
 }

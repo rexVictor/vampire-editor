@@ -10,6 +10,10 @@ class DefaultSubCatView extends AbstractSubCategoryView{
 			SubCategoryViewAttributes viewAtts) {
 		super(dictionary, viewAtts);
 	}
+	
+	protected DefaultSubCatView(){
+		
+	}
 
 	@Override
 	public void add(TraitView entry) {}
@@ -19,5 +23,12 @@ class DefaultSubCatView extends AbstractSubCategoryView{
 
 	@Override
 	public void insert(int pos, TraitView entry) {}
+
+	@Override
+	public DefaultSubCatView newInstance(
+			SubCategoryViewAttributes viewAtts, DictionaryAPI dictionary,
+			String title) {
+		return new DefaultSubCatView(dictionary, viewAtts);
+	}
 
 }

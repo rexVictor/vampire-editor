@@ -32,6 +32,9 @@ class StaticSpacedValueView extends SpacedValueView{
 		super(viewAtts);
 	}
 	
+	StaticSpacedValueView() {
+	}
+	
 	@Override
 	public void addCircle(){}
 	
@@ -41,6 +44,11 @@ class StaticSpacedValueView extends SpacedValueView{
 	public StaticSpacedValueView clone(){
 		ValueViewAttributes clone = viewAtts.clone();
 		return new StaticSpacedValueView(clone);
+	}
+	
+	@Override
+	public AbstractValueView createNew(ValueViewAttributes viewAtts) {
+		return new StaticSpacedValueView(viewAtts);
 	}
 
 }

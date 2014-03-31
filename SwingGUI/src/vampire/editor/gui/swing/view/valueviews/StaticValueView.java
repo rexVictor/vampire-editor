@@ -36,6 +36,9 @@ class StaticValueView extends DefaultValueView{
 		super(viewAtts);
 	}
 	
+	StaticValueView() {
+	}
+	
 	@Override
 	public void addCircle(){}
 	
@@ -46,4 +49,10 @@ class StaticValueView extends DefaultValueView{
 		ValueViewAttributes clone = viewAtts.clone();
 		return new StaticValueView(clone);
 	}
+	
+	@Override
+	public AbstractValueView createNew(ValueViewAttributes viewAtts) {
+		return new StaticValueView(viewAtts);
+	}
+	
 }

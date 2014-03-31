@@ -21,7 +21,7 @@ public class SValueViewAtts{
 	public SValueViewAtts(ValueViewAttributesAPI viewAtts){
 		showSpace = viewAtts.isShowSpace();
 		dynamic = viewAtts.isDynamic();
-		tempSquared = viewAtts.isDynamic();
+		tempSquared = viewAtts.isTempSquared();
 	}
 	
 	@Override
@@ -40,16 +40,24 @@ public class SValueViewAtts{
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof ValueViewAttributesAPI))
+		if (!(obj instanceof SValueViewAtts))
 			return false;
-		ValueViewAttributesAPI other = (ValueViewAttributesAPI) obj;
-		if (dynamic != other.isDynamic())
+		SValueViewAtts other = (SValueViewAtts) obj;
+		if (dynamic != other.dynamic)
 			return false;
-		if (showSpace != other.isShowSpace())
+		if (showSpace != other.showSpace)
 			return false;
-		if (tempSquared != other.isTempSquared())
+		if (tempSquared != other.tempSquared)
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "SValueViewAtts [showSpace=" + showSpace + ", dynamic="
+				+ dynamic + ", tempSquared=" + tempSquared + "]";
+	}
+	
+	
 
 }

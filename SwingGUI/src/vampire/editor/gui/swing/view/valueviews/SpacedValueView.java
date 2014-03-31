@@ -44,6 +44,9 @@ class SpacedValueView extends DefaultValueView{
 		getPanel().setBackground(Color.WHITE);
 	}
 	
+	SpacedValueView() {
+	}
+	
 	@Override
 	protected void addCircle0(){
 		if (circles.size() == 5){
@@ -64,4 +67,10 @@ class SpacedValueView extends DefaultValueView{
 		ValueViewAttributes clone = viewAtts.clone();
 		return new SpacedValueView(clone);
 	}
+	
+	@Override
+	public AbstractValueView createNew(ValueViewAttributes viewAtts) {
+		return new SpacedValueView(viewAtts);
+	}
+	
 }

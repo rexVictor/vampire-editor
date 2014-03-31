@@ -20,6 +20,10 @@ class TitleSubCatView extends AbstractSubCategoryView{
 		super(dictionary, viewAtts);
 		TitleMaker.makeTitle(titledPanel, panel, dictionary, viewAtts, title);
 	}
+	
+	protected TitleSubCatView(){
+		
+	}
 
 	@Override
 	public void add(TraitView entry){}
@@ -33,5 +37,12 @@ class TitleSubCatView extends AbstractSubCategoryView{
 	@Override
 	public JPanel getPanel(){
 		return titledPanel;
+	}
+
+	@Override
+	public AbstractSubCategoryView newInstance(
+			SubCategoryViewAttributes viewAtts, DictionaryAPI dictionary,
+			String title) {
+		return new TitleSubCatView(dictionary, viewAtts, title);
 	}
 }
