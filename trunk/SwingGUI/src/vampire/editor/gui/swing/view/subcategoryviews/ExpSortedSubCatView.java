@@ -6,12 +6,12 @@ import vampire.editor.plugin.api.view.sheet.TraitView;
 
 class ExpSortedSubCatView extends SortedSubCatView{
 
-	public ExpSortedSubCatView(DictionaryAPI dictionary,
+	protected ExpSortedSubCatView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts) {
 		super(dictionary, viewAtts);
 	}
 	
-	public ExpSortedSubCatView(){
+	protected ExpSortedSubCatView(){
 		
 	}
 	

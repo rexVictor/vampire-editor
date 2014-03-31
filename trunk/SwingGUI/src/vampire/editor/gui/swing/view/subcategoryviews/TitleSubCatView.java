@@ -15,7 +15,7 @@ class TitleSubCatView extends AbstractSubCategoryView{
 	
 	protected JPanel titledPanel = new JPanel();
 
-	public TitleSubCatView(DictionaryAPI dictionary,
+	protected TitleSubCatView(DictionaryAPI dictionary,
 			SubCategoryViewAttributes viewAtts, String title) {
 		super(dictionary, viewAtts);
 		TitleMaker.makeTitle(titledPanel, panel, dictionary, viewAtts, title);
