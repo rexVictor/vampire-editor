@@ -18,32 +18,32 @@
  * For further information see https://code.google.com/p/vampire-editor/ or write a
  * mail to development.rex@gmail.com
  ******************************************************************************/
-package vampire.editor.gui.swing.view;
+package vampire.editor.gui.swing.view.events;
 
-import vampire.editor.plugin.api.view.events.MetaEntryViewEvent;
+import vampire.editor.plugin.api.view.events.ValueViewEvent;
 
-public class SMetaEntryViewEvent implements MetaEntryViewEvent{
+public class SValueViewEvent implements ValueViewEvent{
 	
-	private final String title;
+	private final int value;
 	
-	private final String content;
+	private final int tempValue;
 	
 	
 
-	public SMetaEntryViewEvent(String title, String content) {
+	public SValueViewEvent(int value, int tempValue) {
 		super();
-		this.title = title;
-		this.content = content;
+		this.value = value;
+		this.tempValue = tempValue;
 	}
 
 	@Override
-	public String getTitle() {
-		return title;
+	public int getValue() {
+		return value;
 	}
 
 	@Override
-	public String getContent() {
-		return content;
+	public int getTempValue() {
+		return tempValue;
 	}
 
 }

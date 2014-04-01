@@ -18,22 +18,32 @@
  * For further information see https://code.google.com/p/vampire-editor/ or write a
  * mail to development.rex@gmail.com
  ******************************************************************************/
-package vampire.editor.gui.swing.application;
+package vampire.editor.gui.swing.view.events;
 
-import java.awt.Color;
+import vampire.editor.plugin.api.view.events.MetaEntryViewEvent;
 
-import javax.swing.JPanel;
-import javax.swing.text.JTextComponent;
-
-public class Initializer {
+public class SMetaEntryViewEvent implements MetaEntryViewEvent{
 	
-	public static void initialize(JPanel panel){
-		panel.setBackground(Color.WHITE);
+	private final String title;
+	
+	private final String content;
+	
+	
+
+	public SMetaEntryViewEvent(String title, String content) {
+		super();
+		this.title = title;
+		this.content = content;
 	}
-	
-	public static void initialize(JTextComponent field){
-		field.setBackground(Color.WHITE);
-		field.setBorder(null);
+
+	@Override
+	public String getTitle() {
+		return title;
+	}
+
+	@Override
+	public String getContent() {
+		return content;
 	}
 
 }

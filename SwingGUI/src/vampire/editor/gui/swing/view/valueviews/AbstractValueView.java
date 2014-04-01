@@ -32,7 +32,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import vampire.editor.gui.swing.domain.Images;
-import vampire.editor.gui.swing.view.SValueViewEvent;
+import vampire.editor.gui.swing.view.events.SValueViewEvent;
 import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.plugin.api.view.events.ValueViewListener;
 import vampire.editor.plugin.api.view.sheet.ValueView;
@@ -50,16 +50,20 @@ public abstract class AbstractValueView implements ValueView{
 	private static final Map<SValueViewAtts, AbstractValueView> valueViews = new HashMap<>();
 	
 	static{
-		valueViews.put(new SValueViewAtts(true, true, false), new SpacedValueView());
 		valueViews.put(new SValueViewAtts(false, false, false), new StaticValueView());
 		valueViews.put(new SValueViewAtts(false, false, true), new SquaredValueView());
 		valueViews.put(new SValueViewAtts(false, true, false), new DefaultValueView());
+		
 		valueViews.put(new SValueViewAtts(true, false, false), new StaticSpacedValueView());
+		
+		valueViews.put(new SValueViewAtts(true, true, false), new SpacedValueView());
+		
+		
 	}
 	
 	public static AbstractValueView getValueView(ValueViewAttributes viewAtts){
 		SValueViewAtts atts = new SValueViewAtts(viewAtts);
-		return valueViews.get(atts).createNew(viewAtts);
+		return valueViews.get(atts).newInstance(viewAtts);
 	}
 	
 	protected final List<JLabel> circles = new ArrayList<>();
@@ -191,6 +195,6 @@ public abstract class AbstractValueView implements ValueView{
 		}
 	}
 	
-	public abstract AbstractValueView createNew(ValueViewAttributes viewAtts);
+	public abstract AbstractValueView newInstance(ValueViewAttributes viewAtts);
 	
 }

@@ -36,6 +36,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import vampire.editor.gui.swing.domain.Images;
+import vampire.editor.gui.swing.view.events.SBloodPoolViewEvent;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.BloodPoolViewListener;

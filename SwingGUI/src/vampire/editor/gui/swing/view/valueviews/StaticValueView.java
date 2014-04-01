@@ -51,7 +51,7 @@ class StaticValueView extends DefaultValueView{
 	}
 	
 	@Override
-	public AbstractValueView createNew(ValueViewAttributes viewAtts) {
+	public AbstractValueView newInstance(ValueViewAttributes viewAtts) {
 		return new StaticValueView(viewAtts);
 	}
 	

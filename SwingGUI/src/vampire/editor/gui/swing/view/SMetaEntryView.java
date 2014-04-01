@@ -21,8 +21,7 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Color;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -34,21 +33,21 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
 
-import vampire.editor.gui.swing.application.Initializer;
+import vampire.editor.gui.swing.view.events.SMetaEntryViewEvent;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
 import vampire.editor.plugin.api.view.events.MetaEntryViewListener;
 import vampire.editor.plugin.api.view.sheet.MetaEntryView;
 
-public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentListener{
+public class SMetaEntryView implements MetaEntryView, DocumentListener{
 	
 	private final DictionaryAPI dictionary;
 	
 	private final MetaEntryViewAttributesAPI viewAttributes;
 	
-	private final JTextField title = new JTextField();
+	private final JTextField title = Helper.createTextField();
 	
-	private /*final*/ JTextComponent content;
+	private final JTextComponent content;
 	
 	private final JPanel panel = new JPanel();
 	
@@ -59,11 +58,6 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 		super();
 		this.dictionary = dictionary;
 		this.viewAttributes = viewAttributes;
-		initialize();
-	}
-	
-	private void initialize(){
-		panel.setLayout(new BorderLayout(5, 0));
 		if (viewAttributes.getLineCount()==1){
 			content = new JTextField();
 		}
@@ -74,19 +68,21 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 			area.setLineWrap(true);
 			area.setWrapStyleWord(true);
 		}
+		initialize();
+	}
+	
+	private void initialize(){
+		panel.setLayout(new BorderLayout(5, 0));
 		content.getDocument().addDocumentListener(this);
 		content.setFont(viewAttributes.getContentFont());
 		content.setBorder(null);
 		title.setFont(viewAttributes.getTitleFont());
 		title.setBorder(null);
-		Initializer.initialize(panel);
-		Initializer.initialize(title);
-		Initializer.initialize(content);
 		
 		title.setEditable(false);
 		title.setFocusable(false);
 		content.setEditable(true);
-		
+		panel.setBackground(Color.WHITE);
 		panel.add(title, BorderLayout.WEST);
 		
 		panel.add(content, BorderLayout.CENTER);
@@ -106,13 +102,6 @@ public class SMetaEntryView implements MetaEntryView, ActionListener, DocumentLi
 		this.content.setText(translation);
 	}
 	
-	
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		content.setText(e.getActionCommand());
-	}
-
 	@Override
 	public void addListener(MetaEntryViewListener listener) {
 		listeners.add(listener);

@@ -31,6 +31,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import vampire.editor.gui.swing.view.events.SHeathEntryViewEvent;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.DamageType;
 import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;

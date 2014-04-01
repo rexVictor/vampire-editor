@@ -18,42 +18,29 @@
  * For further information see https://code.google.com/p/vampire-editor/ or write a
  * mail to development.rex@gmail.com
  ******************************************************************************/
-package vampire.editor.gui.swing.view;
+package vampire.editor.gui.swing.view.events;
 
-import vampire.editor.plugin.api.domain.sheet.DamageType;
-import vampire.editor.plugin.api.view.events.HealthViewEntryEvent;
+import vampire.editor.plugin.api.view.events.MeritEntryViewEvent;
 
-public class SHeathEntryViewEvent implements HealthViewEntryEvent{
+public class SMeritEntryViewEvent implements MeritEntryViewEvent{
 	
-	private final String description;
+	private final int cost;
 	
-	private final int penalty;
-	
-	private final DamageType damageType;
+	private final String name;
 
-	public SHeathEntryViewEvent(String description, int penalty, DamageType damageType) {
+	public SMeritEntryViewEvent(int cost, String name) {
 		super();
-		this.description = description;
-		this.penalty = penalty;
-		this.damageType = damageType;
+		this.cost = cost;
+		this.name = name;
 	}
 
-	@Override
-	public String getDescription() {
-		return description;
+	public int getCost() {
+		return cost;
 	}
 
-	@Override
-	public int getPenalty() {
-		return penalty;
+	public String getName() {
+		return name;
 	}
-
-	@Override
-	public DamageType getDamageType() {
-		return damageType;
-	};
-	
-	
 	
 	
 

@@ -29,7 +29,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import vampire.editor.gui.swing.view.subcategoryviews.AbstractSubCategoryView;
+import vampire.editor.gui.swing.view.subcategoryviews.ISubCategoryView;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.Addable;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
@@ -39,7 +39,7 @@ public class SCategoryView implements CategoryView, Addable<SubCategoryView>{
 	
 	private final JPanel panel = new JPanel();
 	
-	private final List<AbstractSubCategoryView> subCategoryViews = new ArrayList<>();
+	private final List<ISubCategoryView> subCategoryViews = new ArrayList<>();
 	
 	private final JPanel subCategoriesPanel = new JPanel();
 	
@@ -49,9 +49,9 @@ public class SCategoryView implements CategoryView, Addable<SubCategoryView>{
 	}
 	
 	private void initializeSubcategoriesPanel(){
-		subCategoriesPanel.setLayout(new GridLayout(1, 0, 10, 0));
+		subCategoriesPanel.setLayout(new GridLayout(1, 0));
 		subCategoriesPanel.setBackground(Color.WHITE);
-		subCategoriesPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+		subCategoriesPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 	}
 	
 	private void initialize(){
@@ -69,7 +69,7 @@ public class SCategoryView implements CategoryView, Addable<SubCategoryView>{
 
 	@Override
 	public void add(SubCategoryView entry) {
-		AbstractSubCategoryView view = (AbstractSubCategoryView) entry;
+		ISubCategoryView view = (ISubCategoryView) entry;
 		subCategoryViews.add(view);
 		view.getPanel().setAlignmentX(JPanel.TOP_ALIGNMENT);
 		view.getPanel().setAlignmentY(JPanel.TOP_ALIGNMENT);

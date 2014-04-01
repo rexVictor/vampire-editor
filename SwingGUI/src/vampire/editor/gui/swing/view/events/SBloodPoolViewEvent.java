@@ -18,7 +18,7 @@
  * For further information see https://code.google.com/p/vampire-editor/ or write a
  * mail to development.rex@gmail.com
  ******************************************************************************/
-package vampire.editor.gui.swing.view;
+package vampire.editor.gui.swing.view.events;
 
 import vampire.editor.plugin.api.view.events.BloodPoolViewEvent;
 

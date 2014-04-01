@@ -1,9 +1,5 @@
 package vampire.editor.gui.swing.view.traitviews;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,17 +12,16 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import vampire.editor.gui.swing.view.Helper;
-import vampire.editor.gui.swing.view.STraitViewEvent;
+import vampire.editor.gui.swing.view.events.STraitViewEvent;
 import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.Orientation;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
-import vampire.editor.plugin.api.view.events.TraitMouseViewListener;
 import vampire.editor.plugin.api.view.events.TraitViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
-public abstract class AbstractTraitView implements TraitView, DocumentListener, ActionListener, MouseListener{
+public abstract class AbstractTraitView implements TraitView, DocumentListener{
 	
 	private static final Map<Orientation, AbstractTraitView> traitViews = new HashMap<>();
 	
@@ -53,8 +48,6 @@ public abstract class AbstractTraitView implements TraitView, DocumentListener, 
 	private final TraitViewAttributes viewAtts;
 	
 	private final List<TraitViewListener> listeners = new LinkedList<>();
-	
-	private final List<TraitMouseViewListener> mouseListeners = new LinkedList<>();
 	
 	protected AbstractTraitView(AbstractValueView valueView, TraitViewAttributes viewAtts, DictionaryAPI dictionary){
 		this.viewAtts = viewAtts;
@@ -128,15 +121,7 @@ public abstract class AbstractTraitView implements TraitView, DocumentListener, 
 		AbstractTraitView traitView = AbstractTraitView.buildTraitView(
 				clonedValueView, clonedTraitViewAttributes, dictionary);
 		traitView.setPopupMenu(textField.getComponentPopupMenu());
-		for (MouseListener l : textField.getMouseListeners()){
-			traitView.textField.addMouseListener(l);
-		}
 		return traitView;
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		textField.setText(e.getActionCommand());
 	}
 
 	public JPanel getPanel() {
@@ -147,31 +132,6 @@ public abstract class AbstractTraitView implements TraitView, DocumentListener, 
 		return textField;
 	}
 
-	@Override
-	public void addMouseListener(TraitMouseViewListener l) {
-		mouseListeners.add(l);
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		STraitMouseViewEvent event = new STraitMouseViewEvent(e.getClickCount(), e.getButton());
-		for (TraitMouseViewListener l : mouseListeners){
-			l.mouseViewEventFired(event);
-		}
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-
-	@Override
-	public void mouseExited(MouseEvent e) {}
-	
 	public void setPopupMenu(Object menu){
 		if (menu instanceof JPopupMenu)
 			textField.setComponentPopupMenu((JPopupMenu) menu);
