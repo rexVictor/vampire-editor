@@ -47,7 +47,7 @@ class StaticSpacedValueView extends SpacedValueView{
 	}
 	
 	@Override
-	public AbstractValueView createNew(ValueViewAttributes viewAtts) {
+	public AbstractValueView newInstance(ValueViewAttributes viewAtts) {
 		return new StaticSpacedValueView(viewAtts);
 	}
 

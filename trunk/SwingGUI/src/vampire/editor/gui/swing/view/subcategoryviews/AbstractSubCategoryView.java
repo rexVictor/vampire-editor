@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import vampire.editor.gui.swing.view.Helper;
@@ -17,7 +18,7 @@ import vampire.editor.plugin.api.view.sheet.Addable;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 
-public abstract class AbstractSubCategoryView implements SubCategoryView, Addable<TraitView>{
+public abstract class AbstractSubCategoryView implements SubCategoryView, Addable<TraitView>, ISubCategoryView{
 	
 	private static final Map<SSubCategoryViewAtts, AbstractSubCategoryView> views = new HashMap<>();
 	
@@ -32,11 +33,11 @@ public abstract class AbstractSubCategoryView implements SubCategoryView, Addabl
 		views.put(new SSubCategoryViewAtts(false, false, false), new DefaultSubCatView());
 	}
 	
-	public static AbstractSubCategoryView buildSubCategoryView(SubCategoryViewAttributes viewAtts
+	public static ISubCategoryView buildSubCategoryView(SubCategoryViewAttributes viewAtts
 												,DictionaryAPI dictionary
 												,String title){
 		SSubCategoryViewAtts sViewAtts = new SSubCategoryViewAtts(viewAtts);
-		return views.get(sViewAtts).newInstance(viewAtts, dictionary, title);
+		return new SubCategoryViewWrap(views.get(sViewAtts).newInstance(viewAtts, dictionary, title));
 	}
 	
 	protected final DictionaryAPI dictionary;
@@ -55,6 +56,7 @@ public abstract class AbstractSubCategoryView implements SubCategoryView, Addabl
 		this.dictionary = dictionary;
 		this.viewAtts = viewAtts;
 		this.panel.setLayout(new GridLayout(0, 1));
+		this.panel.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
 	}
 	
 	protected AbstractSubCategoryView(){
@@ -70,6 +72,7 @@ public abstract class AbstractSubCategoryView implements SubCategoryView, Addabl
 	@Override
 	public abstract void add(TraitView entry);
 	
+	@Override
 	public void add0(TraitView entry){
 		AbstractTraitView view = (AbstractTraitView) entry;
 		panel.add(view.getPanel());
@@ -112,6 +115,7 @@ public abstract class AbstractSubCategoryView implements SubCategoryView, Addabl
 		traitViewListeners.remove(listener);
 	}
 
+	@Override
 	public JPanel getPanel() {
 		return panel;
 	}

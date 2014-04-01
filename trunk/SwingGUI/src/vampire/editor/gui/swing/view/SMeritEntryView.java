@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import vampire.editor.gui.swing.view.events.SMeritEntryViewEvent;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttibutesAPI;
 import vampire.editor.plugin.api.view.events.MeritEntryViewListener;

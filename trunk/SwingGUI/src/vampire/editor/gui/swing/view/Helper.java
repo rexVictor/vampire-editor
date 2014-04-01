@@ -1,6 +1,8 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -57,6 +59,16 @@ public class Helper {
 		textField.setText(title);
 		textField.setHorizontalAlignment(JTextField.CENTER);
 		return textField;
+	}
+	
+	public static int getComponentIndex(Container container, Component component){
+		for (int i = 0; i < container.getComponentCount(); i++){
+			Component component2 = container.getComponent(i);
+			if (component == component2){
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 

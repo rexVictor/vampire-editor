@@ -18,32 +18,26 @@
  * For further information see https://code.google.com/p/vampire-editor/ or write a
  * mail to development.rex@gmail.com
  ******************************************************************************/
-package vampire.editor.gui.swing.view;
+package vampire.editor.gui.swing.view.events;
 
-import vampire.editor.plugin.api.view.events.ValueViewEvent;
+import vampire.editor.plugin.api.view.events.TraitViewEvent;
 
-public class SValueViewEvent implements ValueViewEvent{
+public class STraitViewEvent implements TraitViewEvent{
 	
-	private final int value;
-	
-	private final int tempValue;
+	private final String name;
 	
 	
 
-	public SValueViewEvent(int value, int tempValue) {
+	public STraitViewEvent(String name) {
 		super();
-		this.value = value;
-		this.tempValue = tempValue;
+		this.name = name;
 	}
 
-	@Override
-	public int getValue() {
-		return value;
-	}
+
 
 	@Override
-	public int getTempValue() {
-		return tempValue;
+	public String getName() {
+		return name;
 	}
 
 }
