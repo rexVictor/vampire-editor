@@ -68,7 +68,7 @@ public class HealthController implements HealthControllerAPI, HealthViewListener
 	public void addHealthEntry(HealthEntryControllerAPI controller) {
 		lock.lock();
 		try{
-			view.addHealthEntryView(controller.getView());
+			view.add(controller.getView());
 			health.add((HealthEntry) controller.getHealthEntry());
 			entryControllers.add(controller);
 			HealthEvent event = new HealthEvent(this, controller, null);

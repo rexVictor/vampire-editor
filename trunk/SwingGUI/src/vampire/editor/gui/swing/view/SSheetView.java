@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.MetaView;
+import vampire.editor.plugin.api.view.sheet.MiscView;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
 public class SSheetView implements SheetView{
@@ -50,10 +51,10 @@ public class SSheetView implements SheetView{
 
 	private MetaView metaView;
 	
-	private MiscView miscView;
+	private SMiscView miscView;
 
 	
-	public MiscView getMiscView() {
+	public SMiscView getMiscView() {
 		return miscView;
 	}
 
@@ -91,8 +92,8 @@ public class SSheetView implements SheetView{
 	}
 
 	public void setMiscView(MiscView view){
-		this.miscView = view;
-		panel.add(view.getPanel());
+		this.miscView = (SMiscView) view;
+		panel.add(this.miscView.getPanel());
 		panel.add(Box.createGlue());
 	}
 

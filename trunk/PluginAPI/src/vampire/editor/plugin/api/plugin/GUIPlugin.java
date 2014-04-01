@@ -23,6 +23,7 @@
 package vampire.editor.plugin.api.plugin;
 
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
+import vampire.editor.plugin.api.plugin.view.factories.SheetViewFactory;
 
 public interface GUIPlugin {
 

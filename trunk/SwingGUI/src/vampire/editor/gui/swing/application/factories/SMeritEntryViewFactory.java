@@ -5,24 +5,23 @@ import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.MeritAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.view.MeritEntryViewAttibutesAPI;
-import vampire.editor.plugin.api.plugin.MeritEntryViewFactory;
-import vampire.editor.plugin.api.plugin.MeritEntryViewFactoryModule;
+import vampire.editor.plugin.api.plugin.view.factories.MeritEntryViewFactory;
+import vampire.editor.plugin.api.plugin.view.factories.MeritEntryViewFactoryModule;
 import vampire.editor.plugin.api.view.sheet.MeritEntryView;
 
 public class SMeritEntryViewFactory extends AbstractFactory<MeritEntryView, MeritAPI, MeritEntryViewFactoryModule>
 									implements MeritEntryViewFactory{
 	
-	private final DictionaryAPI dictionary;
-
 	public SMeritEntryViewFactory(DictionaryAPI dictionary) {
-		super();
-		this.dictionary = dictionary;
+		super(dictionary);
 	}
 
 	public SMeritEntryView build(ModelToViewModelMapperAPI mapper, MeritAPI merit){
+		callModulesInitial(merit, mapper);
 		SMeritEntryView view = new SMeritEntryView(dictionary, (MeritEntryViewAttibutesAPI) mapper.getViewAttributes(merit));
 		view.setCost(merit.getCost());
 		view.setText(merit.getName());
+		callModulesFinal(merit, mapper, view);
 		return view;
 	}
 

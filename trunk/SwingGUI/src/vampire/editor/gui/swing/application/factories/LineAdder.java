@@ -11,7 +11,7 @@ import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.LineAttributes;
-import vampire.editor.plugin.api.plugin.CategoryViewFactoryModule;
+import vampire.editor.plugin.api.plugin.view.factories.CategoryViewFactoryModule;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 

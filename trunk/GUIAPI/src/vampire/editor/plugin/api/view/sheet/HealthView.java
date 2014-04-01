@@ -26,11 +26,9 @@ import java.util.List;
 
 import vampire.editor.plugin.api.view.events.HealthViewListener;
 
-public interface HealthView {
+public interface HealthView extends Addable<HealthEntryView>{
 	
 	public List<HealthEntryView> getEntries();
-	
-	public void addHealthEntryView(HealthEntryView healthEntryView);
 	
 	public void removeHealthEntryView(HealthEntryView healthEntryView);
 	

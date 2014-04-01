@@ -20,7 +20,7 @@
  * Matthias Johannes Reimchen
  * development.rex@gmail.com
  ******************************************************************************/
-package vampire.editor.plugin.api.plugin;
+package vampire.editor.plugin.api.plugin.view.factories;
 
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.plugin.api.view.sheet.SheetView;

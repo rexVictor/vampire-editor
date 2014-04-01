@@ -11,9 +11,8 @@ import vampire.editor.domain.config.Config;
 import vampire.editor.plugin.Manager;
 import vampire.editor.plugin.api.domain.sheet.VampireDocument;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
-
 import vampire.editor.plugin.api.plugin.GeneralControllerAPI;
-import vampire.editor.plugin.api.plugin.SheetViewFactory;
+import vampire.editor.plugin.api.plugin.view.factories.SheetViewFactory;
 import vampire.editor.plugin.api.view.sheet.SheetView;
 
 public class GeneralController implements GeneralControllerAPI{

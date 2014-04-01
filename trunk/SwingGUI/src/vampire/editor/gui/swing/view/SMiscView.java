@@ -27,11 +27,12 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import vampire.editor.plugin.api.view.sheet.BloodPoolView;
 import vampire.editor.plugin.api.view.sheet.HealthView;
 import vampire.editor.plugin.api.view.sheet.MeritView;
 
 
-public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
+public class SMiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 	
 	private final SBloodPoolView bloodPoolView;
 	
@@ -50,11 +51,11 @@ public class MiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 	private final JPanel rightColoumn = Helper.createPanel();
 	
 	
-	public MiscView(
-			SBloodPoolView bloodPoolView, HealthView healthView,
+	public SMiscView(
+			BloodPoolView bloodPoolView, HealthView healthView,
 			MeritView meritView, MeritView flawView) {
 		super();
-		this.bloodPoolView = bloodPoolView;
+		this.bloodPoolView = (SBloodPoolView) bloodPoolView;
 		this.healthView = (HorizontalHealthView) healthView;
 		this.meritView = (SMeritView) meritView;
 		this.flawView = (SMeritView) flawView;

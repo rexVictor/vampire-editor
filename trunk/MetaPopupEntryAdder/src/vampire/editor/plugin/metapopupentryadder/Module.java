@@ -6,7 +6,7 @@ import javax.swing.JPopupMenu;
 
 import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
-import vampire.editor.plugin.api.plugin.MetaEntryViewFactoryModule;
+import vampire.editor.plugin.api.plugin.view.factories.MetaEntryViewFactoryModule;
 import vampire.editor.plugin.api.view.sheet.MetaEntryView;
 
 public class Module implements MetaEntryViewFactoryModule{

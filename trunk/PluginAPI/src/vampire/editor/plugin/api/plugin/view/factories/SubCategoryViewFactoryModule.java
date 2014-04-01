@@ -1,7 +1,8 @@
-package vampire.editor.plugin.api.plugin;
+package vampire.editor.plugin.api.plugin.view.factories;
 
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
+import vampire.editor.plugin.api.plugin.ManagerAPI;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 

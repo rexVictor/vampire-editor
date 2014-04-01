@@ -5,9 +5,9 @@ import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.MeritAPI;
 import vampire.editor.plugin.api.domain.sheet.MeritsAPI;
 import vampire.editor.plugin.api.domain.sheet.view.MeritViewAttributesAPI;
-import vampire.editor.plugin.api.plugin.MeritEntryViewFactory;
-import vampire.editor.plugin.api.plugin.MeritViewFactory;
-import vampire.editor.plugin.api.plugin.MeritViewFactoryModule;
+import vampire.editor.plugin.api.plugin.view.factories.MeritEntryViewFactory;
+import vampire.editor.plugin.api.plugin.view.factories.MeritViewFactory;
+import vampire.editor.plugin.api.plugin.view.factories.MeritViewFactoryModule;
 import vampire.editor.plugin.api.view.sheet.MeritEntryView;
 import vampire.editor.plugin.api.view.sheet.MeritView;
 
@@ -15,11 +15,8 @@ public class SMeritViewFactory extends NonLeafAbstractFactory<MeritsAPI, MeritAP
 															MeritEntryView, MeritView, MeritViewFactoryModule>
 								implements MeritViewFactory{
 	
-	private final DictionaryAPI dictionary;
-	
 	public SMeritViewFactory(MeritEntryViewFactory meritEntryViewFactory, DictionaryAPI dictionary){
-		super(meritEntryViewFactory);
-		this.dictionary = dictionary;
+		super(meritEntryViewFactory, dictionary);
 	}
 	
 	@Override

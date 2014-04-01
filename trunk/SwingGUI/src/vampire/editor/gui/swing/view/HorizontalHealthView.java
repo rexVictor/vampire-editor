@@ -65,9 +65,14 @@ public class HorizontalHealthView implements HealthView{
 	public List<HealthEntryView> getEntries() {
 		return healthEntryViews;
 	}
+	
+	@Override
+	public void add(HealthEntryView healthEntryView){
+		add0(healthEntryView);
+	}
 
 	@Override
-	public void addHealthEntryView(HealthEntryView healthEntryView) {
+	public void add0(HealthEntryView healthEntryView) {
 		healthEntryViews.add(healthEntryView);
 		HorizontalHealthEntryView view = (HorizontalHealthEntryView) healthEntryView;
 		healthEntriesPanel.add(view.getPanel());
