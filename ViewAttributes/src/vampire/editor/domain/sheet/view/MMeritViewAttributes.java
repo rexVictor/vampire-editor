@@ -91,10 +91,12 @@ class MMeritViewAttributes implements FontSettable, MeritViewAttributes {
 		return result;
 	}
 
+	@Override
 	public void setFont(Font font) {
 		this.font = font;
 	}
 	
+	@Override
 	public MeritViewAttributes clone(){
 		return new MMeritViewAttributes(font);
 	}

@@ -22,9 +22,6 @@
  ******************************************************************************/
 package vampire.editor.domain.sheet;
 
-import java.util.Comparator;
-import java.util.Iterator;
-
 import vampire.editor.plugin.api.domain.sheet.Meta;
 import vampire.editor.plugin.api.domain.sheet.MetaEntry;
 
@@ -36,12 +33,9 @@ import vampire.editor.plugin.api.domain.sheet.MetaEntry;
  */
 class MMeta extends Data<MetaEntry> implements Meta{
 	
+	@Override
 	public MMeta clone(){
 		return (MMeta) super.clone();
 	}
 	
-	public void sort(Comparator<String> comparator){
-		throw new UnsupportedOperationException();
-	}
-
 }

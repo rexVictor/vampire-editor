@@ -35,6 +35,7 @@ import vampire.editor.plugin.api.domain.sheet.Merits;
  */
 class MMerits extends Data<Merit> implements Merits{
 	
+	@Override
 	public MMerits clone(){
 		return (MMerits) super.clone();
 	}

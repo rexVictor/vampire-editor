@@ -63,9 +63,9 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 	public HorizontalHealthEntryView(DictionaryAPI dictionary, HealthEntryViewAttributesAPI viewAtts) {
 		super();
 		int size = viewAtts.getSize();
-		emptyBox = new ImageIcon(Images.getImage("square_empty", size, size));
-		slashedBox = new ImageIcon(Images.getImage("square_slashed", size, size));
-		crossedBox = new ImageIcon(Images.getImage("square_crossed", size, size));
+		emptyBox = new ImageIcon(Images.getImage("square_empty", size, size)); //$NON-NLS-1$
+		slashedBox = new ImageIcon(Images.getImage("square_slashed", size, size)); //$NON-NLS-1$
+		crossedBox = new ImageIcon(Images.getImage("square_crossed", size, size)); //$NON-NLS-1$
 		
 		box.addMouseListener(this);
 		penaltyField.setFont(viewAtts.getFont());
@@ -89,6 +89,8 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 		case LETHAL:
 		case BASHING: box.setIcon(slashedBox); break;
 		case AGGRAVATED: box.setIcon(crossedBox);
+		default:
+			break;
 		}
 		this.damageType = damageType;
 	}
@@ -104,10 +106,10 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 	@Override
 	public void setPenalty(int penalty) {
 		if (penalty == 0){
-			this.penaltyField.setText("");
+			this.penaltyField.setText(""); //$NON-NLS-1$
 		}
 		else{
-			this.penaltyField.setText("-"+penalty);
+			this.penaltyField.setText("-"+penalty); //$NON-NLS-1$
 		}
 		this.penalty = penalty;
 	}
@@ -129,6 +131,8 @@ public class HorizontalHealthEntryView implements HealthEntryView, MouseListener
 		case BASHING:
 		case LETHAL: setDamageType0(DamageType.AGGRAVATED); break;
 		case AGGRAVATED: setDamageType0(null);
+		default:
+			break;
 		}
 	}
 	

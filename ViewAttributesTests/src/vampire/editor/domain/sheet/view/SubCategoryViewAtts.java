@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 
+@SuppressWarnings("static-method")
 public class SubCategoryViewAtts {
 	
 	private static Font font = new Font(Font.SANS_SERIF, 0, 10);
@@ -94,7 +95,7 @@ public class SubCategoryViewAtts {
 	}
 	
 	@Test
-	public void testNotEqualsObject3(){;
+	public void testNotEqualsObject3(){
 		SubCategoryViewAttributes viewAtts1 = new MSubCategoryViewAttributes(true, true, font);
 		SubCategoryViewAttributes viewAtts2 = new MSubCategoryViewAttributes(true, true, font2);
 		assertFalse(viewAtts1.equals(viewAtts2));

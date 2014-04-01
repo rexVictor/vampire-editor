@@ -11,7 +11,7 @@ public class ViewAttsConstructorsTest {
 	@Test
 	public void test() {
 		System.out.println(viewConstructors.getInterfaceToImplementationMap());
-		fail("Not yet implemented");
+		fail("Not yet implemented"); //$NON-NLS-1$
 	}
 
 }

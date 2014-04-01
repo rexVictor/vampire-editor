@@ -8,6 +8,7 @@ import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapper;
 
 public class IdCalculator{
 	
+	@SuppressWarnings("static-method")
 	public Map<Object, Integer> generateViewAttsMap(ModelToViewModelMapper mapper){
 		Map<Object, Integer> toReturn = new HashMap<>();
 		Set<Object> keys = mapper.keySet();

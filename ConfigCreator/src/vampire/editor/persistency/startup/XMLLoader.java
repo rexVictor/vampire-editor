@@ -31,10 +31,10 @@ import org.jdom2.input.SAXBuilder;
 
 public class XMLLoader {
 	
-	public XMLLoader(){
+	private XMLLoader(){
 	}
 	
-	public Document load(Path path) throws XMLImportException{
+	public static Document load(Path path) throws XMLImportException{
 		Document document;
 		SAXBuilder builder = new SAXBuilder();
 		try {

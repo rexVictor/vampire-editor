@@ -46,6 +46,8 @@ class ValueClickListener implements MouseListener{
 			case MouseEvent.BUTTON3 :
 				valueView.setValue0(position);
 				break;
+			default:
+				break;
 			}
 		}
 	}

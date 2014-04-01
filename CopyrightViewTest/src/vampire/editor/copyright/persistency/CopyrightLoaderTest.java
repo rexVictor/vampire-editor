@@ -12,13 +12,13 @@ import vampire.editor.copyright.domain.Project;
 
 public class CopyrightLoaderTest {
 
+	@SuppressWarnings("static-method")
 	@Test
 	public void test() {
-		Path path = Paths.get("copyright.json");
-		CopyrightLoader loader = new CopyrightLoader();
-		List<Project> projects = loader.loadCopyright(path);
+		Path path = Paths.get("copyright.json"); //$NON-NLS-1$
+		List<Project> projects = CopyrightLoader.loadCopyright(path);
 		System.out.println(projects);
-		fail("Not yet implemented");
+		fail("Not yet implemented"); //$NON-NLS-1$
 	}
 
 }

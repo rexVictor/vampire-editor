@@ -36,6 +36,7 @@ import vampire.editor.plugin.api.domain.sheet.Nameable;
  *
  * @param <W>
  */
+@SuppressWarnings("synthetic-access")
 class Data<W extends Nameable> implements Iterable<W>{
 	
 	/**
@@ -133,7 +134,7 @@ class Data<W extends Nameable> implements Iterable<W>{
 	
 	@Override
 	public String toString(){
-		return name+" : " +entries.toString();
+		return name+" : " +entries.toString(); //$NON-NLS-1$
 	}
 
 	/**

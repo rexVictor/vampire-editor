@@ -20,6 +20,7 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.view.valueviews;
 
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -52,9 +53,9 @@ class SquaredValueView extends DefaultValueView{
 		super(viewAtts, false);
 		tempValue = 0;
 		int size = viewAtts.getSize();
-		emptySquare = new ImageIcon(Images.getImage("square_empty", size, size).
+		emptySquare = new ImageIcon(Images.getImage("square_empty", size, size). //$NON-NLS-1$
 				getScaledInstance(this.circleWhite.getIconWidth(), -1, Image.SCALE_SMOOTH));
-		crossedSquare = new ImageIcon(Images.getImage("square_crossed", size, size));
+		crossedSquare = new ImageIcon(Images.getImage("square_crossed", size, size)); //$NON-NLS-1$
 		
 		total.setLayout(new GridLayout(2, 0));
 		total.add(panel);
@@ -94,7 +95,7 @@ class SquaredValueView extends DefaultValueView{
 		
 		JLabel square = new JLabel();
 		square.setIcon(emptySquare);
-		square.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+		square.setAlignmentX(Component.CENTER_ALIGNMENT);
 		square.addMouseListener(new SquareClickListener(this, squares.size()));
 		squares.add(square);
 		squarePanel.add(square);
@@ -112,6 +113,7 @@ class SquaredValueView extends DefaultValueView{
 		squarePanel.remove(lastSquare);
 	}
 	
+	@Override
 	public SquaredValueView clone(){
 		ValueViewAttributes clone = viewAtts.clone();
 		return new SquaredValueView(clone);

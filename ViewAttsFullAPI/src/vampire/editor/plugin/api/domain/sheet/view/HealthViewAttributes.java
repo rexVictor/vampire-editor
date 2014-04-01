@@ -28,8 +28,6 @@ import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
 
 public interface HealthViewAttributes extends HealthViewAttributesAPI{
 
-	public Font getFont();
-
 	public void setFont(Font font);
 
 	/**
@@ -37,8 +35,10 @@ public interface HealthViewAttributes extends HealthViewAttributesAPI{
 	 * @param that
 	 * @return if this and that are equal
 	 */
+	@Override
 	public boolean equals(Object that);
 
+	@Override
 	public HealthViewAttributes clone();
 
 }

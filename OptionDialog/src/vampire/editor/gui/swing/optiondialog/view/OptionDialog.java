@@ -32,7 +32,7 @@ public class OptionDialog implements TreeSelectionListener, ActionListener{
 		private ComponentInfos(JComponent component) {
 			super();
 			this.component = component;
-			key = id+"";
+			key = id+""; //$NON-NLS-1$
 			id++;
 		}
 		
@@ -49,10 +49,11 @@ public class OptionDialog implements TreeSelectionListener, ActionListener{
 	
 	private final JPanel buttonLine = new JPanel();
 	
-	private final DefaultMutableTreeNode root = new DefaultMutableTreeNode("preferences");
+	private final DefaultMutableTreeNode root = new DefaultMutableTreeNode("preferences"); //$NON-NLS-1$
 	
 	private final CardLayout layout = new CardLayout();
 	
+	@SuppressWarnings("synthetic-access")
 	public OptionDialog(){
 		tree = new JTree(root);
 		tree.addTreeSelectionListener(this);
@@ -65,7 +66,7 @@ public class OptionDialog implements TreeSelectionListener, ActionListener{
 		tree.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 		dialog.add(tree, BorderLayout.LINE_START);
 		dialog.add(contentPage, BorderLayout.CENTER);
-		JButton button = new JButton("close");
+		JButton button = new JButton("close"); //$NON-NLS-1$
 		button.addActionListener(this);
 		buttonLine.setLayout(new BorderLayout(10,3));
 		buttonLine.add(button, BorderLayout.LINE_END);
@@ -73,12 +74,13 @@ public class OptionDialog implements TreeSelectionListener, ActionListener{
 	}
 	
 	public void createDialog(){
-		layout.show(contentPage, "0");
+		layout.show(contentPage, "0"); //$NON-NLS-1$
 		dialog.setSize(400, 500);
 		dialog.setVisible(true);
 		dialog.setSize(400, 500);
 	}
 	
+	@SuppressWarnings("synthetic-access")
 	public void addTreeNode(MutableTreeNode node, JComponent component){
 		ComponentInfos infos = new ComponentInfos(component);
 		pages.put(node, infos);
@@ -89,6 +91,7 @@ public class OptionDialog implements TreeSelectionListener, ActionListener{
 		root.add(node);
 	}
 
+	@SuppressWarnings("synthetic-access")
 	@Override
 	public void valueChanged(TreeSelectionEvent e) {
 		MutableTreeNode selected = (MutableTreeNode) tree.getLastSelectedPathComponent();

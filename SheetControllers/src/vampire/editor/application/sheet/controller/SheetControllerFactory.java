@@ -28,6 +28,7 @@ import vampire.editor.plugin.api.application.sheet.controller.MiscControllerAPI;
 import vampire.editor.plugin.api.domain.sheet.*;
 import vampire.editor.plugin.api.view.sheet.*;
 
+@SuppressWarnings("static-method")
 public class SheetControllerFactory {
 	
 	public SheetController buildSheetController(VampireDocumentAPI document, SheetView view){
@@ -40,7 +41,7 @@ public class SheetControllerFactory {
 		controller.setMetaController(metaController);
 		
 		Categories cats = sheet.getCategories();
-		List<? extends CategoryView> catViews = view.getCategoryViews();
+		List<? extends CategoryView> catViews = view.getCategoriesView().getCategoryViews();
 		int i = 0;
 		CategoriesController categoriesController = new CategoriesController();
 		for (Category cat : cats){
@@ -161,6 +162,7 @@ public class SheetControllerFactory {
 		TraitController controller = new TraitController(valueController, trait, view);
 		return controller;
 	}
+	
 	
 	private ValueController buildValueController(Value value, ValueView view){
 		ValueController controller = new ValueController(value, view);

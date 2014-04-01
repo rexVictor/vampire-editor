@@ -26,6 +26,7 @@ import java.util.List;
 
 public interface MetaView extends DataView<MetaEntryView>, Addable<MetaEntryView>{
 	
+	@Override
 	public List<? extends MetaEntryView> getEntries();
 
 }

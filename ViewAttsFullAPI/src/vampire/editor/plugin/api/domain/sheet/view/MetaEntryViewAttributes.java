@@ -28,10 +28,9 @@ import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributesAPI;
 
 public interface MetaEntryViewAttributes extends MetaEntryViewAttributesAPI{
 
-	public boolean isTranslate();
-
 	public void setTranslate(boolean translate);
 
+	@Override
 	public MetaEntryViewAttributes clone();
 
 	/**
@@ -39,13 +38,8 @@ public interface MetaEntryViewAttributes extends MetaEntryViewAttributesAPI{
 	 * @param that
 	 * @return if this and that are equal
 	 */
+	@Override
 	public boolean equals(Object object);
-
-	public Font getContentFont();
-
-	public int getLineCount();
-
-	public Font getTitleFont();
 
 	public void setContentFont(Font contentFont);
 

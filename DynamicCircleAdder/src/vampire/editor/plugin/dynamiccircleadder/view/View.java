@@ -20,9 +20,9 @@ public class View {
 	
 	private final JPanel panel = new JPanel();
 	
-	private final JButton leftButton = new JButton("\u25C1");
+	private final JButton leftButton = new JButton("\u25C1"); //$NON-NLS-1$
 	
-	private final JButton rightButton = new JButton("\u25B7");
+	private final JButton rightButton = new JButton("\u25B7"); //$NON-NLS-1$
 	
 	private final ManagerAPI manager;
 	

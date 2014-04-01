@@ -32,6 +32,7 @@ import java.util.Set;
 
 import vampire.editor.fileformat.vmpcs.domain.ClassToFileMapper;
 import vampire.editor.fileformat.vmpcs.domain.Constructors;
+import vampire.editor.fileformat.vmpcs.domain.StringConstants;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.Nameable;
 import vampire.editor.plugin.api.domain.sheet.Value;
@@ -99,15 +100,16 @@ public class Objects<V> {
 	}
 	
 	private void load(Path file, Class<? extends V> clazz) throws JsonParseException, JsonMappingException, IOException{
-		InputStream stream = Files.newInputStream(file);
-		List<Map<String, Object>> values = mapper.readValue(stream, new TypeReference<List<Map<String, Object>>>() {
-		});
+		List<Map<String, Object>> values = null;
+		try(InputStream stream = Files.newInputStream(file)){
+			values = mapper.readValue(stream, new TypeReference<List<Map<String, Object>>>() {});
+		}
 		for (Map<String, Object> o : values){
-			int id = (int) o.remove("id");
-			Integer fontId = (Integer) o.remove("font");
-			Integer titleID = (Integer) o.remove("titleFont");
-			Integer contentID = (Integer) o.remove("contentFont");
-			Integer lineID = (Integer) o.remove("line");
+			int id = (int) o.remove(StringConstants.ID);
+			Integer fontId = (Integer) o.remove(StringConstants.FONT);
+			Integer titleID = (Integer) o.remove(StringConstants.TITLE_FONT);
+			Integer contentID = (Integer) o.remove(StringConstants.CONTENT_FONT);
+			Integer lineID = (Integer) o.remove(StringConstants.LINE);
 			V value = mapper.convertValue(o, clazz);
 			if (fontId != null)
 				if (value instanceof FontSettable)

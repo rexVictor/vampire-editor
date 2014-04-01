@@ -42,7 +42,7 @@ public class SaveTrigger implements Trigger{
 		if (pathString != null){
 			Path path = Paths.get(pathString);
 			if (Files.exists(path)){
-				boolean choise = gui.demandUserChoise(dictionary.getValue("confirm_overwrite"));
+				boolean choise = gui.demandUserChoise(dictionary.getValue("confirm_overwrite")); //$NON-NLS-1$
 				if (!choise){
 					return;
 				}

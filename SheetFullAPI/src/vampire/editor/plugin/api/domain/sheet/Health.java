@@ -22,14 +22,9 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
-import java.util.Iterator;
-
 public interface Health extends HealthAPI, Iterable<HealthEntry>{
 	
-	public int size();
-	
-	public Iterator<? extends HealthEntry> getIterator();
-	
+	@Override
 	public Health clone();
 	
 	public void add(HealthEntry subCategory);

@@ -24,11 +24,28 @@ package vampire.editor.plugin.api.domain.sheet;
 
 public interface Sheet extends SheetAPI{
 
-	public String getBorderKey();
-
 	public void setBorderKey(String borderKey);
 
+	@Override
 	public Sheet clone();
+	
+	@Override
+	public Meta getMeta();
+	
+	@Override
+	public Categories getCategories();
+	
+	@Override
+	public Health getHealth();
+	
+	@Override
+	public Merits getMerits();
+	
+	@Override
+	public Merits getFlaws();
+	
+	@Override
+	public BloodPool getBloodPool();
 
 	public void setCategories(Categories categories);
 
@@ -41,17 +58,5 @@ public interface Sheet extends SheetAPI{
 	public void setMerits(Merits merits);
 
 	public void setFlaws(Merits merits);
-
-	public Meta getMeta();
-
-	public Categories getCategories();
-
-	public Merits getMerits();
-
-	public Merits getFlaws();
-
-	public BloodPool getBloodPool();
-
-	public Health getHealth();
 
 }

@@ -12,17 +12,17 @@ import vampire.editor.gui.swing.mainframe.domain.ProtoMenuEntry;
 
 public class ProtoMenuEntryLoaderTest {
 
+	@SuppressWarnings("static-method")
 	@Test
 	public void test() throws Throwable {
-		ProtoMenuEntryLoader loader = new ProtoMenuEntryLoader();
-		Path path = Paths.get("menubar.json");
-		List<ProtoMenuEntry> entries = loader.load(path);
+		Path path = Paths.get("menubar.json"); //$NON-NLS-1$
+		List<ProtoMenuEntry> entries = ProtoMenuEntryLoader.load(path);
 		System.out.println(entries);
 		for (ProtoMenuEntry entry : entries){
 			System.out.println(entry.toStringArray());
 		}
 		
-		fail("Not yet implemented");
+		fail("Not yet implemented"); //$NON-NLS-1$
 	}
 
 }

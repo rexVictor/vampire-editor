@@ -24,7 +24,7 @@ import vampire.editor.plugin.api.domain.DictionaryAPI;
 
 public class Loader {
 	
-	private final Path fileDirectory = Paths.get("resources", "plugins", "MeritPopupEntryAdder");
+	private final Path fileDirectory = Paths.get("resources", "plugins", "MeritPopupEntryAdder"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	
 	public static final Listener listener = new Listener();
 	
@@ -85,7 +85,7 @@ public class Loader {
 					System.out.println(entries);
 					Set<Integer> costs = entries.keySet();
 					for (Integer i : costs){
-						JMenu menu = new JMenu(i+"");
+						JMenu menu = new JMenu(i+""); //$NON-NLS-1$
 						popupMenu.add(menu);
 						Set<String> names = entries.get(i);
 						for (String s : names){

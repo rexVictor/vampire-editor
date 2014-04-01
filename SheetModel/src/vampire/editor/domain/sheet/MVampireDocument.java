@@ -78,6 +78,7 @@ class MVampireDocument implements VampireDocument{
 		return fileSystem;
 	}
 
+	@Override
 	public void setFileSystem(FileSystem fileSystem) {
 		this.fileSystem = fileSystem;
 	}
@@ -87,6 +88,7 @@ class MVampireDocument implements VampireDocument{
 		return path;
 	}
 
+	@Override
 	public void setPath(Path path) {
 		this.path = path;
 	}

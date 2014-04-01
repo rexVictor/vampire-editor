@@ -21,14 +21,12 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import vampire.editor.plugin.api.view.sheet.CategoryView;
+import vampire.editor.plugin.api.view.sheet.CategoriesView;
 import vampire.editor.plugin.api.view.sheet.MetaView;
 import vampire.editor.plugin.api.view.sheet.MiscView;
 import vampire.editor.plugin.api.view.sheet.SheetView;
@@ -37,69 +35,68 @@ public class SSheetView implements SheetView{
 	
 	private final JPanel panel = new JPanel();
 	
-	private final List<SCategoryView> categoryViews = new ArrayList<>();
-	
 	private SBorderView borderView;
 	
-	public SBorderView getBorderView() {
-		return borderView;
-	}
-
-	public void setBorderView(SBorderView borderView) {
-		this.borderView = borderView;
-	}
-
 	private MetaView metaView;
-	
-	private SMiscView miscView;
 
+	private SMiscView miscView;
 	
-	public SMiscView getMiscView() {
-		return miscView;
-	}
+	private CategoriesView categoriesView;
 
 	public SSheetView(){
 		initialize();
 	}
+
+	public SBorderView getBorderView() {
+		return borderView;
+	}
+
 	
-	private void initialize(){
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		panel.setBackground(Color.WHITE);
+	@Override
+	public CategoriesView getCategoriesView() {
+		return categoriesView;
 	}
 
 	@Override
-	public void add(CategoryView categoryView) {
-		SCategoryView view = (SCategoryView) categoryView;
-		categoryViews.add(view);
-		Helper.setMaximumHeightToPreferredHeight(view.getPanel());
-		panel.add(view.getPanel());
+	public MetaView getMetaView() {
+		return metaView;
+	}
+	
+	@Override
+	public SMiscView getMiscView() {
+		return miscView;
 	}
 
 	public JPanel getPanel() {
 		return panel;
 	}
 
-	@Override
-	public List<SCategoryView> getCategoryViews() {
-		return new ArrayList<>(categoryViews);
+	private void initialize(){
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.setBackground(Color.WHITE);
 	}
 	
+	public void setBorderView(SBorderView borderView) {
+		this.borderView = borderView;
+	}
+
+	public void setCategoriesView(CategoriesView categoriesView) {
+		this.categoriesView = categoriesView;
+		SCategoriesView view = (SCategoriesView) categoriesView;
+		panel.add(view.getPanel(), 1);
+	}
+
 	public void setMetaView(MetaView metaView){
 		SMetaView view = (SMetaView) metaView;
 		this.metaView = metaView;
 		Helper.setMaximumHeightToPreferredHeight(view.getPanel());
-		panel.add(view.getPanel());
+		panel.add(view.getPanel(),0);
 	}
 
 	public void setMiscView(MiscView view){
 		this.miscView = (SMiscView) view;
 		panel.add(this.miscView.getPanel());
 		panel.add(Box.createGlue());
-	}
-
-	@Override
-	public MetaView getMetaView() {
-		return metaView;
 	}
 	
 	

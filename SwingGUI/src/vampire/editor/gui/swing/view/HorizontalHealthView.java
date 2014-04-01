@@ -51,7 +51,7 @@ public class HorizontalHealthView implements HealthView{
 	public HorizontalHealthView(DictionaryAPI dictionaryAPI, HealthViewAttributesAPI viewAtts){
 		this.dictionary = dictionaryAPI;
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		JTextField title = Helper.getTitle(dictionary.getValue("health"), viewAtts.getFont());
+		JTextField title = Helper.getTitle(dictionary.getValue("health"), viewAtts.getFont()); //$NON-NLS-1$
 		
 		healthEntriesPanel.setLayout(new GridLayout(1, 0));
 		healthEntriesPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));

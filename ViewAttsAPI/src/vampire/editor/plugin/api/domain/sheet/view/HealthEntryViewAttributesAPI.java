@@ -43,6 +43,7 @@ public interface HealthEntryViewAttributesAPI extends PublicCloneable{
 	 */
 	public int getSize();
 	
+	@Override
 	public HealthEntryViewAttributesAPI clone();
 
 }

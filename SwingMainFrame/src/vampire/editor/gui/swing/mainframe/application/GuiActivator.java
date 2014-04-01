@@ -44,9 +44,9 @@ public class GuiActivator implements Activator{
 		ToolTipManager.sharedInstance().setDismissDelay(120000);
 		try{
 			Toolkit xToolkit = Toolkit.getDefaultToolkit();
-			Field awtAppClassNameField = xToolkit.getClass().getDeclaredField("awtAppClassName");
+			Field awtAppClassNameField = xToolkit.getClass().getDeclaredField("awtAppClassName"); //$NON-NLS-1$
 			awtAppClassNameField.setAccessible(true);
-			awtAppClassNameField.set(xToolkit, "Vampire Editor");
+			awtAppClassNameField.set(xToolkit, "Vampire Editor"); //$NON-NLS-1$
 		}
 		catch (Throwable e){
 			e.printStackTrace();
@@ -58,14 +58,13 @@ public class GuiActivator implements Activator{
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		Path config = Paths.get("resources", "guiconfig", "config.properties");
-		try {
-			InputStream inputStream = Files.newInputStream(config);
+		Path config = Paths.get("resources", "guiconfig", "config.properties"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		try (InputStream inputStream = Files.newInputStream(config)){
 			Properties properties = new Properties();
 			properties.load(inputStream);
-			String laf = properties.getProperty("laf");
+			String laf = properties.getProperty("laf"); //$NON-NLS-1$
 			if (laf != null){
-				if ("auto".equals(laf)){
+				if ("auto".equals(laf)){ //$NON-NLS-1$
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 				}
 				else {

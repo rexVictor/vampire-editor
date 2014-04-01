@@ -41,6 +41,7 @@ public class SheetController implements SheetControllerAPI {
 	
 	private MetaController metaController;
 	
+	@Override
 	public MetaController getMetaController() {
 		return metaController;
 	}
@@ -68,6 +69,7 @@ public class SheetController implements SheetControllerAPI {
 		return sheet;
 	}
 
+	@Override
 	public MiscControllerAPI getMiscController() {
 		return miscController;
 	}
@@ -81,6 +83,7 @@ public class SheetController implements SheetControllerAPI {
 		return document;
 	}
 
+	@Override
 	public CategoriesController getCategoriesController() {
 		return categoriesController;
 	}

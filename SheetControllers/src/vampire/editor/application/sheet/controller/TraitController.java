@@ -147,10 +147,12 @@ public class TraitController implements TraitViewListener, TraitControllerAPI, T
 		return traitView;
 	}
 	
+	@Override
 	public ValueController getValueController(){
 		return valueController;
 	}
 	
+	@Override
 	public TraitController clone(){
 		Trait cloneTrait = trait.clone();
 		TraitView cloneView = traitView.clone();

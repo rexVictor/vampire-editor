@@ -115,6 +115,7 @@ public abstract class AbstractTraitView implements TraitView, DocumentListener{
 		insertUpdate(null);
 	}
 	
+	@Override
 	public AbstractTraitView clone(){
 		AbstractValueView clonedValueView = valueView.clone();
 		TraitViewAttributes clonedTraitViewAttributes = viewAtts.clone();
@@ -132,6 +133,7 @@ public abstract class AbstractTraitView implements TraitView, DocumentListener{
 		return textField;
 	}
 
+	@Override
 	public void setPopupMenu(Object menu){
 		if (menu instanceof JPopupMenu)
 			textField.setComponentPopupMenu((JPopupMenu) menu);

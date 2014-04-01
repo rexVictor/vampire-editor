@@ -45,6 +45,8 @@ class StrgTempClickListener implements MouseListener{
 			case MouseEvent.BUTTON3 :
 				valueView.setTempValue0(position);
 				break;
+			default:
+				break;
 			}
 		}
 	}

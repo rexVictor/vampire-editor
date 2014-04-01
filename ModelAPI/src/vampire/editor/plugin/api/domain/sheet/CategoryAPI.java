@@ -40,11 +40,6 @@ public interface CategoryAPI extends Nameable, HasIterator<SubCategoryAPI>{
 	@Override
 	public CategoryAPI clone();
 
-	/**
-	 * @return an {@link Iterator} over the parametrized children of type V
-	 */
-	public Iterator<? extends SubCategoryAPI> getIterator();
-	
 	@Override
 	public String getName();
 	

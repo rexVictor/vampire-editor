@@ -21,26 +21,32 @@ public class MLineAttributes implements LineAttributes{
 		this.height = height;
 	}
 
+	@Override
 	public String getKey() {
 		return key;
 	}
 
+	@Override
 	public void setKey(String key) {
 		this.key = key;
 	}
 
+	@Override
 	public int getWidth() {
 		return width;
 	}
 
+	@Override
 	public void setWidth(int width) {
 		this.width = width;
 	}
 
+	@Override
 	public int getHeight() {
 		return height;
 	}
 
+	@Override
 	public void setHeight(int height) {
 		this.height = height;
 	}

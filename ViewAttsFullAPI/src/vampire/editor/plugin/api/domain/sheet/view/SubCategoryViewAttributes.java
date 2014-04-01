@@ -28,27 +28,21 @@ import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributesAPI;
 
 public interface SubCategoryViewAttributes extends SubCategoryViewAttributesAPI{
 
-	public boolean isExpandable();
-
 	public void setExpandable(boolean expandable);
-
-	public boolean isShowTitle();
 
 	public void setShowTitle(boolean showTitle);
 
-	public Font getFont();
-
 	public void setFont(Font font);
 
+	@Override
 	public SubCategoryViewAttributes clone();
-	
-	public boolean isShallSort();
 	
 	public void setShallSort(boolean shallSort);
 
 	/**
 	 * Returns true if and only if both are expandable and both show the Title and both have the same font.
 	 */
+	@Override
 	public boolean equals(Object object);
 
 }

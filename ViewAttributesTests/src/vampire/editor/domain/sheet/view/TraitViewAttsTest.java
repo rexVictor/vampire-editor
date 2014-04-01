@@ -25,13 +25,13 @@ import static org.junit.Assert.*;
 import java.awt.Font;
 
 import static vampire.editor.plugin.api.domain.sheet.view.Orientation.*;
+
 import org.junit.Test;
 
 import vampire.editor.domain.sheet.view.MTraitViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributes;
 
-
-
+@SuppressWarnings("static-method")
 public class TraitViewAttsTest {
 	
 	private static Font font = new Font(Font.SANS_SERIF, 0, 10);

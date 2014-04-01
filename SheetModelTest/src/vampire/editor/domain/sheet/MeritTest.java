@@ -26,13 +26,14 @@ import org.junit.Test;
 
 import vampire.editor.plugin.api.domain.sheet.Merit;
 
+@SuppressWarnings("static-method")
 public class MeritTest {
 
 	@Test
 	public void testClone1() {
 		Merit merit = new MMerit();
 		merit.setCost(5);
-		merit.setName("merit1");
+		merit.setName("merit1"); //$NON-NLS-1$
 		Merit clone = merit.clone();
 		assertEquals(merit.getName(), clone.getName());
 		assertEquals(merit.getCost(), clone.getCost());
@@ -43,7 +44,7 @@ public class MeritTest {
 	public void testClone2() {
 		Merit merit = new MMerit();
 		merit.setCost(8);
-		merit.setName("merit2");
+		merit.setName("merit2"); //$NON-NLS-1$
 		Merit clone = merit.clone();
 		assertEquals(merit.getName(), clone.getName());
 		assertEquals(merit.getCost(), clone.getCost());
@@ -54,7 +55,7 @@ public class MeritTest {
 	public void testClone3() {
 		Merit merit = new MMerit();
 		merit.setCost(-4);
-		merit.setName("merit3");
+		merit.setName("merit3"); //$NON-NLS-1$
 		Merit clone = merit.clone();
 		assertEquals(merit.getName(), clone.getName());
 		assertEquals(merit.getCost(), clone.getCost());

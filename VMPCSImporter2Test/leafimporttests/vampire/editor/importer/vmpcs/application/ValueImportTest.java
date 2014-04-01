@@ -14,6 +14,7 @@ import vampire.editor.fileformat.vmpcs.domain.Constructors;
 import vampire.editor.plugin.api.domain.sheet.Value;
 import vampire.editor.sheetloader.application.importer.mock.ResourcesHolderMock;
 
+@SuppressWarnings({"nls"})
 public class ValueImportTest {
 	
 	private Objects<Value> objects;
@@ -44,7 +45,7 @@ public class ValueImportTest {
 	}
 	
 	@Test
-	public void testValueImportTest3() throws Throwable{;
+	public void testValueImportTest3() throws Throwable{
 		Value expected = Constructors.constructors.createValue(0, 5);
 		expected.setValue(1);
 		expected.setTempValue(1);

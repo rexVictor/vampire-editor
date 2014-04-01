@@ -10,8 +10,7 @@ import vampire.editor.copyright.view.CopyrightView;
 public class CopyrightViewFactory {
 	
 	public static CopyrightView buildView(Path path){
-		CopyrightLoader loader = new CopyrightLoader();
-		List<Project> projects = loader.loadCopyright(path);
+		List<Project> projects = CopyrightLoader.loadCopyright(path);
 		CopyrightView view = new CopyrightView(projects);
 		return view;
 	}

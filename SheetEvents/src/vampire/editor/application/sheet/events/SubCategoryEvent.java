@@ -51,14 +51,17 @@ public class SubCategoryEvent implements SubCategoryEventAPI{
 		return position;
 	}
 	
+	@Override
 	public SubCategoryControllerAPI getSource() {
 		return source;
 	}
 
+	@Override
 	public TraitControllerAPI getAdded() {
 		return added;
 	}
 
+	@Override
 	public TraitControllerAPI getRemoved() {
 		return removed;
 	}

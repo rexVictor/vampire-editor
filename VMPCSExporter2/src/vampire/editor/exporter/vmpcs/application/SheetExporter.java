@@ -14,9 +14,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import vampire.editor.fileformat.vmpcs.domain.FileNames;
 import vampire.editor.fileformat.vmpcs.domain.IntegerWrap;
 import vampire.editor.fileformat.vmpcs.domain.MapidResolver;
 import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
+import vampire.editor.fileformat.vmpcs.domain.StringConstants;
 import vampire.editor.plugin.api.domain.sheet.Sheet;
 import vampire.editor.plugin.api.domain.sheet.Value;
 
@@ -24,18 +26,17 @@ public class SheetExporter {
 	
 	private final MapidResolver resolver = new MapidResolver();
 	
-	private final ProtoValueBuilder protoValueBuilder = new ProtoValueBuilder();
-	
 	private final ObjectMapper objectMapper = new ObjectMapper();
 	
+	@SuppressWarnings("resource")
 	public Map<Integer, Object> exportSheet(Sheet sheet, Path path) 
 			throws JsonGenerationException, JsonMappingException, IOException{
 		IntegerWrap integerWrap = new IntegerWrap();
 		ProtoSheet protoSheet = new ProtoSheet(sheet, integerWrap);
 		Map<Integer, Object> map = resolver.generateMapIdMap(protoSheet);
-		Map<Value, Integer> values = protoValueBuilder.buildProtoValues(map, integerWrap);
+		Map<Value, Integer> values = ProtoValueBuilder.buildProtoValues(map, integerWrap);
 		serializeValues(values, path);
-		OutputStream stream = Files.newOutputStream(path.resolve("sheet.json"));
+		OutputStream stream = Files.newOutputStream(path.resolve(FileNames.SHEET));
 		objectMapper.writeValue(stream, protoSheet);
 		return map;
 	}
@@ -47,11 +48,13 @@ public class SheetExporter {
 		for (Value value : valueSet){
 			Map<String, Object> map = objectMapper.convertValue(value,
 					new TypeReference<Map<String, Object>>(){});
-			map.put("id", valueMap.get(value));
+			map.put(StringConstants.ID, valueMap.get(value));
 			values.add(map);
 		}
-		OutputStream outputStream = Files.newOutputStream(target.resolve("values.json"));
+		@SuppressWarnings("resource")
+		OutputStream outputStream = Files.newOutputStream(target.resolve(FileNames.VALUES));
 		objectMapper.writeValue(outputStream, values);
+		
 	}
 	
 }

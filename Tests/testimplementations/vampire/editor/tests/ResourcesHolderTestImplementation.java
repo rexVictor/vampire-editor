@@ -8,7 +8,6 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-
 import vampire.editor.plugin.api.domain.BorderAPI;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
@@ -24,6 +23,7 @@ public class ResourcesHolderTestImplementation implements ResourcesHolderAPI{
 		return new DictionaryTestImplementation();
 	}
 
+	@SuppressWarnings("nls")
 	@Override
 	public Image getLine(String key) {
 		try {

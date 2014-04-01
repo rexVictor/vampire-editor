@@ -92,6 +92,7 @@ class DefaultValueView extends AbstractValueView{
 		panel.remove(last);
 	}
 	
+	@Override
 	public DefaultValueView clone(){
 		ValueViewAttributes clone = viewAtts.clone();
 		return new DefaultValueView(clone);

@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import vampire.editor.sheetloader.application.importer.mock.ResourcesHolderMock;
 
+@SuppressWarnings({"nls", "static-method"})
 public class FontImportTest {
 
 	@Test

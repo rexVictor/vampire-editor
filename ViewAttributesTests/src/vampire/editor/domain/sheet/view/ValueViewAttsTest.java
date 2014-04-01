@@ -27,6 +27,7 @@ import org.junit.Test;
 import vampire.editor.domain.sheet.view.MValueViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 
+@SuppressWarnings("static-method")
 public class ValueViewAttsTest {
 
 	@Test
@@ -89,7 +90,7 @@ public class ValueViewAttsTest {
 	}
 	
 	@Test
-	public void testNotEqualsObject3(){;
+	public void testNotEqualsObject3(){
 		ValueViewAttributes viewAtts1 = new MValueViewAttributes(false, false, 7, true, 30);
 		ValueViewAttributes viewAtts2 = new MValueViewAttributes(false, false, 8, true, 30);
 		assertFalse(viewAtts1.equals(viewAtts2));

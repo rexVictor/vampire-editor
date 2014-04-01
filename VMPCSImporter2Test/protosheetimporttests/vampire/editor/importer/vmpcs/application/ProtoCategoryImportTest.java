@@ -13,10 +13,9 @@ import org.junit.Test;
 import vampire.editor.fileformat.vmpcs.domain.ProtoCategory;
 import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
 
+@SuppressWarnings("nls")
 public class ProtoCategoryImportTest {
 
-	private final ModelImporter modelImporter = new ModelImporter();
-	
 	private List<ProtoCategory> actual;
 	
 	private List<ProtoCategory> expected = new ArrayList<>();
@@ -24,7 +23,7 @@ public class ProtoCategoryImportTest {
 	@Before
 	public void setup() throws Throwable{
 		Path path = Paths.get("testcases", "protosheet", "protocats", "test1.json");
-		ProtoSheet protoSheet = modelImporter.loadSheet(path);
+		ProtoSheet protoSheet = ModelImporter.loadSheet(path);
 		actual = protoSheet.getTraits();
 		
 		expected.add(new ProtoCategory(11, "attributes"));

@@ -7,5 +7,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ViewAttsAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/SheetFullAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ModelAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

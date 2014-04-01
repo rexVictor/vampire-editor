@@ -41,6 +41,7 @@ class DictionaryProcessor implements ElementProcessor{
 		Path path = configCreator.getPath(pathKey);
 		try {
 			URL url = path.toUri().toURL();
+			@SuppressWarnings("resource")
 			URLClassLoader classLoader = new URLClassLoader(new URL[]{url});
 			Locale locale = Locale.getDefault();
 			String baseValue = element.getAttributeValue(ConfigStrings.KEY);

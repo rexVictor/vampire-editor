@@ -59,7 +59,7 @@ public class Manager implements ManagerAPI{
 		try {
 			Activator gui = config.getGUI().newInstance();
 			gui.setManager(this);
-			this.gui.addItemToMenuBar(new OpenTrigger(this.gui, this), "file", "open");
+			this.gui.addItemToMenuBar(new OpenTrigger(this.gui, this), "file", "open"); //$NON-NLS-1$ //$NON-NLS-2$
 			Map<String, Importer> importers = config.getImporters();
 			for (String s : importers.keySet()){
 				Importer importer = importers.get(s);
@@ -106,11 +106,11 @@ public class Manager implements ManagerAPI{
 		
 		Map<String, Path> defaultSheets = getResourcesHolder().getDefaultSheets();
 		for (String s : defaultSheets.keySet()){
-			this.gui.addItemToMenuBar(new NewTrigger(defaultSheets.get(s), this), "file", "new", s);
+			this.gui.addItemToMenuBar(new NewTrigger(defaultSheets.get(s), this), "file", "new", s); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		
 		/* Make Save Function */
-		
+		@SuppressWarnings("synthetic-access")
 		Trigger saveTrigger = new Trigger() {
 			
 			@Override
@@ -125,7 +125,7 @@ public class Manager implements ManagerAPI{
 				if (pathNameCount > 3){
 					Path containingFolder = path.getName(pathNameCount - 2);
 					Path inFolder = path.getName(pathNameCount - 3);
-					if ("defaultsheets".equals(containingFolder.toString()) && "resources".equals(inFolder.toString())){
+					if ("defaultsheets".equals(containingFolder.toString()) && "resources".equals(inFolder.toString())){ //$NON-NLS-1$ //$NON-NLS-2$
 						return;
 					}
 				}
@@ -143,7 +143,7 @@ public class Manager implements ManagerAPI{
 			}
 		};
 		
-		this.gui.addItemToMenuBar(saveTrigger, "file", "save");
+		this.gui.addItemToMenuBar(saveTrigger, "file", "save"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 	public void offer(Facade facade){
@@ -229,10 +229,12 @@ public class Manager implements ManagerAPI{
 		}
 	}
 	
+	@Override
 	public void addImporter(SheetImporter importer){
 		importers.add(importer);
 	}
 	
+	@Override
 	public void open(Path path){
 		for (SheetImporter importer : importers){
 			if (importer.canHandle(path)){
@@ -242,6 +244,7 @@ public class Manager implements ManagerAPI{
 					controller.open(document);
 				} catch (DocumentImportException e) {
 					gui.createErrorMessage(e);
+					e.printStackTrace();
 				}
 			}
 		}
@@ -250,8 +253,8 @@ public class Manager implements ManagerAPI{
 	@Override
 	public void addExporter(SheetExporter exporter) {
 		Trigger saveTrigger = new SaveTrigger(controller, exporter, gui,
-				config.getResourcesHolder().getDictionary("general"));
-		gui.addItemToMenuBar(saveTrigger, "file", "saveas", exporter.getFormat());
+				config.getResourcesHolder().getDictionary("general")); //$NON-NLS-1$
+		gui.addItemToMenuBar(saveTrigger, "file", "saveas", exporter.getFormat()); //$NON-NLS-1$ //$NON-NLS-2$
 		sheetExporters.put(exporter.getFormat(), exporter);
 	}
 

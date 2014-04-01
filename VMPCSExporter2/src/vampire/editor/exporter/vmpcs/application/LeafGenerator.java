@@ -63,7 +63,7 @@ public class LeafGenerator {
 		Set<? extends Object> set = viewAtts.keySet();
 		for (Object object : set){
 			Map<String, Object> map = mapper.convertValue(object, TYPE_REFERENCE);
-			map.put("id", viewAtts.get(object));
+			map.put("id", viewAtts.get(object)); //$NON-NLS-1$
 			List<Map<String, Object>> list = this.map.get(object.getClass());
 			if (list == null){
 				list = new LinkedList<>();
@@ -79,6 +79,7 @@ public class LeafGenerator {
 		for (Class<?> clazz : classes){
 			String fileName = ClassToFileMapper.getFileName(clazz);
 			Path file = path.resolve(fileName);
+			@SuppressWarnings("resource")
 			OutputStream stream = Files.newOutputStream(file);
 			writer.writeValue(stream, map.get(clazz));
 		}

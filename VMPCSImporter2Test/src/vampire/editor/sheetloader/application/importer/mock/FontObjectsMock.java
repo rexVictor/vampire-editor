@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 
 import vampire.editor.importer.vmpcs.application.Objects;
 
-
+@SuppressWarnings({"nls"})
 public class FontObjectsMock extends Objects<Font>{
 	
 	private static final Path fonts = Paths.get("mock", "fonts.json");

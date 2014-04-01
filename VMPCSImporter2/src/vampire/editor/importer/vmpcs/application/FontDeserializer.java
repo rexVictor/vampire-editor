@@ -24,8 +24,11 @@ import java.awt.Font;
 import java.io.IOException;
 import java.util.Map;
 
+import vampire.editor.fileformat.vmpcs.domain.StringConstants;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
@@ -38,11 +41,10 @@ public class FontDeserializer extends StdDeserializer<Font>{
 	@Override
 	public Font deserialize(JsonParser arg0, DeserializationContext arg1)
 			throws IOException, JsonProcessingException {
-		@SuppressWarnings("unchecked")
-		Map<String, Object> map = arg0.readValueAs(Map.class);
-		String key = (String) map.get("key");
-		int style = (int) map.get("style");
-		int size = (int) map.get("size");
+		Map<String, Object> map = arg0.readValueAs(new TypeReference<Map<String, Object>>() {});
+		String key = (String) map.get(StringConstants.KEY);
+		int style = (int) map.get(StringConstants.STYLE);
+		int size = (int) map.get(StringConstants.SIZE);
 		Font font = new Font(key, style, size);
 		return font;
 	}

@@ -13,7 +13,11 @@ import vampire.editor.gui.swing.mainframe.domain.ProtoMenuEntry;
 
 public class ProtoMenuEntryLoader {
 	
-	public List<ProtoMenuEntry> load(Path path) throws IOException{
+	private ProtoMenuEntryLoader(){
+		
+	}
+	
+	public static List<ProtoMenuEntry> load(Path path) throws IOException{
 		ObjectMapper mapper = new ObjectMapper();
 		try (InputStream stream = Files.newInputStream(path)){
 			return mapper.readValue(stream, new TypeReference<List<ProtoMenuEntry>>() {});

@@ -18,7 +18,7 @@ import vampire.editor.plugin.api.domain.DictionaryAPI;
 
 public class Loader {
 	
-	private final Path fileDirectory = Paths.get("resources", "plugins", "traitpopupentryadder");
+	private final Path fileDirectory = Paths.get("resources", "plugins", "traitpopupentryadder"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	
 	private final DictionaryAPI dictionary;
 	

@@ -60,7 +60,7 @@ public class MeritAdder implements MeritEntryListener, MeritsListener{
 	}
 
 	@Override
-	public void costChanged(MeritEntryEventAPI e) {}
+	public void costChanged(MeritEntryEventAPI e) {/***/}
 
 	@Override
 	public void nameChanged(MeritEntryEventAPI e) {
@@ -71,7 +71,7 @@ public class MeritAdder implements MeritEntryListener, MeritsListener{
 		if (positionOccured == lastIndex){
 			if (!e.getNewName().trim().isEmpty()){
 					MeritEntryControllerAPI clone = first.clone();
-					clone.setName("");
+					clone.setName(""); //$NON-NLS-1$
 					clone.setCost(0);
 					MeritAPI trait = clone.getMerit();
 					MeritEntryViewAttibutesAPI traitViewAtts = clone.getView().getViewAttributes();

@@ -45,6 +45,7 @@ class StaticValueView extends DefaultValueView{
 	@Override
 	public void removeCircle(){}
 
+	@Override
 	public StaticValueView clone(){
 		ValueViewAttributes clone = viewAtts.clone();
 		return new StaticValueView(clone);

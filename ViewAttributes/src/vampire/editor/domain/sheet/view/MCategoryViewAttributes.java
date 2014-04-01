@@ -40,7 +40,7 @@ class MCategoryViewAttributes implements FontSettable, CategoryViewAttributes{
 	
 	private LineAttributes image;
 	
-	private String title = "";
+	private String title = ""; //$NON-NLS-1$
 	
 	private Font font;
 	
@@ -68,6 +68,7 @@ class MCategoryViewAttributes implements FontSettable, CategoryViewAttributes{
 		return showLine;
 	}
 
+	@Override
 	public void setShowLine(boolean showLine) {
 		this.showLine = showLine;
 	}
@@ -77,6 +78,7 @@ class MCategoryViewAttributes implements FontSettable, CategoryViewAttributes{
 		return image;
 	}
 
+	@Override
 	public void setLine(LineAttributes image) {
 		this.image = image;
 	}
@@ -86,6 +88,7 @@ class MCategoryViewAttributes implements FontSettable, CategoryViewAttributes{
 		return title;
 	}
 
+	@Override
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -136,10 +139,10 @@ class MCategoryViewAttributes implements FontSettable, CategoryViewAttributes{
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("showLine: ").append(showLine);
-		sb.append(" image: ").append(image);
-		sb.append(" title: ").append(title);
-		sb.append(" font: ").append(font);
+		sb.append("showLine: ").append(showLine); //$NON-NLS-1$
+		sb.append(" image: ").append(image); //$NON-NLS-1$
+		sb.append(" title: ").append(title); //$NON-NLS-1$
+		sb.append(" font: ").append(font); //$NON-NLS-1$
 		return sb.toString();
 	}
 

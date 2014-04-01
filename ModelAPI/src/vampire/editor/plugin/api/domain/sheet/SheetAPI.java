@@ -28,7 +28,7 @@ package vampire.editor.plugin.api.domain.sheet;
  * @author rex_victor
  *
  */
-public interface SheetAPI {
+public interface SheetAPI{
 	
 	/**
 	 * Optional Operation

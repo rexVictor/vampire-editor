@@ -68,9 +68,8 @@ public class MenuBarController {
 	public MenuBarController(DictionaryAPI dictionary) {
 		super();
 		this.dictionary = dictionary;
-		ProtoMenuEntryLoader loader = new ProtoMenuEntryLoader();
 		try {
-			List<ProtoMenuEntry> entries =  loader.load(Paths.get("resources", "guiconfig", "menubar.json"));
+			List<ProtoMenuEntry> entries =  ProtoMenuEntryLoader.load(Paths.get("resources", "guiconfig", "menubar.json")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			for (ProtoMenuEntry entry : entries){
 				List<List<String>> paths = entry.toStringArray();
 				for (List<String> s : paths){
@@ -121,6 +120,7 @@ public class MenuBarController {
 		return getMenu(item, strings);		
 	}
 	
+	@SuppressWarnings("synthetic-access")
 	private ActionListener triggerToActionListener(Trigger trigger){
 		return new Listener(trigger);
 	}

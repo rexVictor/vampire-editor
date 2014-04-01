@@ -29,17 +29,12 @@ import vampire.editor.plugin.api.domain.sheet.view.TraitViewAttributesAPI;
 
 public interface TraitViewAttributes extends TraitViewAttributesAPI{
 
-	public boolean isEditable();
-
 	public void setEditable(boolean editable);
-
-	public Orientation getOrientation();
 
 	public void setOrientation(Orientation orientation);
 
+	@Override
 	public TraitViewAttributes clone();
-
-	public Font getFont();
 
 	public void setFont(Font font);
 
@@ -48,6 +43,7 @@ public interface TraitViewAttributes extends TraitViewAttributesAPI{
 	 * @param that
 	 * @return if this equals that
 	 */
+	@Override
 	public boolean equals(Object that);
 
 }

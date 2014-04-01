@@ -41,11 +41,12 @@ public class ModelToViewMap {
 	
 	public void put(Integer mapid, Integer id){
 		if (mapIdToId.containsKey(mapid)){
-			throw new DuplicateIdPairException(mapid + "already inserted!");
+			throw new DuplicateIdPairException(mapid + "already inserted!"); //$NON-NLS-1$
 		}
 		mapIdToId.put(mapid, id);
 	}
 	
+	@Override
 	public String toString(){
 		return mapIdToId.toString();
 	}

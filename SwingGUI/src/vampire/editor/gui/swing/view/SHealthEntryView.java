@@ -66,7 +66,7 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 		descriptionField.setBorder(null);
 		penaltyField.setBorder(null);
 		box.addMouseListener(this);
-		box.setFont(new Font("Sans Serif", 0, viewAtts.getFont().getSize()));
+		box.setFont(new Font("Sans Serif", 0, viewAtts.getFont().getSize())); //$NON-NLS-1$
 		descriptionField.setFont(viewAtts.getFont());
 		penaltyField.setFont(viewAtts.getFont());
 	}
@@ -85,12 +85,14 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 	@Override
 	public void setDamageType(DamageType damageType) {
 		if (damageType == null){
-			box.setText("\u2610");
+			box.setText("\u2610"); //$NON-NLS-1$
 		}
 		else switch(damageType){
 		case LETHAL:
-		case BASHING: box.setText("\u2341"); break;
-		case AGGRAVATED: box.setText("\u2612");
+		case BASHING: box.setText("\u2341"); break; //$NON-NLS-1$
+		case AGGRAVATED: box.setText("\u2612"); //$NON-NLS-1$
+		default:
+			break;
 		}
 		this.damageType = damageType;
 	}
@@ -112,7 +114,7 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 	@Override
 	public void setPenalty(int penalty) {
 		if (penalty != 0){
-			this.penaltyField.setText("-"+penalty);
+			this.penaltyField.setText("-"+penalty); //$NON-NLS-1$
 		}
 		this.penatly = penalty;
 	}
@@ -161,6 +163,8 @@ public class SHealthEntryView implements HealthEntryView, MouseListener{
 		case BASHING:
 		case LETHAL: setDamageType0(DamageType.AGGRAVATED); break;
 		case AGGRAVATED: setDamageType0(null);
+		default:
+			break;
 		}
 	}
 

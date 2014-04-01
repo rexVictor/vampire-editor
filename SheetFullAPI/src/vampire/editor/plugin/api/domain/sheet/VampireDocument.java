@@ -27,18 +27,14 @@ import java.nio.file.Path;
 
 
 public interface VampireDocument extends VampireDocumentAPI{
-
+	
+	@Override
+	public ModelToViewModelMapper getModelToViewModelMapper();
+	
+	@Override
 	public Sheet getSheet();
 
-	public ModelToViewModelMapper getModelToViewModelMapper();
-
-	public Path getPluginDirectory();
-
-	public FileSystem getFileSystem();
-
 	public void setFileSystem(FileSystem fileSystem);
-
-	public Path getPath();
 
 	public void setPath(Path path);
 

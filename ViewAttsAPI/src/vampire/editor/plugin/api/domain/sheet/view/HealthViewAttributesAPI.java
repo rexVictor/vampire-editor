@@ -28,6 +28,7 @@ public interface HealthViewAttributesAPI extends PublicCloneable{
 
 	public Font getFont();
 	
+	@Override
 	public HealthViewAttributesAPI clone();
 
 }

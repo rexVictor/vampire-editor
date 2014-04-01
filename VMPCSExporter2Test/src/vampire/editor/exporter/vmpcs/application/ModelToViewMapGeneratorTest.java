@@ -11,6 +11,7 @@ import vampire.editor.importer.vmpcs.application.VMPCSImporter;
 import vampire.editor.plugin.api.domain.sheet.VampireDocument;
 import vampire.editor.sheetloader.application.exporter.mock.ResourcesHolderMock;
 
+@SuppressWarnings("nls")
 public class ModelToViewMapGeneratorTest {
 	
 	private VMPCSExporter exporter = new VMPCSExporter();

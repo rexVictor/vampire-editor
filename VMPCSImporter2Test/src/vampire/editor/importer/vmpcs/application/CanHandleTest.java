@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import vampire.editor.sheetloader.application.importer.mock.ResourcesHolderMock;
 
+@SuppressWarnings({"nls"})
 public class CanHandleTest {
 	
 	VMPCSImporter importer = new VMPCSImporter(new ResourcesHolderMock());

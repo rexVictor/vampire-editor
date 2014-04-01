@@ -46,19 +46,19 @@ public class Project {
 	public String getLicensetext() {
 		if (actualLicense == null){
 			StringBuilder sb = new StringBuilder();
-			sb.append("<html>");
+			sb.append("<html>"); //$NON-NLS-1$
 			String input = null;
 			try (BufferedReader reader = Files.newBufferedReader(licensetext, Charset.defaultCharset())){
 				while ((input = reader.readLine()) != null){
-					input = input.replace("<", "&lt;");
-					input = input.replace(">", "&gt;");
+					input = input.replace("<", "&lt;"); //$NON-NLS-1$ //$NON-NLS-2$
+					input = input.replace(">", "&gt;"); //$NON-NLS-1$ //$NON-NLS-2$
 					sb.append(input);
-					sb.append("<br>");
+					sb.append("<br>"); //$NON-NLS-1$
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			sb.append("</html>");
+			sb.append("</html>"); //$NON-NLS-1$
 			this.actualLicense = sb.toString();
 		}
 		return actualLicense;
@@ -75,9 +75,9 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return "Project [name=" + name + ", license=" + license
-				+ ", licensetext=" + licensetext + ", copyright=" + copyright
-				+ ", link=" + link + ", libs=" + libs + "]";
+		return "Project [name=" + name + ", license=" + license //$NON-NLS-1$ //$NON-NLS-2$
+				+ ", licensetext=" + licensetext + ", copyright=" + copyright //$NON-NLS-1$ //$NON-NLS-2$
+				+ ", link=" + link + ", libs=" + libs + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	public String getCopyright() {

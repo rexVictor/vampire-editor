@@ -39,7 +39,7 @@ public class ModelProcessor implements ElementProcessor{
 			compatibleSpecs.add(versionSpec.version());
 			List<String> compatibleImpls = new ArrayList<>(Arrays.asList(versionImpl.compatibleWithSpecifications()));
 			if (Collections.disjoint(compatibleSpecs, compatibleImpls)){
-				throw new ConfigImportException("The Model implementation does not support the current specification.");
+				throw new ConfigImportException("The Model implementation does not support the current specification."); //$NON-NLS-1$
 			}
 			configCreator.setModelConstructors(clazz.newInstance());
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
@@ -49,7 +49,7 @@ public class ModelProcessor implements ElementProcessor{
 
 	@Override
 	public String getName() {
-		return "model";
+		return "model"; //$NON-NLS-1$
 	}
 
 }

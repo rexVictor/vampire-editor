@@ -28,22 +28,18 @@ import vampire.editor.plugin.api.domain.sheet.view.CategoryViewAttributesAPI;
 
 public interface CategoryViewAttributes extends CategoryViewAttributesAPI{
 
-	public boolean isShowLine();
-
 	public void setShowLine(boolean showLine);
-
-	public LineAttributes getLine();
 
 	public void setLine(LineAttributes line);
 
-	public String getTitle();
-
 	public void setTitle(String title);
 
-	public Font getFont();
-
 	public void setFont(Font font);
+	
+	@Override
+	public LineAttributes getLine();
 
+	@Override
 	public CategoryViewAttributes clone();
 
 	/**
@@ -51,6 +47,7 @@ public interface CategoryViewAttributes extends CategoryViewAttributesAPI{
 	 * @param that
 	 * @return if this and that are equal
 	 */
+	@Override
 	public boolean equals(Object that);
 
 }

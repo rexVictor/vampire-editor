@@ -22,14 +22,9 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
-import java.util.Iterator;
-
 public interface SubCategory extends SubCategoryAPI, Iterable<Trait>{
 	
-	public int size();
-	
-	public Iterator<? extends Trait> getIterator();
-	
+	@Override
 	public SubCategory clone();
 	
 	public void add(Trait trait);

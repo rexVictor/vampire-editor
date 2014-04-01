@@ -33,6 +33,7 @@ import vampire.editor.plugin.api.plugin.ManagerAPI;
 
 public class Constructor implements Activator, DocumentListener{
 	
+		@SuppressWarnings("unused")
 		@Override
 		public void documentAdded(DocumentEventAPI e) {
 			SheetControllerAPI sheetController = e.getSource();
@@ -45,12 +46,10 @@ public class Constructor implements Activator, DocumentListener{
 		}
 
 		@Override
-		public void selectedDocumentChanged(DocumentEventAPI e) {
-		}
+		public void selectedDocumentChanged(DocumentEventAPI e) {/***/}
 
 		@Override
-		public void documentRemoved(DocumentEventAPI e) {
-		}
+		public void documentRemoved(DocumentEventAPI e) {/***/}
 
 		@Override
 		public void setManager(ManagerAPI manager) {

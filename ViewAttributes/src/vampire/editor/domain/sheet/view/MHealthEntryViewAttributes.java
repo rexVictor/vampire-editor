@@ -55,14 +55,17 @@ class MHealthEntryViewAttributes implements FontSettable, HealthEntryViewAttribu
 		return font;
 	}
 
+	@Override
 	public void setFont(Font font) {
 		this.font = font;
 	}
 	
+	@Override
 	public int getSize(){
 		return size;
 	}
 	
+	@Override
 	public void setSize(int size){
 		this.size = size;
 	}

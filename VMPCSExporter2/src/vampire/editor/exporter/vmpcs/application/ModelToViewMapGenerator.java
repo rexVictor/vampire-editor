@@ -8,12 +8,14 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import vampire.editor.fileformat.vmpcs.domain.FileNames;
 import vampire.editor.fileformat.vmpcs.domain.ProtoValue;
 import vampire.editor.fileformat.vmpcs.domain.ToRealModelTransformable;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapper;
 
 public class ModelToViewMapGenerator {
 	
+	@SuppressWarnings("static-method")
 	public void generateModelToViewMap(Map<Integer, Object> mapidMap, Map<Object, Integer> viewAttIdMap,
 			ModelToViewModelMapper mapper, Path path) throws IOException{
 		Properties properties = new Properties();
@@ -29,12 +31,12 @@ public class ModelToViewMapGenerator {
 			}
 			Object viewAtt = mapper.getViewAttributes(model);
 			Integer id = viewAttIdMap.get(viewAtt);
-			properties.setProperty(mapid+"", id+"");
+			properties.setProperty(mapid.toString(), id.toString());
 		}
-		Path target = path.resolve("modeltoviewmap.properties");
-		OutputStream stream = Files.newOutputStream(target);
-		properties.store(stream, null);
-		stream.close();
+		Path target = path.resolve(FileNames.MODELTTOVIEWMAP);
+		try(OutputStream stream = Files.newOutputStream(target)){
+			properties.store(stream, null);
+		}
 	}
 
 }

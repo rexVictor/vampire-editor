@@ -58,11 +58,13 @@ class MSheet implements Sheet {
 	
 	private String borderKey;
 	
+	@Override
 	public String getBorderKey() {
 		return borderKey;
 	}
 
 
+	@Override
 	public void setBorderKey(String borderKey) {
 		this.borderKey = borderKey;
 	}
@@ -84,36 +86,42 @@ class MSheet implements Sheet {
 	}
 	
 
+	@Override
 	public void setCategories(Categories categories){
 		if (this.categories == null){
 			this.categories = categories;
 		}
 	}
 	
+	@Override
 	public void setMeta(Meta meta){
 		if (this.meta == null){
 			this.meta = meta;
 		}
 	}
 	
+	@Override
 	public void setBloodPool(BloodPool bloodPool){
 		if (this.bloodPool == null){
 			this.bloodPool = bloodPool;
 		}
 	}
 	
+	@Override
 	public void setHealth(Health health){
 		if (this.health == null){
 			this.health = health;
 		}
 	}
 	
+	@Override
 	public void setMerits(Merits merits){
 		if (this.merits == null){
 			this.merits = merits;
 		}
 	}
 	
+	@Override
 	public void setFlaws(Merits merits){
 		if (this.flaws == null){
 			this.flaws = merits;
@@ -131,13 +139,16 @@ class MSheet implements Sheet {
 		return categories;
 	}
 
+	@Override
 	public Merits getMerits() {
 		return merits;
 	}
+	@Override
 	public Merits getFlaws() {
 		return flaws;
 	}
 
+	@Override
 	public BloodPool getBloodPool() {
 		return bloodPool;
 	}
@@ -147,6 +158,7 @@ class MSheet implements Sheet {
 		return categories.toString();
 	}
 	
+	@Override
 	public Health getHealth(){
 		return health;
 	}

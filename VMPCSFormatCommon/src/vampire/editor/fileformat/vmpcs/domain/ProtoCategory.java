@@ -59,6 +59,7 @@ public class ProtoCategory implements MapId, MapIdChilds, ToRealModelTransformab
 		}
 	}
 
+	@Override
 	public Integer getMapid() {
 		return mapid;
 	}
@@ -89,12 +90,6 @@ public class ProtoCategory implements MapId, MapIdChilds, ToRealModelTransformab
 	
 	public ProtoSubCategory getSubCat(Integer position){
 		return subCats.get(position);
-	}
-
-	@Override
-	public String toString() {
-		return "ProtoCategory [mapid=" + mapid + ", name=" + name
-				+ ", subCats=" + subCats + "]";
 	}
 
 	@JsonIgnore

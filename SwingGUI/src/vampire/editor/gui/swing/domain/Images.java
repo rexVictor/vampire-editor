@@ -35,37 +35,38 @@ public class Images {
 	
 	private static final Map<String, Map<Dimension, Image>> images = new HashMap<>();
 	
-	public static final String CIRCLE_EMPTY = "circle_empty";
+	public static final String CIRCLE_EMPTY = "circle_empty"; //$NON-NLS-1$
 	
-	public static final String CIRCLE_FILLED = "circle_filled";
+	public static final String CIRCLE_FILLED = "circle_filled"; //$NON-NLS-1$
 	
-	public static final String CIRCLE_TEMP_GREATER = "circle_temp_greater";
+	public static final String CIRCLE_TEMP_GREATER = "circle_temp_greater"; //$NON-NLS-1$
 	
-	public static final String CIRCLE_TEMP_LOWER = "circle_temp_lower";
+	public static final String CIRCLE_TEMP_LOWER = "circle_temp_lower"; //$NON-NLS-1$
 	
-	public static final String SQUARE_EMPTY = "square_empty";
+	public static final String SQUARE_EMPTY = "square_empty"; //$NON-NLS-1$
 	
-	public static final String SQUARE_SLASHED = "square_slashed";
+	public static final String SQUARE_SLASHED = "square_slashed"; //$NON-NLS-1$
 	
-	public static final String SQUARE_CROSSED = "square_crossed";
+	public static final String SQUARE_CROSSED = "square_crossed"; //$NON-NLS-1$
 	
 	static{
 		Map<String, Path> imagePaths = new HashMap<>();
-		Path p = Paths.get("resources", "images");
-		imagePaths.put(CIRCLE_EMPTY, p.resolve("empty_circle.png"));
-		imagePaths.put(CIRCLE_FILLED, p.resolve("filled_circle.png"));
-		imagePaths.put(CIRCLE_TEMP_GREATER, p.resolve( "temp_greater_circle.png"));
-		imagePaths.put(CIRCLE_TEMP_LOWER, p.resolve("temp_lower_circle.png"));
-		imagePaths.put(SQUARE_EMPTY, p.resolve("empty_square.png"));
-		imagePaths.put(SQUARE_CROSSED, p.resolve("crossed_square.png"));
-		imagePaths.put(SQUARE_SLASHED, p.resolve("slashed_square.png"));
+		Path p = Paths.get("resources", "images"); //$NON-NLS-1$ //$NON-NLS-2$
+		imagePaths.put(CIRCLE_EMPTY, p.resolve("empty_circle.png")); //$NON-NLS-1$
+		imagePaths.put(CIRCLE_FILLED, p.resolve("filled_circle.png")); //$NON-NLS-1$
+		imagePaths.put(CIRCLE_TEMP_GREATER, p.resolve( "temp_greater_circle.png")); //$NON-NLS-1$
+		imagePaths.put(CIRCLE_TEMP_LOWER, p.resolve("temp_lower_circle.png")); //$NON-NLS-1$
+		imagePaths.put(SQUARE_EMPTY, p.resolve("empty_square.png")); //$NON-NLS-1$
+		imagePaths.put(SQUARE_CROSSED, p.resolve("crossed_square.png")); //$NON-NLS-1$
+		imagePaths.put(SQUARE_SLASHED, p.resolve("slashed_square.png")); //$NON-NLS-1$
 		for (String s : imagePaths.keySet()){
 			images.put(s, new HashMap<Dimension, Image>()); 
 			loadImage(s, imagePaths.get(s));
 		}
 	}
 	
-	private static void loadImage(String key, Path path){
+	private static void loadImage(String key, Path p){
+		Path path = p;
 		try {
 			path = path.toRealPath();
 			Image image = ImageIO.read(path.toFile());

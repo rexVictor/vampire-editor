@@ -58,7 +58,7 @@ public class ProtoSheet implements MapIdChilds, ToRealModelTransformable<Sheet>{
 	
 	public ProtoSheet(Sheet sheet, IntegerWrap integerWrap){
 		this.sheet = sheet;
-		this.version = "";
+		this.version = ""; //$NON-NLS-1$
 		this.bloodpool = new ProtoBloodPool(sheet.getBloodPool(), integerWrap);
 		this.border = sheet.getBorderKey();
 		this.flaws = new ProtoMerits(sheet.getFlaws(), integerWrap);
@@ -144,14 +144,6 @@ public class ProtoSheet implements MapIdChilds, ToRealModelTransformable<Sheet>{
 	
 	public ProtoMetaEntry getMeta(Integer i){
 		return meta.get(i);
-	}
-
-	@Override
-	public String toString() {
-		return "ProtoSheet [version=" + version + ", border=" + border
-				+ ", traits=" + traits + ", merits=" + merits + ", flaws="
-				+ flaws + ", health=" + health + ", bloodpool=" + bloodpool
-				+ ", meta=" + meta + "]";
 	}
 
 	@JsonIgnore

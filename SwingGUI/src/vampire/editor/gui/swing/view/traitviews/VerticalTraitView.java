@@ -1,7 +1,9 @@
 package vampire.editor.gui.swing.view.traitviews;
 
+import java.awt.Component;
+
 import javax.swing.BoxLayout;
-import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import vampire.editor.gui.swing.view.valueviews.AbstractValueView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
@@ -14,8 +16,8 @@ class VerticalTraitView extends AbstractTraitView{
 		super(valueView, viewAtts, dictionary);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.add(textField);
-		textField.setAlignmentX(JTextField.CENTER_ALIGNMENT);
-		valueView.getPanel().setAlignmentX(JTextField.CENTER_ALIGNMENT);
+		textField.setAlignmentX(Component.CENTER_ALIGNMENT);
+		valueView.getPanel().setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(valueView.getPanel());
 	}
 	
@@ -25,7 +27,7 @@ class VerticalTraitView extends AbstractTraitView{
 	@Override
 	protected void initializeTextField(){
 		super.initializeTextField();
-		textField.setHorizontalAlignment(JTextField.CENTER);
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
 	}
 	
 	@Override

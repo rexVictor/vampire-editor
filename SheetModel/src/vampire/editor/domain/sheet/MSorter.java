@@ -28,12 +28,14 @@ import java.util.List;
 
 import vampire.editor.plugin.api.domain.sheet.Nameable;
 
+@SuppressWarnings("synthetic-access")
 class MSorter<V extends Nameable> {
 	
 	private final Comparator<String> stringComparator;
 	
 	private class DataComparator implements Comparator<V>{
 
+		
 		@Override
 		public int compare(V o1, V o2) {
 			return stringComparator.compare(o1.getName(), o2.getName());

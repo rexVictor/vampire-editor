@@ -35,7 +35,7 @@ public class GeneralController implements GeneralControllerAPI{
 	
 	public GeneralController(Config config, String[] initial){
 		this(config);
-		Path path = Paths.get("", initial);
+		Path path = Paths.get("", initial); //$NON-NLS-1$
 		manager.open(path);
 	}
 
@@ -59,6 +59,7 @@ public class GeneralController implements GeneralControllerAPI{
 		this.currentController = controller;
 	}
 	
+	@Override
 	public SheetController getCurrentController(){
 		return currentController;
 	}

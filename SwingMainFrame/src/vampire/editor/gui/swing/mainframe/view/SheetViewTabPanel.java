@@ -51,6 +51,7 @@ public class SheetViewTabPanel implements ChangeListener{
 			this.controller = controller;
 		}
 
+		@SuppressWarnings("synthetic-access")
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			int position = controllers.indexOf(controller);
@@ -102,7 +103,7 @@ public class SheetViewTabPanel implements ChangeListener{
 			tabPane.add(new SheetViewPanel(((SSheetView) sheetView).getBorderView()));
 			TabComponent tabComponent = new TabComponent();
 			
-			MetaEntryControllerAPI nameController = sheetController.getMetaController().getMetaEntryController("name");
+			MetaEntryControllerAPI nameController = sheetController.getMetaController().getMetaEntryController("name"); //$NON-NLS-1$
 			TitleRefresher titleRefresher = new TitleRefresher(tabComponent);
 			nameController.addMetaEntryListener(titleRefresher);
 			tabComponent.setTitle(nameController.getMetaEntry().getValue());

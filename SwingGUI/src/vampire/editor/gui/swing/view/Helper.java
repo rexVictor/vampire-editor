@@ -9,6 +9,7 @@ import java.awt.Font;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class Helper {
 	
@@ -57,7 +58,7 @@ public class Helper {
 		textField.setEditable(false);
 		textField.setFocusable(false);
 		textField.setText(title);
-		textField.setHorizontalAlignment(JTextField.CENTER);
+		textField.setHorizontalAlignment(SwingConstants.CENTER);
 		return textField;
 	}
 	

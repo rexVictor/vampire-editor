@@ -92,21 +92,25 @@ public class SMiscView implements vampire.editor.plugin.api.view.sheet.MiscView{
 	}
 
 
+	@Override
 	public SBloodPoolView getBloodPoolView() {
 		return bloodPoolView;
 	}
 
 
+	@Override
 	public HorizontalHealthView getHealthView() {
 		return healthView;
 	}
 
 
+	@Override
 	public SMeritView getMeritsView() {
 		return meritView;
 	}
 
 
+	@Override
 	public SMeritView getFlawsView() {
 		return flawView;
 	}

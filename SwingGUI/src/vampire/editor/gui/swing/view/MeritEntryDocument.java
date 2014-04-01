@@ -24,7 +24,7 @@ public class MeritEntryDocument extends LimitedDocument{
 	      return;
 	    try {
 	    	int cost = Integer.parseInt(str.substring(0,1));
-	    	costField.setText(cost+"");
+	    	costField.setText(Integer.toString(cost));
 	    	super.insertString(offset, str.substring(1), attr);
 	    }
 	    catch (NumberFormatException e){

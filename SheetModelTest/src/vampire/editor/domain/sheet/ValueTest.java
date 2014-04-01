@@ -27,6 +27,7 @@ import org.junit.Test;
 import vampire.editor.domain.sheet.IllegalValueException;
 import vampire.editor.domain.sheet.MValue;
 
+@SuppressWarnings("static-method")
 public class ValueTest {
 
 	@Test(expected=IllegalValueException.class)

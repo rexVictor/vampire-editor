@@ -24,7 +24,7 @@ package vampire.editor.domain.sheet;
 
 import java.io.Serializable;
 
-import vampire.editor.plugin.api.domain.sheet.ValueAPI;
+import vampire.editor.plugin.api.domain.sheet.Value;
 
 
 /**
@@ -34,7 +34,7 @@ import vampire.editor.plugin.api.domain.sheet.ValueAPI;
  * @author rex
  *
  */
-class MValue implements Serializable, ValueAPI, vampire.editor.plugin.api.domain.sheet.Value {
+class MValue implements Serializable, Value {
 	
 	/**
 	 * 
@@ -114,6 +114,7 @@ class MValue implements Serializable, ValueAPI, vampire.editor.plugin.api.domain
 	 * @param value
 	 * @throws IllegalValueException, if !(minValue<= value <= maxValue)
 	 */
+	@Override
 	public void setValue(int value) {
 		if (minValue<=value&&value<=maxValue)
 			this.value = value;
@@ -136,7 +137,7 @@ class MValue implements Serializable, ValueAPI, vampire.editor.plugin.api.domain
 	
 	@Override
 	public String toString(){
-		return "{"+minValue+"<="+value+"~"+tempValue+"<="+maxValue+"}";
+		return "{"+minValue+"<="+value+"~"+tempValue+"<="+maxValue+"}"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 		
 	}
 	
@@ -154,6 +155,7 @@ class MValue implements Serializable, ValueAPI, vampire.editor.plugin.api.domain
 	}
 	
 	
+	@Override
 	public void setTempValue(int tempValue) {
 		this.tempValue = tempValue;
 	}

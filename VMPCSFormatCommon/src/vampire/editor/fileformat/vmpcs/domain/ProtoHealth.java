@@ -49,6 +49,7 @@ public class ProtoHealth implements MapId, MapIdChilds, ToRealModelTransformable
 		}
 	}
 
+	@Override
 	public Integer getMapid() {
 		return mapid;
 	}
@@ -71,11 +72,6 @@ public class ProtoHealth implements MapId, MapIdChilds, ToRealModelTransformable
 	
 	public ProtoHealthEntry getLevel(Integer i){
 		return levels.get(i);
-	}
-
-	@Override
-	public String toString() {
-		return "ProtoHealth [mapid=" + mapid + ", levels=" + levels + "]";
 	}
 
 	@JsonIgnore

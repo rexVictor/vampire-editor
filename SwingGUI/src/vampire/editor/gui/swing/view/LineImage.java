@@ -58,7 +58,7 @@ public class LineImage extends JPanel{
 	private int height;
 
 	public LineImage(Image image, Font font) {
-		this(image, "", font);
+		this(image, "", font); //$NON-NLS-1$
 		
 	}
 	
@@ -78,7 +78,7 @@ public class LineImage extends JPanel{
 		rectangle = layout.getBounds();
 		float descent = layout.getDescent();
 		height = (int) (rectangle.getHeight() + descent);
-		GlyphVector xGlyph = font.createGlyphVector(frc, "x");
+		GlyphVector xGlyph = font.createGlyphVector(frc, "x"); //$NON-NLS-1$
 		double xHeight = xGlyph.getGlyphMetrics(0).getBounds2D().getMaxX();
 		yImage = (int) (rectangle.getHeight()-(xHeight+image.getHeight(null))/2);
 		xText = (int) ((getWidth()-rectangle.getWidth())/2);

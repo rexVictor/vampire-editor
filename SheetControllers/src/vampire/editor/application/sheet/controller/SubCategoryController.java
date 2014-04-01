@@ -177,10 +177,12 @@ public class SubCategoryController implements SubCategoryControllerAPI {
 		return traitControllers.indexOf(traitController);
 	}
 	
+	@Override
 	public int size(){
 		return traitControllers.size();
 	}
 	
+	@Override
 	public TraitControllerAPI getTraitController(int i){
 		return traitControllers.get(i);
 	}

@@ -50,6 +50,7 @@ public class ProtoMetaEntry implements MapId, ToRealModelTransformable<MetaEntry
 		this.value = metaEntry.getValue();
 	}
 
+	@Override
 	public Integer getMapid() {
 		return mapid;
 	}
@@ -75,11 +76,6 @@ public class ProtoMetaEntry implements MapId, ToRealModelTransformable<MetaEntry
 	}
 	
 	@Override
-	public String toString() {
-		return "ProtoMetaEntry [mapid=" + mapid + ", name=" + name + ", value="
-				+ value + "]";
-	}
-	
 	public MetaEntry toRealModel(){
 		if (realModel == null){
 			realModel = Constructors.constructors.createMetaEntry();

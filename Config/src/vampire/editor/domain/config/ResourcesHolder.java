@@ -57,11 +57,12 @@ public class ResourcesHolder implements ResourcesHolderAPI{
 	public DictionaryAPI getDictionary(String key) {
 		DictionaryAPI dictionary = dictionaries.get(key);
 		if (dictionary == null){
-			return new Dictionary(null, "");
+			return new Dictionary(null, ""); //$NON-NLS-1$
 		}
 		return dictionary;
 	}
 	
+	@Override
 	public Border getBorder(String key){
 		return borders.get(key);
 	}
@@ -75,6 +76,7 @@ public class ResourcesHolder implements ResourcesHolderAPI{
 		return defaultSheets.get(key);
 	}
 	
+	@Override
 	public Map<String, Path> getDefaultSheets(){
 		return Collections.unmodifiableMap(defaultSheets);
 	}

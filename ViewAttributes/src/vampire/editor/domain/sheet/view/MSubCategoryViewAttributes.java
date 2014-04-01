@@ -40,10 +40,12 @@ class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttribu
 	
 	private boolean shallSort = false;
 	
+	@Override
 	public boolean isShallSort() {
 		return shallSort;
 	}
 
+	@Override
 	public void setShallSort(boolean shallSort) {
 		this.shallSort = shallSort;
 	}
@@ -74,6 +76,7 @@ class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttribu
 		return expandable;
 	}
 
+	@Override
 	public void setExpandable(boolean expandable) {
 		this.expandable = expandable;
 	}
@@ -83,6 +86,7 @@ class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttribu
 		return showTitle;
 	}
 
+	@Override
 	public void setShowTitle(boolean showTitle) {
 		this.showTitle = showTitle;
 	}
@@ -99,7 +103,7 @@ class MSubCategoryViewAttributes implements FontSettable, SubCategoryViewAttribu
 	
 	@Override
 	public String toString(){
-		return "expandable: "+expandable+", shallSort: "+shallSort+", showTitle: "+showTitle+", font: "+font+"\n"; 
+		return "expandable: "+expandable+", shallSort: "+shallSort+", showTitle: "+showTitle+", font: "+font+"\n";  //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 	}
 	
 	@Override 

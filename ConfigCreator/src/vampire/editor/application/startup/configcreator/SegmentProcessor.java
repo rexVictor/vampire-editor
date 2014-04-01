@@ -46,12 +46,13 @@ class SegmentProcessor{
 	}
 
 	public Path process(Element element, Path path, ConfigCreator creator) {
+		Path toReturn = path;
 		List<Attribute> attributes = element.getAttributes();
 		for(Attribute attribute : attributes){
 			String name = attribute.getName();
-			path = processors.get(name).process(path, creator, attribute);
+			toReturn = processors.get(name).process(path, creator, attribute);
 		}
-		return path;
+		return toReturn;
 	}
 
 }

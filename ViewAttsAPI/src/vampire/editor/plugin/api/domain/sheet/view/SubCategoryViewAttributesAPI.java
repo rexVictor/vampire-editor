@@ -29,7 +29,7 @@ import java.awt.Font;
  * @author rex_victor
  *
  */
-public interface SubCategoryViewAttributesAPI extends DataViewAttributesAPI, PublicCloneable{
+public interface SubCategoryViewAttributesAPI extends DataViewAttributesAPI{
 	
 	/**
 	 * Returns if the title of the subcategory shall be shown.

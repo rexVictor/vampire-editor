@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import vampire.editor.application.startup.configcreator.ConfigCreator;
 
+@SuppressWarnings({"static-method", "nls"})
 public class PathProcessorTest {
 	
 	private Element buildDocument() throws JDOMException, IOException{

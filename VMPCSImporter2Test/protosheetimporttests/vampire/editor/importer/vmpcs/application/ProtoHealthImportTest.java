@@ -15,10 +15,9 @@ import vampire.editor.fileformat.vmpcs.domain.ProtoHealthEntry;
 import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
 import vampire.editor.plugin.api.domain.sheet.DamageType;
 
+@SuppressWarnings({"nls", "static-method"})
 public class ProtoHealthImportTest {
 	
-	private final ModelImporter modelImporter = new ModelImporter();
-
 	private final List<ProtoHealthEntry> protoHealthEntries = new ArrayList<>();
 	
 	private final ProtoHealth protoHealth = new ProtoHealth();
@@ -40,7 +39,7 @@ public class ProtoHealthImportTest {
 	@Test
 	public void testProtoHealthEntryImport() throws Throwable{
 		Path path = Paths.get("testcases", "protosheet", "protohealth","test1.json");
-		ProtoSheet protoSheet = modelImporter.loadSheet(path);
+		ProtoSheet protoSheet = ModelImporter.loadSheet(path);
 		ProtoHealth health = protoSheet.getHealth();
 		List<ProtoHealthEntry> healthEntries = health.getLevels();
 		assertEquals(this.protoHealthEntries.size(), healthEntries.size());
@@ -52,7 +51,7 @@ public class ProtoHealthImportTest {
 	@Test
 	public void testProtoHealthImport() throws Throwable{
 		Path path = Paths.get("testcases", "protosheet", "protohealth","test1.json");
-		ProtoSheet protoSheet = modelImporter.loadSheet(path);
+		ProtoSheet protoSheet = ModelImporter.loadSheet(path);
 		ProtoHealth health = protoSheet.getHealth();
 		assertEquals((Integer) 500, health.getMapid());
 	}

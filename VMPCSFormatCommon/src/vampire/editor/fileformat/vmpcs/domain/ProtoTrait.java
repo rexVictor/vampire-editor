@@ -73,6 +73,7 @@ public class ProtoTrait implements MapId, MapIdChilds, ToRealModelTransformable<
 
 
 
+	@Override
 	public Integer getMapid() {
 		return mapid;
 	}
@@ -83,14 +84,6 @@ public class ProtoTrait implements MapId, MapIdChilds, ToRealModelTransformable<
 
 	public ProtoValue getValue() {
 		return value;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "ProtoTrait [mapid=" + mapid + ", name=" + name + ", value="
-				+ value + "]";
 	}
 
 	@JsonIgnore

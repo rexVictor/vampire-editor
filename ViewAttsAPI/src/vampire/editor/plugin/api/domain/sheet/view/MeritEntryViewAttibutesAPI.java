@@ -37,6 +37,7 @@ public interface MeritEntryViewAttibutesAPI extends PublicCloneable{
 	 */
 	public Font getFont();
 	
+	@Override
 	public MeritEntryViewAttibutesAPI clone();
 
 }

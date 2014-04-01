@@ -22,14 +22,7 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
-import java.util.Comparator;
-import java.util.Iterator;
-
 public interface Meta extends MetaAPI, Iterable<MetaEntry>{
-	
-	public Iterator<? extends MetaEntry> getIterator();
-	
-	public Meta clone();
 	
 	public void add(MetaEntry metaEntry);
 	
@@ -39,6 +32,4 @@ public interface Meta extends MetaAPI, Iterable<MetaEntry>{
 	
 	public MetaEntry get(int i);
 	
-	public void sort(Comparator<String> comparator);
-
 }

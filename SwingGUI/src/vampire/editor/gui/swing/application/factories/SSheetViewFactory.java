@@ -20,33 +20,26 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.application.factories;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import vampire.editor.gui.swing.view.SBorderView;
 import vampire.editor.gui.swing.view.SSheetView;
-
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
-
-import vampire.editor.plugin.api.domain.sheet.CategoriesAPI;
-import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
-
 import vampire.editor.plugin.api.plugin.view.factories.*;
-
-import vampire.editor.plugin.api.view.sheet.CategoryView;
+import vampire.editor.plugin.api.view.sheet.CategoriesView;
 import vampire.editor.plugin.api.view.sheet.MetaView;
 import vampire.editor.plugin.api.view.sheet.MiscView;
 
-public class SheetViewFactory implements vampire.editor.plugin.api.plugin.view.factories.SheetViewFactory{
+public class SSheetViewFactory implements SheetViewFactory{
 	
 	private final DictionaryAPI dictionary;
 	
 	private final ResourcesHolderAPI resources;
+	
+	private final CategoriesViewFactory categoriesViewFactory;
 	
 	private final CategoryViewFactory categoryViewFactory;
 	
@@ -72,13 +65,14 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.view.f
 	
 	private final MiscViewFactory miscViewFactory;
 	
-	public SheetViewFactory(ResourcesHolderAPI resources){
-		this.dictionary = resources.getDictionary("sheet");
+	public SSheetViewFactory(ResourcesHolderAPI resources){
+		this.dictionary = resources.getDictionary(DictionaryAPI.SHEET_DICTIONARY);
 		this.resources = resources;
 		valueViewFactory = new SValueViewFactory();
 		traitViewFactory = new STraitViewFactory(dictionary, valueViewFactory);
 		subCategoryViewFactory = new SSubCategoryViewFactory(traitViewFactory, dictionary);
 		categoryViewFactory = new SCategoryViewFactory(resources, dictionary, subCategoryViewFactory);
+		categoriesViewFactory = new SCategoriesViewFactory(categoryViewFactory, dictionary);
 		metaEntryViewFactory = new SMetaEntryViewFactory(dictionary);
 		metaViewFactory = new SMetaViewFactory(metaEntryViewFactory);
 		meritEntryViewFactory = new SMeritEntryViewFactory(dictionary);
@@ -94,12 +88,11 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.view.f
 		SheetAPI sheet = document.getSheet();
 		ModelToViewModelMapperAPI mapper = document.getModelToViewModelMapper();
 		SSheetView sheetView = new SSheetView();
+		
 		MetaView metaView = metaViewFactory.build(mapper, sheet.getMeta());
 		sheetView.setMetaView(metaView);
-		List<CategoryView> categoryViews = buildCategoryViews(sheet.getCategories(), mapper);
-		for (CategoryView categoryView : categoryViews){
-			sheetView.add(categoryView);
-		}
+		CategoriesView categoriesView = categoriesViewFactory.build(mapper, sheet.getCategories());
+		sheetView.setCategoriesView(categoriesView);
 		MiscView view = miscViewFactory.build(mapper, sheet.getBloodPool(), 
 				sheet.getHealth(), sheet.getMerits(), sheet.getFlaws());
 		sheetView.setMiscView(view);
@@ -109,44 +102,44 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.view.f
 		return sheetView;
 	}
 	
-	private List<CategoryView> buildCategoryViews(CategoriesAPI categories, ModelToViewModelMapperAPI mapper){
-		List<CategoryView> categoryViews = new ArrayList<>();
-		for (Iterator<? extends CategoryAPI> i = categories.getIterator(); i.hasNext();) {
-			CategoryAPI category = i.next();
-			categoryViews.add(categoryViewFactory.build(mapper, category));
-		}
-		return categoryViews;
-	}
-	
+	@Override
 	public SubCategoryViewFactory getSubCategoryViewFactory(){
 		return subCategoryViewFactory;
 	}
 
+	@Override
 	public CategoryViewFactory getCategoryViewFactory() {
 		return categoryViewFactory;
 	}
 
+	@Override
 	public TraitViewFactory getTraitViewFactory() {
 		return traitViewFactory;
 	}
 
+	@Override
 	public ValueViewFactory getValueViewFactory() {
 		return valueViewFactory;
 	}
 
+	@Override
 	public MetaEntryViewFactory getMetaEntryViewFactory() {
 		return metaEntryViewFactory;
 	}
 
+	@Override
 	public MetaViewFactory getMetaViewFactory() {
 		return metaViewFactory;
 	}
 
+	@Override
 	public MeritEntryViewFactory getMeritEntryViewFactory() {
 		return meritEntryViewFactory;
 	}
 
+	@Override
 	public MeritViewFactory getMeritViewFactory() {
 		return meritViewFactory;
 	}
+
 }

@@ -26,26 +26,17 @@ import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributesAPI;
 
 public interface ValueViewAttributes extends ValueViewAttributesAPI{
 
-	public boolean isShowSpace();
-
 	public void setShowSpace(boolean showSpace);
-
-	public boolean isDynamic();
 
 	public void setDynamic(boolean dynamic);
 
-	public int getCircles();
-
 	public void setCircles(int circles);
-
-	public boolean isTempSquared();
 
 	public void setTempSquared(boolean tempSquared);
 
-	public int getSize();
-
 	public void setSize(int size);
 
+	@Override
 	public ValueViewAttributes clone();
 
 	/**
@@ -53,6 +44,7 @@ public interface ValueViewAttributes extends ValueViewAttributesAPI{
 	 * @param that
 	 * @return if this equals that
 	 */
+	@Override
 	public boolean equals(Object that);
 
 }

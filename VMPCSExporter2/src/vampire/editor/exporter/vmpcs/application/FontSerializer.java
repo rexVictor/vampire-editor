@@ -3,6 +3,8 @@ package vampire.editor.exporter.vmpcs.application;
 import java.awt.Font;
 import java.io.IOException;
 
+import vampire.editor.fileformat.vmpcs.domain.StringConstants;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.SerializerProvider;
@@ -18,9 +20,9 @@ public class FontSerializer extends StdSerializer<Font>{
 	public void serialize(Font font, JsonGenerator gen, SerializerProvider arg2)
 			throws IOException, JsonGenerationException {
 		gen.writeStartObject();
-		gen.writeStringField("key", font.getName());
-		gen.writeNumberField("size", font.getSize());
-		gen.writeNumberField("style", font.getStyle());
+		gen.writeStringField(StringConstants.KEY, font.getName());
+		gen.writeNumberField(StringConstants.SIZE, font.getSize());
+		gen.writeNumberField(StringConstants.STYLE, font.getStyle());
 		gen.writeEndObject();
 	}
 
