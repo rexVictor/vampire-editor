@@ -28,8 +28,6 @@ public class SMetaEntryViewEvent implements MetaEntryViewEvent{
 	
 	private final String content;
 	
-	
-
 	public SMetaEntryViewEvent(String title, String content) {
 		super();
 		this.title = title;

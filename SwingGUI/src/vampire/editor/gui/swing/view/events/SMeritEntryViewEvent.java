@@ -41,7 +41,5 @@ public class SMeritEntryViewEvent implements MeritEntryViewEvent{
 	public String getName() {
 		return name;
 	}
-	
-	
 
 }

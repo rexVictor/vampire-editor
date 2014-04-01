@@ -28,8 +28,6 @@ public class SBloodPoolViewEvent implements BloodPoolViewEvent{
 	
 	private final int maxValue;
 	
-	
-
 	public SBloodPoolViewEvent(int value, int maxValue) {
 		super();
 		this.value = value;
@@ -45,7 +43,5 @@ public class SBloodPoolViewEvent implements BloodPoolViewEvent{
 	public int getMaxValue() {
 		return maxValue;
 	}
-	
-	
 
 }
