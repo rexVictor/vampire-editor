@@ -1,4 +1,4 @@
-package vampire.editor.plugin.api.plugin;
+package vampire.editor.plugin.api.plugin.view.factories;
 
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.ValueAPI;

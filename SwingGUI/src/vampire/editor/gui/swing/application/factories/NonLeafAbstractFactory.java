@@ -2,10 +2,11 @@ package vampire.editor.gui.swing.application.factories;
 
 import java.util.Iterator;
 
+import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.HasIterator;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
-import vampire.editor.plugin.api.plugin.AbstractNonLeafViewFactoryModule;
-import vampire.editor.plugin.api.plugin.AbstractViewsFactory;
+import vampire.editor.plugin.api.plugin.view.factories.AbstractNonLeafViewFactoryModule;
+import vampire.editor.plugin.api.plugin.view.factories.AbstractViewsFactory;
 import vampire.editor.plugin.api.view.sheet.Addable;
 
 public abstract class NonLeafAbstractFactory<M extends HasIterator<SM>, SM, SV, V extends Addable<SV>,
@@ -14,13 +15,9 @@ public abstract class NonLeafAbstractFactory<M extends HasIterator<SM>, SM, SV, 
 	
 	protected final AbstractViewsFactory<SM, SV, ?> viewFactory;
 	
-	public NonLeafAbstractFactory(AbstractViewsFactory<SM, SV, ?> viewFactory) {
-		super();
+	public NonLeafAbstractFactory(AbstractViewsFactory<SM, SV, ?> viewFactory, DictionaryAPI dictionary) {
+		super(dictionary);
 		this.viewFactory = viewFactory;
-	}
-	
-	protected NonLeafAbstractFactory(){
-		this(null);
 	}
 	
 	public V build(ModelToViewModelMapperAPI mapper, M m){

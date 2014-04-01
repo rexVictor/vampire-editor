@@ -6,7 +6,7 @@ import javax.swing.JPopupMenu;
 
 import vampire.editor.plugin.api.domain.sheet.MeritsAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
-import vampire.editor.plugin.api.plugin.MeritViewFactoryModule;
+import vampire.editor.plugin.api.plugin.view.factories.MeritViewFactoryModule;
 import vampire.editor.plugin.api.view.sheet.MeritEntryView;
 import vampire.editor.plugin.api.view.sheet.MeritView;
 

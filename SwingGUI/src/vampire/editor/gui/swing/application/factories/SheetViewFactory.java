@@ -22,43 +22,27 @@ package vampire.editor.gui.swing.application.factories;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
-import vampire.editor.gui.swing.view.HorizontalHealthEntryView;
-import vampire.editor.gui.swing.view.HorizontalHealthView;
-import vampire.editor.gui.swing.view.MiscView;
-import vampire.editor.gui.swing.view.SBloodPoolView;
 import vampire.editor.gui.swing.view.SBorderView;
 import vampire.editor.gui.swing.view.SSheetView;
+
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
-import vampire.editor.plugin.api.domain.sheet.BloodPoolAPI;
+
 import vampire.editor.plugin.api.domain.sheet.CategoriesAPI;
 import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
-import vampire.editor.plugin.api.domain.sheet.HealthAPI;
-import vampire.editor.plugin.api.domain.sheet.HealthEntryAPI;
-import vampire.editor.plugin.api.domain.sheet.MeritsAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.SheetAPI;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
-import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributesAPI;
-import vampire.editor.plugin.api.domain.sheet.view.HealthViewAttributesAPI;
-import vampire.editor.plugin.api.plugin.CategoryViewFactory;
-import vampire.editor.plugin.api.plugin.MeritEntryViewFactory;
-import vampire.editor.plugin.api.plugin.MeritViewFactory;
-import vampire.editor.plugin.api.plugin.MetaEntryViewFactory;
-import vampire.editor.plugin.api.plugin.MetaViewFactory;
-import vampire.editor.plugin.api.plugin.SubCategoryViewFactory;
-import vampire.editor.plugin.api.plugin.TraitViewFactory;
-import vampire.editor.plugin.api.plugin.ValueViewFactory;
-import vampire.editor.plugin.api.view.sheet.CategoryView;
-import vampire.editor.plugin.api.view.sheet.HealthView;
-import vampire.editor.plugin.api.view.sheet.MeritView;
-import vampire.editor.plugin.api.view.sheet.MetaView;
 
-public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetViewFactory{
+import vampire.editor.plugin.api.plugin.view.factories.*;
+
+import vampire.editor.plugin.api.view.sheet.CategoryView;
+import vampire.editor.plugin.api.view.sheet.MetaView;
+import vampire.editor.plugin.api.view.sheet.MiscView;
+
+public class SheetViewFactory implements vampire.editor.plugin.api.plugin.view.factories.SheetViewFactory{
 	
 	private final DictionaryAPI dictionary;
 	
@@ -80,6 +64,14 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 	
 	private final MeritViewFactory meritViewFactory;
 	
+	private final HealthViewFactory healthViewFactory;
+	
+	private final HealthEntryViewFactory healthEntryViewFactory;
+	
+	private final BloodpoolViewFactory bloodpoolViewFactory;
+	
+	private final MiscViewFactory miscViewFactory;
+	
 	public SheetViewFactory(ResourcesHolderAPI resources){
 		this.dictionary = resources.getDictionary("sheet");
 		this.resources = resources;
@@ -91,6 +83,10 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		metaViewFactory = new SMetaViewFactory(metaEntryViewFactory);
 		meritEntryViewFactory = new SMeritEntryViewFactory(dictionary);
 		meritViewFactory = new SMeritViewFactory(meritEntryViewFactory, dictionary);
+		healthEntryViewFactory = new SHealthEntryViewFactory(dictionary);
+		healthViewFactory = new SHealthViewFactory(healthEntryViewFactory, dictionary);
+		bloodpoolViewFactory = new SBloodpoolViewFactory(dictionary);
+		miscViewFactory = new SMiscViewFactory(bloodpoolViewFactory, healthViewFactory, meritViewFactory);
 	}
 	
 	@Override
@@ -104,25 +100,13 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 		for (CategoryView categoryView : categoryViews){
 			sheetView.add(categoryView);
 		}
-		MiscView view = buildAdvantageView(sheet.getBloodPool(), 
-				sheet.getHealth(), sheet.getMerits(), sheet.getFlaws(), mapper);
+		MiscView view = miscViewFactory.build(mapper, sheet.getBloodPool(), 
+				sheet.getHealth(), sheet.getMerits(), sheet.getFlaws());
 		sheetView.setMiscView(view);
 		
 		SBorderView borderView = new SBorderView(resources.getBorder(sheet.getBorderKey()), sheetView);
 		sheetView.setBorderView(borderView);
 		return sheetView;
-	}
-	
-	private MiscView buildAdvantageView(
-												BloodPoolAPI bloodPool, HealthAPI health,
-												MeritsAPI merits, MeritsAPI flaws, ModelToViewModelMapperAPI mapper){
-		SBloodPoolView bloodPoolView = buildBloodPoolView(bloodPool, mapper);
-		HealthView healthView = buildHealthView(health, mapper);
-		MeritView meritView = meritViewFactory.build(mapper, merits);
-		MeritView flawView = meritViewFactory.build(mapper, flaws);
-		MiscView view = new MiscView(bloodPoolView, healthView, meritView, flawView);
-		
-		return view;
 	}
 	
 	private List<CategoryView> buildCategoryViews(CategoriesAPI categories, ModelToViewModelMapperAPI mapper){
@@ -132,39 +116,6 @@ public class SheetViewFactory implements vampire.editor.plugin.api.plugin.SheetV
 			categoryViews.add(categoryViewFactory.build(mapper, category));
 		}
 		return categoryViews;
-	}
-	
-	private SBloodPoolView buildBloodPoolView(BloodPoolAPI bloodPool, ModelToViewModelMapperAPI mapper){
-		SBloodPoolView view = new SBloodPoolView((BloodPoolViewAttributesAPI) mapper.getViewAttributes(bloodPool), dictionary);
-		view.setMaxValue(bloodPool.getMaxValue());
-		view.setValue(bloodPool.getValue());
-		return view;
-	}
-	
-	private HealthView buildHealthView(HealthAPI health, ModelToViewModelMapperAPI mapper){
-		HorizontalHealthView healthView = new HorizontalHealthView(dictionary, (HealthViewAttributesAPI) mapper.getViewAttributes(health));
-		List<HorizontalHealthEntryView> entryViews = buildHealthEntryViews(health, mapper);
-		for (HorizontalHealthEntryView view : entryViews){
-			healthView.addHealthEntryView(view);
-		}
-		return healthView;
-	}
-	
-	private List<HorizontalHealthEntryView> buildHealthEntryViews(HealthAPI healthEntries, ModelToViewModelMapperAPI mapper){
-		List<HorizontalHealthEntryView> entryViews = new LinkedList<>();
-		for (Iterator<? extends HealthEntryAPI> i = healthEntries.getIterator(); i.hasNext();){
-			HealthEntryAPI entry = i.next();
-			entryViews.add(buildHealthEntryView(entry, mapper));
-		}
-		return entryViews;
-	}
-	
-	private HorizontalHealthEntryView buildHealthEntryView(HealthEntryAPI healthEntry, ModelToViewModelMapperAPI mapper){
-		HorizontalHealthEntryView entryView = new HorizontalHealthEntryView(dictionary, (HealthEntryViewAttributesAPI) mapper.getViewAttributes(healthEntry));
-		entryView.setDamageType(healthEntry.getDamageType());
-		entryView.setDescription(healthEntry.getName());
-		entryView.setPenalty(healthEntry.getPenalty());
-		return entryView;
 	}
 	
 	public SubCategoryViewFactory getSubCategoryViewFactory(){

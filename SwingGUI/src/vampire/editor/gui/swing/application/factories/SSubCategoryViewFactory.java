@@ -5,9 +5,9 @@ import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
 import vampire.editor.plugin.api.domain.sheet.TraitAPI;
 import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
-import vampire.editor.plugin.api.plugin.SubCategoryViewFactory;
-import vampire.editor.plugin.api.plugin.SubCategoryViewFactoryModule;
-import vampire.editor.plugin.api.plugin.TraitViewFactory;
+import vampire.editor.plugin.api.plugin.view.factories.SubCategoryViewFactory;
+import vampire.editor.plugin.api.plugin.view.factories.SubCategoryViewFactoryModule;
+import vampire.editor.plugin.api.plugin.view.factories.TraitViewFactory;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 
@@ -15,13 +15,9 @@ public class SSubCategoryViewFactory extends NonLeafAbstractFactory<SubCategoryA
 										SubCategoryView, SubCategoryViewFactoryModule>
 										implements SubCategoryViewFactory{
 	
-	private final DictionaryAPI dictionary;
-	
-	
 	public SSubCategoryViewFactory(TraitViewFactory traitViewFactory,
 			DictionaryAPI dictionary) {
-		super(traitViewFactory);
-		this.dictionary = dictionary;
+		super(traitViewFactory, dictionary);
 	}
 
 	@Override
