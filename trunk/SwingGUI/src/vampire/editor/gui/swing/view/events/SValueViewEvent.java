@@ -28,8 +28,6 @@ public class SValueViewEvent implements ValueViewEvent{
 	
 	private final int tempValue;
 	
-	
-
 	public SValueViewEvent(int value, int tempValue) {
 		super();
 		this.value = value;

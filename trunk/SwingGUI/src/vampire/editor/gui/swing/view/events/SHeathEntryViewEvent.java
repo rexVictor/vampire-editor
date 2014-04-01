@@ -52,9 +52,5 @@ public class SHeathEntryViewEvent implements HealthViewEntryEvent{
 	public DamageType getDamageType() {
 		return damageType;
 	};
-	
-	
-	
-	
 
 }
