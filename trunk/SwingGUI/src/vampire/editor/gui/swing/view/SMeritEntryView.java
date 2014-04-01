@@ -71,10 +71,10 @@ public class SMeritEntryView implements MeritEntryView, DocumentListener{
 	@Override
 	public void setCost(int cost) {
 		if (cost == 0){
-			costField.setText("");
+			costField.setText(""); //$NON-NLS-1$
 		}
 		else{
-			costField.setText(cost+"");
+			costField.setText(Integer.toString(cost));
 		}
 	}
 

@@ -16,6 +16,7 @@ public class SMetaEntryViewFactory extends AbstractFactory<MetaEntryView, MetaEn
 		super(dictionary);
 	}
 
+	@Override
 	public SMetaEntryView build(ModelToViewModelMapperAPI mapper, MetaEntryAPI meta){
 		callModulesInitial(meta, mapper);
 		SMetaEntryView view = new SMetaEntryView(dictionary, (MetaEntryViewAttributesAPI) mapper.getViewAttributes(meta));

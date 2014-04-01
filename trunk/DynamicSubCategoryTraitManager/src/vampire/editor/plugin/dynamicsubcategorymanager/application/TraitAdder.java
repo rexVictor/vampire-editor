@@ -61,7 +61,7 @@ public class TraitAdder implements TraitListener, SubCategoryListener{
 		if (positionOccured == lastIndex){
 			if (!event.getNewName().trim().isEmpty()){
 					TraitControllerAPI clone = first.clone();
-					clone.setTraitName("");
+					clone.setTraitName(""); //$NON-NLS-1$
 					ValueControllerAPI valueController = clone.getValueController();
 					valueController.setTempValue(-1);
 					valueController.setValue(0);

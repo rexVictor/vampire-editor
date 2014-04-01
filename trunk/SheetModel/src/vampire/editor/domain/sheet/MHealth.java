@@ -35,6 +35,7 @@ import vampire.editor.plugin.api.domain.sheet.HealthEntry;
  */
 class MHealth extends Data<HealthEntry> implements Health{
 	
+	@Override
 	public MHealth clone(){
 		return (MHealth) super.clone();
 	}

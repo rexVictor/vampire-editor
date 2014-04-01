@@ -43,6 +43,7 @@ public interface BloodPoolViewAttributesAPI extends PublicCloneable{
 	 */
 	public int getSize();
 	
+	@Override
 	public BloodPoolViewAttributesAPI clone();
 
 }

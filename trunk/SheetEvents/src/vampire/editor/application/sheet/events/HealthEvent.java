@@ -42,14 +42,17 @@ public class HealthEvent implements HealthEventAPI{
 		this.removed = removed;
 	}
 
+	@Override
 	public HealthControllerAPI getSource() {
 		return controller;
 	}
 
+	@Override
 	public HealthEntryControllerAPI getAdded() {
 		return added;
 	}
 
+	@Override
 	public HealthEntryControllerAPI getRemoved() {
 		return removed;
 	}

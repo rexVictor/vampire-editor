@@ -59,6 +59,7 @@ class MValueViewAttributes implements ValueViewAttributes{
 		return showSpace;
 	}
 
+	@Override
 	public void setShowSpace(boolean showSpace) {
 		this.showSpace = showSpace;
 	}
@@ -68,6 +69,7 @@ class MValueViewAttributes implements ValueViewAttributes{
 		return dynamic;
 	}
 
+	@Override
 	public void setDynamic(boolean dynamic) {
 		this.dynamic = dynamic;
 	}
@@ -77,6 +79,7 @@ class MValueViewAttributes implements ValueViewAttributes{
 		return circles;
 	}
 
+	@Override
 	public void setCircles(int circles) {
 		this.circles = circles;
 	}
@@ -87,6 +90,7 @@ class MValueViewAttributes implements ValueViewAttributes{
 		return tempSquared;
 	}
 
+	@Override
 	public void setTempSquared(boolean tempSquared) {
 		this.tempSquared = tempSquared;
 	}
@@ -94,17 +98,17 @@ class MValueViewAttributes implements ValueViewAttributes{
 	@Override
 	public String toString(){
 		StringBuilder builder = new StringBuilder();
-		builder.append("dynamic: ");
+		builder.append("dynamic: "); //$NON-NLS-1$
 		builder.append(dynamic);
-		builder.append(", showspace: ");
+		builder.append(", showspace: "); //$NON-NLS-1$
 		builder.append(showSpace);
-		builder.append(", tempSquared: ");
+		builder.append(", tempSquared: "); //$NON-NLS-1$
 		builder.append(tempSquared);
-		builder.append(", circles: ");
+		builder.append(", circles: "); //$NON-NLS-1$
 		builder.append(circles);
-		builder.append(", size: ");
+		builder.append(", size: "); //$NON-NLS-1$
 		builder.append(size);
-		builder.append("\n");
+		builder.append("\n"); //$NON-NLS-1$
 		return builder.toString();
 	}
 
@@ -113,6 +117,7 @@ class MValueViewAttributes implements ValueViewAttributes{
 		return size;
 	}
 
+	@Override
 	public void setSize(int size) {
 		this.size = size;
 	}

@@ -13,6 +13,7 @@ import vampire.editor.plugin.api.domain.BorderAPI;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 
+@SuppressWarnings("nls")
 public class ResourcesHolderMock implements ResourcesHolderAPI{
 	
 	public ResourcesHolderMock(){

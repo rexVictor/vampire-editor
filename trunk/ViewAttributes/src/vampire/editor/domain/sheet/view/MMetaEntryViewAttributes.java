@@ -65,6 +65,7 @@ class MMetaEntryViewAttributes implements MetaEntryViewAttributes{
 		return translate;
 	}
 
+	@Override
 	public void setTranslate(boolean translate) {
 		this.translate = translate;
 	}
@@ -117,14 +118,17 @@ class MMetaEntryViewAttributes implements MetaEntryViewAttributes{
 		return titleFont;
 	}
 
+	@Override
 	public void setContentFont(Font contentFont) {
 		this.contentFont = contentFont;
 	}
 
+	@Override
 	public void setLineCount(int lineCount) {
 		this.lineCount = lineCount;
 	}
 	
+	@Override
 	public void setTitleFont(Font titleFont) {
 		this.titleFont = titleFont;
 	}
@@ -132,14 +136,14 @@ class MMetaEntryViewAttributes implements MetaEntryViewAttributes{
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("linecount: ").append(lineCount).append("; ");
-		sb.append("translate: ").append(translate);
-		sb.append("titlefont: (").append(titleFont.getName()).append(",");
-		sb.append("size: ").append(titleFont.getSize()).append(", ");
-		sb.append("style: ").append(titleFont.getStyle()).append(") ");
-		sb.append("contentfont: (").append(contentFont.getName()).append(",");
-		sb.append("size: ").append(contentFont.getSize()).append(", ");
-		sb.append("style: ").append(contentFont.getStyle()).append(") ");
+		sb.append("linecount: ").append(lineCount).append("; "); //$NON-NLS-1$ //$NON-NLS-2$
+		sb.append("translate: ").append(translate); //$NON-NLS-1$
+		sb.append("titlefont: (").append(titleFont.getName()).append(","); //$NON-NLS-1$ //$NON-NLS-2$
+		sb.append("size: ").append(titleFont.getSize()).append(", "); //$NON-NLS-1$ //$NON-NLS-2$
+		sb.append("style: ").append(titleFont.getStyle()).append(") "); //$NON-NLS-1$ //$NON-NLS-2$
+		sb.append("contentfont: (").append(contentFont.getName()).append(","); //$NON-NLS-1$ //$NON-NLS-2$
+		sb.append("size: ").append(contentFont.getSize()).append(", "); //$NON-NLS-1$ //$NON-NLS-2$
+		sb.append("style: ").append(contentFont.getStyle()).append(") "); //$NON-NLS-1$ //$NON-NLS-2$
 		return sb.toString();
 	}
 

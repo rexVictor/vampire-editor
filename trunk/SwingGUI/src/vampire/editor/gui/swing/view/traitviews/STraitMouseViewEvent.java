@@ -14,10 +14,12 @@ public class STraitMouseViewEvent implements TraitMouseViewEvent{
 		this.button = button;
 	}
 
+	@Override
 	public int getClickCount() {
 		return clickCount;
 	}
 
+	@Override
 	public int getButton() {
 		return button;
 	}

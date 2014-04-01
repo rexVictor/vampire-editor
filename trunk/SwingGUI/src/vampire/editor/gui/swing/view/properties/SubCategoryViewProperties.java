@@ -19,9 +19,9 @@ public class SubCategoryViewProperties implements ActionListener{
 	
 	private final JPanel panel = new JPanel();
 	
-	private final JCheckBox showTitle = new JCheckBox("showTitle");
+	private final JCheckBox showTitle = new JCheckBox("showTitle"); //$NON-NLS-1$
 	
-	private final JButton button = new JButton("close");
+	private final JButton button = new JButton("close"); //$NON-NLS-1$
 	
 	public SubCategoryViewProperties(DictionaryAPI dictionary){
 	//	this.dictionary = dictionary;

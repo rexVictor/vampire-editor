@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.swing.JPopupMenu;
 
+import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.plugin.Activator;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
 
@@ -11,7 +12,7 @@ public class Constructor implements Activator{
 	
 	@Override
 	public void setManager(ManagerAPI manager) {
-		Loader loader = new Loader(manager.getResourcesHolder().getDictionary("sheet"));
+		Loader loader = new Loader(manager.getResourcesHolder().getDictionary(DictionaryAPI.SHEET_DICTIONARY));
 		Map<String, JPopupMenu> map = loader.loadFiles();
 		Module module = new Module(map);
 		manager.getGUI().getFactory().getMeritViewFactory().add(module);

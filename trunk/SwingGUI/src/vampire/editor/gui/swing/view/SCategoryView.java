@@ -21,6 +21,7 @@
 package vampire.editor.gui.swing.view;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,11 +32,10 @@ import javax.swing.JPanel;
 
 import vampire.editor.gui.swing.view.subcategoryviews.ISubCategoryView;
 import vampire.editor.plugin.api.view.events.DataViewListener;
-import vampire.editor.plugin.api.view.sheet.Addable;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 
-public class SCategoryView implements CategoryView, Addable<SubCategoryView>{
+public class SCategoryView implements CategoryView{
 	
 	private final JPanel panel = new JPanel();
 	
@@ -71,8 +71,8 @@ public class SCategoryView implements CategoryView, Addable<SubCategoryView>{
 	public void add(SubCategoryView entry) {
 		ISubCategoryView view = (ISubCategoryView) entry;
 		subCategoryViews.add(view);
-		view.getPanel().setAlignmentX(JPanel.TOP_ALIGNMENT);
-		view.getPanel().setAlignmentY(JPanel.TOP_ALIGNMENT);
+		view.getPanel().setAlignmentX(Component.TOP_ALIGNMENT);
+		view.getPanel().setAlignmentY(Component.TOP_ALIGNMENT);
 		subCategoriesPanel.add(view.getPanel());
 		
 	}

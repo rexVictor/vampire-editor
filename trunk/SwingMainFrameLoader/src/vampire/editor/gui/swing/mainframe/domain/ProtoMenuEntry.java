@@ -39,8 +39,8 @@ public class ProtoMenuEntry {
 
 	@Override
 	public String toString() {
-		return "ProtoMenuEntry [name=" + name + ", entries=" + entries
-				+ ", icon=" + icon + "]";
+		return "ProtoMenuEntry [name=" + name + ", entries=" + entries //$NON-NLS-1$ //$NON-NLS-2$
+				+ ", icon=" + icon + "]"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 	@JsonIgnore

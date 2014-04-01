@@ -63,6 +63,7 @@ public class MTrait implements Trait{
 		return name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -87,11 +88,12 @@ public class MTrait implements Trait{
 	
 	@Override
 	public String toString(){
-		String toReturn = "";
-		toReturn = toReturn+name+" : "+value.toString();
+		String toReturn = ""; //$NON-NLS-1$
+		toReturn = toReturn+name+" : "+value.toString(); //$NON-NLS-1$
 		return toReturn;
 	}
 
+	@Override
 	public void setValue(Value value) {
 		this.value = value;
 	}

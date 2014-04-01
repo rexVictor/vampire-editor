@@ -3,20 +3,19 @@ package vampire.editor.importer.vmpcs.application;
 import static org.junit.Assert.*;
 
 import java.nio.file.Paths;
-
 import java.nio.file.Path;
 
 import org.junit.Test;
 
 import vampire.editor.fileformat.vmpcs.domain.ModelToViewMap;
 
+@SuppressWarnings({"nls", "static-method"})
 public class ModelToViewMapImportTest {
 
 	@Test
 	public void testModelToViewMapImport() throws Throwable {
 		Path path = Paths.get("testcases","modeltoviewmap");
-		ModelImporter modelImporter = new ModelImporter();
-		ModelToViewMap modelToViewMap = modelImporter.buildProtoIdMap(path);
+		ModelToViewMap modelToViewMap = ModelImporter.buildProtoIdMap(path);
 		assertEquals((Integer) 1, modelToViewMap.getViewAttIdOf(1));
 		assertEquals((Integer) 3, modelToViewMap.getViewAttIdOf(15));
 		assertEquals((Integer) 3, modelToViewMap.getViewAttIdOf(16));

@@ -28,7 +28,7 @@ public class Version implements VersionAPI{
 	
 	private final byte[] version = new byte[]{1,0,0,0};
 	
-	private final String description = "Default model";
+	private final String description = "Default model"; //$NON-NLS-1$
 
 	@Override
 	public byte[] getVersion() {
@@ -43,9 +43,9 @@ public class Version implements VersionAPI{
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append(description + " - ");
+		sb.append(description + " - "); //$NON-NLS-1$
 		for (byte b : version){
-			sb.append(b+".");
+			sb.append(b+"."); //$NON-NLS-1$
 			sb.deleteCharAt(sb.length()-1);
 		}
 		return sb.toString();		

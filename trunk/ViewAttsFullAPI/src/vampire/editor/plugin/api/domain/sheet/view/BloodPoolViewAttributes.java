@@ -26,11 +26,7 @@ import java.awt.Font;
 
 public interface BloodPoolViewAttributes extends BloodPoolViewAttributesAPI{
 
-	public Font getFont();
-
 	public void setFont(Font font);
-
-	public int getSize();
 
 	public void setSize(int size);
 
@@ -39,8 +35,10 @@ public interface BloodPoolViewAttributes extends BloodPoolViewAttributesAPI{
 	 * @param that
 	 * @return if this and that are equal
 	 */
+	@Override
 	public boolean equals(Object that);
 
+	@Override
 	public BloodPoolViewAttributes clone();
 
 }

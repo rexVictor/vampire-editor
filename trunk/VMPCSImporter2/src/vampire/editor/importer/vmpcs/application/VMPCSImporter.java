@@ -21,21 +21,21 @@
 package vampire.editor.importer.vmpcs.application;
 
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLClassLoader;
+import java.io.InputStream;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.Properties;
 import java.util.Set;
 
 import vampire.editor.fileformat.vmpcs.domain.Constructors;
+import vampire.editor.fileformat.vmpcs.domain.FileNames;
 import vampire.editor.fileformat.vmpcs.domain.MapidResolver;
 import vampire.editor.fileformat.vmpcs.domain.ModelToViewMap;
 import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
+import vampire.editor.fileformat.vmpcs.domain.StringConstants;
 import vampire.editor.importer.vmpcs.domain.MergedObjects;
 import vampire.editor.plugin.api.domain.ResourcesHolderAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelConstructors;
@@ -50,8 +50,6 @@ public class VMPCSImporter implements SheetImporter{
 	
 	private final ResourcesHolderAPI resourcesHolder;
 	
-	private final ModelImporter modelImporter = new ModelImporter();
-	
 	private final MapidResolver mapidResolver = new MapidResolver();
 	
 	private final ObjectsLoader objectsLoader;
@@ -62,6 +60,7 @@ public class VMPCSImporter implements SheetImporter{
 		this.objectsLoader = new ObjectsLoader(resourcesHolder);
 	}
 
+	@Override
 	public VampireDocument loadDocument(Path path) throws DocumentImportException{
 		try {
 			return loadDocument(path, false);
@@ -70,56 +69,54 @@ public class VMPCSImporter implements SheetImporter{
 		}
 	}
 	
-	public VampireDocument loadDocument(Path path, boolean compressed) throws IOException{
+	public VampireDocument loadDocument(Path p, boolean compressed) throws IOException{
+		Path path = p;
 		Path zipPath = path;
-		FileSystem fileSystem = FileSystems.newFileSystem(zipPath,null);
-		Path pluginDirectory = fileSystem.getPath("/plugins");
-		path = fileSystem.getPath("/");
-		MergedObjects mergedObjects = objectsLoader.loadObjects(path);
-		ProtoSheet protoSheet = modelImporter.loadSheet(path.resolve("sheet.json"));
-		Map<Integer, Object> protoMapIdMap = mapidResolver.generateMapIdMap(protoSheet);
-		ModelToViewMap modelToViewMap = modelImporter.buildProtoIdMap(path);
-		Objects<Value> realValues = new Objects<>(path, Value.class, resourcesHolder, null, null);
-		SheetAndMapIdHolder holder = modelImporter.buildSheet(protoSheet, protoMapIdMap, realValues);
-		Map<Integer, Object> mapIdToRealValues = holder.getMapIdToRealModelMap();
-		ModelToViewModelMapper modelToViewModelMapper = Constructors.constructors.createModelToViewModelMapper();
-		Set<Integer> keys = mapIdToRealValues.keySet();
-		for (Integer mapid : keys){
-			Object object = mapIdToRealValues.get(mapid);
-			Integer id = modelToViewMap.getViewAttIdOf(mapid);
-			Object viewAtts = mergedObjects.getObjectById(id);
-			modelToViewModelMapper.putView(object, viewAtts);
+		try(FileSystem fileSystem = FileSystems.newFileSystem(zipPath,null)){
+			Path pluginDirectory = fileSystem.getPath(FileNames.ROOT, FileNames.PLUGINS);
+			path = fileSystem.getPath(FileNames.ROOT);
+			MergedObjects mergedObjects = objectsLoader.loadObjects(path);
+			ProtoSheet protoSheet = ModelImporter.loadSheet(path.resolve(FileNames.SHEET));
+			Map<Integer, Object> protoMapIdMap = mapidResolver.generateMapIdMap(protoSheet);
+			ModelToViewMap modelToViewMap = ModelImporter.buildProtoIdMap(path);
+			Objects<Value> realValues = new Objects<>(path, Value.class, resourcesHolder, null, null);
+			SheetAndMapIdHolder holder = ModelImporter.buildSheet(protoSheet, protoMapIdMap, realValues);
+			Map<Integer, Object> mapIdToRealValues = holder.getMapIdToRealModelMap();
+			ModelToViewModelMapper modelToViewModelMapper = Constructors.constructors.createModelToViewModelMapper();
+			Set<Integer> keys = mapIdToRealValues.keySet();
+			for (Integer mapid : keys){
+				Object object = mapIdToRealValues.get(mapid);
+				Integer id = modelToViewMap.getViewAttIdOf(mapid);
+				Object viewAtts = mergedObjects.getObjectById(id);
+				modelToViewModelMapper.putView(object, viewAtts);
+			}
+			VampireDocument vampDoc = Constructors.constructors.createVampireDocument
+					(holder.getSheet(), modelToViewModelMapper, pluginDirectory);
+			vampDoc.setFileSystem(fileSystem);
+			vampDoc.setPath(zipPath);
+			return vampDoc;
 		}
-		VampireDocument vampDoc = Constructors.constructors.createVampireDocument
-				(holder.getSheet(), modelToViewModelMapper, pluginDirectory);
-		vampDoc.setFileSystem(fileSystem);
-		vampDoc.setPath(zipPath);
-		return vampDoc;
+		
 	}
 	
 	@Override
 	public boolean canHandle(Path path) {
-		if(path.getFileName().toString().endsWith(".vmpcs")){
-			try(FileSystem fileSystem = FileSystems.newFileSystem(path,null);
-					URLClassLoader classLoader = 
-							new URLClassLoader(new URL[]{fileSystem.getPath("/").toUri().toURL()});){
-				Path version = fileSystem.getPath("/version.properties");
+		if(path.getFileName().toString().endsWith(StringConstants.FORMAT)){
+			try(FileSystem fileSystem = FileSystems.newFileSystem(path,null)){
+				Path version = fileSystem.getPath(FileNames.ROOT);
+				version = version.resolve(FileNames.VERSION);
 				if (!Files.exists(version)){
 					return false;
 				}
-				try{
-					ResourceBundle bundle = ResourceBundle.getBundle("version", Locale.getDefault(), classLoader);
-					String versionString = bundle.getString("version");
-					ResourceBundle.clearCache(classLoader);
-					return "1.0.0.0".equals(versionString);
-				}
-				catch (Throwable e){
-					return true;
+				try (InputStream stream = Files.newInputStream(version)){
+					Properties properties = new Properties();
+					properties.load(stream);
+					String versionString = properties.getProperty(StringConstants.VERSION);
+					return "1.0.0.0".equals(versionString); //$NON-NLS-1$
 				}
 				
 			}
 			catch (IOException exception){
-				return false;
 			}
 		}
 		return false;
@@ -131,6 +128,4 @@ public class VMPCSImporter implements SheetImporter{
 		Constructors.viewAttConstructors = viewAttConstructors;
 	}
 	
-	
-
 }

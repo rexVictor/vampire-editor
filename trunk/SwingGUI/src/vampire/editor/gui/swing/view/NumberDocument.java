@@ -21,7 +21,7 @@ public class NumberDocument extends LimitedDocument{
 	    }
 	    String current = getText(0, getLength());
 	    if (getLength() == 0){
-	    	if ("+".equals(str) || "-".equals(str)){
+	    	if ("+".equals(str) || "-".equals(str)){ //$NON-NLS-1$ //$NON-NLS-2$
 	    		super.insertString(offset, str, attr);
 	    	}
 	    }

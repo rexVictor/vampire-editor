@@ -41,6 +41,7 @@ class StaticSpacedValueView extends SpacedValueView{
 	@Override
 	public void removeCircle(){}
 
+	@Override
 	public StaticSpacedValueView clone(){
 		ValueViewAttributes clone = viewAtts.clone();
 		return new StaticSpacedValueView(clone);

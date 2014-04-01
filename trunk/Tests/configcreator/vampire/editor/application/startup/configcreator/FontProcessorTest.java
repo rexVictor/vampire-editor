@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.awt.Font;
 import java.nio.file.Paths;
-
 import java.nio.file.Path;
 import java.util.List;
 
@@ -13,6 +12,8 @@ import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.junit.Test;
 
+
+@SuppressWarnings({"static-method", "nls"})
 public class FontProcessorTest {
 
 	private Element initialize() throws Exception {

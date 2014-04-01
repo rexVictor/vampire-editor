@@ -28,7 +28,7 @@ import java.awt.Font;
  * @author rex_victor
  *
  */
-public interface CategoryViewAttributesAPI extends DataViewAttributesAPI, PublicCloneable{
+public interface CategoryViewAttributesAPI extends DataViewAttributesAPI{
 	
 	/**
 	 * Returns if the corresponding category shall be displayed with a separation line.

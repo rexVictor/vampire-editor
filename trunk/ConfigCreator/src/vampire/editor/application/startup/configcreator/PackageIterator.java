@@ -39,16 +39,17 @@ public class PackageIterator {
 	public static <C> List<Class<? extends C>> getClassesOfType(Class<C> clazz,
 			String packageName) throws IOException, URISyntaxException, ClassNotFoundException{
 		List<Class<? extends C>> classes = new LinkedList<>();
-		String resource = packageName.replace(".", "/");
+		String resource = packageName.replace(".", "/"); //$NON-NLS-1$ //$NON-NLS-2$
 		URL url = new PackageIterator().getClass().getClassLoader().getResource(resource);
 		String toManipulate = url.toString();
 		Path path = null;
-		if (toManipulate.contains("!")){
-			String jar = toManipulate.replaceAll(".*:", "");
-			jar = jar.replaceAll("!.*", "");
-			FileSystem fs = FileSystems.newFileSystem(Paths.get(jar), null);
-			toManipulate = url.toString().replaceAll(".*!", "");
-			path = fs.getPath(toManipulate);
+		if (toManipulate.contains("!")){ //$NON-NLS-1$
+			String jar = toManipulate.replaceAll(".*:", ""); //$NON-NLS-1$ //$NON-NLS-2$
+			jar = jar.replaceAll("!.*", ""); //$NON-NLS-1$ //$NON-NLS-2$
+			try(FileSystem fs = FileSystems.newFileSystem(Paths.get(jar), null)){
+				toManipulate = url.toString().replaceAll(".*!", ""); //$NON-NLS-1$ //$NON-NLS-2$
+				path = fs.getPath(toManipulate);
+			}
 		}
 		else{
 			path = Paths.get(url.toURI());
@@ -60,15 +61,17 @@ public class PackageIterator {
 	@SuppressWarnings("unchecked")
 	private static <C> void loadClasses(Path path, Path origin, Class<C> assignable,
 			String packageName, List<Class<? extends C>> classes) throws IOException, ClassNotFoundException{
-		DirectoryStream<Path> stream = Files.newDirectoryStream(path);
-		for (Path p : stream){
-			Path relative = origin.relativize(p);
-			String className = packageName+"."+relative.toString().replace("/", ".");
-			className = className.substring(0, className.length()-6);
-			Class<?> clazz = Class.forName(className);
-			if (assignable.isAssignableFrom(clazz))
-				classes.add((Class<? extends C>) clazz);
+		try( DirectoryStream<Path> stream = Files.newDirectoryStream(path)){
+			for (Path p : stream){
+				Path relative = origin.relativize(p);
+				String className = packageName+"."+relative.toString().replace("/", "."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				className = className.substring(0, className.length()-6);
+				Class<?> clazz = Class.forName(className);
+				if (assignable.isAssignableFrom(clazz))
+					classes.add((Class<? extends C>) clazz);
+			}
 		}
+		
 	}
 
 }

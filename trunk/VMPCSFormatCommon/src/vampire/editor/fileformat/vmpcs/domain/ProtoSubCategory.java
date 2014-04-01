@@ -62,13 +62,9 @@ public class ProtoSubCategory implements MapId, MapIdChilds, ToRealModelTransfor
 		this.mapid = mapId;
 	}
 
-
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 
 	public void setTraits(List<ProtoTrait> protoTraits) {
 		this.traits = protoTraits;
@@ -76,6 +72,7 @@ public class ProtoSubCategory implements MapId, MapIdChilds, ToRealModelTransfor
 
 
 
+	@Override
 	public Integer getMapid() {
 		return mapid;
 	}
@@ -96,23 +93,11 @@ public class ProtoSubCategory implements MapId, MapIdChilds, ToRealModelTransfor
 		return traits.get(i);
 	}
 
-
-
-	@Override
-	public String toString() {
-		return "ProtoSubCategory [mapid=" + mapid + ", name=" + name
-				+ ", traits=" + traits + "]";
-	}
-
-
-
 	@JsonIgnore
 	@Override
 	public List<? extends MapId> getMapIdChilds() {
 		return traits;
 	}
-
-
 
 	@Override
 	public SubCategory toRealModel() {
@@ -123,13 +108,8 @@ public class ProtoSubCategory implements MapId, MapIdChilds, ToRealModelTransfor
 				subCategory.add(protoTrait.toRealModel());
 			}
 		}
-		
 		return subCategory;
 	}
-
-
-
-
 
 	@Override
 	public int hashCode() {
@@ -139,10 +119,6 @@ public class ProtoSubCategory implements MapId, MapIdChilds, ToRealModelTransfor
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
-
-
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -172,7 +148,5 @@ public class ProtoSubCategory implements MapId, MapIdChilds, ToRealModelTransfor
 		}
 		return true;
 	}
-	
-	
 
 }

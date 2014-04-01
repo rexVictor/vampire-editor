@@ -33,12 +33,12 @@ public interface MeritViewAttributes extends MeritViewAttributesAPI{
 	 * @param that
 	 * @return if this and that are equal
 	 */
+	@Override
 	public boolean equals(Object obj);
-
-	public Font getFont();
 
 	public void setFont(Font font);
 
+	@Override
 	public MeritViewAttributes clone();
 
 }

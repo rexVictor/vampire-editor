@@ -38,16 +38,18 @@ class MModelToViewModelMapper implements ModelToViewModelMapper{
 	
 	private final Map<Object, Object> associations = new IdentityHashMap<>();
 	
+	@Override
 	public void putView(Object model, Object view){
 		if (associations.containsKey(model) || associations.containsValue(view)){
 			if (associations.get(model) != view){
-				throw new DuplicateModelViewPairException("Already inserted!\n"+
-						model + " or " + view);
+				throw new DuplicateModelViewPairException("Already inserted!\n"+ //$NON-NLS-1$
+						model + " or " + view); //$NON-NLS-1$
 			}
 		}
 		associations.put(model, view);
 	}
 	
+	@Override
 	public Object getViewAttributes(Object object){
 		return associations.get(object);
 	}
@@ -68,6 +70,7 @@ class MModelToViewModelMapper implements ModelToViewModelMapper{
 		associations.remove(trait);
 	}
 	
+	@Override
 	public Set<Object> keySet(){
 		return associations.keySet();
 	}

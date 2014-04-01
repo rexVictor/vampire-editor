@@ -15,8 +15,8 @@ public class AboutView implements Trigger{
 	public AboutView(DictionaryAPI dictionary){
 		JTextPane pane = new JTextPane();
 		pane.setEditable(false);
-		pane.setContentType("text/html");
-		pane.setText(dictionary.getValue("aboutcontent"));
+		pane.setContentType("text/html"); //$NON-NLS-1$
+		pane.setText(dictionary.getValue("aboutcontent")); //$NON-NLS-1$
 		dialog.add(pane);
 		dialog.setModalityType(ModalityType.APPLICATION_MODAL);
 	}

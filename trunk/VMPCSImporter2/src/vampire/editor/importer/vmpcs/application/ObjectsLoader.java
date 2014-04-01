@@ -53,7 +53,7 @@ public class ObjectsLoader {
 		Set<Class<?>> viewAtts = new HashSet<>();
 		for (Class<?> clazz : classesSet){
 			String value = map.get(clazz);
-			if (value.endsWith("viewatts.json")){
+			if (value.endsWith("viewatts.json")){ //$NON-NLS-1$
 				viewAtts.add(clazz);
 			}
 		}

@@ -58,6 +58,7 @@ class MBloodPoolViewAttributes implements FontSettable, BloodPoolViewAttributes 
 		return font;
 	}
 
+	@Override
 	public void setFont(Font font) {
 		this.font = font;
 	}
@@ -67,6 +68,7 @@ class MBloodPoolViewAttributes implements FontSettable, BloodPoolViewAttributes 
 		return size;
 	}
 
+	@Override
 	public void setSize(int size) {
 		this.size = size;
 	}
@@ -110,6 +112,7 @@ class MBloodPoolViewAttributes implements FontSettable, BloodPoolViewAttributes 
 		return true;
 	}
 	
+	@Override
 	public BloodPoolViewAttributes clone(){
 		return new MBloodPoolViewAttributes(font, size);
 	}

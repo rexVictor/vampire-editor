@@ -51,6 +51,6 @@ public class SHeathEntryViewEvent implements HealthViewEntryEvent{
 	@Override
 	public DamageType getDamageType() {
 		return damageType;
-	};
+	}
 
 }

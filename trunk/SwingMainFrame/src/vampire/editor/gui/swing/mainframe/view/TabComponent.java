@@ -31,7 +31,7 @@ public class TabComponent{
 	
 	private final JLabel title = new JLabel();
 	
-	private final JButton closeButton = new JButton("x");
+	private final JButton closeButton = new JButton("x"); //$NON-NLS-1$
 	
 	private final JPanel tabComponent = new JPanel();
 	

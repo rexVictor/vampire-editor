@@ -11,6 +11,7 @@ import vampire.editor.application.GeneralController;
 import vampire.editor.application.startup.configcreator.ConfigCreator;
 import vampire.editor.domain.config.Config;
 import vampire.editor.plugin.Manager;
+import vampire.editor.plugin.api.domain.PathConstants;
 
 public class Main {
 
@@ -19,11 +20,11 @@ public class Main {
 	 */
 	public static void main(String... args) throws Throwable{
 		GraphicsEnvironment environment = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		Path fontPath = Paths.get("resources", "fonts", "CAS_ANTN.TTF");
-		InputStream stream = Files.newInputStream(fontPath);
-		environment.registerFont(Font.createFont(Font.TRUETYPE_FONT, stream));
-		stream.close();
-		Path configPath = Paths.get("resources", "coreconfig.xml");
+		Path fontPath = Paths.get("resources", "fonts", "CAS_ANTN.TTF"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		try(InputStream stream = Files.newInputStream(fontPath)){
+			environment.registerFont(Font.createFont(Font.TRUETYPE_FONT, stream));
+		}
+		Path configPath = PathConstants.CORECONFIG;
 		ConfigCreator creator = new ConfigCreator();
 		Config config = creator.loadConfig(configPath);
 		GeneralController generalController = new GeneralController(config);

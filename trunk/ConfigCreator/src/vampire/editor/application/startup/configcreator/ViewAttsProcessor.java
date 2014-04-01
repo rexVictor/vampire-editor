@@ -40,8 +40,8 @@ public class ViewAttsProcessor implements ElementProcessor{
 			compatibleSpecs.add(versionSpec.version());
 			List<String> compatibleImpls = new ArrayList<>(Arrays.asList(versionImpl.compatibleWithSpecifications()));
 			if (Collections.disjoint(compatibleSpecs, compatibleImpls)){
-				throw new ConfigImportException("The View Attributes implementation does not support" +
-						" the current specification.");
+				throw new ConfigImportException("The View Attributes implementation does not support" + //$NON-NLS-1$
+						" the current specification."); //$NON-NLS-1$
 			}
 			
 			configCreator.setViewAttConstructors(clazz.newInstance());
@@ -52,7 +52,7 @@ public class ViewAttsProcessor implements ElementProcessor{
 
 	@Override
 	public String getName() {
-		return "viewatts";
+		return "viewatts"; //$NON-NLS-1$
 	}
 
 }

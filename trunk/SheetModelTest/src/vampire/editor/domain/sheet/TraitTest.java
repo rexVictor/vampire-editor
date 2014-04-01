@@ -27,14 +27,15 @@ import org.junit.Test;
 import vampire.editor.plugin.api.domain.sheet.Trait;
 import vampire.editor.plugin.api.domain.sheet.Value;
 
-
+@SuppressWarnings("static-method")
 public class TraitTest {
+	
 	
 	@Test
 	public void testClone1() {
 		Value value = new MValue(2, 1, 7);
 		value.setTempValue(6);
-		Trait trait = new MTrait("name1", value);
+		Trait trait = new MTrait("name1", value); //$NON-NLS-1$
 		Trait clone = trait.clone();
 		Value clonedValue = clone.getValue();
 		assertEquals(value, clonedValue);
@@ -47,7 +48,7 @@ public class TraitTest {
 	public void testClone2() {
 		MValue value = new MValue(4, 3, 9);
 		value.setTempValue(9);
-		Trait trait = new MTrait("name2", value);
+		Trait trait = new MTrait("name2", value); //$NON-NLS-1$
 		Trait clone = trait.clone();
 		Value clonedValue = clone.getValue();
 		assertEquals(value, clonedValue);
@@ -60,7 +61,7 @@ public class TraitTest {
 	public void testClone3() {
 		MValue value = new MValue(0, 0, 10);
 		value.setTempValue(9);
-		Trait trait = new MTrait("name3", value);
+		Trait trait = new MTrait("name3", value); //$NON-NLS-1$
 		Trait clone = trait.clone();
 		Value clonedValue = clone.getValue();
 		assertEquals(value, clonedValue);

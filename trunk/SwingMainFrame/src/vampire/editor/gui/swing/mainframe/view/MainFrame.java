@@ -53,7 +53,7 @@ public class MainFrame {
 	
 	public MainFrame(JMenuBar menuBar, ManagerAPI manager) {
 		super();
-		Path iconPath = Paths.get("resources", "guiconfig", "icon.gif");
+		Path iconPath = Paths.get("resources", "guiconfig", "icon.gif"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		Image image = null;
 		try ( InputStream stream = Files.newInputStream(iconPath)){
 			image = ImageIO.read(stream);
@@ -63,7 +63,7 @@ public class MainFrame {
 		contentPane.setLayout(new BorderLayout());
 		frame.setContentPane(contentPane);
 		frame.setIconImage(image);
-		frame.setTitle("Vampire Editor");
+		frame.setTitle("Vampire Editor"); //$NON-NLS-1$
 		frame.setSize(1000, 700);
 		frame.setJMenuBar(menuBar);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +85,7 @@ public class MainFrame {
 	}
 	
 	public void addPluginComponent(Container container){
-		pluginPanel.add((Container) container);
+		pluginPanel.add(container);
 	}
 
 }

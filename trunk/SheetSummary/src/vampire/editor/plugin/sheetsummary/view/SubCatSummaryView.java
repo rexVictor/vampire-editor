@@ -16,7 +16,7 @@ public class SubCatSummaryView {
 	}
 	
 	public void setSum(int sum){
-		label.setText(sum+"");
+		label.setText(Integer.toString(sum));
 		label.invalidate();
 	}
 	

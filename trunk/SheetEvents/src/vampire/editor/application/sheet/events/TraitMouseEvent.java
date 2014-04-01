@@ -18,14 +18,17 @@ public class TraitMouseEvent implements TraitMouseEventAPI{
 		this.button = button;
 	}
 	
+	@Override
 	public TraitControllerAPI getSource() {
 		return source;
 	}
 
+	@Override
 	public int getClickCount() {
 		return clickCount;
 	}
 
+	@Override
 	public int getButton() {
 		return button;
 	}

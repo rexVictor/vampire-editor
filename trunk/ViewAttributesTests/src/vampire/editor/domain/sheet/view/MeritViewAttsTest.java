@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import vampire.editor.plugin.api.domain.sheet.view.MeritViewAttributes;
 
+@SuppressWarnings("static-method")
 public class MeritViewAttsTest {
 
 	private static Font FONT = new Font(Font.SANS_SERIF, 0, 10);

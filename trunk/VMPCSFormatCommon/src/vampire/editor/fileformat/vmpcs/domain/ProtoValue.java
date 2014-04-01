@@ -60,13 +60,9 @@ public class ProtoValue implements MapId{
 		return id;
 	}
 
+	@Override
 	public Integer getMapid() {
 		return mapid;
-	}
-
-	@Override
-	public String toString() {
-		return "ProtoValue [id=" + id + ", mapid=" + mapid + "]";
 	}
 
 	@Override

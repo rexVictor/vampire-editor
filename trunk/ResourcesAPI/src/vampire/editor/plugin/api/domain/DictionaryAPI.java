@@ -33,5 +33,9 @@ public interface DictionaryAPI {
 	public String getValue(String key);
 	
 	public String getKey(String value);
+	
+	public static final String SHEET_DICTIONARY = "sheet"; //$NON-NLS-1$
+	
+	public static final String GENERAL_DICTIONARY = "general"; //$NON-NLS-1$
 
 }

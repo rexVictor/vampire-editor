@@ -24,13 +24,12 @@ package vampire.editor.domain.sheet;
 
 import vampire.editor.plugin.api.domain.sheet.DamageType;
 import vampire.editor.plugin.api.domain.sheet.HealthEntry;
-import vampire.editor.plugin.api.domain.sheet.HealthEntryAPI;
 
 /**
  * HealthEntry stores the penalty of the dice pool, the name of the wounded level and the current damage type.
  * @author rex_victor
  */
-class MHealthEntry implements HealthEntryAPI, HealthEntry {
+class MHealthEntry implements HealthEntry {
 	
 	private int penalty;
 	
@@ -57,6 +56,7 @@ class MHealthEntry implements HealthEntryAPI, HealthEntry {
 	}
 
 	
+	@Override
 	public void setPenalty(int penalty) {
 		this.penalty = penalty;
 	}
@@ -67,6 +67,7 @@ class MHealthEntry implements HealthEntryAPI, HealthEntry {
 	}
 
 	
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -77,6 +78,7 @@ class MHealthEntry implements HealthEntryAPI, HealthEntry {
 	}
 
 	
+	@Override
 	public void setDamageType(DamageType damageType) {
 		this.damageType = damageType;
 	}

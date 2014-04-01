@@ -13,7 +13,9 @@ import vampire.editor.plugin.api.domain.sheet.Value;
 
 public class ProtoValueBuilder {
 	
-	public Map<Value, Integer> buildProtoValues(Map<Integer, Object> protoIdMap, IntegerWrap integerWrap){
+	private ProtoValueBuilder(){}
+	
+	public static Map<Value, Integer> buildProtoValues(Map<Integer, Object> protoIdMap, IntegerWrap integerWrap){
 		IntegerWrap idWrap = new IntegerWrap();
 		Map<Value, Integer> valueToId = new HashMap<>();
 		List<ProtoTrait> protoTraits = getProtoTraits(protoIdMap);
@@ -36,7 +38,7 @@ public class ProtoValueBuilder {
 		return valueToId;
 	}
 	
-	private List<ProtoTrait> getProtoTraits(Map<Integer, Object> map){
+	private static List<ProtoTrait> getProtoTraits(Map<Integer, Object> map){
 		List<ProtoTrait> traits = new LinkedList<>();
 		Set<Integer> keys = map.keySet();
 		for (Integer i : keys){

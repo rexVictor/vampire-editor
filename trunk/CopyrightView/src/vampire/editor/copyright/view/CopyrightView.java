@@ -1,7 +1,9 @@
 package vampire.editor.copyright.view;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Container;
+import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -44,27 +46,27 @@ public class CopyrightView implements TreeSelectionListener, ActionListener{
 	
 	private final Map<MutableTreeNode, Project> projects = new HashMap<>();
 	
-	private final DefaultMutableTreeNode root = new DefaultMutableTreeNode("copyright");
+	private final DefaultMutableTreeNode root = new DefaultMutableTreeNode("copyright"); //$NON-NLS-1$
 	
-	private final JButton button = new JButton("close");
+	private final JButton button = new JButton("close"); //$NON-NLS-1$
 	
 	public CopyrightView(List<Project> projects){
 		tree = new JTree(root);
 		tree.addTreeSelectionListener(this);
-		license.setContentType("text/html");
+		license.setContentType("text/html"); //$NON-NLS-1$
 		
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-		nameLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		panel.add(nameLabel);
-		copyrightLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		copyrightLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		panel.add(copyrightLabel);
-		link.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		link.setAlignmentX(Component.LEFT_ALIGNMENT);
 		panel.add(link);
-		licenseLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+		licenseLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		panel.add(licenseLabel);
 		panel.add(new JScrollPane(license));
 		panel.add(Box.createGlue());
-		dialog.setModalityType(JDialog.DEFAULT_MODALITY_TYPE);
+		dialog.setModalityType(Dialog.DEFAULT_MODALITY_TYPE);
 		
 		button.addActionListener(this);
 		
@@ -100,8 +102,8 @@ public class CopyrightView implements TreeSelectionListener, ActionListener{
 		if (project == null){
 			return;
 		}
-		copyrightLabel.setText("\u00a9 " + project.getCopyright());
-		nameLabel.setText("Project name: " + project.getName());
+		copyrightLabel.setText("\u00a9 " + project.getCopyright()); //$NON-NLS-1$
+		nameLabel.setText("Project name: " + project.getName()); //$NON-NLS-1$
 		license.setText(project.getLicensetext());
 		link.setText(project.getLink());
 		licenseLabel.setText(project.getLicense());

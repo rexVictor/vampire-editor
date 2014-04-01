@@ -8,6 +8,7 @@ import vampire.editor.plugin.api.plugin.view.factories.ValueViewFactory;
 
 public class SValueViewFactory implements ValueViewFactory{
 	
+	@Override
 	public AbstractValueView build(ValueAPI value, ModelToViewModelMapperAPI mapper){
 		AbstractValueView view = 
 				AbstractValueView.getValueView((

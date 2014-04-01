@@ -16,6 +16,7 @@ import vampire.editor.plugin.api.domain.sheet.view.ViewAttConstructors;
 import vampire.editor.sheetloader.application.importer.mock.FontObjectsMock;
 import vampire.editor.sheetloader.application.importer.mock.ResourcesHolderMock;
 
+@SuppressWarnings("nls")
 public class HealthEntryImportTest {
 
 	private Objects<HealthEntryViewAttributes> objects;

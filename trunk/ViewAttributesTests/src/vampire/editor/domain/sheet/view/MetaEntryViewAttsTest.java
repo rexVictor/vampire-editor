@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import vampire.editor.plugin.api.domain.sheet.view.MetaEntryViewAttributes;
 
+@SuppressWarnings("static-method")
 public class MetaEntryViewAttsTest {
 
 	private static Font FONT = new Font(Font.SANS_SERIF, 0, 10);
@@ -94,7 +95,7 @@ public class MetaEntryViewAttsTest {
 	}
 	
 	@Test
-	public void testNotEqualsObject3(){;
+	public void testNotEqualsObject3(){
 		MetaEntryViewAttributes viewAtts1 = new MMetaEntryViewAttributes(FONT, 6, FONT2, false);
 		MetaEntryViewAttributes viewAtts2 = new MMetaEntryViewAttributes(FONT, 6, FONT, false);
 		assertFalse(viewAtts1.equals(viewAtts2));

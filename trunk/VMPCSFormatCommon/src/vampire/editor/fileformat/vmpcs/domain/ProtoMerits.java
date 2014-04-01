@@ -68,6 +68,7 @@ public class ProtoMerits implements MapId, MapIdChilds, ToRealModelTransformable
 		this.name = merits.getName();
 	}
 
+	@Override
 	public Integer getMapid() {
 		return mapid;
 	}
@@ -90,12 +91,6 @@ public class ProtoMerits implements MapId, MapIdChilds, ToRealModelTransformable
 	
 	public ProtoMerit getEntry(Integer i){
 		return entries.get(i);
-	}
-
-	@Override
-	public String toString() {
-		return "ProtoMerits [mapid=" + mapid + ", entries="
-				+ entries + "]";
 	}
 
 	@JsonIgnore

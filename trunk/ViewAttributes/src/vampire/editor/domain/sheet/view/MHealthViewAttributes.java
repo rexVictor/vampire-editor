@@ -56,6 +56,7 @@ class MHealthViewAttributes implements FontSettable, HealthViewAttributes{
 		return font;
 	}
 
+	@Override
 	public void setFont(Font font) {
 		this.font = font;
 	}

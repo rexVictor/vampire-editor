@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import vampire.editor.plugin.api.domain.sheet.view.HealthEntryViewAttributes;
 
+@SuppressWarnings("static-method")
 public class HealthEntryViewAttsTest {
 	
 	private static Font FONT = new Font(Font.SANS_SERIF, 0, 10);
@@ -94,7 +95,7 @@ public class HealthEntryViewAttsTest {
 	}
 	
 	@Test
-	public void testNotEqualsObject3(){;
+	public void testNotEqualsObject3(){
 		HealthEntryViewAttributes viewAtts1 = new MHealthEntryViewAttributes(FONT, 5);
 		HealthEntryViewAttributes viewAtts2 = new MHealthEntryViewAttributes(FONT2, 8);
 		assertFalse(viewAtts1.equals(viewAtts2));

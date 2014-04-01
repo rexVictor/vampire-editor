@@ -56,6 +56,7 @@ public class ProtoBloodPool implements MapId, ToRealModelTransformable<BloodPool
 
 
 
+	@Override
 	public Integer getMapid() {
 		return mapid;
 	}
@@ -78,12 +79,6 @@ public class ProtoBloodPool implements MapId, ToRealModelTransformable<BloodPool
 
 	public void setMaxValue(Integer maxValue) {
 		this.maxValue = maxValue;
-	}
-
-	@Override
-	public String toString() {
-		return "ProtoBloodPool [mapid=" + mapid + ", value=" + value
-				+ ", maxValue=" + maxValue + "]";
 	}
 
 	@Override

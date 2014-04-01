@@ -27,6 +27,7 @@ public class STraitViewFactory extends AbstractFactory<TraitView, TraitAPI, Trai
 		modules.add(module);
 	}
 	
+	@Override
 	public TraitView build(ModelToViewModelMapperAPI mapper, TraitAPI trait){
 		ValueView valueView = valueViewFactory.build(trait.getValue(), mapper);
 		AbstractTraitView traitView = AbstractTraitView.buildTraitView(valueView, 

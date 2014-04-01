@@ -31,15 +31,15 @@ public class SheetSummaryView {
 		this.disciplines = disciplines;
 		this.backgrounds = backgrounds;
 		panel.setLayout(new GridLayout(0, 2));
-		panel.add(new JLabel(dictionary.getValue("attributes")));
+		panel.add(new JLabel(dictionary.getValue("attributes"))); //$NON-NLS-1$
 		panel.add(attributes.getPanel());
-		panel.add(new JLabel(dictionary.getValue("abilities")));
+		panel.add(new JLabel(dictionary.getValue("abilities"))); //$NON-NLS-1$
 		panel.add(abilities.getPanel());
-		panel.add(new JLabel(dictionary.getValue("virtues")));
+		panel.add(new JLabel(dictionary.getValue("virtues"))); //$NON-NLS-1$
 		panel.add(virtues.getComponent());
-		panel.add(new JLabel(dictionary.getValue("disciplines")));
+		panel.add(new JLabel(dictionary.getValue("disciplines"))); //$NON-NLS-1$
 		panel.add(disciplines.getComponent());
-		panel.add(new JLabel(dictionary.getValue("backgrounds")));
+		panel.add(new JLabel(dictionary.getValue("backgrounds"))); //$NON-NLS-1$
 		panel.add(backgrounds.getComponent());
 	}
 

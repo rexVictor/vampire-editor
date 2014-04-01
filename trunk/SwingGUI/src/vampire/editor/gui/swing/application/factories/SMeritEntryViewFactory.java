@@ -16,6 +16,7 @@ public class SMeritEntryViewFactory extends AbstractFactory<MeritEntryView, Meri
 		super(dictionary);
 	}
 
+	@Override
 	public SMeritEntryView build(ModelToViewModelMapperAPI mapper, MeritAPI merit){
 		callModulesInitial(merit, mapper);
 		SMeritEntryView view = new SMeritEntryView(dictionary, (MeritEntryViewAttibutesAPI) mapper.getViewAttributes(merit));

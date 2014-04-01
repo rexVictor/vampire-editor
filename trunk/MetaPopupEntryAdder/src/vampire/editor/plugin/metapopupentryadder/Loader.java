@@ -18,7 +18,7 @@ import vampire.editor.plugin.api.domain.DictionaryAPI;
 
 public class Loader {
 	
-	private final Path fileDirectory = Paths.get("resources", "plugins", "metapopupentryadder");
+	private final Path fileDirectory = Paths.get("resources", "plugins", "metapopupentryadder"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	
 	private final DictionaryAPI dictionary;
 	
@@ -35,7 +35,7 @@ public class Loader {
 
 	public SortedSet<String> load(Path p){
 		SortedSet<String> entries;
-		if (p.toString().endsWith("generation")){
+		if (p.toString().endsWith("generation")){ //$NON-NLS-1$
 			entries = new TreeSet<>();
 		}
 		else {

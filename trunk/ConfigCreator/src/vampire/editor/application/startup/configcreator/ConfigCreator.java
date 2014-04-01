@@ -51,8 +51,6 @@ import vampire.editor.plugin.api.plugin.Activator;
 
 public class ConfigCreator implements ElementProcessor{
 	
-	private final XMLLoader xmlLoader = new XMLLoader();
-	
 	private final Map<String, Path> paths = new HashMap<>();
 	
 	private final Map<String, Font> fonts = new HashMap<>();
@@ -131,7 +129,7 @@ public class ConfigCreator implements ElementProcessor{
 	
 	public Config loadConfig(Path path) throws ConfigImportException{
 		try {
-			Document document = xmlLoader.load(path);
+			Document document = XMLLoader.load(path);
 			Element root = document.getRootElement();
 			process(root);
 		} catch (XMLImportException e) {
@@ -167,7 +165,7 @@ public class ConfigCreator implements ElementProcessor{
 			}
 			postSize = protoPluginKeys.size();
 			if (postSize == preSize)
-				throw new ConfigImportException("Error in dependencies");
+				throw new ConfigImportException("Error in dependencies"); //$NON-NLS-1$
 		}
 		
 	}
@@ -258,7 +256,7 @@ public class ConfigCreator implements ElementProcessor{
 		String fileName = element.getAttributeValue(ConfigStrings.FILE);
 		Path configPath = paths.get(pathName).resolve(fileName);
 		try {
-			Document config = xmlLoader.load(configPath);
+			Document config = XMLLoader.load(configPath);
 			process(config.getRootElement());
 		} catch (XMLImportException e) {
 			throw new ConfigImportException(e);

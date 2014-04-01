@@ -60,12 +60,12 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 	
 	public SBloodPoolView(BloodPoolViewAttributesAPI viewAtts, DictionaryAPI dictionary){
 		int size = viewAtts.getSize();
-		emptyBox = new ImageIcon(Images.getImage("square_empty", size, size));
-		crossedBox = new ImageIcon(Images.getImage("square_crossed", size, size));
+		emptyBox = new ImageIcon(Images.getImage("square_empty", size, size)); //$NON-NLS-1$
+		crossedBox = new ImageIcon(Images.getImage("square_crossed", size, size)); //$NON-NLS-1$
 		panel.setBackground(Color.WHITE);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-		JTextField textField = Helper.getTitle(dictionary.getValue("bloodpool"), viewAtts.getFont());
+		JTextField textField = Helper.getTitle(dictionary.getValue("bloodpool"), viewAtts.getFont()); //$NON-NLS-1$
 		entries.setBackground(Color.WHITE);
 		panel.setBackground(Color.WHITE);
 		panel.add(textField);
@@ -142,6 +142,8 @@ public class SBloodPoolView implements BloodPoolView, MouseListener{
 			break;
 		case MouseEvent.BUTTON3:
 			value = squares.indexOf(label);
+		default:
+			break;
 		}
 		setValue0(value);
 	}

@@ -22,8 +22,8 @@ public class PluginPanel extends JDesktopPane{
 			SizeConverter.millimetersToPixel(100), SizeConverter.millimetersToPixel(200));
 	
 	public Component add(Container container){
-		JInternalFrame internalFrame = new JInternalFrame("test", true, false, false, false);
-		internalFrame.putClientProperty("JInternalFrame.isPalette",Boolean.TRUE);
+		JInternalFrame internalFrame = new JInternalFrame("test", true, false, false, false); //$NON-NLS-1$
+		internalFrame.putClientProperty("JInternalFrame.isPalette",Boolean.TRUE); //$NON-NLS-1$
 		internalFrame.setContentPane(container);
 		internalFrame.pack();
 		add((Component) internalFrame);

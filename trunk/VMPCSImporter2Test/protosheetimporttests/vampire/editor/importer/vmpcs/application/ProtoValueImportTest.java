@@ -13,16 +13,15 @@ import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
 import vampire.editor.fileformat.vmpcs.domain.ProtoTrait;
 import vampire.editor.fileformat.vmpcs.domain.ProtoValue;
 
+@SuppressWarnings({"nls"})
 public class ProtoValueImportTest {
-	
-	private ModelImporter modelImporter = new ModelImporter();
 	
 	private List<ProtoTrait> protoTraits;
 	
 	@Before
 	public void setup() throws Throwable{
 		Path path = Paths.get("testcases", "protosheet", "protovalues", "test1.json");
-		ProtoSheet protoSheet = modelImporter.loadSheet(path);
+		ProtoSheet protoSheet = ModelImporter.loadSheet(path);
 		protoTraits = protoSheet.getTraits().get(0).getSubCats().get(0).getTraits();
 	}
 	

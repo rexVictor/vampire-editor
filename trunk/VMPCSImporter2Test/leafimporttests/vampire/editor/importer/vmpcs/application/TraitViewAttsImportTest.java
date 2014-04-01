@@ -1,12 +1,10 @@
 package vampire.editor.importer.vmpcs.application;
 
 import static org.junit.Assert.*;
-
 import static vampire.editor.plugin.api.domain.sheet.view.Orientation.*;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -19,7 +17,7 @@ import vampire.editor.plugin.api.domain.sheet.view.ViewAttConstructors;
 import vampire.editor.sheetloader.application.importer.mock.FontObjectsMock;
 import vampire.editor.sheetloader.application.importer.mock.ResourcesHolderMock;
 
-
+@SuppressWarnings({"nls"})
 public class TraitViewAttsImportTest {
 	
 	private Objects<TraitViewAttributes> objects;

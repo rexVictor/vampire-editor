@@ -54,8 +54,8 @@ public class SValueViewAtts{
 
 	@Override
 	public String toString() {
-		return "SValueViewAtts [showSpace=" + showSpace + ", dynamic="
-				+ dynamic + ", tempSquared=" + tempSquared + "]";
+		return "SValueViewAtts [showSpace=" + showSpace + ", dynamic=" //$NON-NLS-1$ //$NON-NLS-2$
+				+ dynamic + ", tempSquared=" + tempSquared + "]"; //$NON-NLS-1$ //$NON-NLS-2$
 	}
 	
 	

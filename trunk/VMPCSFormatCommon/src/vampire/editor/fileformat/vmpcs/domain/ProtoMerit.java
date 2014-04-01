@@ -120,8 +120,6 @@ public class ProtoMerit implements MapId, ToRealModelTransformable<Merit>{
 		this.name = name;
 	}
 
-
-
 	@Override
 	public Merit toRealModel() {
 		if (merit == null){
@@ -131,13 +129,5 @@ public class ProtoMerit implements MapId, ToRealModelTransformable<Merit>{
 		}
 		return merit;
 	}
-
-	@Override
-	public String toString() {
-		return "ProtoMerit [mapid=" + mapid + ", cost=" + cost + ", name="
-				+ name + "]";
-	}
-	
-	
 
 }

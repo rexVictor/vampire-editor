@@ -42,10 +42,9 @@ public interface SubCategoryAPI extends Nameable, HasIterator<TraitAPI>{
 	/**
 	 * This implementation is optional
 	 */
+	@Override
 	public SubCategoryAPI clone();
 
-	public String getName();
-	
 	/**
 	 * @return the count of added elements.
 	 */

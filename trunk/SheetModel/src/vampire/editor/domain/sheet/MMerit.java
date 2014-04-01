@@ -23,7 +23,6 @@
 package vampire.editor.domain.sheet;
 
 import vampire.editor.plugin.api.domain.sheet.Merit;
-import vampire.editor.plugin.api.domain.sheet.MeritAPI;
 
 /**
  * Merit stores the cost and the name of a merit. <br>
@@ -31,7 +30,7 @@ import vampire.editor.plugin.api.domain.sheet.MeritAPI;
  * Merits have positive cost and flaws have negative cost.
  * @author rex_victor
  */
-class MMerit implements MeritAPI, Merit {
+class MMerit implements Merit {
 	
 	private int cost;
 	
@@ -46,6 +45,7 @@ class MMerit implements MeritAPI, Merit {
 		return cost;
 	}
 
+	@Override
 	public void setCost(int cost) {
 		this.cost = cost;
 	}
@@ -55,6 +55,7 @@ class MMerit implements MeritAPI, Merit {
 		return name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}

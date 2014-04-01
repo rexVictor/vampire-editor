@@ -39,13 +39,13 @@ import vampire.editor.plugin.api.view.sheet.ValueView;
 
 public abstract class AbstractValueView implements ValueView{
 	
-	public static final String CIRCLE_BLACK 	=	"\u25CF";
+	public static final String CIRCLE_BLACK 	=	"\u25CF"; //$NON-NLS-1$
 	
-	public static final String CIRCLE_WHITE 	=	"\u25CB";
+	public static final String CIRCLE_WHITE 	=	"\u25CB"; //$NON-NLS-1$
 	
-	public static final String SQUARE_EMPTY		=	"\u2610";
+	public static final String SQUARE_EMPTY		=	"\u2610"; //$NON-NLS-1$
 	
-	public static final String SQUARE_CROSSED	=	"\u2612";
+	public static final String SQUARE_CROSSED	=	"\u2612"; //$NON-NLS-1$
 	
 	private static final Map<SValueViewAtts, AbstractValueView> valueViews = new HashMap<>();
 	
@@ -91,16 +91,17 @@ public abstract class AbstractValueView implements ValueView{
 		this.viewAtts = viewAtts;
 		int size = viewAtts.getSize();
 		
-		circleBlack = new ImageIcon(Images.getImage("circle_filled", size, size));
-		circleWhite = new ImageIcon(Images.getImage("circle_empty", size, size));
-		circleRedStriped = new ImageIcon(Images.getImage("circle_temp_lower", size, size));
-		circleGreenStriped = new ImageIcon(Images.getImage("circle_temp_greater", size, size));
+		circleBlack = new ImageIcon(Images.getImage("circle_filled", size, size)); //$NON-NLS-1$
+		circleWhite = new ImageIcon(Images.getImage("circle_empty", size, size)); //$NON-NLS-1$
+		circleRedStriped = new ImageIcon(Images.getImage("circle_temp_lower", size, size)); //$NON-NLS-1$
+		circleGreenStriped = new ImageIcon(Images.getImage("circle_temp_greater", size, size)); //$NON-NLS-1$
 	}
 	
 	protected AbstractValueView(){
 		
 	}
 	
+	@Override
 	public abstract void addCircle();
 	
 	protected abstract void addCircle0();
@@ -147,6 +148,7 @@ public abstract class AbstractValueView implements ValueView{
 		}
 	}
 	
+	@Override
 	public abstract void removeCircle();
 	
 	protected abstract void removeCircle0();
@@ -179,12 +181,15 @@ public abstract class AbstractValueView implements ValueView{
 		}
 	}
 	
+	@Override
 	public abstract AbstractValueView clone();
 	
+	@Override
 	public ValueViewAttributes getViewAttributes(){
 		return viewAtts;
 	}
 	
+	@Override
 	public void setToolTip(int circle, String text){
 		if (circle >= circles.size()){
 			return;

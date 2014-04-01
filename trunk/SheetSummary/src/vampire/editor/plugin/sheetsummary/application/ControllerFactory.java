@@ -47,6 +47,7 @@ public class ControllerFactory {
 		return new CategoryPointsController(view, subControllers);
 	}
 	
+	@SuppressWarnings("static-method")
 	private SubCategoryPointsController buildSubCategoryPointsController(SubCategoryControllerAPI subCategoryController,
 				SubCatSummaryView view){
 		SubCategoryPointsCounter counter = new SubCategoryPointsCounter(subCategoryController);

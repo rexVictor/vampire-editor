@@ -7,6 +7,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.junit.Test;
 
+@SuppressWarnings({"static-method", "nls"})
 public class OptionDialogTest {
 
 	@Test

@@ -10,16 +10,15 @@ import org.junit.Test;
 
 import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
 
+@SuppressWarnings({"nls"})
 public class ProtoSheetImportTest {
-	
-	private final ModelImporter modelImporter = new ModelImporter();
 	
 	private ProtoSheet protoSheet;
 	
 	@Before
 	public void setup() throws Throwable{
 		Path path = Paths.get("testcases", "protosheet", "protosheet", "test1.json");
-		protoSheet = modelImporter.loadSheet(path);
+		protoSheet = ModelImporter.loadSheet(path);
 	}
 	
 	@Test

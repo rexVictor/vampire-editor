@@ -95,6 +95,7 @@ class MMeritEntryViewAttributes implements FontSettable, MeritEntryViewAttribute
 		return true;
 	}
 	
+	@Override
 	public MeritEntryViewAttributes clone(){
 		return new MMeritEntryViewAttributes(font);
 	}

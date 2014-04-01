@@ -61,6 +61,7 @@ public class ProtoHealthEntry implements MapId, ToRealModelTransformable<HealthE
 
 
 
+	@Override
 	public Integer getMapid() {
 		return mapid;
 	}
@@ -91,12 +92,6 @@ public class ProtoHealthEntry implements MapId, ToRealModelTransformable<HealthE
 
 	public void setPenalty(Integer penalty) {
 		this.penalty = penalty;
-	}
-
-	@Override
-	public String toString() {
-		return "ProtoHealthEntry [mapid=" + mapid + ", name=" + name
-				+ ", damageType=" + damageType + ", penalty=" + penalty + "]";
 	}
 
 	@Override

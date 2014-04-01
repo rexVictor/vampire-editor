@@ -33,6 +33,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import vampire.editor.fileformat.vmpcs.domain.FileNames;
 import vampire.editor.fileformat.vmpcs.domain.MapId;
 import vampire.editor.fileformat.vmpcs.domain.ModelToViewMap;
 import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
@@ -45,14 +46,18 @@ import vampire.editor.plugin.api.domain.sheet.Value;
 
 public class ModelImporter {
 	
-	private ObjectMapper mapper = new ObjectMapper();
+	private ModelImporter(){}
 	
-	public ProtoSheet loadSheet(Path path) throws JsonParseException, JsonMappingException, IOException{
-		InputStream stream = Files.newInputStream(path);
-		return mapper.readValue(stream, ProtoSheet.class);
+	public static ProtoSheet loadSheet(Path path) throws JsonParseException, JsonMappingException, IOException{
+		ObjectMapper mapper = new ObjectMapper();
+		ProtoSheet sheet = null;
+		try (InputStream stream = Files.newInputStream(path)){
+			sheet = mapper.readValue(stream, ProtoSheet.class);
+		}
+		return sheet;
 	}
 	
-	public SheetAndMapIdHolder buildSheet(ProtoSheet protoSheet, Map<Integer, Object> mapIdMap, Objects<Value> realValues){
+	public static SheetAndMapIdHolder buildSheet(ProtoSheet protoSheet, Map<Integer, Object> mapIdMap, Objects<Value> realValues){
 		Sheet sheet = protoSheet.toRealModel();
 		Map<Integer, Object> mapIdToRealModelMap = new HashMap<>();
 		Set<Integer> mapIds = mapIdMap.keySet();
@@ -75,10 +80,10 @@ public class ModelImporter {
 		return new SheetAndMapIdHolder(sheet, mapIdToRealModelMap);
 	}
 	
-	public ModelToViewMap buildProtoIdMap(Path path) throws JsonParseException, JsonMappingException, IOException{
+	public static ModelToViewMap buildProtoIdMap(Path path) throws JsonParseException, JsonMappingException, IOException{
 		ModelToViewMap map = new ModelToViewMap();
 		Properties properties = new Properties();
-		try(InputStream stream = Files.newInputStream(path.resolve("modeltoviewmap.properties"))){
+		try(InputStream stream = Files.newInputStream(path.resolve(FileNames.MODELTTOVIEWMAP))){
 			properties.load(stream);
 			Set<Object> keys = properties.keySet();
 			for (Object o : keys){
@@ -89,17 +94,6 @@ public class ModelImporter {
 				map.put(mapid, id);
 			}
 		}
-	/*	try(URLClassLoader classLoader = new URLClassLoader(new URL[]{path.toUri().toURL()})){
-			ResourceBundle bundle = ResourceBundle.getBundle("modeltoviewmap", Locale.getDefault(), classLoader);
-			Set<String> keys = bundle.keySet();
-			for (String s : keys){
-				Integer mapid = Integer.parseInt(s);
-				String value = bundle.getString(s);
-				Integer id = Integer.parseInt(value);
-				map.put(mapid, id);
-			}
-			ResourceBundle.clearCache(classLoader);
-		}*/
 		return map;
 	}
 	

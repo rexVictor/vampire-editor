@@ -27,6 +27,7 @@ public class ViewFactory {
 				buildSubCatSummaryView(), buildSubCatSummaryView());
 	}
 	
+	@SuppressWarnings("static-method")
 	public SubCatSummaryView buildSubCatSummaryView(){
 		return new SubCatSummaryView();
 	}

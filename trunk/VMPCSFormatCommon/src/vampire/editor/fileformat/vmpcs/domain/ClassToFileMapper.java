@@ -36,36 +36,21 @@ public class ClassToFileMapper {
 	
 	static
 	{
-		String fonts = "fonts.json";
-		String lines = "lines.json";
-		String valueViewAtts = "valueviewatts.json";
-		String traitViewAtts = "traitviewatts.json";
-		String subCategoryViewAtts = "subcategoryviewatts.json";
-		String categroyViewAtts = "categoryviewatts.json";
-		String metaEntryViewAtts = "metaentryviewatts.json";
-		String bloodPoolViewAtts = "bloodpoolviewatts.json";
-		String healtEntryViewAtts = "healthentryviewatts.json";
-		String healthViewAtts = "healthviewatts.json";
-		String meritViewAtts = "meritviewatts.json";
-		String meritEntryViewAtts = "meritentryviewatts.json";
-		String sheet = "sheet.json";
-		String values = "values.json";
-		
 		Map<Class<?>, String> map = new HashMap<>();
-		map.put(Font.class, fonts);
-		map.put(LineAttributes.class, lines);
-		map.put(ValueViewAttributes.class, valueViewAtts);
-		map.put(TraitViewAttributes.class, traitViewAtts);
-		map.put(SubCategoryViewAttributes.class, subCategoryViewAtts);
-		map.put(CategoryViewAttributes.class, categroyViewAtts);
-		map.put(MetaEntryViewAttributes.class, metaEntryViewAtts);
-		map.put(HealthEntryViewAttributes.class, healtEntryViewAtts);
-		map.put(HealthViewAttributes.class, healthViewAtts);
-		map.put(MeritViewAttributes.class, meritViewAtts);
-		map.put(MeritEntryViewAttributes.class, meritEntryViewAtts);
-		map.put(BloodPoolViewAttributes.class, bloodPoolViewAtts);
-		map.put(Sheet.class, sheet);
-		map.put(Value.class, values);
+		map.put(Font.class, FileNames.FONTS);
+		map.put(LineAttributes.class, FileNames.LINES);
+		map.put(ValueViewAttributes.class, FileNames.VALUEVIEWATTS);
+		map.put(TraitViewAttributes.class, FileNames.TRAITVIEWATTS);
+		map.put(SubCategoryViewAttributes.class, FileNames.SUBCATEGORYVIEWATTS);
+		map.put(CategoryViewAttributes.class, FileNames.CATEGROYVIEWATTS);
+		map.put(MetaEntryViewAttributes.class, FileNames.METAENTRYVIEWATTS);
+		map.put(HealthEntryViewAttributes.class, FileNames.HEALTENTRYVIEWATTS);
+		map.put(HealthViewAttributes.class, FileNames.HEALTHVIEWATTS);
+		map.put(MeritViewAttributes.class, FileNames.MERITVIEWATTS);
+		map.put(MeritEntryViewAttributes.class, FileNames.MERITENTRYVIEWATTS);
+		map.put(BloodPoolViewAttributes.class, FileNames.BLOODPOOLVIEWATTS);
+		map.put(Sheet.class, FileNames.SHEET);
+		map.put(Value.class, FileNames.VALUES);
 		paths = Collections.unmodifiableMap(map);		
 	}
 	

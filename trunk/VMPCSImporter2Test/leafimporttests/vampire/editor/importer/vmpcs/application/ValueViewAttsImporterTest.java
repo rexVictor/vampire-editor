@@ -15,6 +15,7 @@ import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
 import vampire.editor.plugin.api.domain.sheet.view.ViewAttConstructors;
 import vampire.editor.sheetloader.application.importer.mock.ResourcesHolderMock;
 
+@SuppressWarnings({"nls"})
 public class ValueViewAttsImporterTest {
 	
 	private Objects<ValueViewAttributes> objects;

@@ -5,6 +5,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import vampire.editor.fileformat.vmpcs.domain.StringConstants;
 import vampire.editor.plugin.api.domain.sheet.VampireDocument;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
 import vampire.editor.plugin.api.exporter.DocumentExportException;
@@ -27,7 +28,7 @@ public class Exporter implements SheetExporter{
 
 	@Override
 	public String getFormat() {
-		return "vmpcs";
+		return StringConstants.FORMAT;
 	}
 
 }

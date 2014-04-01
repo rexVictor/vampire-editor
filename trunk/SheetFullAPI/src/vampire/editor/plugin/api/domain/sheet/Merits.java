@@ -22,14 +22,9 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
-import java.util.Iterator;
-
 public interface Merits extends MeritsAPI, Iterable<Merit>{
 	
-	public int size();
-	
-	public Iterator<? extends Merit> getIterator();
-	
+	@Override
 	public Merits clone();
 	
 	public void add(Merit merit);

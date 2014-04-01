@@ -23,7 +23,6 @@
 package vampire.editor.domain.sheet;
 
 import vampire.editor.plugin.api.domain.sheet.MetaEntry;
-import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
 
 
 /**
@@ -32,7 +31,7 @@ import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
  * @author rex_victor
  *
  */
-class MMetaEntry implements MetaEntryAPI, MetaEntry {
+class MMetaEntry implements MetaEntry {
 	
 	private String name;
 	
@@ -43,6 +42,7 @@ class MMetaEntry implements MetaEntryAPI, MetaEntry {
 		return name;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -52,6 +52,7 @@ class MMetaEntry implements MetaEntryAPI, MetaEntry {
 		return value;
 	}
 
+	@Override
 	public void setValue(String value) {
 		this.value = value;
 	}
@@ -66,6 +67,6 @@ class MMetaEntry implements MetaEntryAPI, MetaEntry {
 	
 	@Override
 	public String toString(){
-		return name + " : " + value;
+		return name + " : " + value; //$NON-NLS-1$
 	}
 }

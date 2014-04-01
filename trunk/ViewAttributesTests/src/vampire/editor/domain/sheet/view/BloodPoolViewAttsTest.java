@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import vampire.editor.plugin.api.domain.sheet.view.BloodPoolViewAttributes;
 
+@SuppressWarnings("static-method")
 public class BloodPoolViewAttsTest {
 	
 	private static Font FONT = new Font(Font.SANS_SERIF, 0, 10);
@@ -94,7 +95,7 @@ public class BloodPoolViewAttsTest {
 	}
 	
 	@Test
-	public void testNotEqualsObject3(){;
+	public void testNotEqualsObject3(){
 		MBloodPoolViewAttributes viewAtts1 = new MBloodPoolViewAttributes(FONT, 5);
 		MBloodPoolViewAttributes viewAtts2 = new MBloodPoolViewAttributes(FONT2, 8);
 		assertFalse(viewAtts1.equals(viewAtts2));

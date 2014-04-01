@@ -5,6 +5,7 @@ import vampire.editor.plugin.api.domain.sheet.Category;
 
 class MCategories extends Data<Category> implements Categories{
 	
+	@Override
 	public MCategories clone(){
 		return (MCategories) super.clone();
 	}

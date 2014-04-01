@@ -19,14 +19,17 @@ public class Line implements LineAPI{
 		this.height = height;
 	}
 
+	@Override
 	public Image getImage() {
 		return line;
 	}
 
+	@Override
 	public int getWidth() {
 		return width;
 	}
 
+	@Override
 	public int getHeight() {
 		return height;
 	}

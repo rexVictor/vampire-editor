@@ -56,10 +56,12 @@ public class HealthController implements HealthControllerAPI, HealthViewListener
 		view.addListener(this);
 	}
 
+	@Override
 	public Health getHealth() {
 		return health;
 	}
 
+	@Override
 	public HealthView getView() {
 		return view;
 	}

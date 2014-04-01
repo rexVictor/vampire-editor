@@ -22,14 +22,9 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
-import java.util.Iterator;
-
 public interface Categories extends CategoriesAPI, Iterable<Category>{
 	
-	public int size();
-	
-	public Iterator<? extends Category> getIterator();
-	
+	@Override
 	public Categories clone();
 	
 	public void add(Category category);

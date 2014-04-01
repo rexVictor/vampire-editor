@@ -34,7 +34,7 @@ import vampire.editor.plugin.api.domain.sheet.view.ValueViewAttributes;
  */
 class SpacedValueView extends DefaultValueView{
 	
-	private final JLabel space = new JLabel(" ");
+	private final JLabel space = new JLabel(" "); //$NON-NLS-1$
 	
 	/**
 	 * The ValueView for showSpace, dynamic and no Squares
@@ -63,6 +63,7 @@ class SpacedValueView extends DefaultValueView{
 		super.removeCircle0();
 	}
 	
+	@Override
 	public SpacedValueView clone(){
 		ValueViewAttributes clone = viewAtts.clone();
 		return new SpacedValueView(clone);

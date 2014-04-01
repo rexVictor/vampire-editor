@@ -12,16 +12,15 @@ import org.junit.Test;
 import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
 import vampire.editor.fileformat.vmpcs.domain.ProtoTrait;
 
+@SuppressWarnings({"nls"})
 public class ProtoTraitImportTest {
 
-	private ModelImporter modelImporter = new ModelImporter();
-	
 	private List<ProtoTrait> protoTraits;
 	
 	@Before
 	public void setup() throws Throwable{
 		Path path = Paths.get("testcases", "protosheet", "prototraits", "test1.json");
-		ProtoSheet protoSheet = modelImporter.loadSheet(path);
+		ProtoSheet protoSheet = ModelImporter.loadSheet(path);
 		protoTraits = protoSheet.getTraits().get(0).getSubCats().get(0).getTraits();
 	}
 	

@@ -13,10 +13,8 @@ import org.junit.Test;
 import vampire.editor.fileformat.vmpcs.domain.ProtoMetaEntry;
 import vampire.editor.fileformat.vmpcs.domain.ProtoSheet;
 
-
+@SuppressWarnings({"nls"})
 public class ProtoMetaImportTest {
-	
-	private final ModelImporter modelImporter = new ModelImporter();
 	
 	private List<ProtoMetaEntry> expected = new ArrayList<>();
 	
@@ -31,7 +29,7 @@ public class ProtoMetaImportTest {
 	@Test
 	public void testProtoMetaImport() throws Throwable{
 		Path path = Paths.get("testcases", "protosheet","protometa","test1.json");
-		ProtoSheet protoSheet = modelImporter.loadSheet(path);
+		ProtoSheet protoSheet = ModelImporter.loadSheet(path);
 		List<ProtoMetaEntry> protoMetaEntries = new ArrayList<>(protoSheet.getMeta());
 		assertEquals(expected.size(), protoMetaEntries.size());
 		for (int i = 0; i < protoMetaEntries.size(); i++){

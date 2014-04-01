@@ -34,10 +34,12 @@ public class SMeritEntryViewEvent implements MeritEntryViewEvent{
 		this.name = name;
 	}
 
+	@Override
 	public int getCost() {
 		return cost;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}

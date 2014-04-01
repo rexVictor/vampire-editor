@@ -60,6 +60,7 @@ class MTraitViewAttributes implements FontSettable, TraitViewAttributes{
 		return editable;
 	}
 
+	@Override
 	public void setEditable(boolean editable) {
 		this.editable = editable;
 	}
@@ -69,6 +70,7 @@ class MTraitViewAttributes implements FontSettable, TraitViewAttributes{
 		return orientation;
 	}
 
+	@Override
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
 	}
@@ -76,13 +78,13 @@ class MTraitViewAttributes implements FontSettable, TraitViewAttributes{
 	@Override
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
-		sb.append("editable: ");
+		sb.append("editable: "); //$NON-NLS-1$
 		sb.append(editable);
-		sb.append(", orientation: ");
+		sb.append(", orientation: "); //$NON-NLS-1$
 		sb.append(orientation);
-		sb.append(", font: ");
+		sb.append(", font: "); //$NON-NLS-1$
 		sb.append(font);
-		sb.append("\n");
+		sb.append("\n"); //$NON-NLS-1$
 		return sb.toString();
 	}
 	

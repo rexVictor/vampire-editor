@@ -29,11 +29,12 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileFilter;
 
 import vampire.editor.copyright.application.CopyrightViewFactory;
 import vampire.editor.copyright.view.CopyrightView;
-import vampire.editor.gui.swing.application.factories.SheetViewFactory;
+import vampire.editor.gui.swing.application.factories.SSheetViewFactory;
 import vampire.editor.gui.swing.mainframe.view.AboutView;
 import vampire.editor.gui.swing.mainframe.view.MainFrame;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
@@ -42,33 +43,34 @@ import vampire.editor.plugin.api.plugin.GUIPlugin;
 import vampire.editor.plugin.api.plugin.ManagerAPI;
 import vampire.editor.plugin.api.plugin.Trigger;
 
+@SuppressWarnings("synthetic-access")
 public class GuiFacade implements GUIPlugin{
 	
 	private final MainFrame mainFrame;
 	
 	private final MenuBarController menuBarController;
 	
-	private final SheetViewFactory factory;
+	private final SSheetViewFactory factory;
 	
 	private final JFileChooser chooser = new JFileChooser();
 	
-	private final CopyrightView copyrightView = CopyrightViewFactory.buildView(Paths.get("resources", "copyright.json"));
+	private final CopyrightView copyrightView = CopyrightViewFactory.buildView(Paths.get("resources", "copyright.json")); //$NON-NLS-1$ //$NON-NLS-2$
 	
 	public GuiFacade(ManagerAPI manager){
-		DictionaryAPI dictionary = manager.getResourcesHolder().getDictionary("general");
+		DictionaryAPI dictionary = manager.getResourcesHolder().getDictionary(DictionaryAPI.GENERAL_DICTIONARY);
 		menuBarController = new MenuBarController(dictionary);
 		mainFrame = new MainFrame(menuBarController.getMenuBar(), manager);
-		factory = new SheetViewFactory(manager.getResourcesHolder());
-		menuBarController.addMenuItem(new Printer(manager), "file", "print");
+		factory = new SSheetViewFactory(manager.getResourcesHolder());
+		menuBarController.addMenuItem(new Printer(manager), "file", "print"); //$NON-NLS-1$ //$NON-NLS-2$
 		menuBarController.addMenuItem(new Trigger() {
 			
 			@Override
 			public void leftClicked() {
 				copyrightView.showDialog();
 			}
-		}, "help", "copyright");
+		}, "help", "copyright"); //$NON-NLS-1$ //$NON-NLS-2$
 		
-		menuBarController.addMenuItem(new AboutView(dictionary), "help", "about");
+		menuBarController.addMenuItem(new AboutView(dictionary), "help", "about"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override
@@ -96,7 +98,7 @@ public class GuiFacade implements GUIPlugin{
 		textArea.setLineWrap(true);
 		dialog.add(textArea);
 		dialog.pack();
-		dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		dialog.setVisible(true);
 	}
 	
@@ -105,14 +107,17 @@ public class GuiFacade implements GUIPlugin{
 		createErrorMessage(e.toString());
 	}
 	
+	@Override
 	public void setVisible(){
 		mainFrame.setVisible();
 	}
 
-	public SheetViewFactory getFactory() {
+	@Override
+	public SSheetViewFactory getFactory() {
 		return factory;
 	}
 
+	@Override
 	public void sheetLoaded(SheetControllerAPI controller) {
 		mainFrame.addSheetView(controller);
 		
@@ -125,7 +130,7 @@ public class GuiFacade implements GUIPlugin{
 			
 			@Override
 			public String getDescription() {
-				return "Vampire Document (*."+extension+")";
+				return "Vampire Document (*."+extension+")"; //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			
 			@Override
@@ -145,14 +150,14 @@ public class GuiFacade implements GUIPlugin{
 			
 			@Override
 			public String getDescription() {
-				return "Vampire Document (*."+format+")";
+				return "Vampire Document (*."+format+")"; //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			
 			@Override
 			public boolean accept(File f) {
 				if (f.isDirectory())
 					return true;
-				return f.toString().endsWith("."+format);
+				return f.toString().endsWith("."+format); //$NON-NLS-1$
 			}
 		};
 		chooser.setFileFilter(filter);
@@ -165,7 +170,7 @@ public class GuiFacade implements GUIPlugin{
 
 	@Override
 	public boolean demandUserChoise(String message) {
-		int option = JOptionPane.showConfirmDialog(null, message, "", JOptionPane.YES_NO_OPTION);
+		int option = JOptionPane.showConfirmDialog(null, message, "", JOptionPane.YES_NO_OPTION); //$NON-NLS-1$
 		switch (option) {
 		case JOptionPane.YES_OPTION: return true;
 		case JOptionPane.NO_OPTION: return false;

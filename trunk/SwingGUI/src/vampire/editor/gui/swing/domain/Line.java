@@ -37,7 +37,6 @@ public class Line {
 		try {
 			temp = ImageIO.read(new File(path));
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 			
 		}
@@ -53,7 +52,7 @@ public class Line {
 	}
 	
 	public static Line getDefault(){
-		Line line = new Line("lines/default.gif");
+		Line line = new Line("lines/default.gif"); //$NON-NLS-1$
 		return line;
 	}
 	

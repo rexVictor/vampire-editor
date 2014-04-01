@@ -45,7 +45,7 @@ public class Constructor implements Activator, DocumentListener, SubCategoryList
 
 	@Override
 	public void setManager(ManagerAPI manager) {
-		DictionaryAPI tooltips = manager.getResourcesHolder().getDictionary("tooltips");
+		DictionaryAPI tooltips = manager.getResourcesHolder().getDictionary("tooltips"); //$NON-NLS-1$
 		if (tooltips != null){
 			traitTooltipAdder = new TraitTooltipAdder(tooltips);
 			manager.addDocumentListener(this);
