@@ -22,42 +22,46 @@
  ******************************************************************************/
 package vampire.editor.application.sheet.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import vampire.editor.application.sheet.events.MetaEvent;
 import vampire.editor.plugin.api.application.sheet.controller.MetaControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.MetaEntryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.events.MetaEventAPI;
 import vampire.editor.plugin.api.application.sheet.events.MetaListener;
 import vampire.editor.plugin.api.domain.sheet.Meta;
-import vampire.editor.plugin.api.domain.sheet.MetaAPI;
+import vampire.editor.plugin.api.domain.sheet.MetaEntry;
+import vampire.editor.plugin.api.domain.sheet.MetaEntryAPI;
+import vampire.editor.plugin.api.view.sheet.MetaEntryView;
 import vampire.editor.plugin.api.view.sheet.MetaView;
 
-public class MetaController implements MetaControllerAPI{
-	
-	private final Meta meta;
-	
-	private final MetaView metaView;
-	
-	private final List<MetaEntryControllerAPI> metaEntryControllers = new ArrayList<>();
+public class MetaController extends AbstractNonLeafController<Meta, MetaView, MetaListener,
+										MetaEntryControllerAPI, MetaEntryAPI, MetaEntry,
+										MetaEntryView, MetaEventAPI>
+						implements MetaControllerAPI{
 	
 	private final Map<String, MetaEntryControllerAPI> metaEntryControllerMap = new HashMap<>();
-
+	
 	public MetaController(Meta meta, MetaView metaView) {
-		super();
-		this.meta = meta;
-		this.metaView = metaView;
+		super(meta, metaView);
 	}
 	
 	@Override
-	public void addMetaEntry(MetaEntryControllerAPI controller) {
+	public void add(MetaEntryControllerAPI controller) {
+		super.add(controller);
+		addToMap(controller);
+	}
+	
+	@Override
+	void add0(MetaEntryControllerAPI controller){
+		super.add0(controller);
+		addToMap(controller);
 		
 	}
 	
-	void addMetaEntry0(MetaEntryControllerAPI controller){
-		metaEntryControllers.add(controller);
-		String title = controller.getMetaEntry().getName();
+	private void addToMap(MetaEntryControllerAPI controller){
+		String title = controller.getModel().getName();
 		metaEntryControllerMap.put(title, controller);
 	}
 	
@@ -67,33 +71,9 @@ public class MetaController implements MetaControllerAPI{
 	}
 
 	@Override
-	public MetaAPI getMeta() {
-		return meta;
+	protected MetaEventAPI generateEvent(MetaEntryControllerAPI reason,
+			int index) {
+		return new MetaEvent(this, reason, index);
 	}
-
-	@Override
-	public MetaView getView() {
-		return metaView;
-	}
-
-	@Override
-	public void addListener(MetaListener l) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeListener(MetaListener l) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeMetaEntry(MetaEntryControllerAPI metaEntry) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
 
 }

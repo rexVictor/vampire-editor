@@ -69,7 +69,7 @@ public class SheetControllerFactory {
 		List<? extends MetaEntryView> metaEntryViews = view.getEntries();
 		for (int i = 0; i < meta.size(); i++){
 			MetaEntryController entryController = buildMetaEntryController(meta.get(i), metaEntryViews.get(i));
-			controller.addMetaEntry0(entryController);
+			controller.add0(entryController);
 		}
 		return controller;
 	}
@@ -95,7 +95,7 @@ public class SheetControllerFactory {
 			Merit merit = merits.get(i);
 			MeritEntryView entryView = entryViews.get(i);
 			MeritEntryController entryController = buildMeritEntryController(merit, entryView);
-			controller.addMerit0(entryController);
+			controller.add0(entryController);
 		}
 		return controller;
 	}
@@ -117,7 +117,7 @@ public class SheetControllerFactory {
 			HealthEntry entry = health.get(i);
 			HealthEntryView entryView = entryViews.get(i);
 			HealthEntryController entryController = buildHealthEntryController(entry, entryView);
-			controller.addHealthEntry0(entryController);
+			controller.add0(entryController);
 		}
 		return controller;
 	}
@@ -138,7 +138,7 @@ public class SheetControllerFactory {
 		List<? extends SubCategoryView> subCategoryViews = view.getEntries();
 		int i = 0;
 		for (SubCategory subCat : category){
-			controller.addSubCategory(buildSubCategoryController(subCat, subCategoryViews.get(i)));
+			controller.add0(buildSubCategoryController(subCat, subCategoryViews.get(i)));
 			i++;
 		}
 		return controller;
@@ -151,7 +151,7 @@ public class SheetControllerFactory {
 		List<? extends TraitView> traitViews = view.getEntries();
 		int i = 0;
 		for (Trait trait : subCategory){
-			controller.addTrait0(buildTraitController(trait, traitViews.get(i)));
+			controller.add0(buildTraitController(trait, traitViews.get(i)));
 			i++;
 		}
 		return controller;

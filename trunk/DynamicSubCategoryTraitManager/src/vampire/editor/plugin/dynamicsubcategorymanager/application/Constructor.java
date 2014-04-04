@@ -43,7 +43,7 @@ public class Constructor implements Activator, DocumentListener{
 		ModelToViewModelMapperAPI mapper = document.getModelToViewModelMapper();
 		for (CategoryControllerAPI categoryController : sheetController.getCategoriesController()){
 			for (SubCategoryControllerAPI subCategoryController : categoryController){
-				SubCategoryViewAttributesAPI viewAtts = (SubCategoryViewAttributesAPI) mapper.getViewAttributes(subCategoryController.getSubCategory());
+				SubCategoryViewAttributesAPI viewAtts = (SubCategoryViewAttributesAPI) mapper.getViewAttributes(subCategoryController.getModel());
 				if (viewAtts.isExpandable()){
 					new TraitAdder(mapper, subCategoryController);
 				}

@@ -22,16 +22,10 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
-public interface Categories extends CategoriesAPI, Iterable<Category>{
+public interface Categories extends CategoriesAPI, Iterable<Category>, AbstractNonLeafModel<Category>{
 	
 	@Override
 	public Categories clone();
-	
-	public void add(Category category);
-	
-	public void insert(int pos, Category category);
-	
-	public void remove(Category category);
 	
 	public void setName(String name);
 

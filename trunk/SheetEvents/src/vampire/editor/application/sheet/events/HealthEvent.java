@@ -26,37 +26,12 @@ import vampire.editor.plugin.api.application.sheet.controller.HealthControllerAP
 import vampire.editor.plugin.api.application.sheet.controller.HealthEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.HealthEventAPI;
 
-public class HealthEvent implements HealthEventAPI{
+public class HealthEvent extends AbstractNonLeafEvent<HealthControllerAPI, HealthEntryControllerAPI>
+							implements HealthEventAPI{
 	
-	private final HealthControllerAPI  controller;
-	
-	private final HealthEntryControllerAPI added;
-	
-	private final HealthEntryControllerAPI removed;
-
-	public HealthEvent(HealthControllerAPI controller,
-			HealthEntryControllerAPI added, HealthEntryControllerAPI removed) {
-		super();
-		this.controller = controller;
-		this.added = added;
-		this.removed = removed;
+	public HealthEvent(HealthControllerAPI source,
+			HealthEntryControllerAPI reason, int index) {
+		super(source, reason, index);
 	}
-
-	@Override
-	public HealthControllerAPI getSource() {
-		return controller;
-	}
-
-	@Override
-	public HealthEntryControllerAPI getAdded() {
-		return added;
-	}
-
-	@Override
-	public HealthEntryControllerAPI getRemoved() {
-		return removed;
-	}
-	
-	
 
 }

@@ -22,16 +22,10 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
-public interface Health extends HealthAPI, Iterable<HealthEntry>{
+public interface Health extends HealthAPI, Iterable<HealthEntry>, AbstractNonLeafModel<HealthEntry>{
 	
 	@Override
 	public Health clone();
-	
-	public void add(HealthEntry subCategory);
-	
-	public void insert(int pos, HealthEntry subCat);
-	
-	public void remove(HealthEntry subCat);
 	
 	public HealthEntry get(int i);
 

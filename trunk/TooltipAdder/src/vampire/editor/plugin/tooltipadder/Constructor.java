@@ -28,9 +28,9 @@ public class Constructor implements Activator, DocumentListener, SubCategoryList
 				subCatController.addListener(this);
 				for (TraitControllerAPI traitController : subCatController){
 					traitController.addListener(traitTooltipAdder);
-					TraitView traitView = traitController.getTraitView();
+					TraitView traitView = traitController.getView();
 					ValueView valueView = traitController.getValueController().getView();
-					String name = traitController.getTrait().getName();
+					String name = traitController.getModel().getName();
 					traitTooltipAdder.update(traitView, valueView, name);
 				}
 			}
@@ -53,12 +53,11 @@ public class Constructor implements Activator, DocumentListener, SubCategoryList
 	}
 
 	@Override
-	public void traitAdded(SubCategoryEventAPI event) {
-		event.getAdded().addListener(traitTooltipAdder);
+	public void added(SubCategoryEventAPI event) {
+		event.getReason().addListener(traitTooltipAdder);
 	}
 
 	@Override
-	public void traitRemoved(SubCategoryEventAPI event) {
-	}
+	public void removed(SubCategoryEventAPI event) {}
 
 }

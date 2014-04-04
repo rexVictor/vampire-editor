@@ -80,7 +80,7 @@ public class HorizontalHealthView implements HealthView{
 	}
 
 	@Override
-	public void removeHealthEntryView(HealthEntryView healthEntryView) {
+	public void remove(HealthEntryView healthEntryView) {
 		healthEntryViews.remove(healthEntryView);
 	}
 
@@ -91,6 +91,11 @@ public class HorizontalHealthView implements HealthView{
 	
 	public JPanel getPanel(){
 		return panel;
+	}
+
+	@Override
+	public void insert(int index, HealthEntryView s) {
+		throw new UnsupportedOperationException();
 	}
 	
 }

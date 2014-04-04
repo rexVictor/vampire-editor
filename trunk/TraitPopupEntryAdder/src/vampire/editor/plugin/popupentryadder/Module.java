@@ -6,7 +6,6 @@ import javax.swing.JPopupMenu;
 
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
-import vampire.editor.plugin.api.plugin.ManagerAPI;
 import vampire.editor.plugin.api.plugin.view.factories.SubCategoryViewFactoryModule;
 import vampire.editor.plugin.api.view.sheet.SubCategoryView;
 import vampire.editor.plugin.api.view.sheet.TraitView;
@@ -24,10 +23,6 @@ public class Module implements SubCategoryViewFactoryModule{
 	@Override
 	public void processFinal(SubCategoryAPI subCategory,
 			ModelToViewModelMapperAPI mapper, SubCategoryView traitView) {}
-
-	@Override
-	public void setManager(ManagerAPI manager) {
-	}
 
 	@Override
 	public void processInitial(SubCategoryAPI m,ModelToViewModelMapperAPI mapper) {}

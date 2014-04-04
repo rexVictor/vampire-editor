@@ -82,7 +82,6 @@ public class Loader {
 				if (!Files.isDirectory(p)){
 					JPopupMenu popupMenu = new JPopupMenu();
 					SortedMap<Integer, SortedSet<String>> entries = load(p);
-					System.out.println(entries);
 					Set<Integer> costs = entries.keySet();
 					for (Integer i : costs){
 						JMenu menu = new JMenu(i+""); //$NON-NLS-1$

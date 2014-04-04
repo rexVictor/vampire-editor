@@ -1,5 +1,6 @@
 package vampire.editor.gui.swing.application.factories;
 
+import vampire.editor.gui.swing.view.popupmenus.SubCategoryViewPopupMenu;
 import vampire.editor.gui.swing.view.subcategoryviews.AbstractSubCategoryView;
 import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.domain.sheet.SubCategoryAPI;
@@ -18,6 +19,7 @@ public class SSubCategoryViewFactory extends NonLeafAbstractFactory<SubCategoryA
 	public SSubCategoryViewFactory(TraitViewFactory traitViewFactory,
 			DictionaryAPI dictionary) {
 		super(traitViewFactory, dictionary);
+		add(new SubCategoryViewPopupMenu());
 	}
 
 	@Override

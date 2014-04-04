@@ -56,7 +56,7 @@ public class TraitAdder implements TraitListener, SubCategoryListener{
 	public void traitNameChanged(TraitEventAPI event) {
 		TraitControllerAPI traitController = event.getSource();
 		int lastIndex = subCategoryControllerAPI.size()-1;
-		TraitControllerAPI first = subCategoryControllerAPI.getTraitController(0);
+		TraitControllerAPI first = subCategoryControllerAPI.get(0);
 		int positionOccured = subCategoryControllerAPI.indexOf(traitController);
 		if (positionOccured == lastIndex){
 			if (!event.getNewName().trim().isEmpty()){
@@ -65,18 +65,18 @@ public class TraitAdder implements TraitListener, SubCategoryListener{
 					ValueControllerAPI valueController = clone.getValueController();
 					valueController.setTempValue(-1);
 					valueController.setValue(0);
-					TraitAPI trait = clone.getTrait();
-					TraitViewAttributesAPI traitViewAtts = clone.getTraitView().getViewAttributes();
-					ValueAPI value = valueController.getValue();
+					TraitAPI trait = clone.getModel();
+					TraitViewAttributesAPI traitViewAtts = clone.getView().getViewAttributes();
+					ValueAPI value = valueController.getModel();
 					ValueViewAttributesAPI valueViewAtts = valueController.getView().getViewAttributes();
 					mapper.putView(trait, traitViewAtts);
 					mapper.putView(value, valueViewAtts);
-					subCategoryControllerAPI.addTrait(clone);
+					subCategoryControllerAPI.add(clone);
 			}
 			else if (lastIndex != 0){
-					subCategoryControllerAPI.removeTrait(traitController);
-					TraitAPI trait = traitController.getTrait();
-					ValueAPI value = traitController.getValueController().getValue();
+					subCategoryControllerAPI.remove(traitController);
+					TraitAPI trait = traitController.getModel();
+					ValueAPI value = traitController.getValueController().getModel();
 					mapper.removeView(trait);
 					mapper.removeView(value);
 			}
@@ -84,13 +84,13 @@ public class TraitAdder implements TraitListener, SubCategoryListener{
 	}
 
 	@Override
-	public void traitAdded(SubCategoryEventAPI event) {
-		event.getAdded().addListener(this);
+	public void added(SubCategoryEventAPI event) {
+		event.getReason().addListener(this);
 	}
 
 	@Override
-	public void traitRemoved(SubCategoryEventAPI event) {
-		event.getRemoved().removeListener(this);
+	public void removed(SubCategoryEventAPI event) {
+		event.getReason().removeListener(this);
 	}
 	
 	

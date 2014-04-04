@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="libs/jackson-core-2.0.0.jar"/>
 	<classpathentry kind="lib" path="libs/jackson-databind-2.0.0.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GUIAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

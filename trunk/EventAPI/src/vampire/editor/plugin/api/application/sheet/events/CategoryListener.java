@@ -22,10 +22,6 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.application.sheet.events;
 
-public interface CategoryListener {
+public interface CategoryListener extends NonLeafListener<CategoryEventAPI>{
 	
-	public void subCategoryAdded(CategoryEventAPI event);
-	
-	public void subCategoryRemoved(CategoryEventAPI event);
-
 }

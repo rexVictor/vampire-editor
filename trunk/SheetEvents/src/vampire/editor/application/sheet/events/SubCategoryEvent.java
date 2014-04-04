@@ -26,52 +26,13 @@ import vampire.editor.plugin.api.application.sheet.controller.SubCategoryControl
 import vampire.editor.plugin.api.application.sheet.controller.TraitControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.SubCategoryEventAPI;
 
-public class SubCategoryEvent implements SubCategoryEventAPI{
-	
-	private final SubCategoryControllerAPI source;
-	
-	private final TraitControllerAPI added;
-	
-	private final TraitControllerAPI removed;
-	
-	private final int position;
-	
-	
+public class SubCategoryEvent extends AbstractNonLeafEvent<SubCategoryControllerAPI, TraitControllerAPI>
+								implements SubCategoryEventAPI{
 
 	public SubCategoryEvent(SubCategoryControllerAPI source,
-			TraitControllerAPI added, TraitControllerAPI removed, int position) {
-		super();
-		this.source = source;
-		this.position = position;
-		this.added = added;
-		this.removed = removed;
+			TraitControllerAPI reason, int index) {
+		super(source, reason, index);
 	}
-	
-	public int getPosition() {
-		return position;
-	}
-	
-	@Override
-	public SubCategoryControllerAPI getSource() {
-		return source;
-	}
-
-	@Override
-	public TraitControllerAPI getAdded() {
-		return added;
-	}
-
-	@Override
-	public TraitControllerAPI getRemoved() {
-		return removed;
-	}
-	
-	
-
-
-	
-	
-	
 	
 
 }
