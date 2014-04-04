@@ -21,7 +21,7 @@ public class TraitTooltipAdder implements TraitListener{
 	public void traitNameChanged(TraitEventAPI event) {
 		TraitControllerAPI traitController = event.getSource();
 		ValueControllerAPI valueController = traitController.getValueController();
-		TraitView traitView = traitController.getTraitView();
+		TraitView traitView = traitController.getView();
 		ValueView valueView = valueController.getView();
 		update(traitView, valueView, event.getNewName());
 	}

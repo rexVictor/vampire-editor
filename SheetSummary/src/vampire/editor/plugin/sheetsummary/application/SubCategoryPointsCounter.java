@@ -19,7 +19,7 @@ public class SubCategoryPointsCounter implements ValueListener, SubCategoryListe
 		subCatController.addListener(this);
 		for (TraitControllerAPI traitController : subCatController){
 			ValueControllerAPI valueController = traitController.getValueController();
-			ValueAPI value = valueController.getValue();
+			ValueAPI value = valueController.getModel();
 			sum+=value.getValue();
 			valueController.addListener(this);
 			sumChanged(sum);
@@ -52,13 +52,13 @@ public class SubCategoryPointsCounter implements ValueListener, SubCategoryListe
 	public void tempValueChanged(ValueEventAPI event) {}
 
 	@Override
-	public void traitAdded(SubCategoryEventAPI event) {
-		event.getAdded().getValueController().addListener(this);
+	public void added(SubCategoryEventAPI event) {
+		event.getReason().getValueController().addListener(this);
 	}
 
 	@Override
-	public void traitRemoved(SubCategoryEventAPI event) {
-		event.getRemoved().getValueController().removeListener(this);
+	public void removed(SubCategoryEventAPI event) {
+		event.getReason().getValueController().removeListener(this);
 	}
 
 }

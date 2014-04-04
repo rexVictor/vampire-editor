@@ -27,7 +27,7 @@ import vampire.editor.plugin.api.domain.sheet.DamageType;
 import vampire.editor.plugin.api.domain.sheet.HealthEntryAPI;
 import vampire.editor.plugin.api.view.sheet.HealthEntryView;
 
-public interface HealthEntryControllerAPI {
+public interface HealthEntryControllerAPI extends AbstractControllerAPI<HealthEntryAPI, HealthEntryView, HealthEntryListener>{
 	
 	public void setDamageType(DamageType damageType);
 	
@@ -35,12 +35,4 @@ public interface HealthEntryControllerAPI {
 	
 	public void setText(String text);
 	
-	public void addListener(HealthEntryListener l);
-	
-	public void removeListener(HealthEntryListener l);
-	
-	public HealthEntryAPI getHealthEntry();
-	
-	public HealthEntryView getView();
-
 }

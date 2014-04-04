@@ -58,7 +58,7 @@ public class Synchronizer implements MetaEntryListener{
 			MetaEntryControllerAPI generation) {
 		super();
 		this.bloodPoolController = bloodPoolController;
-		generation.addMetaEntryListener(this);
+		generation.addListener(this);
 	}
 
 	@Override

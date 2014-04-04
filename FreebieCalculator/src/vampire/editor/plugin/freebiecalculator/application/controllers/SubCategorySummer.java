@@ -15,7 +15,7 @@ public class SubCategorySummer implements ValueListener{
 	public SubCategorySummer(int defaultSum, SubCategoryControllerAPI subCatController){
 		for (TraitControllerAPI traitController : subCatController){
 			ValueControllerAPI controller = traitController.getValueController();
-			sum += controller.getValue().getValue();
+			sum += controller.getModel().getValue();
 			controller.addListener(this);
 		}
 	}

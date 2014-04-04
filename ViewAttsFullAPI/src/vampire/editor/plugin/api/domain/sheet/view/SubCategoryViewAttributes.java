@@ -33,7 +33,7 @@ public interface SubCategoryViewAttributes extends SubCategoryViewAttributesAPI{
 	public void setShowTitle(boolean showTitle);
 
 	public void setFont(Font font);
-
+	
 	@Override
 	public SubCategoryViewAttributes clone();
 	

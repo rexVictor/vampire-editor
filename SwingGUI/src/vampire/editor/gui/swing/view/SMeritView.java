@@ -79,13 +79,18 @@ public class SMeritView implements MeritView{
 	}
 
 	@Override
-	public void removeMeritEntryView(MeritEntryView view) {
+	public void remove(MeritEntryView view) {
 		if (view instanceof SMeritEntryView){
 			SMeritEntryView v = (SMeritEntryView) view;
 			entriesPanel.remove(v.getPanel());
 			panel.repaint();
 			panel.revalidate();
 		}
+	}
+
+	@Override
+	public void insert(int index, MeritEntryView s) {
+		throw new UnsupportedOperationException();
 	}
 	
 	

@@ -49,14 +49,14 @@ public class MeritAdder implements MeritEntryListener, MeritsListener{
 	}
 
 	@Override
-	public void meritAdded(MeritsEventAPI e) {
-		e.getAdded().addListener(this);
+	public void added(MeritsEventAPI e) {
+		e.getReason().addListener(this);
 		
 	}
 
 	@Override
-	public void meritRemoved(MeritsEventAPI e) {
-		e.getRemoved().removeListener(this);
+	public void removed(MeritsEventAPI e) {
+		e.getReason().removeListener(this);
 	}
 
 	@Override
@@ -66,21 +66,21 @@ public class MeritAdder implements MeritEntryListener, MeritsListener{
 	public void nameChanged(MeritEntryEventAPI e) {
 		MeritEntryControllerAPI meritController = e.getSource();
 		int lastIndex = meritsController.size()-1;
-		MeritEntryControllerAPI first = meritsController.getController(0);
+		MeritEntryControllerAPI first = meritsController.get(0);
 		int positionOccured = meritsController.indexOf(meritController);
 		if (positionOccured == lastIndex){
 			if (!e.getNewName().trim().isEmpty()){
 					MeritEntryControllerAPI clone = first.clone();
 					clone.setName(""); //$NON-NLS-1$
 					clone.setCost(0);
-					MeritAPI trait = clone.getMerit();
+					MeritAPI trait = clone.getModel();
 					MeritEntryViewAttibutesAPI traitViewAtts = clone.getView().getViewAttributes();
 					mapper.putView(trait, traitViewAtts);
-					meritsController.addMerit(clone);
+					meritsController.add(clone);
 			}
 			else if (lastIndex != 0){
-					meritsController.removeMerit(meritController);
-					MeritAPI merit = meritController.getMerit();
+					meritsController.remove(meritController);
+					MeritAPI merit = meritController.getModel();
 					mapper.removeView(merit);
 			}
 		}

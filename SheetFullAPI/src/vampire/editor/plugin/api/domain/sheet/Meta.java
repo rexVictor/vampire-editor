@@ -22,13 +22,7 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.domain.sheet;
 
-public interface Meta extends MetaAPI, Iterable<MetaEntry>{
-	
-	public void add(MetaEntry metaEntry);
-	
-	public void insert(int pos, MetaEntry metaEntry);
-	
-	public void remove(MetaEntry metaEntry);
+public interface Meta extends MetaAPI, Iterable<MetaEntry>, AbstractNonLeafModel<MetaEntry>{
 	
 	public MetaEntry get(int i);
 	

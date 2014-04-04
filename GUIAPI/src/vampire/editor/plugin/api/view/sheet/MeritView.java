@@ -26,8 +26,6 @@ import java.util.List;
 
 public interface MeritView extends Addable<MeritEntryView>{
 	
-	public void removeMeritEntryView(MeritEntryView view);
-	
 	public List<MeritEntryView> getEntries();
 
 }

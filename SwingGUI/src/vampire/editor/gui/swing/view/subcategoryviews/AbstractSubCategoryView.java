@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 import vampire.editor.gui.swing.view.Helper;
 import vampire.editor.gui.swing.view.traitviews.AbstractTraitView;
@@ -118,6 +119,18 @@ public abstract class AbstractSubCategoryView implements ISubCategoryView{
 		return panel;
 	}
 	
+	@Override
+	public void setPopupMenu(JPopupMenu menu){
+		panel.setComponentPopupMenu(menu);
+	}
+	
+	
+	
+	@Override
+	public SubCategoryViewAttributes getViewAtts() {
+		return viewAtts;
+	}
+
 	public abstract AbstractSubCategoryView newInstance(SubCategoryViewAttributes viewAtts,
 														DictionaryAPI dictionary, String title);
 

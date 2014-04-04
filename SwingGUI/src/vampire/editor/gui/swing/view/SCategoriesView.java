@@ -40,6 +40,16 @@ public class SCategoriesView implements CategoriesView{
 	public JPanel getPanel() {
 		return panel;
 	}
+
+	@Override
+	public void remove(CategoryView s) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public void insert(int index, CategoryView s) {
+		throw new UnsupportedOperationException();
+	}
 	
 	
 

@@ -4,8 +4,10 @@ import java.awt.Container;
 import java.util.List;
 
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 import vampire.editor.gui.swing.view.Helper;
+import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributes;
 import vampire.editor.plugin.api.view.events.DataViewListener;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 
@@ -70,6 +72,16 @@ public class SubCategoryViewWrap implements ISubCategoryView{
 	@Override
 	public JPanel getPanel() {
 		return view.getPanel();
+	}
+
+	@Override
+	public SubCategoryViewAttributes getViewAtts() {
+		return view.getViewAtts();
+	}
+
+	@Override
+	public void setPopupMenu(JPopupMenu popupMenu) {
+		view.setPopupMenu(popupMenu);
 	}
 
 }

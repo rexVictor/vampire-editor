@@ -30,8 +30,6 @@ public interface HealthView extends Addable<HealthEntryView>{
 	
 	public List<HealthEntryView> getEntries();
 	
-	public void removeHealthEntryView(HealthEntryView healthEntryView);
-	
 	public void addListener(HealthViewListener listener);
 
 }

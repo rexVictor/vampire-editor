@@ -26,24 +26,6 @@ import vampire.editor.plugin.api.application.sheet.events.CategoryListener;
 import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
 import vampire.editor.plugin.api.view.sheet.CategoryView;
 
-public interface CategoryControllerAPI extends Iterable<SubCategoryControllerAPI>{
-	
-	public SubCategoryControllerAPI get(int i);
-
-	public void addSubCategory(SubCategoryControllerAPI controller);
-
-	public void removeSubCategory(SubCategoryControllerAPI controller);
-
-	public void insertSubCategory(int index, SubCategoryControllerAPI controller);
-
-	public void addListener(CategoryListener listener);
-
-	public void removeListener(CategoryListener listener);
-
-	public CategoryAPI getCategory();
-
-	public CategoryView getView();
-	
-	public int size();
+public interface CategoryControllerAPI extends AbstractNonLeafControllerAPI<CategoryAPI, CategoryView, CategoryListener, SubCategoryControllerAPI>{
 	
 }
