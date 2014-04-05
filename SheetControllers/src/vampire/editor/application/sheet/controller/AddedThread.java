@@ -7,10 +7,21 @@ public class AddedThread<E, L extends NonLeafListener<E>> extends AbstractNonLea
 	public AddedThread(E e, L l) {
 		super(e, l);
 	}
+	
+	protected AddedThread(){
+		super();
+	}
 
 	@Override
 	public void run() {
 		l.added(e);
 	}
 
+	@SuppressWarnings("hiding")
+	@Override
+	protected <E, L extends NonLeafListener<E>> AbstractNonLeafThread<E, L> newInstance(
+			E e, L l) {
+		return new AddedThread<>(e, l);
+	}
+	
 }

@@ -22,6 +22,7 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.application.sheet.events;
 
+import vampire.editor.plugin.api.application.sheet.controller.MeritEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.MeritsControllerAPI;
 
 public interface MeritsEventAPI extends NonLeafEvent<MeritsControllerAPI, MeritEntryControllerAPI>{

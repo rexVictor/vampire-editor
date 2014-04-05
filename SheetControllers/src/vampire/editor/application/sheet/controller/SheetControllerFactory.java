@@ -43,9 +43,9 @@ public class SheetControllerFactory {
 		Categories cats = sheet.getCategories();
 		List<? extends CategoryView> catViews = view.getCategoriesView().getCategoryViews();
 		int i = 0;
-		CategoriesController categoriesController = new CategoriesController();
+		CategoriesController categoriesController = new CategoriesController(cats, view.getCategoriesView());
 		for (Category cat : cats){
-			categoriesController.addCategoryController(buildCategoryController(cat, catViews.get(i)));
+			categoriesController.add0(buildCategoryController(cat, catViews.get(i)));
 			i++;
 		}
 		

@@ -23,8 +23,9 @@
 package vampire.editor.application.sheet.controller;
 
 import vampire.editor.application.sheet.events.MeritsEvent;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
+import vampire.editor.plugin.api.application.sheet.controller.MeritEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.MeritsControllerAPI;
-import vampire.editor.plugin.api.application.sheet.events.MeritEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.MeritsEventAPI;
 import vampire.editor.plugin.api.application.sheet.events.MeritsListener;
 import vampire.editor.plugin.api.domain.sheet.Merit;
@@ -45,6 +46,11 @@ public class MeritsController extends AbstractNonLeafController<Merits, MeritVie
 	protected MeritsEventAPI generateEvent(MeritEntryControllerAPI reason,
 			int index) {
 		return new MeritsEvent(this, reason, index);
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 
 	

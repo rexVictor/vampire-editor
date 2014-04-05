@@ -23,6 +23,7 @@
 package vampire.editor.application.sheet.controller;
 
 import vampire.editor.application.sheet.events.HealthEntryEvent;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.controller.HealthEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.HealthEntryListener;
 import vampire.editor.plugin.api.domain.sheet.DamageType;
@@ -112,6 +113,11 @@ public class HealthEntryController extends AbstractController<HealthEntry, Healt
 	@Override
 	public void descriptionChanged(HealthViewEntryEvent event) {
 		setText(event.getDescription());
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 
 }

@@ -22,29 +22,35 @@
  ******************************************************************************/
 package vampire.editor.application.sheet.controller;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import vampire.editor.plugin.api.application.sheet.controller.CategoriesControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.CategoryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
+import vampire.editor.plugin.api.application.sheet.events.CategoriesEvent;
+import vampire.editor.plugin.api.application.sheet.events.CategoriesListener;
+import vampire.editor.plugin.api.domain.sheet.Categories;
+import vampire.editor.plugin.api.domain.sheet.Category;
+import vampire.editor.plugin.api.domain.sheet.CategoryAPI;
+import vampire.editor.plugin.api.view.sheet.CategoriesView;
+import vampire.editor.plugin.api.view.sheet.CategoryView;
 
-public class CategoriesController implements CategoriesControllerAPI{
+public class CategoriesController extends AbstractNonLeafController<Categories, CategoriesView, CategoriesListener, CategoryControllerAPI, CategoryAPI, Category, CategoryView, CategoriesEvent>
+								implements CategoriesControllerAPI{
 	
-	private final List<CategoryControllerAPI> controllers = new ArrayList<>();
+	
+
+	public CategoriesController(Categories m, CategoriesView v) {
+		super(m, v);
+	}
 
 	@Override
-	public CategoryControllerAPI get(int i) {
-		return controllers.get(i);
-	}
-	
-	public void addCategoryController(CategoryController controller){
-		controllers.add(controller);
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 
 	@Override
-	public Iterator<CategoryControllerAPI> iterator() {
-		return controllers.iterator();
+	protected CategoriesEvent generateEvent(CategoryControllerAPI reason,
+			int index) {
+		return null;
 	}
-
+	
 }

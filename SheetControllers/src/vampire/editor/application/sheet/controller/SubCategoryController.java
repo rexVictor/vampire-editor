@@ -23,6 +23,7 @@
 package vampire.editor.application.sheet.controller;
 
 import vampire.editor.application.sheet.events.SubCategoryEvent;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.controller.SubCategoryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.TraitControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.SubCategoryEventAPI;
@@ -45,6 +46,11 @@ public class SubCategoryController extends AbstractNonLeafController<SubCategory
 	protected SubCategoryEventAPI generateEvent(TraitControllerAPI reason,
 			int index) {
 		return new SubCategoryEvent(this, reason, index);
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 	
 }

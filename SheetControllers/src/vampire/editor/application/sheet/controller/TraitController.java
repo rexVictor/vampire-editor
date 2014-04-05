@@ -27,6 +27,7 @@ import java.util.List;
 
 import vampire.editor.application.sheet.events.TraitEvent;
 import vampire.editor.application.sheet.events.TraitMouseEvent;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.controller.TraitControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.TraitListener;
 import vampire.editor.plugin.api.application.sheet.events.TraitMouseListener;
@@ -122,6 +123,11 @@ public class TraitController extends AbstractController<Trait, TraitView, TraitL
 		for (TraitMouseListener l : mouseListeners){
 			l.mouseEventFired(event);
 		}
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 	
 }

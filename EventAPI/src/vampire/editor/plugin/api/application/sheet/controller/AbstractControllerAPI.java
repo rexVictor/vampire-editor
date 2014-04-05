@@ -9,5 +9,7 @@ public interface AbstractControllerAPI<M,V, L> {
 	public void addListener(L l);
 	
 	public void removeListener(L l);
+	
+	public void accept(ControllerVisitor visitor);
 
 }

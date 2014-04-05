@@ -22,7 +22,7 @@
  ******************************************************************************/
 package vampire.editor.application.sheet.events;
 
-import vampire.editor.plugin.api.application.sheet.events.MeritEntryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.MeritEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.MeritEntryEventAPI;
 
 public class MeritEntryEvent implements MeritEntryEventAPI{

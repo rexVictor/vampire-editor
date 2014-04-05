@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import vampire.editor.application.sheet.events.MetaEvent;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.controller.MetaControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.MetaEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.MetaEventAPI;
@@ -74,6 +75,11 @@ public class MetaController extends AbstractNonLeafController<Meta, MetaView, Me
 	protected MetaEventAPI generateEvent(MetaEntryControllerAPI reason,
 			int index) {
 		return new MetaEvent(this, reason, index);
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 
 }

@@ -22,6 +22,8 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.application.sheet.events;
 
+import vampire.editor.plugin.api.application.sheet.controller.MeritEntryControllerAPI;
+
 public interface MeritEntryEventAPI {
 	
 	public MeritEntryControllerAPI getSource();

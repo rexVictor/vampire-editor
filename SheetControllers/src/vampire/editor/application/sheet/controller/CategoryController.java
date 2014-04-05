@@ -24,6 +24,7 @@ package vampire.editor.application.sheet.controller;
 
 import vampire.editor.application.sheet.events.CategoryEvent;
 import vampire.editor.plugin.api.application.sheet.controller.CategoryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.controller.SubCategoryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.CategoryEventAPI;
 import vampire.editor.plugin.api.application.sheet.events.CategoryListener;
@@ -44,6 +45,11 @@ public class CategoryController extends AbstractNonLeafController<Category, Cate
 	@Override
 	protected CategoryEventAPI generateEvent(SubCategoryControllerAPI reason, int index) {
 		return new CategoryEvent(this, reason, index);
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 
 }

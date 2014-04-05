@@ -23,7 +23,8 @@
 package vampire.editor.application.sheet.controller;
 
 import vampire.editor.application.sheet.events.MeritEntryEvent;
-import vampire.editor.plugin.api.application.sheet.events.MeritEntryControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
+import vampire.editor.plugin.api.application.sheet.controller.MeritEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.MeritEntryListener;
 import vampire.editor.plugin.api.domain.sheet.Merit;
 import vampire.editor.plugin.api.view.events.MeritEntryViewEvent;
@@ -132,6 +133,11 @@ public class MeritEntryController extends AbstractController<Merit, MeritEntryVi
 		MeritEntryView cloneEntryView = view.clone();
 		MeritEntryController clone = new MeritEntryController(cloneMerit, cloneEntryView);
 		return clone;
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 	
 	
