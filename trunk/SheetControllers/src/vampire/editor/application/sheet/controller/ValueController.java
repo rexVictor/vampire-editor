@@ -23,6 +23,7 @@
 package vampire.editor.application.sheet.controller;
 
 import vampire.editor.application.sheet.events.ValueEvent;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.controller.ValueControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.ValueListener;
 import vampire.editor.plugin.api.domain.sheet.Value;
@@ -94,6 +95,11 @@ public class ValueController extends AbstractController<Value, ValueView, ValueL
 		cloneValue.setValue(0);
 		ValueView cloneView = view.clone();
 		return new ValueController(cloneValue, cloneView);
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 
 }

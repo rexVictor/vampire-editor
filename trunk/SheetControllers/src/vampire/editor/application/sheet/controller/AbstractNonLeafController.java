@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import vampire.editor.plugin.api.application.sheet.controller.AbstractControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.events.NonLeafListener;
 import vampire.editor.plugin.api.domain.sheet.AbstractNonLeafModel;
 import vampire.editor.plugin.api.view.sheet.Addable;
@@ -37,26 +38,16 @@ public abstract class AbstractNonLeafController<M extends AbstractNonLeafModel<S
 	}
 	
 	protected void callListenersAdded(final E e){
-		for (L listener : listeners){
-			final L l = listener;
-			new Thread(){
-				@Override
-				public void run(){
-					l.added(e);
-				}
-			}.start();
-		}
+		callListeners(e, AddedThread.class);
 	}
 	
 	protected void callListenersRemoved(final E e){
-		for (L listener : listeners){
-			final L l = listener;
-			new Thread(){
-				@Override
-				public void run(){
-					l.removed(e);
-				}
-			}.start();
+		callListeners(e, RemovedThread.class);
+	}
+	
+	private void callListeners(E e, Class<?> clazz){
+		for (L l : listeners){
+			AbstractNonLeafThread.startThread(e, l, clazz);
 		}
 	}
 	
@@ -119,6 +110,12 @@ public abstract class AbstractNonLeafController<M extends AbstractNonLeafModel<S
 		}
 		finally{
 			lock.unlock();
+		}
+	}
+	
+	public void visitChildren(ControllerVisitor visitor){
+		for (SC sc : subControllers){
+			sc.accept(visitor);
 		}
 	}
 	

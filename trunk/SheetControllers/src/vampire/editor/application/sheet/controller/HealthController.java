@@ -23,6 +23,7 @@
 package vampire.editor.application.sheet.controller;
 
 import vampire.editor.application.sheet.events.HealthEvent;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.controller.HealthControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.HealthEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.HealthEventAPI;
@@ -47,6 +48,11 @@ public class HealthController extends AbstractNonLeafController<Health, HealthVi
 	protected HealthEventAPI generateEvent(HealthEntryControllerAPI reason,
 			int index) {
 		return new HealthEvent(this, reason, index);
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 
 }

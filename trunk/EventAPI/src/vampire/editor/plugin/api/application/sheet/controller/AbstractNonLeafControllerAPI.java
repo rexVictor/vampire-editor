@@ -13,5 +13,7 @@ public interface AbstractNonLeafControllerAPI<M, V, L, SC>	extends AbstractContr
 	public SC get(int i);
 	
 	public int indexOf(SC subController);
-
+	
+	public void visitChildren(ControllerVisitor visitor);
+	
 }

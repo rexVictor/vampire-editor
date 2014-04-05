@@ -22,7 +22,6 @@
  ******************************************************************************/
 package vampire.editor.plugin.api.application.sheet.controller;
 
-import vampire.editor.plugin.api.application.sheet.events.MeritEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.MeritsListener;
 import vampire.editor.plugin.api.domain.sheet.MeritsAPI;
 import vampire.editor.plugin.api.view.sheet.MeritView;

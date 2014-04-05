@@ -24,6 +24,7 @@ package vampire.editor.application.sheet.controller;
 
 import vampire.editor.application.sheet.events.BloodPoolEvent;
 import vampire.editor.plugin.api.application.sheet.controller.BloodPoolControllerAPI;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.events.BloodPoolListener;
 import vampire.editor.plugin.api.domain.sheet.BloodPool;
 import vampire.editor.plugin.api.view.events.BloodPoolViewEvent;
@@ -82,7 +83,11 @@ public class BloodPoolController extends AbstractController<BloodPool, BloodPool
 		finally{
 			lock.unlock();
 		}
-		
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 	
 }

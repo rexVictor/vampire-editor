@@ -22,8 +22,8 @@
  ******************************************************************************/
 package vampire.editor.plugin.dynamicmeritentrymanager.application;
 
+import vampire.editor.plugin.api.application.sheet.controller.MeritEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.MeritsControllerAPI;
-import vampire.editor.plugin.api.application.sheet.events.MeritEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.MeritEntryEventAPI;
 import vampire.editor.plugin.api.application.sheet.events.MeritEntryListener;
 import vampire.editor.plugin.api.application.sheet.events.MeritsEventAPI;

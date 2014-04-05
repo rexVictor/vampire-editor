@@ -23,6 +23,7 @@
 package vampire.editor.application.sheet.controller;
 
 import vampire.editor.application.sheet.events.MetaEntryEvent;
+import vampire.editor.plugin.api.application.sheet.controller.ControllerVisitor;
 import vampire.editor.plugin.api.application.sheet.controller.MetaEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.MetaEntryListener;
 import vampire.editor.plugin.api.domain.sheet.MetaEntry;
@@ -81,6 +82,11 @@ public class MetaEntryController extends AbstractController<MetaEntry, MetaEntry
 		finally{
 			lock.unlock();
 		}
+	}
+
+	@Override
+	public void accept(ControllerVisitor visitor) {
+		visitor.visit(this);
 	}
 	
 }

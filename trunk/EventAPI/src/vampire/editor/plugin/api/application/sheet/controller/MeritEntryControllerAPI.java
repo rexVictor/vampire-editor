@@ -20,9 +20,9 @@
  * Matthias Johannes Reimchen
  * development.rex@gmail.com
  ******************************************************************************/
-package vampire.editor.plugin.api.application.sheet.events;
+package vampire.editor.plugin.api.application.sheet.controller;
 
-import vampire.editor.plugin.api.application.sheet.controller.AbstractControllerAPI;
+import vampire.editor.plugin.api.application.sheet.events.MeritEntryListener;
 import vampire.editor.plugin.api.domain.sheet.MeritAPI;
 import vampire.editor.plugin.api.view.sheet.MeritEntryView;
 
