@@ -22,12 +22,9 @@
  ******************************************************************************/
 package vampire.editor.plugin.dynamicsubcategorymanager.application;
 
-import vampire.editor.plugin.api.application.sheet.controller.CategoryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.SheetControllerAPI;
-import vampire.editor.plugin.api.application.sheet.controller.SubCategoryControllerAPI;
 import vampire.editor.plugin.api.domain.sheet.ModelToViewModelMapperAPI;
 import vampire.editor.plugin.api.domain.sheet.VampireDocumentAPI;
-import vampire.editor.plugin.api.domain.sheet.view.SubCategoryViewAttributesAPI;
 import vampire.editor.plugin.api.plugin.Activator;
 import vampire.editor.plugin.api.plugin.DocumentEventAPI;
 import vampire.editor.plugin.api.plugin.DocumentListener;
@@ -35,27 +32,20 @@ import vampire.editor.plugin.api.plugin.ManagerAPI;
 
 public class Constructor implements Activator, DocumentListener{
 
-	@SuppressWarnings("unused")
 	@Override
 	public void documentAdded(DocumentEventAPI e) {
 		SheetControllerAPI sheetController = e.getSource();
 		VampireDocumentAPI document = sheetController.getDocument();
 		ModelToViewModelMapperAPI mapper = document.getModelToViewModelMapper();
-		for (CategoryControllerAPI categoryController : sheetController.getCategoriesController()){
-			for (SubCategoryControllerAPI subCategoryController : categoryController){
-				SubCategoryViewAttributesAPI viewAtts = (SubCategoryViewAttributesAPI) mapper.getViewAttributes(subCategoryController.getModel());
-				if (viewAtts.isExpandable()){
-					new TraitAdder(mapper, subCategoryController);
-				}
-			}
-		}
+		Visitor visitor = new Visitor(mapper);
+		sheetController.getCategoriesController().visitChildren(visitor);
 	}
 
 	@Override
-	public void selectedDocumentChanged(DocumentEventAPI e) {/***/}
+	public void selectedDocumentChanged(DocumentEventAPI e) {}
 
 	@Override
-	public void documentRemoved(DocumentEventAPI e) {/***/}
+	public void documentRemoved(DocumentEventAPI e) {}
 
 	@Override
 	public void setManager(ManagerAPI manager) {

@@ -29,7 +29,7 @@ public class Constructor implements Activator, DocumentListener{
 	public void setManager(ManagerAPI manager) {
 		DictionaryAPI tooltips = manager.getResourcesHolder().getDictionary("tooltips"); //$NON-NLS-1$
 		if (tooltips != null){
-			TraitTooltipAdder traitTooltipAdder = new TraitTooltipAdder(tooltips);
+			TraitTooltipAdder traitTooltipAdder = new TraitTooltipAdder(Loader.load());
 			visitor = new Visitor(traitTooltipAdder);
 			manager.addDocumentListener(this);
 		}

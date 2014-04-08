@@ -20,6 +20,8 @@
  ******************************************************************************/
 package vampire.editor.gui.swing.mainframe.application;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,8 +53,6 @@ public class GuiActivator implements Activator{
 		catch (Throwable e){
 			e.printStackTrace();
 		}
-		
-		
 		try {
 			Class.forName(Images.class.getName());
 		} catch (ClassNotFoundException e) {
@@ -71,6 +71,10 @@ public class GuiActivator implements Activator{
 					UIManager.setLookAndFeel(laf);
 				}
 			}
+			String tooltipFont = properties.getProperty("ToolTip.font"); //$NON-NLS-1$
+			UIManager.put("ToolTip.font", new Font(tooltipFont, 0, 18)); //$NON-NLS-1$
+			UIManager.put("ToolTip.background", Color.BLACK); //$NON-NLS-1$
+			UIManager.put("ToolTip.foreground", Color.WHITE); //$NON-NLS-1$
 		} catch (IOException e){
 			e.printStackTrace();
 		} catch ( ClassNotFoundException | InstantiationException |		

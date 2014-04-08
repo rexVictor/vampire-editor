@@ -61,10 +61,12 @@ public class Dictionary implements DictionaryAPI {
 
 	@Override
 	public String getKey(String value){
+		if (value.isEmpty()) return value;
 		String toReturn = valueToKey.get(value);
 		if (toReturn == null)
 			return value;
 		return toReturn;
+		
 	}
 	
 	@Override

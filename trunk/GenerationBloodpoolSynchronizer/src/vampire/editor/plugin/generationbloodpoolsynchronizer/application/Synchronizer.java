@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import vampire.editor.plugin.api.application.sheet.controller.BloodPoolControllerAPI;
-import vampire.editor.plugin.api.application.sheet.controller.MetaEntryControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.MetaEntryEventAPI;
 import vampire.editor.plugin.api.application.sheet.events.MetaEntryListener;
 
@@ -54,11 +53,9 @@ public class Synchronizer implements MetaEntryListener{
 	
 	private final BloodPoolControllerAPI bloodPoolController;
 	
-	public Synchronizer(BloodPoolControllerAPI bloodPoolController,
-			MetaEntryControllerAPI generation) {
+	public Synchronizer(BloodPoolControllerAPI bloodPoolController) {
 		super();
 		this.bloodPoolController = bloodPoolController;
-		generation.addListener(this);
 	}
 
 	@Override
