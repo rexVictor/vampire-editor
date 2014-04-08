@@ -39,5 +39,5 @@ public interface DataView<V> {
 	public void addListener(DataViewListener<V> listener);
 	
 	public void removeListener(DataViewListener<V> listener);
-
+	
 }

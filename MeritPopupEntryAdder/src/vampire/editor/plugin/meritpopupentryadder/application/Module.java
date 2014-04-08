@@ -23,7 +23,6 @@ public class Module implements MeritViewFactoryModule{
 	public void addToChild(MeritsAPI m, ModelToViewModelMapperAPI mapper,
 			MeritEntryView subView) {
 		subView.setPopupMenu(map.get(m.getName()));
-		
 	}
 
 	@Override

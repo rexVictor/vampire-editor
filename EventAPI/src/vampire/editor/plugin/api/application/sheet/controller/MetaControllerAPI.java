@@ -26,7 +26,10 @@ import vampire.editor.plugin.api.application.sheet.events.MetaListener;
 import vampire.editor.plugin.api.domain.sheet.MetaAPI;
 import vampire.editor.plugin.api.view.sheet.MetaView;
 
+@SuppressWarnings("nls")
 public interface MetaControllerAPI extends AbstractNonLeafControllerAPI<MetaAPI, MetaView, MetaListener, MetaEntryControllerAPI>{
+	
+	public static final String GENERATION = "generation";
 	
 	public MetaEntryControllerAPI getMetaEntryController(String key);
 }

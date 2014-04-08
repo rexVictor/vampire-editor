@@ -1,20 +1,21 @@
 package vampire.editor.plugin.tooltipadder;
 
+import java.util.ResourceBundle;
+
 import vampire.editor.plugin.api.application.sheet.controller.TraitControllerAPI;
 import vampire.editor.plugin.api.application.sheet.controller.ValueControllerAPI;
 import vampire.editor.plugin.api.application.sheet.events.TraitEventAPI;
 import vampire.editor.plugin.api.application.sheet.events.TraitListener;
-import vampire.editor.plugin.api.domain.DictionaryAPI;
 import vampire.editor.plugin.api.view.sheet.TraitView;
 import vampire.editor.plugin.api.view.sheet.ValueView;
 
 public class TraitTooltipAdder implements TraitListener{
 	
-	private final DictionaryAPI tooltips;
+	private final ResourceBundle bundle;
 	
-	public TraitTooltipAdder(DictionaryAPI tooltips) {
+	public TraitTooltipAdder(ResourceBundle bundle) {
 		super();
-		this.tooltips = tooltips;
+		this.bundle = bundle;
 	}
 
 	@Override
@@ -27,9 +28,21 @@ public class TraitTooltipAdder implements TraitListener{
 	}
 	
 	public void update(TraitView traitView, ValueView valueView, String newName){
-		traitView.setTooltip(tooltips.getValue(newName));
+		if (bundle.containsKey(newName)){
+			traitView.setTooltip(bundle.getString(newName));
+		}
+		else {
+			traitView.setTooltip(null);
+		}
 		for (int i = 0; i < 10; i++){
-			valueView.setToolTip(i, tooltips.getValue(newName+(i+1)));
+			String toGet = newName+(i+1);
+			if (bundle.containsKey(toGet)){
+				valueView.setToolTip(i, bundle.getString(toGet));
+			}
+			else {
+				valueView.setToolTip(i, null);
+			}
+			
 		}
 	}
 

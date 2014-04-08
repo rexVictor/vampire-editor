@@ -46,10 +46,6 @@ public class TraitAdder implements TraitListener, SubCategoryListener{
 		super();
 		this.mapper = mapper;
 		this.subCategoryControllerAPI = subCategoryControllerAPI;
-		subCategoryControllerAPI.addListener(this);
-		for (TraitControllerAPI trait : subCategoryControllerAPI){
-			trait.addListener(this);
-		}
 	}
 
 	@Override
@@ -58,28 +54,29 @@ public class TraitAdder implements TraitListener, SubCategoryListener{
 		int lastIndex = subCategoryControllerAPI.size()-1;
 		TraitControllerAPI first = subCategoryControllerAPI.get(0);
 		int positionOccured = subCategoryControllerAPI.indexOf(traitController);
-		if (positionOccured == lastIndex){
-			if (!event.getNewName().trim().isEmpty()){
-					TraitControllerAPI clone = first.clone();
-					clone.setTraitName(""); //$NON-NLS-1$
-					ValueControllerAPI valueController = clone.getValueController();
-					valueController.setTempValue(-1);
-					valueController.setValue(0);
-					TraitAPI trait = clone.getModel();
-					TraitViewAttributesAPI traitViewAtts = clone.getView().getViewAttributes();
-					ValueAPI value = valueController.getModel();
-					ValueViewAttributesAPI valueViewAtts = valueController.getView().getViewAttributes();
-					mapper.putView(trait, traitViewAtts);
-					mapper.putView(value, valueViewAtts);
-					subCategoryControllerAPI.add(clone);
+		String newName = event.getNewName();
+		if (newName.trim().isEmpty()){
+			if (lastIndex != 0){
+				subCategoryControllerAPI.remove(traitController);
+				TraitAPI trait = traitController.getModel();
+				ValueAPI value = traitController.getValueController().getModel();
+				mapper.removeView(trait);
+				mapper.removeView(value);
 			}
-			else if (lastIndex != 0){
-					subCategoryControllerAPI.remove(traitController);
-					TraitAPI trait = traitController.getModel();
-					ValueAPI value = traitController.getValueController().getModel();
-					mapper.removeView(trait);
-					mapper.removeView(value);
-			}
+		}
+		else if (positionOccured == lastIndex){
+			TraitControllerAPI clone = first.clone();
+			clone.setTraitName(""); //$NON-NLS-1$
+			ValueControllerAPI valueController = clone.getValueController();
+			valueController.setTempValue(-1);
+			valueController.setValue(0);
+			TraitAPI trait = clone.getModel();
+			TraitViewAttributesAPI traitViewAtts = clone.getView().getViewAttributes();
+			ValueAPI value = valueController.getModel();
+			ValueViewAttributesAPI valueViewAtts = valueController.getView().getViewAttributes();
+			mapper.putView(trait, traitViewAtts);
+			mapper.putView(value, valueViewAtts);
+			subCategoryControllerAPI.add(clone);
 		}
 	}
 
@@ -92,7 +89,5 @@ public class TraitAdder implements TraitListener, SubCategoryListener{
 	public void removed(SubCategoryEventAPI event) {
 		event.getReason().removeListener(this);
 	}
-	
-	
 	
 }

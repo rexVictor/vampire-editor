@@ -7,7 +7,6 @@ public class ViewFactory {
 	private final DictionaryAPI dictionary;
 	
 	
-	
 	public ViewFactory(DictionaryAPI dictionary) {
 		super();
 		this.dictionary = dictionary;
